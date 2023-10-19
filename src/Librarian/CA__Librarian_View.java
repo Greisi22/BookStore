@@ -327,7 +327,6 @@ public class CA__Librarian_View {
 		// ................................................................
 		Cancle.setOnAction(e -> {
 			listaaa.clear();
-			listaaa.clear();
 			try {
 				stage1.close();
 				CA__Librarian_View.stage(stage, WelcomeName);

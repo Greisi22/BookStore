@@ -301,15 +301,7 @@
 
 package Librarian;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -522,15 +514,26 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 						
 			
 				
-					while(objis!=null)
-					{
-						E_Bill obj = ((E_Bill) objis.readObject());
-					
-						listBooks.add(obj);
-					}
+//					while(objis!=null)
+//					{
+//						E_Bill obj = ((E_Bill) objis.readObject());
+//
+//						listBooks.add(obj);
+//					}
 
-			
+						//This is how we fixed it
+						while (true) {
+							try {
+								E_Bill obj = (E_Bill) objis.readObject();
+								listBooks.add(obj);
+							} catch (EOFException e) {
+
+								break;
+							}
+						}
+
 					objis.close();
+
 					} catch (FileNotFoundException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -541,6 +544,15 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 					} catch (ClassNotFoundException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+					}  finally {
+						// Check if objis is not null before attempting to close it
+						if (objis != null) {
+							try {
+								objis.close();
+							} catch (IOException e) {
+								e.printStackTrace();
+							}
+						}
 					}
 					
 					

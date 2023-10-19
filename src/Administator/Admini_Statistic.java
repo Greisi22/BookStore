@@ -117,8 +117,9 @@ try {
         series1.setName("Money Make");
         for(int i=0;i<list3.size();i++)
         {
-        	if(list.get(i).getAccesLevel().equals(Zh_accessLevel.LIBRARIAN))
-            series1.getData().add(new XYChart.Data(list.get(i).getFirstName().toString(), cnt+=3));
+        	if(list.get(i).getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
+				series1.getData().add(new XYChart.Data(list.get(i).getFirstName().toString(), cnt += 3));
+			}
         }
    
    

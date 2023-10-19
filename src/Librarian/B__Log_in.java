@@ -92,19 +92,20 @@ public class B__Log_in {
 					}
 					else {
 						System.out.println("era1");
-					if(a.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN))
-					{
-						CA__Librarian_View.stage(stage, a.getFirstName());
-					}
-					else if(a.getAccesLevel().equals(Zh_accessLevel.MANAGER))
-					{
-						view.View(stage, a.getFirstName());
-					}
-					else if(a.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR))
-					{
+						if (a != null) {
+							// The 'a' variable is not null
+							if (a.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
+								CA__Librarian_View.stage(stage, a.getFirstName());
+							} else if (a.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
+								view.View(stage, a.getFirstName());
+							} else if (a.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
+								View.FirstView(stage, a.getFirstName());
+							}
+						} else {
 
-						View.FirstView(stage, a.getFirstName());
-					}
+							System.out.println("Null error");
+							showAlert(Alert.AlertType.ERROR,  pane.getScene().getWindow(), "Form Error!", "Try Again !!!");
+						}
 					
 					}
 				} catch (FileNotFoundException e1) {

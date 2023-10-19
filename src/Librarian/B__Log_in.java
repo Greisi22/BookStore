@@ -155,9 +155,7 @@ public class B__Log_in {
 		
 		return u1;
 			}
-	else {
 
-	}
 	
 
 		} catch (ClassNotFoundException | IOException e) {

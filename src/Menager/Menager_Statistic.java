@@ -117,9 +117,11 @@ public class Menager_Statistic {
 	private static int getnumber(int z) {
 		FileInputStream fis;
 		int sum =0;
+		ObjectInputStream objis = null;
+
 		try {
 			fis = new FileInputStream("Bills.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
+		    objis = new ObjectInputStream(fis);
 			
 		while(objis!=null)
 		{

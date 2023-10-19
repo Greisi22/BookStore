@@ -598,16 +598,31 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 	
 			objis = new ObjectInputStream(fis);
 
-		while(objis!=null)
-		{
-			Zh_Books obj = ((Zh_Books) objis.readObject());
-		if(obj.getISBN().equals(Isbn)) {
-			int a = obj.getQuanity();
-			a -=1;
-			obj.setQuanity(a);
-		}
-		newBooks1.add(obj);
-		}
+//		while(objis!=null)
+//		{
+//			Zh_Books obj = ((Zh_Books) objis.readObject());
+//		if(obj.getISBN().equals(Isbn)) {
+//			int a = obj.getQuanity();
+//			a -=1;
+//			obj.setQuanity(a);
+//		}
+//		newBooks1.add(obj);
+//		}
+
+			while (true) {
+				try {
+					Zh_Books obj = (Zh_Books) objis.readObject();
+					if (obj.getISBN().equals(Isbn)) {
+						int a = obj.getQuanity();
+						a -= 1;
+						obj.setQuanity(a);
+					}
+					newBooks1.add(obj);
+				} catch (EOFException e) {
+					// End of file reached
+					break;
+				}
+			}
 
 
 		objis.close();

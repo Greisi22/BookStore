@@ -279,12 +279,7 @@
 
 package Administator;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.D_Users;
@@ -318,25 +313,28 @@ public static void ModUsers()
 		try {
 			fis = new FileInputStream("Users.dat");
 			ObjectInputStream objis = new ObjectInputStream(fis);
-		
-			
-	
-		while(objis!=null)
-		{
-			
-			D_Users	obj = ((D_Users) objis.readObject());
-			listBooks.add(obj);
+
+
+			while (objis != null) {
+
+				D_Users obj = ((D_Users) objis.readObject());
+				listBooks.add(obj);
+			}
+			objis.close();
+		}catch (EOFException e) {
+
+		} catch (IOException | ClassNotFoundException e) {
+
+			e.printStackTrace();
 		}
-		objis.close();
-			
-		} catch (FileNotFoundException e1) {
-		
-		} catch (IOException e1) {
-			
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+//		 catch (FileNotFoundException e1) {
+//
+//		} catch (IOException e1) {
+//
+//		} catch (ClassNotFoundException e1) {
+//			// TODO Auto-generated catch block
+//			e1.printStackTrace();
+//		}
 		
 		TableView<D_Users> userTable = new TableView<D_Users>();
 		ObservableList<D_Users> data = FXCollections.observableArrayList(listBooks); 

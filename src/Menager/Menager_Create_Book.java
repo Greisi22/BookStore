@@ -541,11 +541,12 @@ public class Menager_Create_Book {
 		ArrayList<Book_Sold> listBooks = new ArrayList<Book_Sold>();
 
 		FileInputStream fis;
+		ObjectInputStream objis = null;
 		try {
 
 			fis = new FileInputStream("booksBought.dat");
 
-			ObjectInputStream objis = new ObjectInputStream(fis);
+			 objis = new ObjectInputStream(fis);
 
 			while (objis != null) {
 
@@ -570,26 +571,36 @@ public class Menager_Create_Book {
 //	
 //print file
 
-	private static void SaveBooks(ArrayList<Book_Sold> listBooks) {
 
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream("booksBought.dat");
-			ObjectOutputStream output = new ObjectOutputStream(out);
+private static void SaveBooks(ArrayList<Book_Sold> listBooks) {
+	FileOutputStream out = null;
+	ObjectOutputStream output = null;
 
-			for (int i = 0; i < listBooks.size(); i++) {
-				output.writeObject(listBooks.get(i));
-			}
+	try {
+		out = new FileOutputStream("booksBought.dat");
+		output = new ObjectOutputStream(out);
 
-			output.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-
+		for (Book_Sold book : listBooks) {
+			output.writeObject(book);
 		}
-
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	} catch (IOException e) {
+		e.printStackTrace();
+	} finally { //Added this finally block to make sure that the outputs are closed properly
+		try {
+			if (output != null) {
+				output.close();
+			}
+			if (out != null) {
+				out.close();
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
+}
+
 
 	private static void write(Zh_Books isCreated) {
 

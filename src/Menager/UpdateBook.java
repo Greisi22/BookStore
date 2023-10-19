@@ -45,10 +45,11 @@ public class UpdateBook {
 		//................................................................................................//
 	ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
 		
-		FileInputStream fis;
+		FileInputStream fis = null;
+		ObjectInputStream objis = null;
 		try {
 			fis = new FileInputStream("Books.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
+			 objis = new ObjectInputStream(fis);
 		
 			
 			Zh_Books obj = new Zh_Books() ;
@@ -58,17 +59,27 @@ public class UpdateBook {
 			obj = ((Zh_Books) objis.readObject());
 			listBooks.add(obj);
 		}
-		objis.close();
+		//objis.close();
 			
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			
+			e1.printStackTrace();
 		} catch (ClassNotFoundException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		}
+		} finally { //added this part
+			try {
+				if (objis != null) {
+					objis.close();
+				}
+				if (fis != null) {
+					fis.close();
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}}
 		
 		TableView<Zh_Books> userTable = new TableView<Zh_Books>();
 		ObservableList<Zh_Books> data = FXCollections.observableArrayList(listBooks); 

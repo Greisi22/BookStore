@@ -308,12 +308,18 @@ public static void View(Stage stage, String Name) throws FileNotFoundException
 	}
 	
 	message.setOnAction(e->{
-		String s1= "";
-		for(int i=0;i<listBooks.size();i++)
-		{
-		s1 +="        Book "+ listBooks.get(i)+" has less than 5 in stock\n"; 	
+//		String s1 = "";
+//		for(int i=0;i<listBooks.size();i++)
+//		{
+//		s1 +="        Book "+ listBooks.get(i)+" has less than 5 in stock\n";
+//		}
+
+		String s1 = "";  // Initialize the string
+		for (int i = 0; i < listBooks.size(); i++) {
+			s1 += "        Book " + listBooks.get(i) + " has less than 5 in stock\n";
 		}
-	Label label = new Label(s1);
+
+		Label label = new Label(s1);
 	
 	
 	Books_out_of_Stock.OutOfStock_View(label);

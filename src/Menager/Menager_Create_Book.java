@@ -319,12 +319,7 @@
 
 package Menager;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.V_Author;
@@ -541,17 +536,21 @@ public class Menager_Create_Book {
 		ArrayList<Book_Sold> listBooks = new ArrayList<Book_Sold>();
 
 		FileInputStream fis;
-		ObjectInputStream objis = null;
+		ObjectInputStream objis;
 		try {
 
 			fis = new FileInputStream("booksBought.dat");
 
 			 objis = new ObjectInputStream(fis);
 
-			while (objis != null) {
+			while (true) {
 
-				Book_Sold obj = ((Book_Sold) objis.readObject());
-				listBooks.add(obj);
+				try {
+					Book_Sold obj = (Book_Sold) objis.readObject();
+					listBooks.add(obj);
+				} catch (EOFException e) {
+					break; // End of the stream
+				}
 			}
 
 			objis.close();

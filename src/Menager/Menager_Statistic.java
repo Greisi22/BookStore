@@ -1,9 +1,6 @@
 package Menager;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -117,20 +114,24 @@ public class Menager_Statistic {
 	private static int getnumber(int z) {
 		FileInputStream fis;
 		int sum =0;
-		ObjectInputStream objis = null;
+		ObjectInputStream objis;
 
 		try {
 			fis = new FileInputStream("Bills.dat");
 		    objis = new ObjectInputStream(fis);
 			
-		while(objis!=null)
+		while(true)
 		{
-			
-			E_Bill obj = ((E_Bill) objis.readObject());
-			if(obj.getDate().getYear() == 2023 && obj.getDate().getMonth()==z )
-			{
-				sum+=obj.getBookquantity();
+			try {
+				E_Bill obj = ((E_Bill) objis.readObject());
+				if(obj.getDate().getYear() == 2023 && obj.getDate().getMonth()==z )
+				{
+					sum+=obj.getBookquantity();
+				}
+			}catch (EOFException e) {
+				break; // End of the stream
 			}
+
 			
 		}
 		objis.close();

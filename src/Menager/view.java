@@ -314,12 +314,12 @@ public static void View(Stage stage, String Name) throws FileNotFoundException
 //		s1 +="        Book "+ listBooks.get(i)+" has less than 5 in stock\n";
 //		}
 
-		String s1 = "";  // Initialize the string
+		StringBuilder s1 = new StringBuilder();  // Initialize the string
 		for (int i = 0; i < listBooks.size(); i++) {
-			s1 += "        Book " + listBooks.get(i) + " has less than 5 in stock\n";
+			s1.append("        Book ").append(listBooks.get(i)).append(" has less than 5 in stock\n");
 		}
 
-		Label label = new Label(s1);
+		Label label = new Label(s1.toString());
 	
 	
 	Books_out_of_Stock.OutOfStock_View(label);

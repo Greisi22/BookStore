@@ -310,9 +310,10 @@ public static void ModUsers()
 	ArrayList<D_Users> listBooks = new ArrayList<D_Users>();
 		
 		FileInputStream fis;
+	ObjectInputStream objis = null;
 		try {
 			fis = new FileInputStream("Users.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
+			 objis = new ObjectInputStream(fis);
 
 
 			while (objis != null) {
@@ -320,12 +321,20 @@ public static void ModUsers()
 				D_Users obj = ((D_Users) objis.readObject());
 				listBooks.add(obj);
 			}
-			objis.close();
+			//objis.close();
 		}catch (EOFException e) {
-
+			e.printStackTrace();
 		} catch (IOException | ClassNotFoundException e) {
 
 			e.printStackTrace();
+		}finally {
+			if (objis != null) {
+				try {
+					objis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 //		 catch (FileNotFoundException e1) {
 //

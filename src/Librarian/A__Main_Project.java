@@ -22,7 +22,7 @@ public class A__Main_Project  extends Application implements Serializable  {
 
 
 	
-	
+
 	/**
 	 * 
 	 */
@@ -32,7 +32,7 @@ public class A__Main_Project  extends Application implements Serializable  {
 
 
 	public  void start(Stage stage) throws IOException {
-	
+
 
 
 
@@ -47,7 +47,7 @@ public class A__Main_Project  extends Application implements Serializable  {
 	
 	
 	public static void main(String[] args) {
-		
+		System.out.println("David Keci");
 		Application.launch(args);
 	}
 

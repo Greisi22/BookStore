@@ -486,7 +486,7 @@ public class Menager_Create_Book {
 					price, new V_Author(authorr), isPaperback1);
 			isCreated.setGenres(newZhner);
 
-			if (isCreated != null) {
+
 
 				write(isCreated);
 
@@ -494,9 +494,7 @@ public class Menager_Create_Book {
 						d.getValue().getDayOfMonth(), d.getValue().getYear()), "11");
 				writeBought(boook);
 
-			} else {
-				System.out.println("lol");
-			}
+
 		});
 
 //			  

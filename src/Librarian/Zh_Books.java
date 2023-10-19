@@ -30,48 +30,41 @@ public class Zh_Books  implements Serializable {
 	}
 
 	public String getGenresS() {
-		String s1="";
-		for (int i=0;i<getGenres().size();i++)
-		{
-			s1+=getGenres().get(i)+" ";
+		StringBuilder s1 = new StringBuilder();
+		for (int i = 0; i < getGenres().size(); i++) {
+			s1.append(getGenres().get(i)).append(" ");
 		}
-		
-		return genresS;
+		return s1.toString(); // Return the value of s1 as a string
 	}
+
 
 	public void setGenresS(String genresS) {
 		ArrayList<String> list1 = new ArrayList<>();
 		ArrayList<Zh_Genre> list2 = new ArrayList<>();
 		char[] chararr = genresS.toCharArray();
-		String s2="";
-		for(int i=0;i<chararr.length;i++)
-		{
-			if(chararr[i]!=' ') {
-				s2+=chararr[i];
-			}
-			else {
-				list1.add(s2);
-				s2="";
+		StringBuilder s2 = new StringBuilder(); // Use StringBuilder instead of String
+		for (int i = 0; i < chararr.length; i++) {
+			if (chararr[i] != ' ') {
+				s2.append(chararr[i]); // Append characters to StringBuilder
+			} else {
+				list1.add(s2.toString()); // Convert StringBuilder to String and add to the list
+				s2.setLength(0); // Clear StringBuilder
 				i++;
 			}
-			
 		}
-		for(int i=0;i<list1.size();i++)
-		{
-			if(list1.get(i).equals("ACTION"))
-			{
+		for (int i = 0; i < list1.size(); i++) {
+			if (list1.get(i).equals("ACTION")) {
 				list2.add(Zh_Genre.ACTION);
-			}
-			else if(list1.get(i).equals("FANTASY"))
-			{
+			} else if (list1.get(i).equals("FANTASY")) {
 				list2.add(Zh_Genre.FANTASY);
 			}
 		}
 		setGenres(list2);
 	}
 
-	
-	
+
+
+
 	public Zh_Books()
 	{
 		

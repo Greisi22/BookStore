@@ -458,8 +458,7 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 	 isCreated.setBook_name(listaaa);
 	 isCreated.setBookquantity(listaaa.size());
 	 
-	 if(isCreated!=null)
-	 {
+
 
 		 write(isCreated);
 		 
@@ -477,12 +476,12 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 			file1.close();
 			PrintWriter pfile = new PrintWriter("src/Bill"+cnt);
 			pfile.write("**************Bill************\n");
-			String s1="";
-			
-			for(int i=0;i<listaaa.size();i++)
-			{
-				s1=s1+listaaa.get(i)+" ";
-			}
+
+			 StringBuilder s1 = new StringBuilder();
+			 for (int i = 0; i < listaaa.size(); i++) {
+				 s1.append(listaaa.get(i)).append(" ");
+			 }
+
 			pfile.write("Books Taken: "+ s1+"\n");
 			pfile.write("Total Price: "+ total+"\n");
 			pfile.write("Date"+isCreated.getDate()+"\n");
@@ -494,7 +493,7 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-	 }
+
 		
 			});
 		
@@ -584,7 +583,7 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-
+           System.out.println(e);
 		}
 		
 	}

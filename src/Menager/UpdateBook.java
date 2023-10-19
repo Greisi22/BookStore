@@ -3,12 +3,7 @@
 package Menager;
 
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.Zh_Books;
@@ -248,58 +243,55 @@ public class UpdateBook {
 
 	}
 	static ArrayList<Zh_Books> newBooks1 = new ArrayList<Zh_Books>();
-	private static  void updateBook(Zh_Books b1) {
+	private static void updateBook(Zh_Books b1) {
 		FileInputStream fis;
+		ArrayList<Zh_Books> newBooks1 = new ArrayList<>();  // Create a new list to hold the updated objects
+
 		try {
-
 			fis = new FileInputStream("Books.dat");
-	
-			 ObjectInputStream objis = new ObjectInputStream(fis);
+			ObjectInputStream objis = new ObjectInputStream(fis);
 
-		while(objis!=null)
-		{
-			Zh_Books obj = ((Zh_Books) objis.readObject());
-		if(obj.getISBN().equals(b1.getISBN())) {
-			
-			obj=b1;
-		}
-		newBooks1.add(obj);
-		}
+			while (true) {
+				try {
+					Zh_Books obj = (Zh_Books) objis.readObject();
 
+					if (obj.getISBN().equals(b1.getISBN())) {
+						// Update the existing object with the new data
+						obj = b1;
+					}
 
-		objis.close();
+					newBooks1.add(obj);
+				} catch (EOFException e) {
+					// End of file reached, exit the loop
+					break;
+				}
+			}
+
+			objis.close();
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e) {
-	
 			FileOutputStream out;
 			try {
 				out = new FileOutputStream("Books.dat");
 				ObjectOutputStream objout = new ObjectOutputStream(out);
-				for(int i=0;i<newBooks1.size();i++)
-				{
+
+				for (int i = 0; i < newBooks1.size(); i++) {
 					objout.writeObject(newBooks1.get(i));
 				}
+
 				newBooks1.clear();
 				objout.close();
-				
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			} catch (IOException e1) {
-				System.out.println("u kryy ");
+				System.out.println("Update failed");
 			}
-			
-			
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
-		
 	}
+
 	
 }
 

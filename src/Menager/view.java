@@ -173,12 +173,7 @@
 
 package Menager;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.B__Log_in;
@@ -345,46 +340,38 @@ public static void View(Stage stage, String Name) throws FileNotFoundException
 //...........................................................
 //check if the book has less than five in stock.
 private static boolean outOfStock() {
-
-	
 	FileInputStream fis;
-		try {
-			
-			fis = new FileInputStream("Books.dat");
-	
-			ObjectInputStream objis = new ObjectInputStream(fis);
-			
 
-	
-		while(objis!=null)
-		{
-			Zh_Books obj = ((Zh_Books) objis.readObject());
-		if(obj.getQuanity()<5)
-			listBooks.add(obj.getTitle());
+	try {
+		fis = new FileInputStream("Books.dat");
+		ObjectInputStream objis = new ObjectInputStream(fis);
+
+		while (true) {
+			try {
+				Zh_Books obj = (Zh_Books) objis.readObject();
+				if (obj.getQuanity() < 5) {
+					objis.close(); // Close the ObjectInputStream when done
+					return true;  // At least one book is out of stock
+				}
+			} catch (EOFException e) {
+				// End of file reached, exit the loop
+				break;
+			}
 		}
 
+		objis.close();  // Close the ObjectInputStream
+	} catch (FileNotFoundException e1) {
+		e1.printStackTrace();
+	} catch (IOException e) {
+		// Handle any IO exceptions
+		e.printStackTrace();
+	} catch (ClassNotFoundException e) {
+		e.printStackTrace();
+	}
 
-		objis.close();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			if(listBooks.size()==0)
-			{
-				return false;
-			}
-			else {
-				return true;
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-	
-	return false;
+	return false;  // No books found to be out of stock
 }
+
 //............................................................................
 	
 }

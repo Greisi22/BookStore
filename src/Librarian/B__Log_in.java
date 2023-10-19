@@ -112,7 +112,7 @@ public class B__Log_in {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				} catch (IOException e1) {
-					
+					System.out.println(e1);
 				}
 				
 				

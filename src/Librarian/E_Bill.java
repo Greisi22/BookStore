@@ -1,6 +1,7 @@
 package Librarian;
 
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -14,6 +15,7 @@ public class E_Bill implements Serializable {
 	public void setBook_name(ArrayList<String> book_name) {
 		Book_name = book_name;
 	}
+	@Serial
 	private static final long serialVersionUID = 1L;
 	private     double Price;
 	private     ArrayList<String> Book_name;

@@ -1,12 +1,14 @@
 package Librarian;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Zh_MyDate implements Serializable {
     /**
 	 * 
 	 */
-	private static final long serialVersionUID = 3712105092132632024L;
+	@Serial
+    private static final long serialVersionUID = 3712105092132632024L;
 	private int year;
     private int month;
     private int day;

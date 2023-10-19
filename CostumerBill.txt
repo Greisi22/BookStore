@@ -1,0 +1,93 @@
+
+
+          Bill->0
+Name Of the Costumer: David Keci
+Books taken: Name1  Name2  Name3  
+Price: 800.0
+
+
+
+
+          Bill->1
+Name Of the Costumer: lol
+Books taken: 111  
+Price: 200.0
+
+
+
+          Bill->2
+Name Of the Costumer: 1
+Books taken: 1  
+Price: 200.0
+
+
+
+          Bill->3
+Name Of the Costumer: 22
+Books taken: 2  
+Price: 300.0
+
+
+
+
+          Bill->4
+Name Of the Costumer: 
+Books taken:   
+Price: 200.0
+
+
+
+          Bill->4
+Name Of the Costumer: David keci
+Books taken: 1  
+Price: 200.0
+
+
+
+          Bill->5
+Name Of the Costumer: 2
+Books taken:   
+Price: 300.0
+
+
+
+          Bill->6
+Name Of the Costumer: David
+Books taken: 11  
+Price: 200.0
+
+
+
+          Bill->7
+Name Of the Costumer: aaa
+Books taken: a  
+Price: 200.0
+
+
+
+          Bill->8
+Name Of the Costumer: David Keci
+Books taken: Name1  Name2  
+Price: 500.0
+
+
+
+          Bill->9
+Name Of the Costumer: Valentin Keci
+Books taken: Name1  Name2  Name3  
+Price: 800.0
+
+
+
+          Bill->10
+Name Of the Costumer: David Keci
+Books taken: Name1  Name1  Name2   
+Price: 500.0
+
+
+
+          Bill->11
+Name Of the Costumer: Aldrin Aldrin 
+Books taken: Name1  Name2  
+Price: 500.0
+

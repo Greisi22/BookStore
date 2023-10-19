@@ -1,11 +1,6 @@
 package Administator;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.D_Users;
@@ -256,7 +251,7 @@ static Stage stage;
 					showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!",
 							"Please enter an email");
 					return;
-				} else if (dateField.getValue().equals(null)) {
+				} if (dateField.getValue() == null) {
 					showAlert(Alert.AlertType.ERROR, gridPane.getScene().getWindow(), "Form Error!",
 							"Please enter a birthdate");
 					return;
@@ -295,33 +290,34 @@ static Stage stage;
 	}
 
 	private static void write(D_Users isCreated) {
-
 		ArrayList<D_Users> listBooks = new ArrayList<D_Users>();
 
-		FileInputStream fis;
 		try {
-
-			fis = new FileInputStream("Users.dat");
-
+			FileInputStream fis = new FileInputStream("Users.dat");
 			ObjectInputStream objis = new ObjectInputStream(fis);
 
-			while (objis != null) {
-
-				D_Users obj = ((D_Users) objis.readObject());
-				listBooks.add(obj);
+			// Read existing objects from the file into the list
+			while (true) {
+				try {
+					D_Users obj = (D_Users) objis.readObject();
+					listBooks.add(obj);
+				} catch (EOFException e) {
+					// End of file reached
+					break;
+				}
 			}
 
 			objis.close();
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e) {
-			listBooks.add(isCreated);
-			AddMenuBar(listBooks);
+			e.printStackTrace();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+
+		// Add the newly created user to the list
+		listBooks.add(isCreated);
 	}
 ////			
 ////.................................................		

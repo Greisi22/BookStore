@@ -1,9 +1,6 @@
 package Administator;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.D_Users;
@@ -38,28 +35,34 @@ public class Admini_Statistic {
 ArrayList<D_Users> list = new ArrayList<D_Users>();
 ArrayList<Integer> list3 = new ArrayList<Integer>();
 
-FileInputStream fis;
-try {
-	fis = new FileInputStream("Users.dat");
-	ObjectInputStream objis = new ObjectInputStream(fis);
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream("Users.dat");
+			ObjectInputStream objis = new ObjectInputStream(fis);
 
-	
-	while (objis != null) {
+			while (true) {
+				try {
+					D_Users obj = (D_Users) objis.readObject();
+					list.add(obj);
+				} catch (EOFException e) {
+					// End of file reached
+					break;
+				}
+			}
 
-		D_Users obj = ((D_Users) objis.readObject());
-		list.add(obj);
-	}
-	objis.close();
+			objis.close();
 
-} catch (FileNotFoundException e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-} catch (IOException e1) {
+		} catch (FileNotFoundException e1) {
+			// Handle file not found exception
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			// Handle other IO exceptions
+			e1.printStackTrace();
+		} catch (ClassNotFoundException e1) {
+			// Handle class not found exception
+			e1.printStackTrace();
+		}
 
-} catch (ClassNotFoundException e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-}
 
 //...............................................
 FileInputStream fis1;

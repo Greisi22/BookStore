@@ -1,5 +1,6 @@
 package Menager;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 import Librarian.Zh_MyDate;
@@ -9,6 +10,7 @@ public class Book_Sold implements Serializable {
 	/**
 	 * 
 	 */
+	@Serial
 	private static final long serialVersionUID = 6765261616486179882L;
 	private Zh_MyDate date;
 	private String BookISBN;

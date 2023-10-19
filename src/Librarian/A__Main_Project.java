@@ -47,7 +47,7 @@ public class A__Main_Project  extends Application implements Serializable  {
 	
 	
 	public static void main(String[] args) {
-		System.out.println("David Greisi");
+		System.out.println("David Greisii");
 		Application.launch(args);
 	}
 

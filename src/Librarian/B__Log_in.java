@@ -75,7 +75,7 @@ public class B__Log_in {
 		// Add an action to the LOGIN button
 		LOGIN.setOnAction(e -> {
 			try {
-				FileInputStream fis = new FileInputStream("Users.dat");
+				FileInputStream fis = new FileInputStream("src/EncodedInformation/Users.dat");
 				ObjectInputStream objis = new ObjectInputStream(fis);
 				D_Users a = (D_Users) checkUser(objis, usernametextFiled.getText(), PassswrdField.getText());
 				if (u1 == null) {

@@ -20,7 +20,8 @@ public class D_Users implements Serializable {
 	private Zh_accessLevel accesLevel;
 	
 	
-	
+	public D_Users(){
+	}
 
 
 	public D_Users(String firstName, String lastName, String email, Zh_MyDate birthday, String password, long salery,

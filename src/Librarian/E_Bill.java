@@ -19,8 +19,6 @@ public class E_Bill implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private     double Price;
 	private     ArrayList<String> Book_name;
-	
-
 	private     Zh_MyDate date;
 	private    String name;
 	private     String surname;

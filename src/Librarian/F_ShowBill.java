@@ -372,7 +372,7 @@ public class F_ShowBill {
 		for(int i=0;i<listaaa.size();i++)
 		{
 			vBoxs1.getChildren().add(vBoxs[i]);
-		total+=listaaa1.get(i);
+			total+=listaaa1.get(i);
 		}
 		vBoxs1.setPadding(new Insets(60, 5, 5, 40));
 	
@@ -387,12 +387,7 @@ public class F_ShowBill {
     	Print.setLayoutX(522);
     	Print.setLayoutY(400);
     	    
-		/*
-		 * Button AddM = new Button("Add More"); Print.setPrefSize(100, 30);
-		 * Print.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
-		 * Print.setFont(new Font("Glacial Indifference", 12)); AddM.setLayoutX(476);
-		 * AddM.setLayoutY(350);
-		 */
+
     	
     	Button Back = new Button("Back");  
     	Back.setPrefSize(100, 30);
@@ -413,7 +408,7 @@ public class F_ShowBill {
 		 d.setLayoutX(476);
 		 d.setLayoutY(150);
 
-		 Image image = new Image("file:showBillimg.png"); // Replace with your image file path
+		 Image image = new Image("file:src/UI/Images/showBillimg.png"); // Replace with your image file path
 
 			BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 					BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -452,9 +447,8 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 
 		
 		Print.setOnAction(e->{
-		
-		//therret e funksioniti e controllerit / funksioni krijon bill 		       
-   E_Bill isCreated=newBill.loginn(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
+
+   E_Bill isCreated = newBill.loginn(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
 	 isCreated.setBook_name(listaaa);
 	 isCreated.setBookquantity(listaaa.size());
 	 
@@ -465,12 +459,10 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 		 File file = new File("cnt.txt");
 		 try {
 			Scanner input = new Scanner(file);
-			System.out.println("lol");
 			String a = input.next();
-			int cnt= Integer.parseInt(a);
+			int cnt = Integer.parseInt(a);
 			cnt++;
 			input.close();
-
 			FileWriter file1 = new FileWriter("cnt.txt");
 			file1.write((cnt)+"");
 			file1.close();
@@ -487,46 +479,26 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 			pfile.write("Date"+isCreated.getDate()+"\n");
 			pfile.close();
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-
-		
 			});
 		
 	}
 
 	private static  void write(E_Bill isCreated){
-		
-
 		ArrayList<E_Bill> listBooks = new ArrayList<E_Bill>();
-			
 				FileInputStream fis;
 					try {
-						
 						fis = new FileInputStream("Bills.dat");
-				
 						objis = new ObjectInputStream(fis);
-						
-			
-				
-//					while(objis!=null)
-//					{
-//						E_Bill obj = ((E_Bill) objis.readObject());
-//
-//						listBooks.add(obj);
-//					}
 
-						//This is how we fixed it
 						while (true) {
 							try {
 								E_Bill obj = (E_Bill) objis.readObject();
 								listBooks.add(obj);
 							} catch (EOFException e) {
-
 								break;
 							}
 						}
@@ -534,14 +506,11 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 					objis.close();
 
 					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					} catch (IOException e) {
-						
 						listBooks.add(isCreated);
 						putInFile(listBooks);
 					} catch (ClassNotFoundException e) {
-						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}  finally {
 						// Check if objis is not null before attempting to close it
@@ -553,12 +522,7 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 							}
 						}
 					}
-					
-					
-					
-					
 
-					
 			}
 
 	private static void putInFile(ArrayList<E_Bill> listBooks) {
@@ -594,19 +558,7 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 		try {
 
 			fis = new FileInputStream("Books.dat");
-	
 			objis = new ObjectInputStream(fis);
-
-//		while(objis!=null)
-//		{
-//			Zh_Books obj = ((Zh_Books) objis.readObject());
-//		if(obj.getISBN().equals(Isbn)) {
-//			int a = obj.getQuanity();
-//			a -=1;
-//			obj.setQuanity(a);
-//		}
-//		newBooks1.add(obj);
-//		}
 
 			while (true) {
 				try {
@@ -618,11 +570,9 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 					}
 					newBooks1.add(obj);
 				} catch (EOFException e) {
-					// End of file reached
 					break;
 				}
 			}
-
 
 		objis.close();
 		} catch (FileNotFoundException e1) {
@@ -653,8 +603,6 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 
 	}
 

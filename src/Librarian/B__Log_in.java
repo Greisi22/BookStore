@@ -1,7 +1,5 @@
 package Librarian;
 
-
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -102,7 +100,7 @@ public class B__Log_in {
 			}
 		});
 	}
-
+	//....................................................................................
 	private static Object checkUser(ObjectInputStream objis, String usernametextFiled, String PassswrdField) {
 		while (true) {
 			try {
@@ -116,7 +114,7 @@ public class B__Log_in {
 			}
 		}
 	}
-
+//....................................................................................
 	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
 		Alert alert = new Alert(alertType);
 		alert.setTitle(title);
@@ -126,3 +124,6 @@ public class B__Log_in {
 		alert.show();
 	}
 }
+
+
+

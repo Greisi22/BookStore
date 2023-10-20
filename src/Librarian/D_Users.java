@@ -35,7 +35,11 @@ public class D_Users implements Serializable {
 		this.phone = phone;
 		this.accesLevel = accesLevel;
 	}
-	public String getFirstName() {
+
+    public D_Users(String testUser, String testPassword, Zh_accessLevel zhAccessLevel) {
+    }
+
+    public String getFirstName() {
 		return firstName;
 	}
 	public void setFirstName(String firstName) {

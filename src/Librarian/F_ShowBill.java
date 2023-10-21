@@ -156,14 +156,14 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 
 		 write(isCreated);
 		 
-		 File file = new File("cnt.txt");
+		 File file = new File("src/TextFiles/cnt.txt");
 		 try {
 			Scanner input = new Scanner(file);
 			String a = input.next();
 			int cnt = Integer.parseInt(a);
 			cnt++;
 			input.close();
-			FileWriter file1 = new FileWriter("cnt.txt");
+			FileWriter file1 = new FileWriter("src/TextFiles/cnt.txt");
 			file1.write((cnt)+"");
 			file1.close();
 			PrintWriter pfile = new PrintWriter("src/Bill"+cnt);

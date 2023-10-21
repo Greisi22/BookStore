@@ -515,7 +515,7 @@ public class Menager_Create_Book {
 		pane.getChildren().addAll(title, Ltitle, ISBN, LISBN, Price, LPrice, description, Ldescription, Lquntity,
 				quntity, author, Lauthor, paneForGenres, genreLbl, rbPaperback, rbEbook, b1, d,b2);
 
-		Image image = new Image("file:pasloginbosh.png"); // Replace with your image file path
+		Image image = new Image("file:src/UI/Images/pasloginbosh.pngg"); // Replace with your image file path
 
 		BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -537,7 +537,7 @@ public class Menager_Create_Book {
 		ObjectInputStream objis;
 		try {
 
-			fis = new FileInputStream("booksBought.dat");
+			fis = new FileInputStream("src/EncodedInformation/booksBought.dat");
 
 			 objis = new ObjectInputStream(fis);
 
@@ -563,10 +563,6 @@ public class Menager_Create_Book {
 			e.printStackTrace();
 		}
 	}
-////		
-////.................................................		
-//	
-//print file
 
 
 private static void SaveBooks(ArrayList<Book_Sold> listBooks) {
@@ -574,7 +570,7 @@ private static void SaveBooks(ArrayList<Book_Sold> listBooks) {
 	ObjectOutputStream output = null;
 
 	try {
-		out = new FileOutputStream("booksBought.dat");
+		out = new FileOutputStream("src/EncodedInformation/booksBought.dat");
 		output = new ObjectOutputStream(out);
 
 		for (Book_Sold book : listBooks) {
@@ -602,22 +598,15 @@ private static void SaveBooks(ArrayList<Book_Sold> listBooks) {
 	private static void write(Zh_Books isCreated) {
 
 		ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
-
 		FileInputStream fis;
 		try {
-
-			fis = new FileInputStream("Books.dat");
-
+			fis = new FileInputStream("src/EncodedInformation/Books.dat");
 			ObjectInputStream objis = new ObjectInputStream(fis);
-
 			Zh_Books obj = new Zh_Books();
-
 			while (obj != null) {
-
 				obj = ((Zh_Books) objis.readObject());
 				listBooks.add(obj);
 			}
-
 			objis.close();
 		} catch (FileNotFoundException e1) {
 			// TODO Auto-generated catch block
@@ -630,22 +619,15 @@ private static void SaveBooks(ArrayList<Book_Sold> listBooks) {
 			e.printStackTrace();
 		}
 	}
-////			
-////.................................................		
-//		
-//print file
 
 	private static void AddMenuBar(ArrayList<Zh_Books> listBooks) {
-
 		FileOutputStream out;
 		try {
-			out = new FileOutputStream("Books.dat");
+			out = new FileOutputStream("src/EncodedInformation/Books.dat");
 			ObjectOutputStream output = new ObjectOutputStream(out);
-
 			for (int i = 0; i < listBooks.size(); i++) {
 				output.writeObject(listBooks.get(i));
 			}
-
 			output.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

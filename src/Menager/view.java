@@ -28,7 +28,7 @@ public class view {
 	public static void View(Stage stage, String Name) throws FileNotFoundException {
 		WelcomeName = Name;
 
-		FileInputStream ImageInput = new FileInputStream("mssgTheOne.png");
+		FileInputStream ImageInput = new FileInputStream("src/UI/Icons/mssgTheOne.png");
 		Image search = new Image(ImageInput);
 		ImageView image1 = new ImageView(search);
 		image1.setFitWidth(35);
@@ -39,7 +39,7 @@ public class view {
 		message.setLayoutX(610);
 		message.setLayoutY(30);
 
-		FileInputStream ImageInput1 = new FileInputStream("no_mess.png");
+		FileInputStream ImageInput1 = new FileInputStream("src/UI/Icons/no_mess.png");
 		Image search1 = new Image(ImageInput1);
 		ImageView image11 = new ImageView(search1);
 		image11.setFitWidth(30);
@@ -136,7 +136,7 @@ public class view {
 		FileInputStream fis;
 
 		try {
-			fis = new FileInputStream("Books.dat");
+			fis = new FileInputStream("src/EncodedInformation/Books.dat");
 			ObjectInputStream objis = new ObjectInputStream(fis);
 
 			while (true) {

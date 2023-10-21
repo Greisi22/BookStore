@@ -117,7 +117,7 @@ public class Menager_Statistic {
 		ObjectInputStream objis;
 
 		try {
-			fis = new FileInputStream("Bills.dat");
+			fis = new FileInputStream("src/EncodedInformation/Books.dat");
 		    objis = new ObjectInputStream(fis);
 			
 		while(true)
@@ -157,7 +157,7 @@ public class Menager_Statistic {
 		ObjectInputStream objis = null;
 
 		try {
-			fis = new FileInputStream("booksBought.dat");
+			fis = new FileInputStream("src/EncodedInformation/booksBought.dat");
 			objis = new ObjectInputStream(fis);
 
 			while (true) {

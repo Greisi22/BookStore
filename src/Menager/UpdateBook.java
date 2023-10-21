@@ -39,14 +39,12 @@ public class UpdateBook {
 		
 		//................................................................................................//
 	ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
-		
 		FileInputStream fis = null;
 		ObjectInputStream objis = null;
 		try {
-			fis = new FileInputStream("Books.dat");
+			fis = new FileInputStream("src/EncodedInformation/Books.dat");
 			 objis = new ObjectInputStream(fis);
-		
-			
+
 			Zh_Books obj = new Zh_Books() ;
 		while(obj!=null)
 		{
@@ -108,8 +106,6 @@ public class UpdateBook {
 			      updateBook(b1);
 			}
 
-
-		
 		});
 		//.........................................................................
 	

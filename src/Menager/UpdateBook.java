@@ -4,6 +4,8 @@ package Menager;
 
 
 import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 import Librarian.Zh_Books;
@@ -24,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.util.converter.BooleanStringConverter;
 import javafx.util.converter.DoubleStringConverter;
 import javafx.util.converter.IntegerStringConverter;
+import org.junit.platform.engine.support.descriptor.FileSystemSource;
 
 public class UpdateBook {
 	private static String a;
@@ -58,22 +61,21 @@ public class UpdateBook {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			e1.printStackTrace();
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} finally { //added this part
 			try {
 				if (objis != null) {
 					objis.close();
 				}
-				if (fis != null) {
+
 					fis.close();
-				}
+
 			} catch (IOException e) {
 				e.printStackTrace();
-			}}
-		
+			}
+		} catch (ClassNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		System.out.println(listBooks);
 		TableView<Zh_Books> userTable = new TableView<Zh_Books>();
 		ObservableList<Zh_Books> data = FXCollections.observableArrayList(listBooks); 
 		userTable.setItems(data);
@@ -97,15 +99,12 @@ public class UpdateBook {
 		title.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("title"));
 		title.setCellFactory(TextFieldTableCell.forTableColumn());
 		title.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,String>>(){
-
-		@Override
+			@Override
 			public void handle(CellEditEvent<Zh_Books, String> event) {
-				
 			      Zh_Books b1 = event.getRowValue();
 			      b1.setTitle(event.getNewValue());
 			      updateBook(b1);
 			}
-
 		});
 		//.........................................................................
 	
@@ -242,9 +241,13 @@ public class UpdateBook {
 	private static void updateBook(Zh_Books b1) {
 		FileInputStream fis;
 		ArrayList<Zh_Books> newBooks1 = new ArrayList<>();  // Create a new list to hold the updated objects
-
+		if (Files.exists(Path.of("src/EncodedInformation/Books.dat")) ) {
+			System.out.println("Directory is valid and exists.");
+		} else {
+			System.out.println("Directory does not exist or is not a valid directory.");
+		}
 		try {
-			fis = new FileInputStream("Books.dat");
+			fis = new FileInputStream("src/EncodedInformation/Books.dat");
 			ObjectInputStream objis = new ObjectInputStream(fis);
 
 			while (true) {
@@ -258,36 +261,45 @@ public class UpdateBook {
 
 					newBooks1.add(obj);
 				} catch (EOFException e) {
-					// End of file reached, exit the loop
 					break;
-				}
-			}
+				} catch (ClassNotFoundException e) {
+                    throw new RuntimeException(e);
+                }
+            }
 
 			objis.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		} catch (IOException e) {
-			FileOutputStream out;
-			try {
-				out = new FileOutputStream("Books.dat");
-				ObjectOutputStream objout = new ObjectOutputStream(out);
+			// Handle the case where the file doesn't exist
+		  addUpdatedBooks(newBooks1);
+	}
 
-				for (int i = 0; i < newBooks1.size(); i++) {
-					objout.writeObject(newBooks1.get(i));
-				}
 
-				newBooks1.clear();
-				objout.close();
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				System.out.println("Update failed");
+
+
+	}
+
+	private static void addUpdatedBooks(ArrayList<Zh_Books> newBooks1) {
+		FileOutputStream out;
+		try {
+			out = new FileOutputStream("src/EncodedInformation/Books.dat");
+			ObjectOutputStream objout = new ObjectOutputStream(out);
+
+			for (int i = 0; i < newBooks1.size(); i++) {
+				objout.writeObject(newBooks1.get(i));
 			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
+
+			objout.close();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		} catch (IOException e1) {
+			System.out.println("Update failed");
 		}
 	}
 
-	
-}
+	}
+
+
+
 

@@ -280,7 +280,7 @@ public class UpdateBook {
 
 	}
 
-	private static void addUpdatedBooks(ArrayList<Zh_Books> newBooks1) {
+	private  void addUpdatedBooks(ArrayList<Zh_Books> newBooks1) {
 		FileOutputStream out;
 		try {
 			out = new FileOutputStream("src/EncodedInformation/Books.dat");

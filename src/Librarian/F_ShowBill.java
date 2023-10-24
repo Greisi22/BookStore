@@ -151,160 +151,18 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
    E_Bill isCreated = newBill.loginn(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
 	 isCreated.setBook_name(listaaa);
 	 isCreated.setBookquantity(listaaa.size());
-	 
 
 
-		 write(isCreated);
-		 
-		 File file = new File("src/TextFiles/cnt.txt");
-		 try {
-			Scanner input = new Scanner(file);
-			String a = input.next();
-			int cnt = Integer.parseInt(a);
-			cnt++;
-			input.close();
-			FileWriter file1 = new FileWriter("src/TextFiles/cnt.txt");
-			file1.write((cnt)+"");
-			file1.close();
-			PrintWriter pfile = new PrintWriter("src/Bill"+cnt);
-			pfile.write("**************Bill************\n");
-
-			 StringBuilder s1 = new StringBuilder();
-			 for (int i = 0; i < listaaa.size(); i++) {
-				 s1.append(listaaa.get(i)).append(" ");
-			 }
-
-			pfile.write("Books Taken: "+ s1+"\n");
-			pfile.write("Total Price: "+ total+"\n");
-			pfile.write("Date"+isCreated.getDate()+"\n");
-			pfile.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
+	        BillFunctionalities.PrintFile(listaaa, isCreated);
+			ArrayList<E_Bill> newList = BillFunctionalities.getBills(isCreated);
+			BillFunctionalities.createNewBill(newList,  listaaa11);
 			});
 		
 	}
 
-	private static  void write(E_Bill isCreated){
-		ArrayList<E_Bill> listBooks = new ArrayList<E_Bill>();
-				FileInputStream fis;
-					try {
-						fis = new FileInputStream("src/EncodedInformation/Bills.dat");
-						objis = new ObjectInputStream(fis);
 
-						while (true) {
-							try {
-								E_Bill obj = (E_Bill) objis.readObject();
-								listBooks.add(obj);
-							} catch (EOFException e) {
-								break;
-							}
-						}
 
-					objis.close();
 
-					} catch (FileNotFoundException e1) {
-						e1.printStackTrace();
-					} catch (IOException e) {
-						listBooks.add(isCreated);
-						putInFile(listBooks);
-					} catch (ClassNotFoundException e) {
-						e.printStackTrace();
-					}  finally {
-						// Check if objis is not null before attempting to close it
-						if (objis != null) {
-							try {
-								objis.close();
-							} catch (IOException e) {
-								e.printStackTrace();
-							}
-						}
-					}
-
-			}
-
-	private static void putInFile(ArrayList<E_Bill> listBooks) {
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream("src/EncodedInformation/Bills.dat");
-			ObjectOutputStream objout = new ObjectOutputStream(out);
-			
-			for(int i=0;i<listBooks.size();i++)
-			{
-				objout.writeObject(listBooks.get(i));
-				
-			}
-
-			for(int i=0;i<listaaa11.size();i++)
-			{
-				UpdateBook(listaaa11.get(i));
-			}
-		listaaa11.clear();
-								objout.close();
-				
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-           System.out.println(e);
-		}
-		
-	}
-	static ArrayList<Zh_Books> newBooks1 = new ArrayList<Zh_Books>();
-	
-	private static void UpdateBook(String Isbn) {
-		FileInputStream fis;
-		try {
-
-			fis = new FileInputStream("Books.dat");
-			objis = new ObjectInputStream(fis);
-
-			while (true) {
-				try {
-					Zh_Books obj = (Zh_Books) objis.readObject();
-					if (obj.getISBN().equals(Isbn)) {
-						int a = obj.getQuanity();
-						a -= 1;
-						obj.setQuanity(a);
-					}
-					newBooks1.add(obj);
-				} catch (EOFException e) {
-					break;
-				}
-			}
-
-		objis.close();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-	
-			FileOutputStream out;
-			try {
-				out = new FileOutputStream("Books.dat");
-				ObjectOutputStream objout = new ObjectOutputStream(out);
-				for(int i=0;i<newBooks1.size();i++)
-				{
-					objout.writeObject(newBooks1.get(i));
-				}
-				newBooks1.clear();
-				objout.close();
-				
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				System.out.println("u kryy ");
-			}
-			
-			
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 
 
 

@@ -111,25 +111,7 @@ public class CA__Librarian_View {
 
 		ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
 
-		FileInputStream fis;
-		try {
-			fis = new FileInputStream("Books.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
-
-			Zh_Books obj = new Zh_Books();
-			while (obj != null) {
-				obj = ((Zh_Books) objis.readObject());
-				listBooks.add(obj);
-			}
-			objis.close();
-
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-             System.out.println(e1);
-		} catch (ClassNotFoundException e1) {
-			e1.printStackTrace();
-		}
+	   listBooks =BookFunctionalities.getBooks(listBooks);
 
 		TableView<Zh_Books> userTable = new TableView<>();
 
@@ -269,5 +251,7 @@ public class CA__Librarian_View {
 		});
 		// .......................................................................................
 	}
+
+
 
 }

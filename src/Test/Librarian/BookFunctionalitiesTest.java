@@ -4,9 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Zh_Bill_ControllerTest {
+class BookFunctionalitiesTest {
 
     @Test
-    void loginn() {
+    void getBooks() {
+    }
+
+    @Test
+    void updateBook() {
     }
 }

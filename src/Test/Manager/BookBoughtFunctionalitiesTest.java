@@ -4,9 +4,13 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Books_out_of_StockTest {
+class BookBoughtFunctionalitiesTest {
 
     @Test
-    void outOfStock_View() {
+    void getBooksBought() {
+    }
+
+    @Test
+    void saveBookBought() {
     }
 }

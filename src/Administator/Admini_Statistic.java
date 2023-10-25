@@ -37,7 +37,7 @@ ArrayList<Integer> list3 = new ArrayList<Integer>();
 
 		FileInputStream fis;
 		try {
-			fis = new FileInputStream("Users.dat");
+			fis = new FileInputStream("src/EncodedInformation/Users.dat");
 			ObjectInputStream objis = new ObjectInputStream(fis);
 
 			while (true) {
@@ -70,7 +70,7 @@ ArrayList<Integer> list3 = new ArrayList<Integer>();
 
 		for (int i = 0; i < list.size(); i++) {
 			try {
-				fis1 = new FileInputStream("Bills.dat");
+				fis1 = new FileInputStream("src/EncodedInformation/Bills.dat");
 				ObjectInputStream objis1 = new ObjectInputStream(fis1);
 				sum = 0;
 

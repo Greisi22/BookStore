@@ -53,7 +53,7 @@ static Stage stage;
 
 		GridPane gridPane;
 		try {
-			Image image = new Image("file:pasloginbosh.png"); // Replace with your image file path
+			Image image = new Image("file:src/UI/Images/pasloginbosh.png"); // Replace with your image file path
 
 			BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 					BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -293,7 +293,7 @@ static Stage stage;
 		ArrayList<D_Users> listBooks = new ArrayList<D_Users>();
 
 		try {
-			FileInputStream fis = new FileInputStream("Users.dat");
+			FileInputStream fis = new FileInputStream("src/EncodedInformation/Users.dat");
 			ObjectInputStream objis = new ObjectInputStream(fis);
 
 			// Read existing objects from the file into the list
@@ -331,7 +331,7 @@ static Stage stage;
 
 		FileOutputStream out;
 		try {
-			out = new FileOutputStream("Users.dat");
+			out = new FileOutputStream("src/EncodedInformation/Users.dat");
 			ObjectOutputStream output = new ObjectOutputStream(out);
 
 			for (int i = 0; i < listBooks.size(); i++) {

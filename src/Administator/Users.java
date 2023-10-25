@@ -308,43 +308,11 @@ public static void ModUsers()
 {
 	//................................................................................................//
 	ArrayList<D_Users> listBooks = new ArrayList<D_Users>();
+    listBooks = UserFunctionalities.getUsers(listBooks);
 
-	FileInputStream fis;
-	ObjectInputStream objis = null;
 
-	try {
-		fis = new FileInputStream("Users.dat");
-		objis = new ObjectInputStream(fis);
 
-		while (true) {
-			try {
-				D_Users obj = (D_Users) objis.readObject();
-				listBooks.add(obj);
-			} catch (EOFException e) {
-				// End of file reached, exit the loop
-				break;
-			}
-		}
-	} catch (IOException | ClassNotFoundException e) {
-		e.printStackTrace();
-	} finally {
-		if (objis != null) {
-			try {
-				objis.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
 
-//		 catch (FileNotFoundException e1) {
-//
-//		} catch (IOException e1) {
-//
-//		} catch (ClassNotFoundException e1) {
-//			// TODO Auto-generated catch block
-//			e1.printStackTrace();
-//		}
 		
 		TableView<D_Users> userTable = new TableView<D_Users>();
 		ObservableList<D_Users> data = FXCollections.observableArrayList(listBooks); 
@@ -420,9 +388,9 @@ public static void ModUsers()
 				
 			D_Users b1 = event.getRowValue();
 			b1.setBirthday(event.getNewValue());
-	
-	
-		     updateBook(b1);
+
+
+			UserFunctionalities.updateUsers(b1);
 			}
 		
 		});
@@ -452,9 +420,9 @@ public static void ModUsers()
 				
 			D_Users b1 = event.getRowValue();
 			b1.setSalery(event.getNewValue());;
-	
-	
-		   updateBook(b1);
+
+
+			UserFunctionalities.updateUsers(b1);
 			}
 		
 		});
@@ -468,9 +436,9 @@ public static void ModUsers()
 				
 			D_Users b1 = event.getRowValue();
 			b1.setPhone(event.getNewValue());
-	
-	
-		   updateBook(b1);
+
+
+			UserFunctionalities.updateUsers(b1);
 			}
 		
 		});
@@ -486,7 +454,7 @@ public static void ModUsers()
 			b1.setAccesLevel(event.getNewValue());
 	
 	
-		   updateBook(b1);
+		   UserFunctionalities.updateUsers(b1);
 			}
 		
 		});
@@ -509,53 +477,5 @@ public static void ModUsers()
 		
 }
 static ArrayList<D_Users> newBooks1 = new ArrayList<D_Users>();
-	private static void updateBook(D_Users b1) {
-		FileInputStream fis;
-		ArrayList<D_Users> newBooks1 = new ArrayList<>();  // Create a new list to hold the updated objects
-
-		try {
-			fis = new FileInputStream("Users.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
-
-			while (true) {
-				try {
-					D_Users obj = (D_Users) objis.readObject();
-
-					if (obj.getPassword().equals(b1.getPassword())) {
-						// Update the existing object with the new data
-						obj = b1;
-					}
-
-					newBooks1.add(obj);
-				} catch (EOFException e) {
-					// End of file reached, exit the loop
-					break;
-				}
-			}
-
-			objis.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			FileOutputStream out;
-			try {
-				out = new FileOutputStream("Users.dat");
-				ObjectOutputStream objout = new ObjectOutputStream(out);
-
-				for (int i = 0; i < newBooks1.size(); i++) {
-					objout.writeObject(newBooks1.get(i));
-				}
-
-				newBooks1.clear();
-				objout.close();
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				System.out.println("Update failed");
-			}
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
 
 }

@@ -65,42 +65,40 @@ ArrayList<Integer> list3 = new ArrayList<Integer>();
 
 
 //...............................................
-FileInputStream fis1;
-double sum =0;
-for(int i=0;i<list.size();i++)
-{
-try {
-	
-	fis1 = new FileInputStream("Bills.dat");
-	ObjectInputStream objis1 = new ObjectInputStream(fis1);
- sum = 0;
+		FileInputStream fis1;
+		double sum ;
 
-	while (objis1 != null) {
+		for (int i = 0; i < list.size(); i++) {
+			try {
+				fis1 = new FileInputStream("Bills.dat");
+				ObjectInputStream objis1 = new ObjectInputStream(fis1);
+				sum = 0;
 
-		E_Bill obj = ((E_Bill) objis1.readObject());
-		if(list.get(i).getFirstName().equals(obj.getLibrarian_Name()))
-		{
-			
-			sum +=(double) obj.getPrice();
+				while (true) { // Use a true condition to handle EOF
+					try {
+						E_Bill obj = (E_Bill) objis1.readObject();
+						if (list.get(i).getFirstName().equals(obj.getLibrarian_Name())) {
+							sum += obj.getPrice(); // You can cast to double if needed
+						}
+					} catch (EOFException e) {
+						// End of file reached, break the loop
+						break;
+					}
+				}
+
+				objis1.close();
+
+				// Assuming you want to add the sum to list3 after processing each librarian's bills
+				list3.add((int) sum);
+
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				e1.printStackTrace();
+			}
 		}
-	
-	}
-	objis1.close();
-
-
-	}
-
-
- catch (FileNotFoundException e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-} catch (IOException e1) {
-	list3.add((int)sum);
-} catch (ClassNotFoundException e1) {
-	// TODO Auto-generated catch block
-	e1.printStackTrace();
-}
-}
 
 
         stage.setTitle("Bar Chart Sample");

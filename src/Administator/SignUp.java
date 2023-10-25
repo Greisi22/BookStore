@@ -289,7 +289,7 @@ static Stage stage;
 
 	}
 
-	private static void write(D_Users isCreated) {
+	private static ArrayList<D_Users> write(D_Users isCreated) {
 		ArrayList<D_Users> listBooks = new ArrayList<D_Users>();
 
 		try {
@@ -318,7 +318,10 @@ static Stage stage;
 
 		// Add the newly created user to the list
 		listBooks.add(isCreated);
+
+		return listBooks; // Return the updated collection
 	}
+
 ////			
 ////.................................................		
 //		

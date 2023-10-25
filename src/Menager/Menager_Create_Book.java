@@ -322,11 +322,7 @@ package Menager;
 import java.io.*;
 import java.util.ArrayList;
 
-import Librarian.V_Author;
-import Librarian.Z_Books_Controller;
-import Librarian.Zh_Books;
-import Librarian.Zh_Genre;
-import Librarian.Zh_MyDate;
+import Librarian.*;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -424,7 +420,7 @@ public class Menager_Create_Book {
 		b1.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
 		b1.setLayoutX(440);
 		b1.setLayoutY(450);
-		
+
 		Button b2 = new Button("Back");
 		b2.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
 		b2.setLayoutX(650);
@@ -439,9 +435,9 @@ public class Menager_Create_Book {
 			genreCheckboxes.add(chb);
 			chb.setFont(Font.font("Arimo", FontWeight.BOLD, 12));
 			chb.setTextFill(Color.web("#3BA6A2"));
-			
+
 		}
-		
+
 		paneForGenres.getChildren().addAll(genreCheckboxes);
 
 		paneForGenres.setLayoutX(300);
@@ -486,38 +482,41 @@ public class Menager_Create_Book {
 					price, new V_Author(authorr), isPaperback1);
 			isCreated.setGenres(newZhner);
 
-			if (isCreated != null) {
 
-				write(isCreated);
+			ArrayList<Zh_Books> booklist = new ArrayList<>();
+			booklist = BookFunctionalities.getBooks(booklist);
+			booklist.add(isCreated);
+			BookFunctionalities.createBook(booklist);
 
-				Book_Sold boook = new Book_Sold(new Zh_MyDate(d.getValue().getMonthValue(),
-						d.getValue().getDayOfMonth(), d.getValue().getYear()), "11");
-				writeBought(boook);
+			Book_Sold boook = new Book_Sold(new Zh_MyDate(d.getValue().getMonthValue(),
+					d.getValue().getDayOfMonth(), d.getValue().getYear()), "11");
+			ArrayList<Book_Sold> listBooks = new ArrayList<>();
+			Menager.BookBoughtFunctionalities.getBooksBought(listBooks);
+			listBooks.add(boook);
+			Menager.BookBoughtFunctionalities.saveBookBought(listBooks);
 
-			} else {
-				System.out.println("lol");
-			}
+
 		});
 
 //			  
-				b2.setOnAction(e -> {
-					
-					try {
-						view.View(stage,WelcomeName );
-					} catch (FileNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-				});
-		
+		b2.setOnAction(e -> {
+
+			try {
+				view.View(stage, WelcomeName);
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		});
+
 
 		Pane pane = new Pane();
 
 		pane.getChildren().addAll(title, Ltitle, ISBN, LISBN, Price, LPrice, description, Ldescription, Lquntity,
-				quntity, author, Lauthor, paneForGenres, genreLbl, rbPaperback, rbEbook, b1, d,b2);
+				quntity, author, Lauthor, paneForGenres, genreLbl, rbPaperback, rbEbook, b1, d, b2);
 
-		Image image = new Image("file:pasloginbosh.png"); // Replace with your image file path
+		Image image = new Image("file:src/UI/Images/pasloginbosh.pngg"); // Replace with your image file path
 
 		BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
@@ -531,131 +530,6 @@ public class Menager_Create_Book {
 
 	}
 
-	private static void writeBought(Book_Sold boook) {
 
-		ArrayList<Book_Sold> listBooks = new ArrayList<Book_Sold>();
-
-		FileInputStream fis;
-		ObjectInputStream objis;
-		try {
-
-			fis = new FileInputStream("booksBought.dat");
-
-			 objis = new ObjectInputStream(fis);
-
-			while (true) {
-
-				try {
-					Book_Sold obj = (Book_Sold) objis.readObject();
-					listBooks.add(obj);
-				} catch (EOFException e) {
-					break; // End of the stream
-				}
-			}
-
-			objis.close();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			listBooks.add(boook);
-			SaveBooks(listBooks);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-////		
-////.................................................		
-//	
-//print file
-
-
-private static void SaveBooks(ArrayList<Book_Sold> listBooks) {
-	FileOutputStream out = null;
-	ObjectOutputStream output = null;
-
-	try {
-		out = new FileOutputStream("booksBought.dat");
-		output = new ObjectOutputStream(out);
-
-		for (Book_Sold book : listBooks) {
-			output.writeObject(book);
-		}
-	} catch (FileNotFoundException e) {
-		e.printStackTrace();
-	} catch (IOException e) {
-		e.printStackTrace();
-	} finally { //Added this finally block to make sure that the outputs are closed properly
-		try {
-			if (output != null) {
-				output.close();
-			}
-			if (out != null) {
-				out.close();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-}
-
-
-	private static void write(Zh_Books isCreated) {
-
-		ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
-
-		FileInputStream fis;
-		try {
-
-			fis = new FileInputStream("Books.dat");
-
-			ObjectInputStream objis = new ObjectInputStream(fis);
-
-			Zh_Books obj = new Zh_Books();
-
-			while (obj != null) {
-
-				obj = ((Zh_Books) objis.readObject());
-				listBooks.add(obj);
-			}
-
-			objis.close();
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e) {
-			listBooks.add(isCreated);
-			AddMenuBar(listBooks);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-////			
-////.................................................		
-//		
-//print file
-
-	private static void AddMenuBar(ArrayList<Zh_Books> listBooks) {
-
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream("Books.dat");
-			ObjectOutputStream output = new ObjectOutputStream(out);
-
-			for (int i = 0; i < listBooks.size(); i++) {
-				output.writeObject(listBooks.get(i));
-			}
-
-			output.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("1. " + e);
-		}
-
-	}
 
 }

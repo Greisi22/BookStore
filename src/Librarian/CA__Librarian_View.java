@@ -1,39 +1,26 @@
-
-
 package Librarian;
 
-import java.awt.print.Book;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
 import javafx.scene.layout.BackgroundRepeat;
@@ -41,10 +28,8 @@ import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
@@ -63,33 +48,6 @@ public class CA__Librarian_View {
 	public static void stage(Stage stage, String LName) throws FileNotFoundException {
 		WelcomeName = LName;
 		Pane pane = new Pane();
-//	FileInputStream ImageInput = new FileInputStream("search.png");
-//		Image search = new Image(ImageInput);
-//	
-		// ImageView image1 = new ImageView(search);
-		// image1.setFitWidth(120);
-		// image1.setFitHeight(50);
-		/*
-		 * Button Bsearch = new Button("Search Button"); Bsearch.setLayoutX(100);
-		 * Bsearch.setLayoutY(50);
-		 * 
-		 * //Must be changed
-		 * //...........................................................................
-		 * . Label Name = new Label("First Name");
-		 * Name.setFont(Font.font("Times New Roman", FontWeight.BOLD,
-		 * FontPosture.ITALIC,23)); Name.setTextFill(Color.BLACK); Name.setLayoutX(85);
-		 * Name.setLayoutY(100); Label Surname = new Label("Last Name");
-		 * Surname.setFont(Font.font("Times New Roman", FontWeight.BOLD,
-		 * FontPosture.ITALIC,23)); Surname.setTextFill(Color.RED);
-		 * Surname.setLayoutX(85); Surname.setLayoutY(160);
-		 * 
-		 * NameT.setLayoutX(260); NameT.setLayoutY(100); SurnameT.setLayoutX(260);
-		 * SurnameT.setLayoutY(160);
-		 */
-
-		// ............................................................................
-
-		// .........................................................
 
 		Button addCreateBill = new Button("Create Bill");
 		addCreateBill.setPrefSize(100, 30);
@@ -105,26 +63,22 @@ public class CA__Librarian_View {
 		signout.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
 		signout.setFont(new Font("Glacial Indifference", 12));
 
-//it is used to create a bill
+
 		addCreateBill.setOnAction(e -> {
-			// showTable();
 			showTable(stage);
 		});
 
 		signout.setOnAction(e -> {
-
 			B__Log_in.Log_inn(stage);
-
 		});
 
-		Image image = new Image("file:paslogin.png"); // Replace with your image file path
-
+		Image image = new Image("file:src/UI/Images/paslogin.png"); // Replace with your image file path
 		BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
 		
-           Label label_WelcomeName = new Label("Welcome "+WelcomeName);
-           label_WelcomeName.setFont(Font.font("Roboto Mono Regular", 27));
+		Label label_WelcomeName = new Label("Welcome "+WelcomeName);
+		label_WelcomeName.setFont(Font.font("Roboto Mono Regular", 27));
        	label_WelcomeName.setTextFill(Color.web("#79CBE1"));
        	label_WelcomeName.setLayoutX(260);
        	label_WelcomeName.setLayoutY(300);
@@ -134,8 +88,6 @@ public class CA__Librarian_View {
 		pane.setBackground(new javafx.scene.layout.Background(bgImg));
 
 		Scene scene = new Scene(pane, 700, 500);
-		// scene.setFill(Color.GRAY);
-		// it should take the name as parameter
 		if (stage != null) {
 			stage.setTitle("Librarian");
 			stage.setScene(scene);
@@ -157,34 +109,9 @@ public class CA__Librarian_View {
 		Button Cancle = new Button("Cancle");
 		Cancle.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
 
-		// ......................................................
-
-		// ...................................................................
-
 		ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
 
-		FileInputStream fis;
-		try {
-			fis = new FileInputStream("Books.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
-
-			Zh_Books obj = new Zh_Books();
-			while (obj != null) {
-
-				obj = ((Zh_Books) objis.readObject());
-				listBooks.add(obj);
-			}
-			objis.close();
-
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	   listBooks =BookFunctionalities.getBooks(listBooks);
 
 		TableView<Zh_Books> userTable = new TableView<>();
 
@@ -254,19 +181,11 @@ public class CA__Librarian_View {
 			{
 			case "title":
 				flPerson.setPredicate(p -> p.getTitle().toLowerCase().contains(newValue.toLowerCase().trim()));// filter
-																												// table
-																												// by
-																												// first
-																												// name
-
 				break;
 			}
 		});
 
-		choiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {// reset table and
-																									// textfield when
-																									// new choice is
-																									// selected
+		choiceBox.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
 			if (newVal != null) {
 				textField22.setText("");
 			}
@@ -286,10 +205,6 @@ public class CA__Librarian_View {
 				OutOfStock.setLayoutY(330);
 
 			}
-			for (int i = 0; i < listaaa.size(); i++) {
-				System.out.println(listaaa.get(i));
-			}
-			System.out.println();
 		});
 
 		GridPane pane = new GridPane();
@@ -301,7 +216,6 @@ public class CA__Librarian_View {
 		gjysma1.setSpacing(10);
 		gjysma2.getChildren().addAll(OutOfStock,Add,showBill,Cancle);
 		gjysma2.setSpacing(10);
-		//allbuttons.getChildren().addAll(label, textField22, Add, showBill, Cancle, OutOfStock);
 		allbuttons.getChildren().addAll(gjysma1,gjysma2);
 		allbuttons.setSpacing(100);
 		pane.getChildren().addAll(userTable);
@@ -330,14 +244,14 @@ public class CA__Librarian_View {
 			try {
 				stage1.close();
 				CA__Librarian_View.stage(stage, WelcomeName);
-
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 
 		});
 		// .......................................................................................
 	}
+
+
 
 }

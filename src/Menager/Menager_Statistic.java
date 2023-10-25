@@ -117,7 +117,7 @@ public class Menager_Statistic {
 		ObjectInputStream objis;
 
 		try {
-			fis = new FileInputStream("Bills.dat");
+			fis = new FileInputStream("src/EncodedInformation/Books.dat");
 		    objis = new ObjectInputStream(fis);
 			
 		while(true)
@@ -153,38 +153,41 @@ public class Menager_Statistic {
 	}
 	private static int getnumber1(int z) {
 		FileInputStream fis;
-		int sum =0;
+		int sum = 0;
+		ObjectInputStream objis = null;
+
 		try {
-			fis = new FileInputStream("booksBought.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
-			
-		while(objis!=null)
-		{
-			
-			Book_Sold obj = ((Book_Sold) objis.readObject());
-			if(obj.getDate().getYear() == 2023 && obj.getDate().getMonth()==z )
-			{
-				sum+=1;
+			fis = new FileInputStream("src/EncodedInformation/booksBought.dat");
+			objis = new ObjectInputStream(fis);
+
+			while (true) {
+				try {
+					Book_Sold obj = (Book_Sold) objis.readObject();
+					if (obj.getDate().getYear() == 2023 && obj.getDate().getMonth() == z) {
+						sum += 1;
+					}
+				} catch (EOFException e) {
+					// End of file reached, exit the loop
+					break;
+				}
 			}
-			
-		}
-		objis.close();
-			
 		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
-		} catch (IOException e1) {
-			
-			return sum;
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
+		} catch (IOException | ClassNotFoundException e1) {
 			e1.printStackTrace();
+		} finally {
+			if (objis != null) {
+				try {
+					objis.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		
-		
-		
-		return 1;
+
+		return sum;
 	}
+
 
 
 }

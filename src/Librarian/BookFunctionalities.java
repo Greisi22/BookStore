@@ -1,7 +1,10 @@
 package Librarian;
 
+import jdk.internal.access.JavaIOFileDescriptorAccess;
+
 import java.io.*;
 import java.util.ArrayList;
+
 
 public class BookFunctionalities  {
     public static <E> ArrayList<E> getBooks(ArrayList<E> list) {
@@ -54,22 +57,7 @@ public class BookFunctionalities  {
                     break;
                 }
             }
-            FileOutputStream out;
-            try {
-                out = new FileOutputStream("src/EncodedInformation/Books.dat");
-                ObjectOutputStream objout = new ObjectOutputStream(out);
-                for (int i = 0; i < newBooks1.size(); i++) {
-                    objout.writeObject(newBooks1.get(i));
-                }
-                newBooks1.clear();
-                objout.close();
-                objis.close();
-            } catch (FileNotFoundException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            } catch (IOException e) {
-                System.out.println(e);
-            }
+           createBook(newBooks1);
         } catch (IOException e) {
             throw new RuntimeException(e);
         } catch (ClassNotFoundException e) {
@@ -78,6 +66,25 @@ public class BookFunctionalities  {
         return obj;
     }
 
+
+
+    public static void createBook(ArrayList<Zh_Books> newBooks1){
+        FileOutputStream out;
+        try {
+            out = new FileOutputStream("src/EncodedInformation/Books.dat");
+            ObjectOutputStream objout = new ObjectOutputStream(out);
+            for (int i = 0; i < newBooks1.size(); i++) {
+                objout.writeObject(newBooks1.get(i));
+            }
+          newBooks1.clear();
+            objout.close();
+        } catch (FileNotFoundException e1) {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
 
 
 

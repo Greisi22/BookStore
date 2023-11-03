@@ -94,7 +94,7 @@ return listBooks;
 
             for(int i=0;i<listaaa11.size();i++)
             {
-                BookFunctionalities.UpdateBook(listaaa11.get(i));
+                BookFunctionalities.UpdateBookQuantity(listaaa11.get(i));
             }
             listaaa11.clear();
             objout.close();

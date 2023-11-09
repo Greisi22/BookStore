@@ -12,7 +12,7 @@ class E_BillTest {
 
     @Test
     void getLibrarian_Name() {
-        System.out.println("Prova");
+
     }
 
     @Test

@@ -491,9 +491,9 @@ public class Menager_Create_Book {
 			Book_Sold boook = new Book_Sold(new Zh_MyDate(d.getValue().getMonthValue(),
 					d.getValue().getDayOfMonth(), d.getValue().getYear()), isbn13);
 			ArrayList<Book_Sold> listBooks = new ArrayList<>();
-			Menager.BookBoughtFunctionalities.getBooksBought(listBooks);
+			BookBoughtFunctionalities.getBooksBought(listBooks);
 			listBooks.add(boook);
-			Menager.BookBoughtFunctionalities.saveBookBought(listBooks);
+			BookBoughtFunctionalities.saveBookBought(listBooks);
 
 
 		});

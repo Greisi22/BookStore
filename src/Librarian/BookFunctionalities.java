@@ -1,10 +1,5 @@
 package Librarian;
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> 370aa5c33fb155110399bed64447318bbaa58d8a
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;

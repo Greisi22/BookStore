@@ -117,6 +117,4 @@ public class BillFunctionalities {
             return false;
         }
     }
-
-
 }

@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 
+import Librarian.BookFunctionalities;
 import Librarian.Zh_Books;
 import Librarian.Zh_Genre;
 import javafx.collections.FXCollections;
@@ -103,7 +104,8 @@ public class UpdateBook {
 			public void handle(CellEditEvent<Zh_Books, String> event) {
 			      Zh_Books b1 = event.getRowValue();
 			      b1.setTitle(event.getNewValue());
-			      updateBook(b1);
+				ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+				BookFunctionalities.createBook(temp);
 			}
 		});
 		//.........................................................................
@@ -117,7 +119,8 @@ public class UpdateBook {
 				
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setISBN((event.getNewValue()));
-		      updateBook(b1);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookFunctionalities.createBook(temp);
 			}
 		
 		});
@@ -132,7 +135,8 @@ public class UpdateBook {
 				
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setQuanity(Integer.parseInt(event.getNewValue()));
-		      updateBook(b1);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookFunctionalities.createBook(temp);
 			}
 		
 		});
@@ -147,7 +151,8 @@ public class UpdateBook {
 				
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setDescription(event.getNewValue());;
-		      updateBook(b1);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookFunctionalities.createBook(temp);
 			}
 		
 		});
@@ -162,7 +167,8 @@ public class UpdateBook {
 	
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setPrice(event.getNewValue());
-		      updateBook(b1);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookFunctionalities.createBook(temp);
 		}
 		
 		});
@@ -192,7 +198,8 @@ public class UpdateBook {
 		public void handle(CellEditEvent<Zh_Books, Boolean> event) {
 			Zh_Books b1 = event.getRowValue();
 		      b1.setPaperback(event.getNewValue());
-		      updateBook(b1);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookFunctionalities.createBook(temp);
 			
 		}
 		
@@ -207,8 +214,8 @@ public class UpdateBook {
 			public void handle(CellEditEvent<Zh_Books, String> event) {
 			Zh_Books b1 = event.getRowValue();
 		      b1.setGenresS(event.getNewValue());
-		      updateBook(b1);
-		
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookFunctionalities.createBook(temp);
 			}
 		
 		});
@@ -237,66 +244,14 @@ public class UpdateBook {
 			stage1.show();
 
 	}
-	static ArrayList<Zh_Books> newBooks1 = new ArrayList<Zh_Books>();
-	private static void updateBook(Zh_Books b1) {
-		FileInputStream fis;
-		ArrayList<Zh_Books> newBooks1 = new ArrayList<>();  // Create a new list to hold the updated objects
-		if (Files.exists(Path.of("src/EncodedInformation/Books.dat")) ) {
-			System.out.println("Directory is valid and exists.");
-		} else {
-			System.out.println("Directory does not exist or is not a valid directory.");
-		}
-		try {
-			fis = new FileInputStream("src/EncodedInformation/Books.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
-
-			while (true) {
-				try {
-					Zh_Books obj = (Zh_Books) objis.readObject();
-
-					if (obj.getISBN().equals(b1.getISBN())) {
-						// Update the existing object with the new data
-						obj = b1;
-					}
-
-					newBooks1.add(obj);
-				} catch (EOFException e) {
-					break;
-				} catch (ClassNotFoundException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-
-			objis.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			// Handle the case where the file doesn't exist
-		  addUpdatedBooks(newBooks1);
-	}
 
 
 
 
-	}
 
-	private static void addUpdatedBooks(ArrayList<Zh_Books> newBooks1) {
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream("src/EncodedInformation/Books.dat");
-			ObjectOutputStream objout = new ObjectOutputStream(out);
 
-			for (int i = 0; i < newBooks1.size(); i++) {
-				objout.writeObject(newBooks1.get(i));
-			}
 
-			objout.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			System.out.println("Update failed");
-		}
-	}
+
 
 	}
 

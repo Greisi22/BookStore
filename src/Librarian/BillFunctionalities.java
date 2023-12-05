@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class BillFunctionalities {
     private static double total = 0;
+
     public static String PrintFile(ArrayList<String> listaaa, E_Bill isCreated) {
         File file = new File("src/TextFiles/cnt.txt");
         try {
@@ -34,67 +35,65 @@ public class BillFunctionalities {
         } catch (IOException e1) {
             return "Bill is not created";
         }
-return "Bill is Printed";
+        return "Bill is Printed";
     }
 
 //..............................................................................
 
-public static ArrayList<E_Bill> getBills(E_Bill isCreated){
-    ArrayList<E_Bill> listBooks = new ArrayList<E_Bill>();
-    FileInputStream fis;
-    ObjectInputStream objis = null;
-    try {
-        fis = new FileInputStream("src/EncodedInformation/Bills.dat");
-        objis = new ObjectInputStream(fis);
+    public static ArrayList<E_Bill> getBills(E_Bill isCreated) {
+        ArrayList<E_Bill> listBooks = new ArrayList<E_Bill>();
+        FileInputStream fis;
+        ObjectInputStream objis = null;
+        try {
+            fis = new FileInputStream("src/EncodedInformation/Bills.dat");
+            objis = new ObjectInputStream(fis);
 
-        while (true) {
-            try {
-                E_Bill obj = (E_Bill) objis.readObject();
-                listBooks.add(obj);
-            } catch (EOFException e) {
-                break;
+            while (true) {
+                try {
+                    E_Bill obj = (E_Bill) objis.readObject();
+                    listBooks.add(obj);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+            listBooks.add(isCreated);
+
+            objis.close();
+
+        } catch (FileNotFoundException e1) {
+            e1.printStackTrace();
+        } catch (IOException e) {
+            System.out.println(e);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            // Check if objis is not null before attempting to close it
+            if (objis != null) {
+                try {
+                    objis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
-        listBooks.add(isCreated);
-
-        objis.close();
-
-    } catch (FileNotFoundException e1) {
-        e1.printStackTrace();
-    } catch (IOException e) {
-        System.out.println(e);
-    } catch (ClassNotFoundException e) {
-        e.printStackTrace();
-    }  finally {
-        // Check if objis is not null before attempting to close it
-        if (objis != null) {
-            try {
-                objis.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        return listBooks;
     }
-return listBooks;
-}
 
 
-  public   static void createNewBill(ArrayList<E_Bill> listBooks, ArrayList<String> listaaa11) {
+    public static void createNewBill(ArrayList<E_Bill> listBooks, ArrayList<String> listaaa11) {
 
         FileOutputStream out;
         try {
             out = new FileOutputStream("src/EncodedInformation/Bills.dat");
             ObjectOutputStream objout = new ObjectOutputStream(out);
 
-            for(int i=0;i<listBooks.size();i++)
-            {
+            for (int i = 0; i < listBooks.size(); i++) {
                 objout.writeObject(listBooks.get(i));
 
             }
 
-            for(int i=0;i<listaaa11.size();i++)
-            {
-                BookFunctionalities.UpdateBook(listaaa11.get(i));
+            for (int i = 0; i < listaaa11.size(); i++) {
+                BookFunctionalities.UpdateBookQuantity(listaaa11.get(i));
             }
             listaaa11.clear();
             objout.close();
@@ -105,6 +104,18 @@ return listBooks;
             System.out.println(e);
         }
 
+    }
+
+
+//.................................................................
+
+    public static boolean checkOutOfStock(Zh_Books book) {
+        if (book.getQuanity()>0){
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
 

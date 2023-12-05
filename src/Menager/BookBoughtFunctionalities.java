@@ -57,7 +57,7 @@ public class BookBoughtFunctionalities {
                     out.close();
                 }
             } catch (IOException e) {
-                return "You have not saved the BookBoght" + e;
+                System.out.println("You have not saved the BookBoght" + e);
             }
         }
         return "You have saved the BookBoght";

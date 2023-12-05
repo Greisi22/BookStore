@@ -42,6 +42,8 @@ public class CA__Librarian_View {
 	private static String c;
 	private static int d;
 
+	private static Zh_Books bookSelected = null;
+
 	static Label OutOfStock = new Label("");
 	static String WelcomeName;
 
@@ -130,7 +132,7 @@ public class CA__Librarian_View {
 					b = 0;
 					//ruan infot kur i ben select
 					for (Zh_Books name : selectedItems) {
-
+						bookSelected = name;
 						a = name.getTitle();
 						b = name.getPrice();
 						c = name.getISBN();
@@ -192,7 +194,7 @@ public class CA__Librarian_View {
 		});
 
 		Add.setOnAction(e -> {
-			if (d > 0) {
+			if (BillFunctionalities.checkOutOfStock(bookSelected)) {
 				OutOfStock.setText("");
 				listaaa.add(a);
 				listaaa1.add(b);

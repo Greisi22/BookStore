@@ -38,6 +38,9 @@ public class D_Users implements Serializable {
 	}
 
     public D_Users(String testUser, String testPassword, Zh_accessLevel zhAccessLevel) {
+		this.firstName = testUser;
+		this.password = testPassword;
+		this.accesLevel = zhAccessLevel;
     }
 
     public String getFirstName() {

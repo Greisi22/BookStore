@@ -76,8 +76,8 @@ public class B__Log_in {
         // Add an action to the LOGIN button
         LOGIN.setOnAction(e -> {
 
-
-            List<Constable> result = LogInFunctionalities.handleLogin(usernametextFiled, PassswrdField);
+           LogInFunctionalities logInFunctionalities = new LogInFunctionalities();
+            List<Constable> result = logInFunctionalities.handleLogin(usernametextFiled.getText(), PassswrdField.getText(), "src/EncodedInformation/Users.dat");
             if (result != null && result.size() > 0) {
                 ResultType resultType = (ResultType) result.get(0);
 

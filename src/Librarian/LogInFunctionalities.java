@@ -7,7 +7,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.io.File;s
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -18,6 +18,14 @@ import java.util.List;
 public class LogInFunctionalities {
 
 
+   LogInFunctionalities logInFunctionalities;
+
+   public LogInFunctionalities(){
+
+   }
+    public LogInFunctionalities(LogInFunctionalities logInFunctionalities){
+        this.logInFunctionalities = logInFunctionalities;
+   }
 
     public  D_Users checkUser(String usernametextFiled, String PassswrdField, String filePath) throws IOException {
 
@@ -43,10 +51,9 @@ public class LogInFunctionalities {
         }
     }
 
-    public static List<Constable> handleLogin(TextField usernametextFiled, PasswordField PassswrdField) {
+    public  List<Constable> handleLogin(String usernametextFiled, String PassswrdField , String path) {
         try {
-            LogInFunctionalities logInFunctionalities = new LogInFunctionalities();
-            D_Users isuser = logInFunctionalities.checkUser(usernametextFiled.getText(), PassswrdField.getText(), "src/EncodedInformation/Users.dat");
+            D_Users isuser = logInFunctionalities.checkUser(usernametextFiled, PassswrdField, path);
             if (isuser == null) {
                 return Arrays.asList(ResultType.INCORRECT_USER, "Incorrect Userername or password");
             } else {
@@ -65,6 +72,9 @@ public class LogInFunctionalities {
             return Arrays.asList(ResultType.TRY_AGAIN, "");
         }
     }
+
+
+
 
 
 

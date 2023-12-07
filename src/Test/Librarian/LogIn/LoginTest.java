@@ -1,4 +1,4 @@
-package Librarian;
+package Test.Librarian.LogIn;
 
 import org.junit.jupiter.api.Test;
 

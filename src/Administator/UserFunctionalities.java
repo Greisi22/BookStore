@@ -92,4 +92,47 @@ return "lot";
 
 
 
+
+    public static ArrayList<D_Users> readObjectBinaryFile() {
+        ArrayList<D_Users> userList = new ArrayList<>();
+
+        try (FileInputStream fileInputStream = new FileInputStream("src/EncodedInformation/Users.dat");
+             ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream)) {
+
+            while (true) {
+                try {
+                    D_Users user = (D_Users) objectInputStream.readObject();
+                    userList.add(user);
+                } catch (EOFException e) {
+                    break;
+                }
+            }
+
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+            // Handle the exception as per your requirement
+        }
+
+        return userList;
+    }
+
+    public static void appendObjectToFile(D_Users user) {
+        ArrayList<D_Users> existingUsers = readObjectBinaryFile();
+        existingUsers.add(user);
+
+        try (FileOutputStream fileOutputStream = new FileOutputStream("src/EncodedInformation/Users.dat");
+             ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream)) {
+
+            for (D_Users u : existingUsers) {
+                objectOutputStream.writeObject(u);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception as per your requirement
+        }
+    }
+
+
+
 }

@@ -82,27 +82,7 @@ public class B__Log_in {
 		});
 	}
 	//....................................................................................
-	public static Object checkUser(String usernametextFiled, String PassswrdField) throws IOException {
-		File file = new File("src/EncodedInformation/Users.dat");
 
-		if (!file.exists()) {
-			throw new FileNotFoundExceptionCustom("File does not exist");
-		}
-
-		FileInputStream fis = new FileInputStream(file);
-		ObjectInputStream objis = new ObjectInputStream(fis);
-		D_Users user;
-		while (true) {
-			try {
-				user = ((D_Users) objis.readObject());
-				if (usernametextFiled.equals(user.getFirstName()) && PassswrdField.equals(user.getPassword())) {
-					return user;
-				}
-			} catch (ClassNotFoundException | IOException e) {
-				return null;
-			}
-		}
-	}
 	//....................................................................................
 	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
 		Alert alert = new Alert(alertType);
@@ -117,7 +97,8 @@ public class B__Log_in {
 
 	public static ResultType handleLogin(TextField usernametextFiled, PasswordField PassswrdField, Stage stage, Pane pane) {
 		try {
-			D_Users isuser = (D_Users) checkUser(usernametextFiled.getText(), PassswrdField.getText());
+			LogInFunctionalities logInFunctionalities = new LogInFunctionalities();
+			D_Users isuser = logInFunctionalities.checkUser(usernametextFiled.getText(), PassswrdField.getText(), "src/EncodedInformation/Users.dat");
 			if (isuser == null) {
 				return ResultType.INCORRECT_USER;
 			} else {
@@ -151,12 +132,6 @@ public class B__Log_in {
 
 
 
-}
-
-class FileNotFoundExceptionCustom extends IOException {
-	public FileNotFoundExceptionCustom(String message) {
-		super(message);
-	}
 }
 
 

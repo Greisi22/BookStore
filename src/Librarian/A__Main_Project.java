@@ -17,7 +17,7 @@ public class A__Main_Project  extends Application  {
 	}
 
 	public static void main(String[] args) {
-  		System.out.println("System started successfully...David");
+  		System.out.println("System started successfully...Greisi");
 		Application.launch(args);
 	}
 

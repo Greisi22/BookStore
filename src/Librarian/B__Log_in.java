@@ -74,18 +74,18 @@ public class B__Log_in {
 		LOGIN.setOnAction(e -> {
 			try {
 
-				D_Users isuser = (D_Users) checkLogIn(usernametextFiled.getText(), PassswrdField.getText());
+				D_Users isuser = (D_Users) checkUser(usernametextFiled.getText(), PassswrdField.getText());
 				if (isuser == null) {
 					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Incorrect Uername or Password !!!");
 				} else {
-						if (isuser.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
-							CA__Librarian_View.stage(stage, isuser.getFirstName());
-						} else if (isuser.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
-							view.View(stage, isuser.getFirstName());
-						} else if (isuser.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
-							View.FirstView(stage, isuser.getFirstName());
-						}
-					    else {
+					if (isuser.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
+						CA__Librarian_View.stage(stage, isuser.getFirstName());
+					} else if (isuser.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
+						view.View(stage, isuser.getFirstName());
+					} else if (isuser.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
+						View.FirstView(stage, isuser.getFirstName());
+					}
+					else {
 						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Try Again !!!");
 					}
 				}
@@ -97,7 +97,7 @@ public class B__Log_in {
 		});
 	}
 	//....................................................................................
-	public static Object checkLogIn(String usernametextFiled, String PassswrdField) throws IOException {
+	public static Object checkUser(String usernametextFiled, String PassswrdField) throws IOException {
 		File file = new File("src/EncodedInformation/Users.dat");
 
 		if (!file.exists()) {
@@ -118,7 +118,7 @@ public class B__Log_in {
 			}
 		}
 	}
-//....................................................................................
+	//....................................................................................
 	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
 		Alert alert = new Alert(alertType);
 		alert.setTitle(title);
@@ -137,4 +137,3 @@ class FileNotFoundExceptionCustom extends IOException {
 		super(message);
 	}
 }
-

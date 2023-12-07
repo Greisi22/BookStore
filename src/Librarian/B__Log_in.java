@@ -1,6 +1,9 @@
 package Librarian;
 
 import java.io.*;
+import java.lang.constant.Constable;
+import java.util.Arrays;
+import java.util.List;
 
 import Administator.View;
 import Menager.view;
@@ -72,13 +75,48 @@ public class B__Log_in {
 
 		// Add an action to the LOGIN button
 		LOGIN.setOnAction(e -> {
-		ResultType resultType =	handleLogin(usernametextFiled, PassswrdField, stage, pane);
-		switch (resultType){
-			case INCORRECT_USER:
-				showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "User does not Exist!!!");
-			case TRY_AGAIN:
-				showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Try Again !!!");
-		}
+
+
+			List<Constable> result = LogInFunctionalities.handleLogin(usernametextFiled, PassswrdField);
+			if (result != null && result.size() > 0) {
+				ResultType resultType = (ResultType) result.get(0);
+
+				switch (resultType) {
+					case INCORRECT_USER:
+						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", result.get(1).toString());
+						break;
+					case TRY_AGAIN:
+						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", result.get(1).toString());
+						break;
+					case LIBRARIAN_LOGIN:
+						try {
+							CA__Librarian_View.stage(stage, result.get(1).toString()); // Assuming the second element is the username
+						} catch (FileNotFoundException ex) {
+							throw new RuntimeException(ex);
+						}
+						break;
+					case MANAGER_LOGIN:
+						try {
+							view.View(stage, result.get(1).toString()); // Assuming the second element is the username
+						} catch (FileNotFoundException ex) {
+							throw new RuntimeException(ex);
+						}
+						break;
+					case ADMIN_LOGIN:
+						View.FirstView(stage, result.get(1).toString()); // Assuming the second element is the username
+						break;
+
+				}
+			}
+
+
+
+
+
+
+
+
+
 		});
 	}
 	//....................................................................................
@@ -95,43 +133,10 @@ public class B__Log_in {
 
 
 
-	public static ResultType handleLogin(TextField usernametextFiled, PasswordField PassswrdField, Stage stage, Pane pane) {
-		try {
-			LogInFunctionalities logInFunctionalities = new LogInFunctionalities();
-			D_Users isuser = logInFunctionalities.checkUser(usernametextFiled.getText(), PassswrdField.getText(), "src/EncodedInformation/Users.dat");
-			if (isuser == null) {
-				return ResultType.INCORRECT_USER;
-			} else {
-				if (isuser.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
-					CA__Librarian_View.stage(stage, isuser.getFirstName());
-					return ResultType.LIBRARIAN_LOGIN;
-				} else if (isuser.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
-					view.View(stage, isuser.getFirstName());
-					return ResultType.MANAGER_LOGIN;
-				} else if (isuser.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
-					View.FirstView(stage, isuser.getFirstName());
-					return ResultType.ADMIN_LOGIN;
-				} else {
-					return ResultType.TRY_AGAIN;
-				}
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-			return ResultType.IO_EXCEPTION;
-		}
-	}
-
-	private enum ResultType {
-		INCORRECT_USER,
-		LIBRARIAN_LOGIN,
-		MANAGER_LOGIN,
-		ADMIN_LOGIN,
-		TRY_AGAIN,
-		IO_EXCEPTION
-	}
 
 
 
 }
+
 
 

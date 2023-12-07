@@ -1,9 +1,7 @@
 package Librarian;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
+
 import Administator.View;
 import Menager.view;
 import javafx.scene.Scene;
@@ -24,7 +22,7 @@ import javafx.stage.Stage;
 import javafx.stage.Window;
 
 public class B__Log_in {
-	static D_Users u1 = null;
+
 	static Label Message = new Label();
 
 	public static void Log_inn(Stage stage) {
@@ -75,21 +73,19 @@ public class B__Log_in {
 		// Add an action to the LOGIN button
 		LOGIN.setOnAction(e -> {
 			try {
-				FileInputStream fis = new FileInputStream("src/EncodedInformation/Users.dat");
-				ObjectInputStream objis = new ObjectInputStream(fis);
-				D_Users a = (D_Users) checkUser(objis, usernametextFiled.getText(), PassswrdField.getText());
-				if (u1 == null) {
-					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Try Again !!!");
+
+				D_Users isuser = (D_Users) checkLogIn(usernametextFiled.getText(), PassswrdField.getText());
+				if (isuser == null) {
+					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Incorrect Uername or Password !!!");
 				} else {
-					if (a != null) {
-						if (a.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
-							CA__Librarian_View.stage(stage, a.getFirstName());
-						} else if (a.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
-							view.View(stage, a.getFirstName());
-						} else if (a.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
-							View.FirstView(stage, a.getFirstName());
+						if (isuser.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
+							CA__Librarian_View.stage(stage, isuser.getFirstName());
+						} else if (isuser.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
+							view.View(stage, isuser.getFirstName());
+						} else if (isuser.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
+							View.FirstView(stage, isuser.getFirstName());
 						}
-					} else {
+					    else {
 						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Try Again !!!");
 					}
 				}
@@ -101,15 +97,23 @@ public class B__Log_in {
 		});
 	}
 	//....................................................................................
-	private static Object checkUser(ObjectInputStream objis, String usernametextFiled, String PassswrdField) {
+	public static Object checkLogIn(String usernametextFiled, String PassswrdField) throws IOException {
+		File file = new File("src/EncodedInformation/Users.dat");
+
+		if (!file.exists()) {
+			throw new FileNotFoundExceptionCustom("File does not exist");
+		}
+
+		FileInputStream fis = new FileInputStream(file);
+		ObjectInputStream objis = new ObjectInputStream(fis);
+		D_Users user;
 		while (true) {
 			try {
-				u1 = ((D_Users) objis.readObject());
-				if (usernametextFiled.equals(u1.getFirstName()) && PassswrdField.equals(u1.getPassword())) {
-					return u1;
+				user = ((D_Users) objis.readObject());
+				if (usernametextFiled.equals(user.getFirstName()) && PassswrdField.equals(user.getPassword())) {
+					return user;
 				}
 			} catch (ClassNotFoundException | IOException e) {
-				u1 = null;
 				return null;
 			}
 		}
@@ -123,7 +127,14 @@ public class B__Log_in {
 		alert.initOwner(owner);
 		alert.show();
 	}
+
+
+
 }
 
-
+class FileNotFoundExceptionCustom extends IOException {
+	public FileNotFoundExceptionCustom(String message) {
+		super(message);
+	}
+}
 

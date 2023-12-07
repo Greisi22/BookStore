@@ -72,28 +72,13 @@ public class B__Log_in {
 
 		// Add an action to the LOGIN button
 		LOGIN.setOnAction(e -> {
-			try {
-
-				D_Users isuser = (D_Users) checkUser(usernametextFiled.getText(), PassswrdField.getText());
-				if (isuser == null) {
-					showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Incorrect Uername or Password !!!");
-				} else {
-					if (isuser.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
-						CA__Librarian_View.stage(stage, isuser.getFirstName());
-					} else if (isuser.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
-						view.View(stage, isuser.getFirstName());
-					} else if (isuser.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
-						View.FirstView(stage, isuser.getFirstName());
-					}
-					else {
-						showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Try Again !!!");
-					}
-				}
-			} catch (FileNotFoundException e1) {
-				e1.printStackTrace();
-			} catch (IOException e1) {
-				System.out.println(e1);
-			}
+		ResultType resultType =	handleLogin(usernametextFiled, PassswrdField, stage, pane);
+		switch (resultType){
+			case INCORRECT_USER:
+				showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "User does not Exist!!!");
+			case TRY_AGAIN:
+				showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", "Try Again !!!");
+		}
 		});
 	}
 	//....................................................................................
@@ -130,6 +115,42 @@ public class B__Log_in {
 
 
 
+	public static ResultType handleLogin(TextField usernametextFiled, PasswordField PassswrdField, Stage stage, Pane pane) {
+		try {
+			D_Users isuser = (D_Users) checkUser(usernametextFiled.getText(), PassswrdField.getText());
+			if (isuser == null) {
+				return ResultType.INCORRECT_USER;
+			} else {
+				if (isuser.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
+					CA__Librarian_View.stage(stage, isuser.getFirstName());
+					return ResultType.LIBRARIAN_LOGIN;
+				} else if (isuser.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
+					view.View(stage, isuser.getFirstName());
+					return ResultType.MANAGER_LOGIN;
+				} else if (isuser.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
+					View.FirstView(stage, isuser.getFirstName());
+					return ResultType.ADMIN_LOGIN;
+				} else {
+					return ResultType.TRY_AGAIN;
+				}
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+			return ResultType.IO_EXCEPTION;
+		}
+	}
+
+	private enum ResultType {
+		INCORRECT_USER,
+		LIBRARIAN_LOGIN,
+		MANAGER_LOGIN,
+		ADMIN_LOGIN,
+		TRY_AGAIN,
+		IO_EXCEPTION
+	}
+
+
+
 }
 
 class FileNotFoundExceptionCustom extends IOException {
@@ -137,3 +158,5 @@ class FileNotFoundExceptionCustom extends IOException {
 		super(message);
 	}
 }
+
+

@@ -1,16 +1,16 @@
-package Test.Librarian;
+package Librarian;
 
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BookFunctionalitiesTest {
+class LoginTest {
 
     @Test
-    void getBooks() {
+    void checkUser() {
     }
 
     @Test
-    void updateBook() {
+    void handleLogin() {
     }
 }

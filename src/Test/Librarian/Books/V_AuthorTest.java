@@ -1,4 +1,4 @@
-package Test.Librarian;
+package Test.Librarian.Books;
 
 import Librarian.V_Author;
 import org.junit.jupiter.api.Test;

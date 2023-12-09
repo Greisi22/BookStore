@@ -29,12 +29,19 @@ class LoginTest {
         lg = new LogInFunctionalities();
     }
 
+    @Test
+    void testFileNotExistCondition() {
+        lg = new LogInFunctionalities();
+        String nonExistingFilePath = "non_existing_file_path";
+        assertThrows(FileNotFoundExceptionCustom.class, () -> lg.checkUser("username", "password", nonExistingFilePath));
+    }
     @ParameterizedTest
     @CsvSource({
-            "David, 111",
-            "Greisi, 222"
+            "David,111",
+            "Greisi,222"
     })
     void testValidCredentials(String username, String password) throws IOException {
+        lg = new LogInFunctionalities();
         D_Users expected = lg.checkUser(username, password, filePath);
         assertNotNull(expected);
         assertEquals(username, expected.getFirstName());
@@ -64,38 +71,6 @@ class LoginTest {
         D_Users result = lg.checkUser(username, password, filePath);
         assertNull(result);
     }
-
-
-    //     Test for File Not Found
-    @Test
-    void testFileNotExistCondition() {
-        String nonExistingFilePath = "non_existing_file_path";
-        assertThrows(FileNotFoundExceptionCustom.class, () -> lg.checkUser("username", "password", nonExistingFilePath));
-    }
-
-
-
-
-
-
-//    @ParameterizedTest
-//    @CsvSource({
-//            "userWithSpecialChar@!, passwordWith#SpecialChar"
-//    })
-//    void prova(String username, String password) throws IOException {
-//        D_Users users = new D_Users();
-//        users.setFirstName("userWithSpecialChar@!");
-//        users.setPassword("passwordWith#SpecialChar");
-//        UserFunctionalities.appendObjectToFile(users);
-//System.out.println(UserFunctionalities.readObjectBinaryFile());
-//
-//    }
-
-
-
-
-
-
 
     @Test
     public void testValidLibrarianLogin() throws IOException {
@@ -146,17 +121,6 @@ class LoginTest {
     }
 
 
-//    @Test
-//    public void testOtherAccessLevels() throws IOException {
-//        lg = Mockito.mock(LogInFunctionalities.class);
-//        D_Users otherUser = new D_Users("OtherUser", "123", Zh_accessLevel.OTHER);
-//        Mockito.when(lg.checkUser("OtherUser", "123", "lol"))
-//                .thenReturn(otherUser);
-//
-//        LogInFunctionalities logInFunctionalities = new LogInFunctionalities(lg);
-//        List<Constable> result = logInFunctionalities.handleLogin("OtherUser", "123", "lol");
-//        assertEquals(Arrays.asList(ResultType.TRY_AGAIN, "Try Again"), result);
-//    }
 
 
     @Test

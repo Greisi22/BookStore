@@ -61,10 +61,8 @@ public class LogInFunctionalities {
                     return Arrays.asList(ResultType.LIBRARIAN_LOGIN, isuser.getFirstName());
                 } else if (isuser.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
                     return Arrays.asList(ResultType.MANAGER_LOGIN, isuser.getFirstName());
-                } else if (isuser.getAccesLevel().equals(Zh_accessLevel.ADMINISTRATOR)) {
-                    return Arrays.asList(ResultType.ADMIN_LOGIN, isuser.getFirstName());
                 } else {
-                    return Arrays.asList(ResultType.TRY_AGAIN, "Try Again");
+                    return Arrays.asList(ResultType.ADMIN_LOGIN, isuser.getFirstName());
                 }
             }
         } catch (IOException e) {

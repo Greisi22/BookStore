@@ -186,38 +186,5 @@ class D_UsersTest {
     }
 
 
-    static class Zh_MyDateTest {
 
-        @Test
-        void getYear() {
-        }
-
-        @Test
-        void getMonth() {
-        }
-
-        @Test
-        void getDay() {
-        }
-
-        @Test
-        void setYear() {
-        }
-
-        @Test
-        void setMonth() {
-        }
-
-        @Test
-        void setDay() {
-        }
-
-        @Test
-        void testEquals() {
-        }
-
-        @Test
-        void testToString() {
-        }
-    }
 }

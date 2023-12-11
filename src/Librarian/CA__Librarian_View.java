@@ -113,7 +113,7 @@ public class CA__Librarian_View {
 
 		ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
 
-	   listBooks =BookFunctionalities.getBooks(listBooks, "src/EncodedInformation/Books.dat");
+	   listBooks =BookFunctionalities.getBooks("src/EncodedInformation/Books.dat");
 
 		TableView<Zh_Books> userTable = new TableView<>();
 

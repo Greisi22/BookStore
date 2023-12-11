@@ -484,7 +484,7 @@ public class Menager_Create_Book {
 
 
 			ArrayList<Zh_Books> booklist = new ArrayList<>();
-			booklist = BookFunctionalities.getBooks(booklist, "src/EncodedInformation/Books.dat");
+			booklist = BookFunctionalities.getBooks("src/EncodedInformation/Books.dat");
 			booklist.add(isCreated);
 			BookFunctionalities.createBook(booklist);
 

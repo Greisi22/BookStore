@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 
 public class BookFunctionalities {
-    public static <E> ArrayList<E> getBooks(ArrayList<E> list, String path) {
-
+    public static <E> ArrayList<E> getBooks( String path) {
+        ArrayList<E> list = new ArrayList<>();
         FileInputStream fis;
         try {
             fis = new FileInputStream(path);

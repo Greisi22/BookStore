@@ -69,6 +69,13 @@ public class Zh_Books  implements Serializable {
 	{
 		
 	}
+
+	public Zh_Books(String title, String ISBN, int quanity)
+	{
+		this.title = title;
+		this.ISBN = ISBN;
+		this.quanity = quanity;
+	}
 	
 	public Zh_Books(String title, String ISBN, int quanity, String description, double price, V_Author author, boolean paperback) {
 		super();

@@ -7,27 +7,24 @@ import java.util.ArrayList;
 
 
 public class BookFunctionalities {
-    public static <E> ArrayList<E> getBooks(ArrayList<E> list) {
+    public static <E> ArrayList<E> getBooks(ArrayList<E> list, String path) {
 
         FileInputStream fis;
         try {
-            fis = new FileInputStream("src/EncodedInformation/Books.dat");
+            fis = new FileInputStream(path);
             ObjectInputStream objis = new ObjectInputStream(fis);
 
             Zh_Books obj = new Zh_Books();
-            while (obj != null) {
+            while (true) {
                 obj = ((Zh_Books) objis.readObject());
                 list.add((E) obj);
             }
-            objis.close();
-
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (IOException e1) {
-            System.out.println(e1);
         } catch (ClassNotFoundException e1) {
             e1.printStackTrace();
+        }catch (IOException e1) {
+            System.out.println(e1);
         }
+
         return list;
     }
 

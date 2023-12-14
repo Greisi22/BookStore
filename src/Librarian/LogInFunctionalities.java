@@ -53,6 +53,9 @@ public class LogInFunctionalities {
 
     public  List<Constable> handleLogin(String usernametextFiled, String PassswrdField , String path) {
         try {
+            if(logInFunctionalities == null){
+                logInFunctionalities = new LogInFunctionalities();
+            }
             D_Users isuser = logInFunctionalities.checkUser(usernametextFiled, PassswrdField, path);
             if (isuser == null) {
                 return Arrays.asList(ResultType.INCORRECT_USER, "Incorrect Userername or password");

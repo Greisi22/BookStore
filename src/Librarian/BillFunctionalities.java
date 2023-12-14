@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class BillFunctionalities {
     private static double total = 0;
 
-    public static String PrintFile(ArrayList<String> listaaa, E_Bill isCreated) {
+    public static String PrintFile(ArrayList<String> listaaa, Bill isCreated) {
         File file = new File("src/TextFiles/cnt.txt");
         try {
             Scanner input = new Scanner(file);
@@ -41,11 +41,11 @@ public class BillFunctionalities {
 //..............................................................................
 
     private static String lastUsedPath;
-    public static ArrayList<E_Bill> getBills( E_Bill isCreated) {
+    public static ArrayList<Bill> getBills( Bill isCreated) {
 
 
 
-        ArrayList<E_Bill> listBooks = new ArrayList<E_Bill>();
+        ArrayList<Bill> listBooks = new ArrayList<Bill>();
         FileInputStream fis;
         ObjectInputStream objis = null;
         try {
@@ -88,7 +88,7 @@ public class BillFunctionalities {
         lastUsedPath = path;
     }
 
-    public static void createNewBill(ArrayList<E_Bill> listBooks, ArrayList<String> listaaa11) {
+    public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<String> listaaa11) {
 
         FileOutputStream out;
         try {

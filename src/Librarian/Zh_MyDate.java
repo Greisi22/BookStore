@@ -1,5 +1,8 @@
 package Librarian;
 
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
+
 import java.io.Serial;
 import java.io.Serializable;
 
@@ -33,14 +36,38 @@ public class Zh_MyDate implements Serializable {
         return day;
     }
     public void setYear(int year){
-        this.year=year;
+        if(year>0)
+        {
+            this.year=year;
+        }
+        else{
+            this.year=0;
+        }
+
     }
     public void setMonth(int month){
-        this.month=month;
+        if(month>0)
+        {
+            this.month=month;
+        }
+        else{
+            this.month=0;
+        }
+
     }
     public void setDay(int day){
-        this.day=day;
+
+        if(day>0){
+            this.day=day;
+        }
+        else{
+            this.day=0;
+        }
+
     }
+
+
+
     public boolean equals(Zh_MyDate date){
 	if(this.year==date.getYear() && this.month==date.getMonth() && this.day==date.getDay())
 	    return true;

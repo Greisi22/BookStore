@@ -52,10 +52,10 @@ public class BillFunctionalities {
             fis = new FileInputStream(lastUsedPath);
             objis = new ObjectInputStream(fis);
 
-            E_Bill bill=new E_Bill();
+            Bill bill=new Bill();
             while (true) {
                 try {
-                    bill = (E_Bill) objis.readObject();
+                    bill = (Bill) objis.readObject();
                     listBooks.add(bill);
                 } catch (EOFException e) {
                     break;

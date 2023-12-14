@@ -154,6 +154,8 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 
 
 	        BillFunctionalities.PrintFile(listaaa, isCreated);
+			String pathUsed = "src/EncodedInformation/Bills.dat";  // Replace this with the actual path
+			BillFunctionalities.setLastUsedPath(pathUsed);
 			ArrayList<E_Bill> newList = BillFunctionalities.getBills(isCreated);
 			BillFunctionalities.createNewBill(newList,  listaaa11);
 			});

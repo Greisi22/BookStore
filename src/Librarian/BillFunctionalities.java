@@ -40,18 +40,23 @@ public class BillFunctionalities {
 
 //..............................................................................
 
-    public static ArrayList<E_Bill> getBills(E_Bill isCreated) {
+    private static String lastUsedPath;
+    public static ArrayList<E_Bill> getBills( E_Bill isCreated) {
+
+
+
         ArrayList<E_Bill> listBooks = new ArrayList<E_Bill>();
         FileInputStream fis;
         ObjectInputStream objis = null;
         try {
-            fis = new FileInputStream("src/EncodedInformation/Bills.dat");
+            fis = new FileInputStream(lastUsedPath);
             objis = new ObjectInputStream(fis);
 
+            E_Bill bill=new E_Bill();
             while (true) {
                 try {
-                    E_Bill obj = (E_Bill) objis.readObject();
-                    listBooks.add(obj);
+                    bill = (E_Bill) objis.readObject();
+                    listBooks.add(bill);
                 } catch (EOFException e) {
                     break;
                 }
@@ -79,6 +84,9 @@ public class BillFunctionalities {
         return listBooks;
     }
 
+    public static void setLastUsedPath(String path) {
+        lastUsedPath = path;
+    }
 
     public static void createNewBill(ArrayList<E_Bill> listBooks, ArrayList<String> listaaa11) {
 

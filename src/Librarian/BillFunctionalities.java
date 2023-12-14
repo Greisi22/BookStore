@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class BillFunctionalities {
     private static double total = 0;
 
-    public static String PrintFile(ArrayList<String> listaaa, Bill isCreated) {
+    public static String PrintFile(ArrayList<String> listaaa, E_Bill isCreated) {
         File file = new File("src/TextFiles/cnt.txt");
         try {
             Scanner input = new Scanner(file);
@@ -19,7 +19,7 @@ public class BillFunctionalities {
             file1.write((cnt) + "");
             file1.close();
             PrintWriter pfile = new PrintWriter("src/Bills/Bill" + cnt);
-            pfile.write("**************Bill************\n");
+            pfile.write("*****Bill*****\n");
 
             StringBuilder s1 = new StringBuilder();
             for (int i = 0; i < listaaa.size(); i++) {
@@ -40,17 +40,12 @@ public class BillFunctionalities {
 
 //..............................................................................
 
-<<<<<<< HEAD
-    public static ArrayList<Bill> getBills(Bill isCreated) {
-        ArrayList<Bill> listBooks = new ArrayList<Bill>();
-=======
     private static String lastUsedPath;
     public static ArrayList<E_Bill> getBills( E_Bill isCreated) {
 
 
 
         ArrayList<E_Bill> listBooks = new ArrayList<E_Bill>();
->>>>>>> dd8f93dfd29b8d42470fc6a82fe12ae2ef365139
         FileInputStream fis;
         ObjectInputStream objis = null;
         try {
@@ -60,13 +55,8 @@ public class BillFunctionalities {
             E_Bill bill=new E_Bill();
             while (true) {
                 try {
-<<<<<<< HEAD
-                    Bill obj = (Bill) objis.readObject();
-                    listBooks.add(obj);
-=======
                     bill = (E_Bill) objis.readObject();
                     listBooks.add(bill);
->>>>>>> dd8f93dfd29b8d42470fc6a82fe12ae2ef365139
                 } catch (EOFException e) {
                     break;
                 }
@@ -98,7 +88,7 @@ public class BillFunctionalities {
         lastUsedPath = path;
     }
 
-    public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<String> listaaa11) {
+    public static void createNewBill(ArrayList<E_Bill> listBooks, ArrayList<String> listaaa11) {
 
         FileOutputStream out;
         try {

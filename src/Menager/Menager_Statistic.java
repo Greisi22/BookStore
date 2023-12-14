@@ -1,28 +1,14 @@
 package Menager;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
 
-import Librarian.E_Bill;
-import Librarian.Zh_Books;
-import Librarian.Zh_Genre;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.scene.Group;
-import javafx.scene.Node;
+import Librarian.Bill;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
@@ -123,7 +109,7 @@ public class Menager_Statistic {
 		while(true)
 		{
 			try {
-				E_Bill obj = ((E_Bill) objis.readObject());
+				Bill obj = ((Bill) objis.readObject());
 				if(obj.getDate().getYear() == 2023 && obj.getDate().getMonth()==z )
 				{
 					sum+=obj.getBookquantity();

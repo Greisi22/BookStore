@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class BillFunctionalities {
     private static double total = 0;
 
-    public static String PrintFile(ArrayList<String> listaaa, E_Bill isCreated) {
+    public static String PrintFile(ArrayList<String> listaaa, Bill isCreated) {
         File file = new File("src/TextFiles/cnt.txt");
         try {
             Scanner input = new Scanner(file);
@@ -40,8 +40,8 @@ public class BillFunctionalities {
 
 //..............................................................................
 
-    public static ArrayList<E_Bill> getBills(E_Bill isCreated) {
-        ArrayList<E_Bill> listBooks = new ArrayList<E_Bill>();
+    public static ArrayList<Bill> getBills(Bill isCreated) {
+        ArrayList<Bill> listBooks = new ArrayList<Bill>();
         FileInputStream fis;
         ObjectInputStream objis = null;
         try {
@@ -50,7 +50,7 @@ public class BillFunctionalities {
 
             while (true) {
                 try {
-                    E_Bill obj = (E_Bill) objis.readObject();
+                    Bill obj = (Bill) objis.readObject();
                     listBooks.add(obj);
                 } catch (EOFException e) {
                     break;
@@ -80,7 +80,7 @@ public class BillFunctionalities {
     }
 
 
-    public static void createNewBill(ArrayList<E_Bill> listBooks, ArrayList<String> listaaa11) {
+    public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<String> listaaa11) {
 
         FileOutputStream out;
         try {

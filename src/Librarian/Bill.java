@@ -5,7 +5,7 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class E_Bill implements Serializable {
+public class Bill implements Serializable {
 
 
 
@@ -41,11 +41,11 @@ public int getBookquantity() {
 		Bookquantity = bookquantity;
 	}
 
-public E_Bill() {
+public Bill() {
 	
 }
 	
-	public E_Bill(double price,Zh_MyDate date) {
+	public Bill(double price, Zh_MyDate date) {
 		super();
 		Price = price;
 

@@ -4,15 +4,11 @@ import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.D_Users;
-import Librarian.E_Bill;
-import Librarian.Zh_Books;
+import Librarian.Bill;
 import Librarian.Zh_accessLevel;
-import Menager.Book_Sold;
-import Menager.view;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
@@ -76,7 +72,7 @@ ArrayList<Integer> list3 = new ArrayList<Integer>();
 
 				while (true) { // Use a true condition to handle EOF
 					try {
-						E_Bill obj = (E_Bill) objis1.readObject();
+						Bill obj = (Bill) objis1.readObject();
 						if (list.get(i).getFirstName().equals(obj.getLibrarian_Name())) {
 							sum += obj.getPrice(); // You can cast to double if needed
 						}

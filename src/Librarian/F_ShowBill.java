@@ -2,22 +2,13 @@
 package Librarian;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -28,7 +19,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
@@ -148,13 +138,13 @@ Zh_Bill_Controller newBill = new Zh_Bill_Controller();
 		
 		Print.setOnAction(e->{
 
-   E_Bill isCreated = newBill.loginn(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
+   Bill isCreated = newBill.loginn(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
 	 isCreated.setBook_name(listaaa);
 	 isCreated.setBookquantity(listaaa.size());
 
 
 	        BillFunctionalities.PrintFile(listaaa, isCreated);
-			ArrayList<E_Bill> newList = BillFunctionalities.getBills(isCreated);
+			ArrayList<Bill> newList = BillFunctionalities.getBills(isCreated);
 			BillFunctionalities.createNewBill(newList,  listaaa11);
 			});
 		

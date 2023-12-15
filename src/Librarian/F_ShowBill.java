@@ -34,29 +34,30 @@ import javafx.stage.Stage;
 public class F_ShowBill {
 
 
-	static double total = 0;
-	private static ObjectInputStream objis;
-	static ArrayList<String> listaaa11;
 
-	public static void ShowBill(ArrayList<String> listaaa, ArrayList<Double> listaaa1, Pane pane2, Stage stage1,
-								Stage stage, ArrayList<String> listaaa2, String WelcomeName)
+	private static ObjectInputStream objis;
+
+
+	public static void ShowBill(ArrayList<Zh_Books> bookOfBill, Pane pane2, Stage stage1,
+								Stage stage, String WelcomeName)
 	{
 
-		listaaa11 = listaaa2;
 
-		HBox [] hBoxs = new HBox[listaaa.size()];
-		VBox [] vBoxs = new VBox[listaaa.size()];
+
+		HBox [] hBoxs = new HBox[bookOfBill.size()];
+		VBox [] vBoxs = new VBox[bookOfBill.size()];
 		VBox vBoxs1 = new VBox();
 
-		for(int i=0;i<listaaa.size();i++)
+		for(int i=0;i<bookOfBill.size();i++)
 		{
-			Label l1 = new Label("Book: "+listaaa.get(i));
+
+			Label l1 = new Label("Book: "+bookOfBill.get(i).getTitle());
 
 
 			l1.setFont(Font.font("Roboto Mono Regular", FontWeight.BOLD,14));
 			l1.setTextFill(Color.web("#79CBE1"));
 
-			Label l2 = new Label("       Price: "+listaaa1.get(i)+"");
+			Label l2 = new Label("Price: "+bookOfBill.get(i).getPrice()+"");
 
 			l2.setFont(Font.font("Roboto Mono Regular", FontWeight.BOLD,14));
 			l2.setTextFill(Color.web("#79CBE1"));
@@ -67,12 +68,7 @@ public class F_ShowBill {
 			vBoxs[i].getChildren().add(hBoxs[i]);
 		}
 
-		total=0;
-		for(int i=0;i<listaaa.size();i++)
-		{
-			vBoxs1.getChildren().add(vBoxs[i]);
-			total+=listaaa1.get(i);
-		}
+		vBoxs1.getChildren().addAll(vBoxs);
 		vBoxs1.setPadding(new Insets(60, 5, 5, 40));
 
 		vBoxs1.setSpacing(12);
@@ -134,10 +130,9 @@ public class F_ShowBill {
 
 
 		ClearBill.setOnAction(e->{
-			listaaa.clear();
-			listaaa1.clear();
-			ShowBill(listaaa,  listaaa1,  pane2,  stage1,
-					stage,  listaaa2, WelcomeName);
+			bookOfBill.clear();
+			ShowBill(bookOfBill, pane2,  stage1,
+					stage, WelcomeName);
 
 		});
 
@@ -146,15 +141,19 @@ public class F_ShowBill {
 
 
 		Print.setOnAction(e->{
+			double total = BillFunctionalities.CalculateTotalPrice(bookOfBill);
 
-			Bill isCreated = newBill.loginn(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
-			isCreated.setBook_name(listaaa);
-			isCreated.setBookquantity(listaaa.size());
+			ArrayList<String> bookNamess = BillFunctionalities.getBookNames(bookOfBill);
+			BillFunctionalities.CalculateTotalPrice(bookOfBill);
+			System.out.println(total);
+ 			Bill isCreated = newBill.createBill(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
+			isCreated.setBook_name(bookNamess);
+			isCreated.setBookquantity(bookOfBill.size());
 
 
-			BillFunctionalities.PrintFile(listaaa, isCreated);
+			BillFunctionalities.PrintFile(bookNamess, isCreated);
 			ArrayList<Bill> newList = BillFunctionalities.getBills(isCreated,"src/EncodedInformation/Bills.dat");
-			BillFunctionalities.createNewBill(newList,  listaaa11);
+			BillFunctionalities.createNewBill(newList,  bookOfBill);
 		});
 
 	}

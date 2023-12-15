@@ -34,14 +34,14 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class CA__Librarian_View {
-	static ArrayList<String> listaaa = new ArrayList<String>();
-	static ArrayList<Double> listaaa1 = new ArrayList<Double>();
-	static ArrayList<String> listaaa2 = new ArrayList<String>();
-	private static String a;
-	private static double b;
-	private static String c;
-	private static int d;
+//	static ArrayList<String> listaaa = new ArrayList<String>();
+//	static ArrayList<Double> listaaa1 = new ArrayList<Double>();
+//	static ArrayList<String> listaaa2 = new ArrayList<String>();
 
+
+
+
+	private static ArrayList<Zh_Books> booksOfBill = new ArrayList<>();
 	private static Zh_Books bookSelected = null;
 
 	static Label OutOfStock = new Label("");
@@ -128,22 +128,15 @@ public class CA__Librarian_View {
 				.addListener((ObservableValue<? extends Zh_Books> ov, Zh_Books old_val, Zh_Books new_val) -> {
 					ObservableList<Zh_Books> selectedItems = userTable.getSelectionModel().getSelectedItems();
 
-					a = "";
-					b = 0;
+
 					//ruan infot kur i ben select
 					for (Zh_Books name : selectedItems) {
 						bookSelected = name;
-						a = name.getTitle();
-						b = name.getPrice();
-						c = name.getISBN();
-						d = name.getQuanity();
+
+
 					}
 
-					double sum=0;
-					for(Zh_Books books : selectedItems)
-					{
-						sum+=books.getPrice();
-					}
+
 
 				});
 
@@ -201,12 +194,10 @@ public class CA__Librarian_View {
 
 		Add.setOnAction(e -> {
 			if (BillFunctionalities.checkOutOfStock(bookSelected)) {
-				OutOfStock.setText("");
-				listaaa.add(a);
-				listaaa1.add(b);
-				listaaa2.add(c);
+				OutOfStock.setText(bookSelected.getTitle() +" added!");
+				booksOfBill.add(bookSelected);
 			} else {
-				OutOfStock.setText("Book " + a + " is out of stock!!!");
+				OutOfStock.setText("Book " + bookSelected.getTitle() + " is out of stock!!!");
 				OutOfStock.setFont(Font.font("Arimo", FontWeight.BOLD, 10));
 				OutOfStock.setTextFill(Color.web("white"));
 				OutOfStock.setLayoutX(90);
@@ -241,14 +232,14 @@ public class CA__Librarian_View {
 		// ........................................................
 
 		showBill.setOnAction(e -> {
-
-			F_ShowBill.ShowBill(listaaa, listaaa1, pane, stage1, stage,listaaa2,WelcomeName);
+            System.out.println(booksOfBill);
+			F_ShowBill.ShowBill( booksOfBill,pane, stage1, stage,WelcomeName);
 
 		});
 
 		// ................................................................
 		Cancle.setOnAction(e -> {
-			listaaa.clear();
+			booksOfBill.clear();
 			try {
 				stage1.close();
 				CA__Librarian_View.stage(stage, WelcomeName);

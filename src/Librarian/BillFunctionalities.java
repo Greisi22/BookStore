@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class BillFunctionalities {
-    private static double total = 0;
 
-    public static String PrintFile(ArrayList<String> listaaa, Bill isCreated) {
+
+    public static String PrintFile(ArrayList<String> bookNames, Bill isCreated) {
+        System.out.println(isCreated.getPrice());
         File file = new File("src/TextFiles/cnt.txt");
         try {
             Scanner input = new Scanner(file);
@@ -22,12 +23,12 @@ public class BillFunctionalities {
             pfile.write("*****Bill*****\n");
 
             StringBuilder s1 = new StringBuilder();
-            for (int i = 0; i < listaaa.size(); i++) {
-                s1.append(listaaa.get(i)).append(" ");
+            for (int i = 0; i < bookNames.size(); i++) {
+                s1.append(bookNames.get(i)).append(" ");
             }
 
             pfile.write("Books Taken: " + s1 + "\n");
-            pfile.write("Total Price: " + total + "\n");
+            pfile.write("Total Price: " + isCreated.getPrice() + "\n");
             pfile.write("Date" + isCreated.getDate() + "\n");
             pfile.close();
         } catch (FileNotFoundException e1) {
@@ -84,8 +85,9 @@ public class BillFunctionalities {
 
 
 
-    public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<String> listaaa11) {
+    public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<Zh_Books> bookOfBill) {
 
+            ArrayList<String> listOfIsbn = new ArrayList<>();
         FileOutputStream out;
         try {
             out = new FileOutputStream("src/EncodedInformation/Bills.dat");
@@ -93,13 +95,16 @@ public class BillFunctionalities {
 
             for (int i = 0; i < listBooks.size(); i++) {
                 objout.writeObject(listBooks.get(i));
-
             }
 
-            for (int i = 0; i < listaaa11.size(); i++) {
-                BookFunctionalities.UpdateBookQuantity(listaaa11.get(i));
+
+
+            for (int i = 0; i < bookOfBill.size(); i++) {
+                BookFunctionalities.UpdateBookQuantity(bookOfBill.get(i).getISBN());
+
             }
-            listaaa11.clear();
+            bookOfBill.clear();
+
             objout.close();
 
         } catch (FileNotFoundException e) {
@@ -109,6 +114,7 @@ public class BillFunctionalities {
         }
 
     }
+
 
 
 //.................................................................
@@ -123,9 +129,24 @@ public class BillFunctionalities {
     }
 
 
-    public double CalculateTotalPrice(ArrayList<Bill> listBooks)
+    public static double CalculateTotalPrice(ArrayList<Zh_Books> listBooks)
     {
-
-        return 0;
+        double totalPrice=0;
+      for(Zh_Books books:listBooks)
+      {
+        totalPrice+=books.getPrice();
+      }
+        return totalPrice;
     }
+
+    public static ArrayList<String> getBookNames(ArrayList<Zh_Books> books) {
+        ArrayList<String> bookNames = new ArrayList<>();
+
+        for (Zh_Books book : books) {
+            bookNames.add(book.getTitle());
+        }
+        return bookNames;
+    }
+
+
 }

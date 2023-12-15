@@ -20,7 +20,7 @@ public class BillFunctionalities {
             file1.write((cnt) + "");
             file1.close();
             PrintWriter pfile = new PrintWriter("src/Bills/Bill" + cnt);
-            pfile.write("*****Bill*****\n");
+            pfile.write("**Bill**\n");
 
             StringBuilder s1 = new StringBuilder();
             for (int i = 0; i < bookNames.size(); i++) {
@@ -166,43 +166,6 @@ public class BillFunctionalities {
         } catch (IOException e) {
             System.out.println(e);
         }
-
-        return listBooks;
-    }
-
-
-
-    public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<Zh_Books> bookOfBill) {
-
-            ArrayList<String> listOfIsbn = new ArrayList<>();
-        FileOutputStream out;
-        try {
-            out = new FileOutputStream("src/EncodedInformation/Bills.dat");
-            ObjectOutputStream objout = new ObjectOutputStream(out);
-
-            for (int i = 0; i < listBooks.size(); i++) {
-                objout.writeObject(listBooks.get(i));
-            }
-
-
-
-            for (int i = 0; i < bookOfBill.size(); i++) {
-                updateQuantity(bookOfBill.get(i));
-
-                BookFunctionalities.UpdateBook(bookOfBill.get(i));
-
-            }
-            bookOfBill.clear();
-
-            objout.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println(e);
-        }
-
-
     }
 
 
@@ -222,10 +185,10 @@ public class BillFunctionalities {
     public static double CalculateTotalPrice(ArrayList<Zh_Books> listBooks)
     {
         double totalPrice=0;
-      for(Zh_Books books:listBooks)
-      {
-        totalPrice+=books.getPrice();
-      }
+        for(Zh_Books books:listBooks)
+        {
+            totalPrice+=books.getPrice();
+        }
         return totalPrice;
     }
 

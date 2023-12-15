@@ -100,6 +100,7 @@ public class BillFunctionalities {
 
 
             for (int i = 0; i < bookOfBill.size(); i++) {
+                updateQuantity(bookOfBill.get(i));
                 BookFunctionalities.UpdateBook(bookOfBill.get(i));
 
             }
@@ -146,6 +147,12 @@ public class BillFunctionalities {
             bookNames.add(book.getTitle());
         }
         return bookNames;
+    }
+
+    private static Zh_Books updateQuantity(Zh_Books book)
+    {
+        book.setQuanity(book.getQuanity()-1);
+        return book;
     }
 
 

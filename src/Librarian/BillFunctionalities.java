@@ -100,7 +100,7 @@ public class BillFunctionalities {
 
 
             for (int i = 0; i < bookOfBill.size(); i++) {
-                BookFunctionalities.UpdateBookQuantity(bookOfBill.get(i).getISBN());
+                BookFunctionalities.UpdateBook(bookOfBill.get(i));
 
             }
             bookOfBill.clear();

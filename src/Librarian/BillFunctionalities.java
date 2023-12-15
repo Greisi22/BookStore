@@ -40,16 +40,16 @@ public class BillFunctionalities {
 
 //..............................................................................
 
-    private static String lastUsedPath;
-    public static ArrayList<Bill> getBills( Bill isCreated) {
+
+    public static ArrayList<Bill> getBills( Bill isCreated, String path) {
 
 
-
+        path="src/EncodedInformation/Bills.dat";
         ArrayList<Bill> listBooks = new ArrayList<Bill>();
         FileInputStream fis;
         ObjectInputStream objis = null;
         try {
-            fis = new FileInputStream(lastUsedPath);
+            fis = new FileInputStream(path);
             objis = new ObjectInputStream(fis);
 
             Bill bill=new Bill();
@@ -84,9 +84,7 @@ public class BillFunctionalities {
         return listBooks;
     }
 
-    public static void setLastUsedPath(String path) {
-        lastUsedPath = path;
-    }
+
 
     public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<String> listaaa11) {
 

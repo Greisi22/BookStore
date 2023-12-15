@@ -55,7 +55,8 @@ public Bill() {
 	}
 
 	public double getPrice() {
-		return Price;
+
+	return Price;
 	}
 	public void setPrice(double price) {
 		Price = price;

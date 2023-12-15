@@ -153,9 +153,7 @@ public class F_ShowBill {
 
 
 			BillFunctionalities.PrintFile(listaaa, isCreated);
-			String pathUsed = "src/EncodedInformation/Bills.dat";  // Replace this with the actual path
-			BillFunctionalities.setLastUsedPath(pathUsed);
-			ArrayList<Bill> newList = BillFunctionalities.getBills(isCreated);
+			ArrayList<Bill> newList = BillFunctionalities.getBills(isCreated,"src/EncodedInformation/Bills.dat");
 			BillFunctionalities.createNewBill(newList,  listaaa11);
 		});
 

@@ -152,8 +152,8 @@ public class F_ShowBill {
 
 
 			BillFunctionalities.PrintFile(bookNamess, isCreated);
-			ArrayList<Bill> newList = BillFunctionalities.getBills(isCreated,"src/EncodedInformation/Bills.dat");
-			BillFunctionalities.createNewBill(newList,  bookOfBill);
+			BillFunctionalities.createNewBill(isCreated,"src/EncodedInformation/Bills.dat");
+
 		});
 
 	}

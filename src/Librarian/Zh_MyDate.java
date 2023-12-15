@@ -5,6 +5,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Zh_MyDate implements Serializable {
     /**
@@ -68,10 +69,21 @@ public class Zh_MyDate implements Serializable {
 
 
 
-    public boolean equals(Zh_MyDate date){
-	if(this.year==date.getYear() && this.month==date.getMonth() && this.day==date.getDay())
-	    return true;
-	else return false;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        Zh_MyDate other = (Zh_MyDate) obj;
+        return year == other.year && month == other.month && day == other.day;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(year, month, day);
     }
     public String toString(){
 	return month+"/"+day+"/"+year;

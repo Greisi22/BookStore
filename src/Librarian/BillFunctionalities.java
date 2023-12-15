@@ -42,44 +42,131 @@ public class BillFunctionalities {
 //..............................................................................
 
 
-    public static ArrayList<Bill> getBills( Bill isCreated, String path) {
+//    public static ArrayList<Bill> getBills( Bill isCreated, String path) {
+//
+//        ArrayList<Bill> listBooks = new ArrayList<Bill>();
+//        FileInputStream fis;
+//        ObjectInputStream objis = null;
+//        try {
+//            fis = new FileInputStream(path);
+//            objis = new ObjectInputStream(fis);
+//
+//            Bill bill=new Bill();
+//            while (true) {
+//                try {
+//                    bill = (Bill) objis.readObject();
+//                    listBooks.add(bill);
+//                } catch (EOFException e) {
+//                    break;
+//                }
+//            }
+//            listBooks.add(isCreated);
+//
+//            objis.close();
+//
+//        } catch (FileNotFoundException e1) {
+//            e1.printStackTrace();
+//        } catch (IOException e) {
+//            System.out.println(e);
+//        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+//        } finally {
+//            // Check if objis is not null before attempting to close it
+//            if (objis != null) {
+//                try {
+//                    objis.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//        return listBooks;
+//    }
 
-        ArrayList<Bill> listBooks = new ArrayList<Bill>();
+
+    public static <E> ArrayList<E> getBillsFromFile( String path) {
+        ArrayList<E> listofBooks = new ArrayList<>();
         FileInputStream fis;
-        ObjectInputStream objis = null;
         try {
             fis = new FileInputStream(path);
-            objis = new ObjectInputStream(fis);
+            ObjectInputStream objis = new ObjectInputStream(fis);
 
-            Bill bill=new Bill();
+            Bill obj = new Bill();
             while (true) {
-                try {
-                    bill = (Bill) objis.readObject();
-                    listBooks.add(bill);
-                } catch (EOFException e) {
-                    break;
-                }
+                obj = ((Bill) objis.readObject());
+                listofBooks.add((E) obj);
             }
-            listBooks.add(isCreated);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e1) {
+            System.out.println(e1);
+        }
 
-            objis.close();
+        return listofBooks;
+    }
 
+//    public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<Zh_Books> bookOfBill) {
+//
+//        ArrayList<String> listOfIsbn = new ArrayList<>();
+//        FileOutputStream out;
+//        try {
+//            out = new FileOutputStream("src/EncodedInformation/Bills.dat");
+//            ObjectOutputStream objout = new ObjectOutputStream(out);
+//
+//            for (int i = 0; i < listBooks.size(); i++) {
+//                objout.writeObject(listBooks.get(i));
+//            }
+//
+//
+//
+//            for (int i = 0; i < bookOfBill.size(); i++) {
+//                updateQuantity(bookOfBill.get(i));
+//                BookFunctionalities.UpdateBook(bookOfBill.get(i));
+//
+//            }
+//            bookOfBill.clear();
+//
+//            objout.close();
+//
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            System.out.println(e);
+//        }
+//
+//    }
+
+
+
+    public static void createNewBill(Bill newBill, String path){
+
+
+        ArrayList<Bill> listOfBills = new ArrayList<>();
+
+        FileOutputStream out;
+
+        try {
+
+            out = new FileOutputStream(path);
+            ObjectOutputStream objout = new ObjectOutputStream(out);
+
+            listOfBills=getBillsFromFile(path);
+            listOfBills.add(newBill);
+
+            for (int i = 0; i < listOfBills.size(); i++) {
+                objout.writeObject(listOfBills.get(i));
+
+                System.out.println(listOfBills.get(i).getBook_name());
+            }
+            listOfBills.clear();
+            objout.close();
         } catch (FileNotFoundException e1) {
+            // TODO Auto-generated catch block
             e1.printStackTrace();
         } catch (IOException e) {
             System.out.println(e);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } finally {
-            // Check if objis is not null before attempting to close it
-            if (objis != null) {
-                try {
-                    objis.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
         }
+
         return listBooks;
     }
 
@@ -114,6 +201,7 @@ public class BillFunctionalities {
         } catch (IOException e) {
             System.out.println(e);
         }
+
 
     }
 

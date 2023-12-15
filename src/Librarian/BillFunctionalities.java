@@ -43,8 +43,6 @@ public class BillFunctionalities {
 
     public static ArrayList<Bill> getBills( Bill isCreated, String path) {
 
-
-        path="src/EncodedInformation/Bills.dat";
         ArrayList<Bill> listBooks = new ArrayList<Bill>();
         FileInputStream fis;
         ObjectInputStream objis = null;
@@ -122,5 +120,12 @@ public class BillFunctionalities {
         else {
             return false;
         }
+    }
+
+
+    public double CalculateTotalPrice(ArrayList<Bill> listBooks)
+    {
+
+        return 0;
     }
 }

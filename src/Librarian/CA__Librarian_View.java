@@ -139,6 +139,12 @@ public class CA__Librarian_View {
 						d = name.getQuanity();
 					}
 
+					double sum=0;
+					for(Zh_Books books : selectedItems)
+					{
+						sum+=books.getPrice();
+					}
+
 				});
 
 		// ........................................................................................................

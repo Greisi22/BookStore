@@ -19,9 +19,9 @@ public class BookFunctionalities {
                 obj = ((Zh_Books) objis.readObject());
                 list.add((E) obj);
             }
-        } catch (ClassNotFoundException e1) {
-            e1.printStackTrace();
-        }catch (IOException e1) {
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e1) {
             System.out.println(e1);
         }
 
@@ -31,43 +31,43 @@ public class BookFunctionalities {
     //..............................................................................
 
     static ArrayList<Zh_Books> newBooks1 = new ArrayList<Zh_Books>();
-
-    public static ArrayList<Zh_Books> UpdateBookQuantity(String Isbn) throws FileNotFoundException {
-
-        FileInputStream fis;
-        Zh_Books obj = null;
-        try {
-
-            fis = new FileInputStream("src/EncodedInformation/Books.dat");
-            ObjectInputStream objis = new ObjectInputStream(fis);
-
-            while (true) {
-                try {
-                    obj = (Zh_Books) objis.readObject();
-                    if (obj.getISBN().equals(Isbn)) {
-                        int a = obj.getQuanity();
-                        a -= 1;
-                        obj.setQuanity(a);
-                    }
-                    newBooks1.add(obj);
-                } catch (EOFException e) {
-                    break;
-                }
-            }
-            createBook(newBooks1);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        return newBooks1;
-    }
+//
+//    public static ArrayList<Zh_Books> UpdateBookQuantity(String Isbn) throws FileNotFoundException {
+//
+//        FileInputStream fis;
+//        Zh_Books obj = null;
+//        try {
+//
+//            fis = new FileInputStream("src/EncodedInformation/Books.dat");
+//            ObjectInputStream objis = new ObjectInputStream(fis);
+//
+//            while (true) {
+//                try {
+//                    obj = (Zh_Books) objis.readObject();
+//                    if (obj.getISBN().equals(Isbn)) {
+//                        int a = obj.getQuanity();
+//                        a -= 1;
+//                        obj.setQuanity(a);
+//                    }
+//                    newBooks1.add(obj);
+//                } catch (EOFException e) {
+//                    break;
+//                }
+//            }
+//            createBook(newBooks1);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        } catch (ClassNotFoundException e) {
+//            throw new RuntimeException(e);
+//        }
+//        return newBooks1;
+//    }
 
     //.........................................................................
 
     public static ArrayList<Zh_Books> UpdateBook(Zh_Books b1) {
         FileInputStream fis;
-        ArrayList<Zh_Books> newBooks1 = new ArrayList<>();  // Create a new list to hold the updated objects
+        ArrayList<Zh_Books> newBooks1 = new ArrayList<>();
         if (Files.exists(Path.of("src/EncodedInformation/Books.dat"))) {
             System.out.println("Directory is valid and exists.");
         } else {
@@ -82,10 +82,8 @@ public class BookFunctionalities {
                     Zh_Books obj = (Zh_Books) objis.readObject();
 
                     if (obj.getISBN().equals(b1.getISBN())) {
-                        // Update the existing object with the new data
                         obj = b1;
                     }
-
                     newBooks1.add(obj);
                 } catch (EOFException e) {
                     break;

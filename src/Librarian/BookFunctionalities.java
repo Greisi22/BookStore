@@ -31,28 +31,6 @@ public class BookFunctionalities {
 
 
 
-
-    //..............................................................................
-
-
-    //.........................................................................
-
-    public static ArrayList<Zh_Books> UpdateBook(Zh_Books bookupdate) {
-        ArrayList<Zh_Books> books = getBooks(path);
-        for (int i=0;i<books.size();i++){
-            if (books.get(i).getISBN().equals(bookupdate.getISBN())) {
-                books.set(i, bookupdate);
-            }
-        }
-        writeBooksInFile(books);
-       return books;
-    }
-
-
-
-    //.....................................................
-
-
     public static void writeBooksInFile(ArrayList<Zh_Books> newBooks1){
         FileOutputStream out;
         try {

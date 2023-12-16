@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class BillFunctionalities {
+public class BillService {
 
 
     public static String PrintFile(ArrayList<String> bookNames, Bill isCreated) {
@@ -172,40 +172,7 @@ public class BillFunctionalities {
 
 //.................................................................
 
-    public static boolean checkOutOfStock(Zh_Books book) {
-        if (book.getQuanity()>0){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
 
-
-    public static double CalculateTotalPrice(ArrayList<Zh_Books> listBooks)
-    {
-        double totalPrice=0;
-        for(Zh_Books books:listBooks)
-        {
-            totalPrice+=books.getPrice();
-        }
-        return totalPrice;
-    }
-
-    public static ArrayList<String> getBookNames(ArrayList<Zh_Books> books) {
-        ArrayList<String> bookNames = new ArrayList<>();
-
-        for (Zh_Books book : books) {
-            bookNames.add(book.getTitle());
-        }
-        return bookNames;
-    }
-
-    private static Zh_Books updateQuantity(Zh_Books book)
-    {
-        book.setQuanity(book.getQuanity()-1);
-        return book;
-    }
 
 
 }

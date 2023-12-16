@@ -1,22 +1,13 @@
 package Librarian;
 
 import java.io.*;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Scanner;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BackgroundPosition;
@@ -27,7 +18,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
-import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
@@ -141,18 +131,18 @@ public class F_ShowBill {
 
 
 		Print.setOnAction(e->{
-			double total = BillFunctionalities.CalculateTotalPrice(bookOfBill);
+			double total = BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
 
-			ArrayList<String> bookNamess = BillFunctionalities.getBookNames(bookOfBill);
-			BillFunctionalities.CalculateTotalPrice(bookOfBill);
+			ArrayList<String> bookNamess = BillFunctionalitiess.getBookNames(bookOfBill);
+			BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
 			System.out.println(total);
  			Bill isCreated = newBill.createBill(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
 			isCreated.setBook_name(bookNamess);
 			isCreated.setBookquantity(bookOfBill.size());
 
 
-			BillFunctionalities.PrintFile(bookNamess, isCreated);
-			BillFunctionalities.createNewBill(isCreated,"src/EncodedInformation/Bills.dat");
+			BillService.PrintFile(bookNamess, isCreated);
+			BillService.createNewBill(isCreated,"src/EncodedInformation/Bills.dat");
 
 		});
 

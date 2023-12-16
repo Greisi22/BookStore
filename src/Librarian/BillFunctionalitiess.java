@@ -4,23 +4,26 @@ import java.util.ArrayList;
 
 public class BillFunctionalitiess {
 
-    static BillService billFunctionalities;
+    static BookService bookService;
 
 
     private static final String path = "src/EncodedInformation/Bills.dat";
+    private static final String path1 = "src/EncodedInformation/Books.dat";
 
 
-    public BillFunctionalitiess(BillService billFunctionalities)
+    public BillFunctionalitiess( BookService bookService)
     {
-        this.billFunctionalities = billFunctionalities;
+
+        this.bookService = bookService;
+
     }
 
 
 
     public static boolean checkOutOfStock(Zh_Books book) {
-        BookService bookService = new BookService();
 
-        ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Bills.dat");
+
+        ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
 
         for(Zh_Books b:booksFromFile)
         {
@@ -39,12 +42,8 @@ public class BillFunctionalitiess {
     }
 
 
-
-
     public static double CalculateTotalPrice(ArrayList<Zh_Books> listBooks)
     {
-        listBooks = BillService.getBillsFromFile(path);
-
         double totalPrice=0;
 
         for(Zh_Books books:listBooks)
@@ -56,7 +55,7 @@ public class BillFunctionalitiess {
 
     public static ArrayList<String> getBookNames(ArrayList<Zh_Books> books) {
 
-        books = BillService.getBillsFromFile(path);
+
         ArrayList<String> bookNames = new ArrayList<>();
 
         for (Zh_Books book : books) {
@@ -67,8 +66,9 @@ public class BillFunctionalitiess {
 
     private static Zh_Books updateQuantity(Zh_Books book)
     {
+        BookService bookService = new BookService();
 
-        ArrayList<Zh_Books> booksFromFile = BillService.getBillsFromFile(path);
+        ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
 
         for(Zh_Books b:booksFromFile)
         {

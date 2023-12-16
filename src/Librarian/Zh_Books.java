@@ -149,8 +149,15 @@ public class Zh_Books  implements Serializable {
 				+ ", author=" + author + ", genres=" + genres + ", paperback=" + paperback + ", quanity=" + quanity
 				+ "]";
 	}
-	
-	
 
-	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) return true;
+		if (obj == null || getClass() != obj.getClass()) return false;
+
+		Zh_Books otherBook = (Zh_Books) obj;
+
+		return ISBN.equals(otherBook.ISBN);
+	}
+
 }

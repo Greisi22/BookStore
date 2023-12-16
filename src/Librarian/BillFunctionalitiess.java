@@ -10,6 +10,10 @@ public class BillFunctionalitiess {
     private static final String path = "src/EncodedInformation/Bills.dat";
     private static final String path1 = "src/EncodedInformation/Books.dat";
 
+    public  BillFunctionalitiess()
+    {
+
+    }
 
     public BillFunctionalitiess( BookService bookService)
     {

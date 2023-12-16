@@ -45,9 +45,18 @@ class BillFunctionalitiesTest {
         assertEquals(23.0, billList.get(0).getPrice());
         assertEquals(new Zh_MyDate(8,2,2002), billList.get(1).getDate());
 
+        {
+        }
 
+
+        @Test
+        void createNewBillTest() throws IOException
+        {
+            File tempFile = new File(tempFolder, "testBill.dat");
+
+            ArrayList<Bill> billList = BillFunctionalities.getBillsFromFile(tempFile)
+        }
     }
-
 
 
 

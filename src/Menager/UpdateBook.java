@@ -105,7 +105,7 @@ public class UpdateBook {
 			      Zh_Books b1 = event.getRowValue();
 			      b1.setTitle(event.getNewValue());
 				ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
-				BookFunctionalities.createBook(temp);
+				BookFunctionalities.writeBooksInFile(temp);
 			}
 		});
 		//.........................................................................
@@ -120,7 +120,7 @@ public class UpdateBook {
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setISBN((event.getNewValue()));
 			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
-			BookFunctionalities.createBook(temp);
+			BookFunctionalities.writeBooksInFile(temp);
 			}
 		
 		});
@@ -136,7 +136,7 @@ public class UpdateBook {
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setQuanity(Integer.parseInt(event.getNewValue()));
 			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
-			BookFunctionalities.createBook(temp);
+			BookFunctionalities.writeBooksInFile(temp);
 			}
 		
 		});
@@ -152,7 +152,7 @@ public class UpdateBook {
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setDescription(event.getNewValue());;
 			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
-			BookFunctionalities.createBook(temp);
+			BookFunctionalities.writeBooksInFile(temp);
 			}
 		
 		});
@@ -168,7 +168,7 @@ public class UpdateBook {
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setPrice(event.getNewValue());
 			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
-			BookFunctionalities.createBook(temp);
+			BookFunctionalities.writeBooksInFile(temp);
 		}
 		
 		});
@@ -199,7 +199,7 @@ public class UpdateBook {
 			Zh_Books b1 = event.getRowValue();
 		      b1.setPaperback(event.getNewValue());
 			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
-			BookFunctionalities.createBook(temp);
+			BookFunctionalities.writeBooksInFile(temp);
 			
 		}
 		
@@ -215,7 +215,7 @@ public class UpdateBook {
 			Zh_Books b1 = event.getRowValue();
 		      b1.setGenresS(event.getNewValue());
 			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
-			BookFunctionalities.createBook(temp);
+			BookFunctionalities.writeBooksInFile(temp);
 			}
 		
 		});

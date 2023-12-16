@@ -18,20 +18,35 @@ public class BillFunctionalitiess {
 
 
     public static boolean checkOutOfStock(Zh_Books book) {
+        BookService bookService = new BookService();
 
-        ArrayList<Zh_Books> booksFromFile = BillService.getBillsFromFile(path);
-        if (book.getQuanity()>0){
-            return true;
+        ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Bills.dat");
+
+        for(Zh_Books b:booksFromFile)
+        {
+            if(b.equals(book))
+            {
+                if (b.getQuanity()>0){
+                    return true;
+                }
+                else {
+                    return false;
+                }
+            }
+
         }
-        else {
-            return false;
-        }
+        return false;
     }
+
+
 
 
     public static double CalculateTotalPrice(ArrayList<Zh_Books> listBooks)
     {
+        listBooks = BillService.getBillsFromFile(path);
+
         double totalPrice=0;
+
         for(Zh_Books books:listBooks)
         {
             totalPrice+=books.getPrice();
@@ -40,6 +55,8 @@ public class BillFunctionalitiess {
     }
 
     public static ArrayList<String> getBookNames(ArrayList<Zh_Books> books) {
+
+        books = BillService.getBillsFromFile(path);
         ArrayList<String> bookNames = new ArrayList<>();
 
         for (Zh_Books book : books) {
@@ -50,7 +67,18 @@ public class BillFunctionalitiess {
 
     private static Zh_Books updateQuantity(Zh_Books book)
     {
-        book.setQuanity(book.getQuanity()-1);
-        return book;
+
+        ArrayList<Zh_Books> booksFromFile = BillService.getBillsFromFile(path);
+
+        for(Zh_Books b:booksFromFile)
+        {
+            if(b.equals(book))
+            {
+                book.setQuanity(book.getQuanity()-1);
+                return book;
+            }
+        }
+
+       return null;
     }
 }

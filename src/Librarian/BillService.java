@@ -42,46 +42,6 @@ public class BillService {
 //..............................................................................
 
 
-//    public static ArrayList<Bill> getBills( Bill isCreated, String path) {
-//
-//        ArrayList<Bill> listBooks = new ArrayList<Bill>();
-//        FileInputStream fis;
-//        ObjectInputStream objis = null;
-//        try {
-//            fis = new FileInputStream(path);
-//            objis = new ObjectInputStream(fis);
-//
-//            Bill bill=new Bill();
-//            while (true) {
-//                try {
-//                    bill = (Bill) objis.readObject();
-//                    listBooks.add(bill);
-//                } catch (EOFException e) {
-//                    break;
-//                }
-//            }
-//            listBooks.add(isCreated);
-//
-//            objis.close();
-//
-//        } catch (FileNotFoundException e1) {
-//            e1.printStackTrace();
-//        } catch (IOException e) {
-//            System.out.println(e);
-//        } catch (ClassNotFoundException e) {
-//            e.printStackTrace();
-//        } finally {
-//            // Check if objis is not null before attempting to close it
-//            if (objis != null) {
-//                try {
-//                    objis.close();
-//                } catch (IOException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        return listBooks;
-//    }
 
 
     public static <E> ArrayList<E> getBillsFromFile( String path) {
@@ -104,37 +64,6 @@ public class BillService {
 
         return listofBooks;
     }
-
-//    public static void createNewBill(ArrayList<Bill> listBooks, ArrayList<Zh_Books> bookOfBill) {
-//
-//        ArrayList<String> listOfIsbn = new ArrayList<>();
-//        FileOutputStream out;
-//        try {
-//            out = new FileOutputStream("src/EncodedInformation/Bills.dat");
-//            ObjectOutputStream objout = new ObjectOutputStream(out);
-//
-//            for (int i = 0; i < listBooks.size(); i++) {
-//                objout.writeObject(listBooks.get(i));
-//            }
-//
-//
-//
-//            for (int i = 0; i < bookOfBill.size(); i++) {
-//                updateQuantity(bookOfBill.get(i));
-//                BookFunctionalities.UpdateBook(bookOfBill.get(i));
-//
-//            }
-//            bookOfBill.clear();
-//
-//            objout.close();
-//
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            System.out.println(e);
-//        }
-//
-//    }
 
 
 

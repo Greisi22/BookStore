@@ -4,18 +4,14 @@ package Menager;
 
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
-import Librarian.BookFunctionalities;
 import Librarian.BookService;
+import Librarian.BookFunctionalities;
 import Librarian.Zh_Books;
-import Librarian.Zh_Genre;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.css.converter.StringConverter;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -105,8 +101,8 @@ public class UpdateBook {
 			public void handle(CellEditEvent<Zh_Books, String> event) {
 			      Zh_Books b1 = event.getRowValue();
 			      b1.setTitle(event.getNewValue());
-				ArrayList<Zh_Books> temp  = BookService.UpdateBook(b1);
-				BookFunctionalities.writeBooksInFile(temp);
+				ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+				BookService.writeBooksInFile(temp);
 			}
 		});
 		//.........................................................................
@@ -120,8 +116,8 @@ public class UpdateBook {
 				
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setISBN((event.getNewValue()));
-			ArrayList<Zh_Books> temp  = BookService.UpdateBook(b1);
-			BookFunctionalities.writeBooksInFile(temp);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookService.writeBooksInFile(temp);
 			}
 		
 		});
@@ -136,8 +132,8 @@ public class UpdateBook {
 				
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setQuanity(Integer.parseInt(event.getNewValue()));
-			ArrayList<Zh_Books> temp  = BookService.UpdateBook(b1);
-			BookFunctionalities.writeBooksInFile(temp);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookService.writeBooksInFile(temp);
 			}
 		
 		});
@@ -152,8 +148,8 @@ public class UpdateBook {
 				
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setDescription(event.getNewValue());;
-			ArrayList<Zh_Books> temp  = BookService.UpdateBook(b1);
-			BookFunctionalities.writeBooksInFile(temp);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookService.writeBooksInFile(temp);
 			}
 		
 		});
@@ -168,8 +164,8 @@ public class UpdateBook {
 	
 			 Zh_Books b1 = event.getRowValue();
 		      b1.setPrice(event.getNewValue());
-			ArrayList<Zh_Books> temp  = BookService.UpdateBook(b1);
-			BookFunctionalities.writeBooksInFile(temp);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookService.writeBooksInFile(temp);
 		}
 		
 		});
@@ -199,8 +195,8 @@ public class UpdateBook {
 		public void handle(CellEditEvent<Zh_Books, Boolean> event) {
 			Zh_Books b1 = event.getRowValue();
 		      b1.setPaperback(event.getNewValue());
-			ArrayList<Zh_Books> temp  = BookService.UpdateBook(b1);
-			BookFunctionalities.writeBooksInFile(temp);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookService.writeBooksInFile(temp);
 			
 		}
 		
@@ -215,8 +211,8 @@ public class UpdateBook {
 			public void handle(CellEditEvent<Zh_Books, String> event) {
 			Zh_Books b1 = event.getRowValue();
 		      b1.setGenresS(event.getNewValue());
-			ArrayList<Zh_Books> temp  = BookService.UpdateBook(b1);
-			BookFunctionalities.writeBooksInFile(temp);
+			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			BookService.writeBooksInFile(temp);
 			}
 		
 		});

@@ -484,9 +484,9 @@ public class Menager_Create_Book {
 
 
 			ArrayList<Zh_Books> booklist = new ArrayList<>();
-			booklist = BookFunctionalities.getBooks("src/EncodedInformation/Books.dat");
+			booklist = BookService.getBooks("src/EncodedInformation/Books.dat");
 			booklist.add(isCreated);
-			BookFunctionalities.writeBooksInFile(booklist);
+			BookService.writeBooksInFile(booklist);
 
 			Book_Sold boook = new Book_Sold(new Zh_MyDate(d.getValue().getMonthValue(),
 					d.getValue().getDayOfMonth(), d.getValue().getYear()), isbn13);

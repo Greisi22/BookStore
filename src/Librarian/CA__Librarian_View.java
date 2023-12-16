@@ -1,9 +1,6 @@
 package Librarian;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import javafx.beans.value.ObservableValue;
@@ -113,7 +110,7 @@ public class CA__Librarian_View {
 
 		ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
 
-	   listBooks =BookFunctionalities.getBooks("src/EncodedInformation/Books.dat");
+	   listBooks = BookService.getBooks("src/EncodedInformation/Books.dat");
 
 		TableView<Zh_Books> userTable = new TableView<>();
 

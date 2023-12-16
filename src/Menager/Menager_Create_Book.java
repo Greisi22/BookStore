@@ -347,6 +347,7 @@ import javafx.stage.Stage;
 
 public class Menager_Create_Book {
 
+
 	public static void BookView(Stage stage, String WelcomeName) {
 		TextField title = new TextField();
 		title.setLayoutX(300);
@@ -463,6 +464,9 @@ public class Menager_Create_Book {
 		rbPaperback.setToggleGroup(group);
 		rbEbook.setToggleGroup(group);
 
+		BookService bookService = new BookService();
+
+
 		Z_Books_Controller newBOOK = new Z_Books_Controller();
 		b1.setOnAction(e -> {
 			ArrayList<Zh_Genre> newZhner = new ArrayList<>();
@@ -484,9 +488,9 @@ public class Menager_Create_Book {
 
 
 			ArrayList<Zh_Books> booklist = new ArrayList<>();
-			booklist = BookService.getBooks("src/EncodedInformation/Books.dat");
+			booklist = bookService.getBooks("src/EncodedInformation/Books.dat");
 			booklist.add(isCreated);
-			BookService.writeBooksInFile(booklist);
+			bookService.writeBooksInFile(booklist);
 
 			Book_Sold boook = new Book_Sold(new Zh_MyDate(d.getValue().getMonthValue(),
 					d.getValue().getDayOfMonth(), d.getValue().getYear()), isbn13);

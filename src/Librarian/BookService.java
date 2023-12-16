@@ -4,8 +4,13 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public abstract class BookService {
+public class BookService {
     private  final String path = "src/EncodedInformation/Books.dat";
+
+    public BookService ()
+    {
+
+    }
     public <E> ArrayList<E> getBooks(String path) {
         ArrayList<E> list = new ArrayList<>();
         FileInputStream fis;

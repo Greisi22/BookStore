@@ -1,9 +1,6 @@
 package Librarian;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import javafx.beans.value.ObservableValue;
@@ -193,7 +190,7 @@ public class CA__Librarian_View {
 		});
 
 		Add.setOnAction(e -> {
-			if (BillFunctionalities.checkOutOfStock(bookSelected)) {
+			if (BillFunctionalitiess.checkOutOfStock(bookSelected)) {
 				OutOfStock.setText(bookSelected.getTitle() +" added!");
 				booksOfBill.add(bookSelected);
 			} else {

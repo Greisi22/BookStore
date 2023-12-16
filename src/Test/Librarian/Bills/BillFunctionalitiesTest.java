@@ -1,8 +1,6 @@
 package Test.Librarian.Bills;
 
 import Librarian.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -14,7 +12,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class BillFunctionalitiesTest {
+class BillServiceTest {
 
 
     @TempDir
@@ -38,26 +36,26 @@ class BillFunctionalitiesTest {
             objectOutputStream.writeObject(bill2);
         }
 
-        ArrayList<Bill> billList = BillFunctionalities.getBillsFromFile( tempFile.getPath());
+        ArrayList<Bill> billList = BillService.getBillsFromFile(tempFile.getPath());
 
 
         assertEquals(2, billList.size());
         assertEquals(23.0, billList.get(0).getPrice());
-        assertEquals(new Zh_MyDate(8,2,2002), billList.get(1).getDate());
+        assertEquals(new Zh_MyDate(8, 2, 2002), billList.get(1).getDate());
 
         {
         }
 
 
-        @Test
-        void createNewBillTest() throws IOException
-        {
-            File tempFile = new File(tempFolder, "testBill.dat");
+//        @Test
+//        void createNewBillTest() throws IOException
+//        {
+//            File tempFile = new File(tempFolder, "testBill.dat");
+//
+////            ArrayList<Bill> billList = BillService.getBillsFromFile(tempFile);
+//        }
+//    }
 
-            ArrayList<Bill> billList = BillFunctionalities.getBillsFromFile(tempFile)
-        }
     }
-
-
 
 }

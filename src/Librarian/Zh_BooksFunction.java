@@ -6,5 +6,6 @@ public abstract class Zh_BooksFunction {
 	public abstract long getBprice();
 	public abstract long getIBSN();
 	public abstract int getBquantity();
+
 }
 

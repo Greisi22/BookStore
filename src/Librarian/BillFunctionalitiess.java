@@ -68,9 +68,8 @@ public class BillFunctionalitiess {
         return bookNames;
     }
 
-    private static Zh_Books updateQuantity(Zh_Books book)
+    public static Zh_Books updateQuantity(Zh_Books book)
     {
-        BookService bookService = new BookService();
 
         ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
 
@@ -80,6 +79,9 @@ public class BillFunctionalitiess {
             {
                 book.setQuanity(book.getQuanity()-1);
                 return book;
+            }
+            else{
+                return null;
             }
         }
 

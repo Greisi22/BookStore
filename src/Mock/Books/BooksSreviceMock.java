@@ -11,8 +11,8 @@ public class BooksSreviceMock extends BookService {
         ArrayList<Zh_Books> books = new ArrayList<>();
         Zh_Books book1 = new Zh_Books();
         Zh_Books book2 = new Zh_Books();
-        book1.setISBN("1");
-        book1.setQuanity(1);
+        book1.setISBN("3");
+        book1.setQuanity(2);
         book2.setISBN("2");
         book2.setQuanity(0);
         books.add(book1);

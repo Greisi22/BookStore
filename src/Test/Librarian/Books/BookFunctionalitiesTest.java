@@ -47,16 +47,21 @@ class BookFunctionalitiesTest {
 
     @Test
     public void testUpdateBook() {
+        BookFunctionalities coverConstuctor = new BookFunctionalities();
         BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
         BookFunctionalities bookFunctionalities = new BookFunctionalities(booksSreviceMock);
         Zh_Books books = new Zh_Books();
-        books.setISBN("11");
-        books.setQuanity(12);
+        books.setISBN("1");
+        books.setQuanity(2);
         ArrayList<Zh_Books> updatedBooks =   bookFunctionalities.UpdateBook(books);
         assertEquals(updatedBooks.get(0).getQuanity(),books.getQuanity() );
 
 
     }
+
+
+
+
 
 
 

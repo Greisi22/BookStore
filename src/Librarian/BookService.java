@@ -13,6 +13,7 @@ public  class BookService {
 
     }
     public <E> ArrayList<E> getBooks(String path ) {
+        System.out.println("loli");
         ArrayList<E> list = new ArrayList<>();
         FileInputStream fis;
         try {
@@ -29,7 +30,7 @@ public  class BookService {
         } catch (IOException e1) {
             System.out.println(e1);
         }
-
+        System.out.println("lolii");
         return list;
     }
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BillFunctionalitiess {
 
-    static BookService bookService;
+    static BookService bookService = new BookService();
 
 
     private static final String path = "src/EncodedInformation/Bills.dat";

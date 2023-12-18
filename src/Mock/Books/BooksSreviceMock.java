@@ -9,15 +9,7 @@ public class BooksSreviceMock extends BookService {
     private ArrayList<Zh_Books>books;
 @Override
     public  <E> ArrayList<E> getBooks(String path) {
-        books = new ArrayList<>();
-        Zh_Books book1 = new Zh_Books();
-        Zh_Books book2 = new Zh_Books();
-        book1.setISBN("3");
-        book1.setQuanity(2);
-        book2.setISBN("2");
-        book2.setQuanity(0);
-        books.add(book1);
-        books.add(book2);
+
 
         return (ArrayList<E>) books;
     }

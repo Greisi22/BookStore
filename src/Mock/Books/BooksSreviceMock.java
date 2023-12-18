@@ -6,8 +6,9 @@ import Librarian.Zh_Books;
 import java.util.ArrayList;
 
 public class BooksSreviceMock extends BookService {
-
-    public  <E> ArrayList<E> getBooks(String path,ArrayList<Zh_Books>books) {
+    private ArrayList<Zh_Books>books;
+@Override
+    public  <E> ArrayList<E> getBooks(String path) {
         books = new ArrayList<>();
         Zh_Books book1 = new Zh_Books();
         Zh_Books book2 = new Zh_Books();
@@ -23,6 +24,10 @@ public class BooksSreviceMock extends BookService {
     @Override
     public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1) {
 
+    }
+
+    public void setBooks(ArrayList<Zh_Books>books){
+    this.books = books;
     }
 
 }

@@ -5,7 +5,8 @@ import java.util.ArrayList;
 
 
 public  class BookService {
-    private  final String path = "src/EncodedInformation/Books.dat";
+
+    private String path = "src/EncodedInformation/Books.dat";
 
     public BookService ()
     {
@@ -53,6 +54,10 @@ public  class BookService {
 
 
 }
+
+
+
+
 
 
 }

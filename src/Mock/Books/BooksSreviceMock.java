@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class BooksSreviceMock extends BookService {
     private ArrayList<Zh_Books>books;
+    public String path;
 @Override
     public  <E> ArrayList<E> getBooks(String path) {
 
@@ -20,6 +21,12 @@ public class BooksSreviceMock extends BookService {
 
     public void setBooks(ArrayList<Zh_Books>books){
     this.books = books;
+    }
+    public void setPath( String path){
+        this.path = path;
+    }
+    public String getPath(){
+       return path;
     }
 
 }

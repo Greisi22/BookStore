@@ -50,31 +50,22 @@ class BillServiceTest {
         }
     @Test
             void createNewBillTest()throws IOException{
-            File tempFile1 = new File(tempFolder, "testBill.dat");
-            Bill bill;
+        File tempFile = new File(tempFolder, "testBill.dat");
 
-            ArrayList<Bill> billList1 = BillService.getBillsFromFile(tempFile1.getPath());
 
-            bill = new Bill(25, new Zh_MyDate(8, 2, 2002));
 
-            billList1.add(bill);
+        ArrayList<Bill> billList = BillService.getBillsFromFile(tempFile.getPath());
 
-            for(Bill b:billList1)
-            {
-                try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile1))) {
-                    objectOutputStream.writeObject(b);
+        Bill bill = new Bill(20, new Zh_MyDate(8, 2, 2002));
+        billList.add(bill);
+        BillService.createNewBill(bill,tempFile.getPath());
 
-                }
-            }
 
-        assertEquals(1, billList1.size());
-        assertEquals(25.0, billList1.get(0).getPrice());
-        assertEquals(new Zh_MyDate(8, 2, 2002), billList1.get(0).getDate());
+        assertEquals(1, billList.size());
+        assertEquals(20.0, billList.get(0).getPrice());
+        assertEquals(new Zh_MyDate(8, 2, 2002), billList.get(0).getDate());
 
         }
-
-
-
 
     }
 

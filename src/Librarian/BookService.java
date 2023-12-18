@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public abstract class BookService {
+public  class BookService {
     private  final String path = "src/EncodedInformation/Books.dat";
 
     public BookService ()
@@ -34,7 +34,7 @@ public abstract class BookService {
 
 
 
-
+    public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1){
         FileOutputStream out;
         try {
             out = new FileOutputStream("src/EncodedInformation/Books.dat");
@@ -51,7 +51,7 @@ public abstract class BookService {
             System.out.println(e);
         }
 
-    public abstract void writeBooksInFile(ArrayList<Zh_Books> newBooks1);
+
 }
 
 

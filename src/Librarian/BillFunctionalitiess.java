@@ -81,7 +81,7 @@ public class BillFunctionalitiess {
                 return book;
             }
             else{
-                return null;
+                return book;
             }
         }
 

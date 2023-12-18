@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class BillFunctionalitiess {
 
-    static BookService bookService;
+    static BookService bookService ;
 
 
     private static final String path = "src/EncodedInformation/Bills.dat";
@@ -26,8 +26,8 @@ public class BillFunctionalitiess {
 
     public static boolean checkOutOfStock(Zh_Books book) {
 
-
-        ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
+        bookService = new BookService();
+        ArrayList<Zh_Books> booksFromFile = bookService.getBooks(path1);
 
         for(Zh_Books b:booksFromFile)
         {
@@ -70,7 +70,7 @@ public class BillFunctionalitiess {
 
     public static Zh_Books updateQuantity(Zh_Books book)
     {
-
+        bookService = new BookService();
         ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
 
         for(Zh_Books b:booksFromFile)

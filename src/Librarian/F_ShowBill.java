@@ -141,7 +141,7 @@ public class F_ShowBill {
 			isCreated.setBookquantity(bookOfBill.size());
 
 
-			BillService.PrintFile(bookNamess, isCreated,"src/TextFiles/cnt.txt","src/Bills/Bill");
+			BillService.PrintFile(bookNamess, isCreated);
 			BillService.createNewBill(isCreated,"src/EncodedInformation/Bills.dat");
 
 		});

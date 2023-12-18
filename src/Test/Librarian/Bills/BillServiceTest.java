@@ -40,7 +40,7 @@ class BillServiceTest {
         // Create a Bill instance (you need to initialize it according to your application logic)
         Bill createdBill = new Bill(23, new Zh_MyDate(12, 3, 2002));
 
-        String result = BillService.PrintFile(bookNames, createdBill, path, billPath);
+        String result = BillService.PrintFile(bookNames, createdBill);
 
         System.out.println("Result: " + result);
         try {

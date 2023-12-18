@@ -7,22 +7,19 @@ import java.util.Scanner;
 public class BillService {
 
 
-    public static String PrintFile(ArrayList<String> bookNames, Bill isCreated, String path, String billpath) {
+    public static String PrintFile(ArrayList<String> bookNames, Bill isCreated) {
 
-       //path is for this file: "src/TextFiles/cnt.txt"
-        //billpath is for this: "src/Bills/Bill"
-
-        File file = new File(path);
+        File file = new File("src/TextFiles/cnt.txt");
         try {
             Scanner input = new Scanner(file);
             String a = input.next();
             int cnt = Integer.parseInt(a);
             cnt++;
             input.close();
-            FileWriter file1 = new FileWriter(path);
+            FileWriter file1 = new FileWriter("src/TextFiles/cnt.txt");
             file1.write((cnt) + "");
             file1.close();
-            PrintWriter pfile = new PrintWriter(billpath + cnt);
+            PrintWriter pfile = new PrintWriter("src/Bills/Bill" + cnt);
             pfile.write("**Bill**\n");
 
             StringBuilder s1 = new StringBuilder();

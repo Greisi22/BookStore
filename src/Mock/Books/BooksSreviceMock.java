@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class BooksSreviceMock extends BookService {
 
-    public  <E> ArrayList<E> getBooks(String path) {
-        ArrayList<Zh_Books> books = new ArrayList<>();
+    public  <E> ArrayList<E> getBooks(String path,ArrayList<Zh_Books>books) {
+        books = new ArrayList<>();
         Zh_Books book1 = new Zh_Books();
         Zh_Books book2 = new Zh_Books();
         book1.setISBN("3");

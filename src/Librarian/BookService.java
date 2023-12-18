@@ -4,14 +4,14 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-public class BookService {
+public abstract class BookService {
     private  final String path = "src/EncodedInformation/Books.dat";
 
     public BookService ()
     {
 
     }
-    public <E> ArrayList<E> getBooks(String path) {
+    public <E> ArrayList<E> getBooks(String path ) {
         ArrayList<E> list = new ArrayList<>();
         FileInputStream fis;
         try {
@@ -34,7 +34,7 @@ public class BookService {
 
 
 
-    public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1){
+
         FileOutputStream out;
         try {
             out = new FileOutputStream("src/EncodedInformation/Books.dat");
@@ -50,7 +50,9 @@ public class BookService {
         } catch (IOException e) {
             System.out.println(e);
         }
-    }
+
+    public abstract void writeBooksInFile(ArrayList<Zh_Books> newBooks1);
+}
 
 
 }

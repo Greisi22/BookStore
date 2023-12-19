@@ -30,16 +30,18 @@ public  class BookService {
         } catch (IOException e1) {
             System.out.println(e1);
         }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 746ceb5ef81af19b84042a460694f84f19c124fe
         return list;
     }
 
 
-
-    public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1){
+    public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1, String path){
         FileOutputStream out;
         try {
-            out = new FileOutputStream("src/EncodedInformation/Books.dat");
+            out = new FileOutputStream(path);
             ObjectOutputStream objout = new ObjectOutputStream(out);
             for (int i = 0; i < newBooks1.size(); i++) {
                 objout.writeObject(newBooks1.get(i));
@@ -52,9 +54,7 @@ public  class BookService {
         } catch (IOException e) {
             System.out.println(e);
         }
-
-
-}
+    }
 
 
 

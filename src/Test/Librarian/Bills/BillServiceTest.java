@@ -95,14 +95,14 @@ class BillServiceTest {
 
         @Test
     void Right() throws IOException {
-//            D_Users newUser = new D_Users();
-//            newUser.setFirstName("Greisi");
-//            try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
-//                // 'true' in the constructor is for append mode, so it won't overwrite the existing file
-//                objout.writeObject(newUser);
-//            } catch (IOException e) {
-//                e.printStackTrace();  // Handle the exception according to your needs
-//            }
+            D_Users newUser = new D_Users();
+            newUser.setFirstName("Greisi");
+            try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
+                // 'true' in the constructor is for append mode, so it won't overwrite the existing file
+                objout.writeObject(newUser);
+            } catch (IOException e) {
+                e.printStackTrace();  // Handle the exception according to your needs
+            }
 // Replace the above line with the actual constructor of your D_Users class
 
             ArrayList<D_Users> listofBooks = new ArrayList<>();

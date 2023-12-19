@@ -6,9 +6,9 @@ package Menager;
 import java.io.*;
 import java.util.ArrayList;
 
-import Librarian.BookFunctionalities;
-import Librarian.BookService;
-import Librarian.Zh_Books;
+import Model.Books.BookFunctionalities;
+import Model.Books.BookService;
+import Model.Books.Zh_Books;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

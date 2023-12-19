@@ -3,7 +3,7 @@ package Menager;
 import java.io.Serial;
 import java.io.Serializable;
 
-import Librarian.Zh_MyDate;
+import Model.Bills.Zh_MyDate;
 
 public class Book_Sold implements Serializable {
 

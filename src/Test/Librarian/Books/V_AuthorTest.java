@@ -1,9 +1,9 @@
 package Test.Librarian.Books;
 
-import Librarian.V_Author;
+import Model.Books.V_Author;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
-import Librarian.Gender;
+import Model.Books.Gender;
 
 class V_AuthorTest {
 

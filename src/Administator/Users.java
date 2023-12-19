@@ -9,8 +9,8 @@
 //import java.util.ArrayList;
 //
 //import Librarian.D_Users;
-//import Librarian.Zh_Books;
-//import Librarian.Zh_MyDate;
+//import Model.Books.Zh_Books;
+//import Model.Bills.Zh_MyDate;
 //import Librarian.Zh_accessLevel;
 //import javafx.collections.FXCollections;
 //import javafx.collections.ObservableList;
@@ -279,12 +279,10 @@
 
 package Administator;
 
-import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.D_Users;
-import Librarian.Zh_Books;
-import Librarian.Zh_MyDate;
+import Model.Bills.Zh_MyDate;
 import Librarian.Zh_accessLevel;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -297,9 +295,6 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import javafx.util.converter.BooleanStringConverter;
-import javafx.util.converter.DoubleStringConverter;
-import javafx.util.converter.IntegerStringConverter;
 import javafx.util.converter.LongStringConverter;
 
 public class Users {

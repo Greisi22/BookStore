@@ -3,6 +3,11 @@ package Librarian;
 import java.io.*;
 import java.util.ArrayList;
 
+import Model.Bills.Bill;
+import Model.Bills.BillFunctionalitiess;
+import Model.Bills.BillService;
+import Model.Bills.Zh_MyDate;
+import Model.Books.Zh_Books;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -29,7 +34,7 @@ public class F_ShowBill {
 
 
 	public static void ShowBill(ArrayList<Zh_Books> bookOfBill, Pane pane2, Stage stage1,
-								Stage stage, String WelcomeName)
+                                Stage stage, String WelcomeName)
 	{
 
 

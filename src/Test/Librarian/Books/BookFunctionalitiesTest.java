@@ -1,7 +1,7 @@
 package Test.Librarian.Books;
 
-import Librarian.BookFunctionalities;
-import Librarian.Zh_Books;
+import Model.Books.BookFunctionalities;
+import Model.Books.Zh_Books;
 import Mock.Books.BooksSreviceMock;
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;

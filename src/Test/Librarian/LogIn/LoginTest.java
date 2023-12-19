@@ -6,8 +6,9 @@ import Librarian.*;
 
 import Librarian.D_Users;
 import Librarian.FileNotFoundExceptionCustom;
-import Librarian.LogInFunctionalities;
+import Model.Login.LogInFunctionalities;
 
+import Librarian.ResultType;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

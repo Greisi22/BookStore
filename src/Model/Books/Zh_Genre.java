@@ -1,4 +1,4 @@
-package Librarian;
+package Model.Books;
 
 public enum Zh_Genre {
 

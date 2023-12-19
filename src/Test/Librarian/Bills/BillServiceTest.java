@@ -1,8 +1,8 @@
 package Test.Librarian.Bills;
 
-import Librarian.Bill;
-import Librarian.BillService;
-import Librarian.Zh_MyDate;
+import Model.Bills.Bill;
+import Model.Bills.BillService;
+import Model.Bills.Zh_MyDate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 

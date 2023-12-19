@@ -1,11 +1,9 @@
-package Librarian;
+package Model.Login;
 
-import Administator.View;
-import Menager.view;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
-import javafx.scene.layout.Pane;
-import javafx.stage.Stage;
+import Librarian.D_Users;
+import Librarian.FileNotFoundExceptionCustom;
+import Librarian.ResultType;
+import Librarian.Zh_accessLevel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,7 +25,7 @@ public class LogInFunctionalities {
         this.logInFunctionalities = logInFunctionalities;
    }
 
-    public  D_Users checkUser(String usernametextFiled, String PassswrdField, String filePath) throws IOException {
+    public D_Users checkUser(String usernametextFiled, String PassswrdField, String filePath) throws IOException {
 
         usernametextFiled = usernametextFiled.replaceAll("\\s+$", "");
         File file = new File(filePath);

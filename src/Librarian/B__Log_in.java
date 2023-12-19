@@ -2,11 +2,11 @@ package Librarian;
 
 import java.io.*;
 import java.lang.constant.Constable;
-import java.util.Arrays;
 import java.util.List;
 
 import Administator.View;
 import Menager.view;
+import Model.Login.LogInFunctionalities;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -80,7 +80,7 @@ public class B__Log_in {
             List<Constable> result = logInFunctionalities.handleLogin(usernametextFiled.getText(), PassswrdField.getText(), "src/EncodedInformation/Users.dat");
             if (result != null && result.size() > 0) {
                 ResultType resultType = (ResultType) result.get(0);
-
+             System.out.println(resultType);
                 switch (resultType) {
                     case INCORRECT_USER:
                         showAlert(Alert.AlertType.ERROR, pane.getScene().getWindow(), "Form Error!", result.get(1).toString());

@@ -1,4 +1,4 @@
-package Librarian;
+package Model.Bills;
 
 
 import java.io.Serial;

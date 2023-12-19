@@ -1,8 +1,8 @@
 package Test.Librarian;
 
-import Librarian.D_Users;
-import Librarian.Zh_MyDate;
-import Librarian.Zh_accessLevel;
+import Model.Users.D_Users;
+import Model.Bills.Zh_MyDate;
+import Test.Librarian.Books.Zh_accessLevel;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,5 +1,6 @@
 package Test.Librarian.Bills;
 
+import Librarian.Bill;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,6 +14,10 @@ class E_BillTest {
 
     @Test
     void getLibrarian_Name() {
+        Bill bill = new Bill();
+        bill.setLibrarian_Name("Era");
+        String actual = bill.getLibrarian_Name();
+        assertEquals("Era",actual);
 
     }
 
@@ -22,6 +27,11 @@ class E_BillTest {
 
     @Test
     void getBookquantity() {
+        Bill bill = new Bill();
+        bill.setBookquantity(5);
+        int actual = bill.getBookquantity();
+        assertEquals(5,actual);
+
     }
 
     @Test

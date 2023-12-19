@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.D_Users;
-import Model.Bills.Bill;
+import Librarian.Bill;
 import Librarian.Zh_accessLevel;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;

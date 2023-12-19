@@ -1,6 +1,6 @@
 package Administator;
 
-import Model.Bills.Zh_MyDate;
+import Model.Login.Zh_MyDate;
 import javafx.util.StringConverter;
 
 public class ZH_MyDateStringConverter extends StringConverter<Zh_MyDate> {

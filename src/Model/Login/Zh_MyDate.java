@@ -1,6 +1,5 @@
-package Model.Bills;
+package Model.Login;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -8,8 +7,7 @@ public class Zh_MyDate implements Serializable {
     /**
 	 * 
 	 */
-	@Serial
-    private static final long serialVersionUID = 3712105092132632024L;
+
 	private int year;
     private int month;
     private int day;

@@ -2,7 +2,7 @@ package Menager;
 
 import java.io.*;
 
-import Model.Bills.Bill;
+import Librarian.Bill;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;

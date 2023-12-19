@@ -1,5 +1,7 @@
 package Model.Bills;
 
+import Librarian.Bill;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;

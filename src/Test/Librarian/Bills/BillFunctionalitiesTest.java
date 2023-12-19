@@ -2,7 +2,7 @@ package Test.Librarian.Bills;
 
 import Model.Bills.BillFunctionalitiess;
 import Model.Books.BookService;
-import Model.Books.Zh_Books;
+import Librarian.Zh_Books;
 import Mock.Books.BooksSreviceMock;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;

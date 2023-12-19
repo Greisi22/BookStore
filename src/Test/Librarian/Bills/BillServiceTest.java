@@ -1,10 +1,9 @@
 package Test.Librarian.Bills;
 
-import Librarian.B__Log_in;
 import Librarian.D_Users;
-import Model.Bills.Bill;
+import Librarian.Bill;
 import Model.Bills.BillService;
-import Model.Bills.Zh_MyDate;
+import Model.Login.Zh_MyDate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -12,7 +11,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 

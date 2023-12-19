@@ -1,5 +1,7 @@
 package Model.Books;
 
+import Librarian.Zh_Books;
+
 import java.util.ArrayList;
 
 public class BookFunctionalities {

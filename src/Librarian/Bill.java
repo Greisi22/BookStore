@@ -1,5 +1,7 @@
-package Model.Bills;
+package Librarian;
 
+
+import Model.Login.Zh_MyDate;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -19,7 +21,7 @@ public class Bill implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private     double Price;
 	private     ArrayList<String> Book_name;
-	private     Zh_MyDate date;
+	private Zh_MyDate date;
 	private    String name;
 	private     String surname;
 	private int  Bookquantity;

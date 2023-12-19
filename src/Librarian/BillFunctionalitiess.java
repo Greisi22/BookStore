@@ -75,9 +75,12 @@ public class BillFunctionalitiess {
 
         for(Zh_Books b:booksFromFile)
         {
+
             if(b.equals(book))
             {
+
                 book.setQuanity(book.getQuanity()-1);
+
                 return book;
             }
             else{

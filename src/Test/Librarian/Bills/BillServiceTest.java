@@ -28,7 +28,7 @@ class BillServiceTest {
     static Path tempDir;
 
     @Test
-    void printFileTest() throws IOException{
+    void printFileTest(){
         String path = tempDir.resolve("cnt.txt").toString();
         String billPath = tempDir.resolve("Bills").toString() + File.separator + "Bill";
 
@@ -52,7 +52,6 @@ class BillServiceTest {
         assertEquals("Bill is Printed", result);
 
     }
-
 
     @Test
         void getBillsFromFileTest() throws IOException {

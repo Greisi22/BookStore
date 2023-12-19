@@ -132,7 +132,6 @@ public class F_ShowBill {
 
 		Print.setOnAction(e->{
 			double total = BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
-
 			ArrayList<String> bookNamess = BillFunctionalitiess.getBookNames(bookOfBill);
 			BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
 			System.out.println(total);

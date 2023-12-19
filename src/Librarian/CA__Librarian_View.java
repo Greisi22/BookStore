@@ -192,6 +192,7 @@ public class CA__Librarian_View {
 
 		Add.setOnAction(e -> {
 			if (BillFunctionalitiess.checkOutOfStock(bookSelected)) {
+				BillFunctionalitiess.updateQuantity(bookSelected);
 				OutOfStock.setText(bookSelected.getTitle() +" added!");
 				booksOfBill.add(bookSelected);
 			} else {

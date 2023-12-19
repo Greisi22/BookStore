@@ -31,12 +31,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class CA__Librarian_View {
-//	static ArrayList<String> listaaa = new ArrayList<String>();
-//	static ArrayList<Double> listaaa1 = new ArrayList<Double>();
-//	static ArrayList<String> listaaa2 = new ArrayList<String>();
-
-
-
 
 	private static ArrayList<Zh_Books> booksOfBill = new ArrayList<>();
 	private static Zh_Books bookSelected = null;
@@ -130,8 +124,6 @@ public class CA__Librarian_View {
 					//ruan infot kur i ben select
 					for (Zh_Books name : selectedItems) {
 						bookSelected = name;
-
-
 					}
 
 
@@ -192,7 +184,13 @@ public class CA__Librarian_View {
 
 		Add.setOnAction(e -> {
 			if (BillFunctionalitiess.checkOutOfStock(bookSelected)) {
-				BillFunctionalitiess.updateQuantity(bookSelected);
+
+				Zh_Books book= BillFunctionalitiess.updateQuantity(bookSelected);
+
+                System.out.println(book.getQuanity());
+				BookFunctionalities.UpdateBook(book);
+
+
 				OutOfStock.setText(bookSelected.getTitle() +" added!");
 				booksOfBill.add(bookSelected);
 			} else {
@@ -247,7 +245,7 @@ public class CA__Librarian_View {
 			}
 
 		});
-		// .......................................................................................
+
 	}
 
 

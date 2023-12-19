@@ -139,10 +139,10 @@ public class Zh_Books  implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	public void addGenres(Zh_Genre...genres) {
-		for(Zh_Genre genre : genres)
-			this.addGenres(genre);
-	}
+//	public void addGenres(Zh_Genre...genres) {
+//		for(Zh_Genre genre : genres)
+//			this.addGenres(genre);
+//	}
 	@Override
 	public String toString() {
 		return "Zh_Books [ISBN=" + ISBN + ", title=" + title + ", description=" + description + ", price=" + price

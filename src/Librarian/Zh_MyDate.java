@@ -1,4 +1,4 @@
-package Model.Login;
+package Librarian;
 
 import java.io.Serializable;
 import java.util.Objects;

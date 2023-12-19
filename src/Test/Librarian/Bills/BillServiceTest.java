@@ -1,9 +1,7 @@
 package Test.Librarian.Bills;
 
-import Librarian.D_Users;
-import Librarian.Bill;
+import Librarian.*;
 import Model.Bills.BillService;
-import Librarian.Zh_MyDate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -93,41 +91,41 @@ class BillServiceTest {
 
         }
 
-        @Test
-    void Right() throws IOException {
-            D_Users newUser = new D_Users();
-            newUser.setFirstName("Greisi");
-            try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
-                // 'true' in the constructor is for append mode, so it won't overwrite the existing file
-                objout.writeObject(newUser);
-            } catch (IOException e) {
-                e.printStackTrace();  // Handle the exception according to your needs
-            }
-// Replace the above line with the actual constructor of your D_Users class
+    @Test
+    void testWriteAndReadUser() {
+//        D_Users newUser = new D_Users();
+//        newUser.setFirstName("Greisi");
+//        newUser.setPassword("222");
+//        newUser.setAccesLevel(Zh_accessLevel.MANAGER);
+//
+//        // Write user to file
+//        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
+//            objout.writeObject(newUser);
+//        } catch (IOException e) {
+//            e.printStackTrace();  // Handle the exception according to your needs
+//        }
 
-            ArrayList<D_Users> listofBooks = new ArrayList<>();
-            FileInputStream fis;
-            try {
-                fis = new FileInputStream("src/EncodedInformation/Users.dat");
-                ObjectInputStream objis = new ObjectInputStream(fis);
-
-                D_Users obj ;
-                while (true) {
-                    obj = ((D_Users) objis.readObject());
-                    listofBooks.add(obj);
+        // Read users from file
+        ArrayList<D_Users> listofUsers = new ArrayList<>();
+        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/EncodedInformation/Users.dat"))) {
+            while (true) {
+                try {
+                    D_Users obj = (D_Users) objis.readObject();
+                    listofUsers.add(obj);
+                } catch (EOFException e) {
+                    // End of file reached
+                    break;
                 }
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e1) {
-                System.out.println(e1);
             }
-
-           for(D_Users users:listofBooks)
-           {
-               System.out.println(users.getFirstName());
-           }
-
+        } catch (ClassNotFoundException | IOException e) {
+            e.printStackTrace();  // Handle the exception according to your needs
         }
+
+        // Print user information
+        for (D_Users user : listofUsers) {
+            System.out.println("User: " + user.getFirstName() + ", Password: " + user.getPassword() + ", Access Level: " + user.getAccesLevel());
+        }
+    }
 
     }
 

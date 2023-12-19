@@ -37,9 +37,11 @@ public class LogInFunctionalities {
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream objis = new ObjectInputStream(fis);
         D_Users user;
+
         while (true) {
             try {
                 user = ((D_Users) objis.readObject());
+
                 if (usernametextFiled.equals(user.getFirstName()) && PassswrdField.equals(user.getPassword())) {
                     return user;
                 }

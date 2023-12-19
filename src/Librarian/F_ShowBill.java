@@ -134,7 +134,8 @@ public class F_ShowBill {
 			double total = BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
 			ArrayList<String> bookNamess = BillFunctionalitiess.getBookNames(bookOfBill);
 			BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
-			System.out.println(total);
+
+//		    BillFunctionalitiess.updateQuantity(selectedbook);
  			Bill isCreated = newBill.createBill(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
 			isCreated.setBook_name(bookNamess);
 			isCreated.setBookquantity(bookOfBill.size());

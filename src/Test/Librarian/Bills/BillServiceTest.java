@@ -19,10 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class BillServiceTest {
 
 
-
-        @TempDir
-        static File tempFolder;
-
+    @TempDir
+    static File tempFolder;
 
     @TempDir
     static Path tempDir;

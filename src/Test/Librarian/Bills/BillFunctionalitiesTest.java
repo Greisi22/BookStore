@@ -1,6 +1,8 @@
 package Test.Librarian.Bills;
 
 import Librarian.BillFunctionalitiess;
+import Librarian.BookFunctionalities;
+import Librarian.BookService;
 import Librarian.Zh_Books;
 import Mock.Books.BooksSreviceMock;
 import org.junit.jupiter.api.Test;
@@ -110,7 +112,7 @@ void calculateTest(int price1, int price2, double expectedTotal) {
     @CsvSource({
 
             "3,2,1,3",
-            "4,0,0,4"
+
     })
     void updateQuantityTest(String isbn, int initialQuantity, int expectedQuantity,String Isbn) {
 
@@ -148,6 +150,47 @@ void calculateTest(int price1, int price2, double expectedTotal) {
 
     }
 
+
+    @ParameterizedTest
+    @CsvSource({
+
+            "4,0,0,4",
+
+    })
+    void updateQuantityEmptyListTest(String isbn, int initialQuantity, int expectedQuantity,String Isbn) {
+
+        ArrayList<Zh_Books> books = new ArrayList<>();
+
+
+
+        BooksSreviceMock booksServiceMock = new BooksSreviceMock();
+        booksServiceMock.setBooks(books);
+
+        BillFunctionalitiess billFunctionalities = new BillFunctionalitiess(booksServiceMock);
+
+        Zh_Books book = new Zh_Books();
+        book.setISBN(isbn);
+        book.setQuanity(initialQuantity);
+
+        Zh_Books actual = billFunctionalities.updateQuantity(book);
+
+        Zh_Books expected = new Zh_Books();
+
+            assertNull(actual);
+
+
+    }
+
+    @Test
+    void Prova()
+    {
+        BookService bookService = new BookService();
+        ArrayList<Zh_Books> books = bookService.getBooks( "src/EncodedInformation/Books.dat");
+        for(Zh_Books books1:books)
+        {
+            System.out.println(books1.getTitle());
+        }
+    }
 
 
 }

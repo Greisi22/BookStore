@@ -76,6 +76,7 @@ public class BillFunctionalitiess {
         for(Zh_Books b:booksFromFile)
         {
 
+
             if(b.equals(book))
             {
 
@@ -83,9 +84,7 @@ public class BillFunctionalitiess {
 
                 return book;
             }
-            else{
-                return book;
-            }
+
         }
 
         return null;

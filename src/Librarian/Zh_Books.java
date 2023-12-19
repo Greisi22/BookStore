@@ -135,19 +135,8 @@ public class Zh_Books  implements Serializable {
 	public void setQuanity(int quanity) {
 		this.quanity = quanity;
 	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-//	public void addGenres(Zh_Genre...genres) {
-//		for(Zh_Genre genre : genres)
-//			this.addGenres(genre);
-//	}
-	@Override
-	public String toString() {
-		return "Zh_Books [ISBN=" + ISBN + ", title=" + title + ", description=" + description + ", price=" + price
-				+ ", author=" + author + ", genres=" + genres + ", paperback=" + paperback + ", quanity=" + quanity
-				+ "]";
-	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {

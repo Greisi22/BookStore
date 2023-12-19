@@ -47,7 +47,7 @@ class Zh_BooksTest {
     }
 
     @Test
-    void getGenresS(){
+    void getGenres(){
         ArrayList<Zh_Genre> genres = new ArrayList<>();
         genres.add(Zh_Genre.FANTASY);
         genres.add(Zh_Genre.ACTION);
@@ -123,7 +123,28 @@ class Zh_BooksTest {
     }
 
     @Test
-    void setAuthor() {
+    void constructerTest() {
+        Zh_Books book = new Zh_Books();
+        book.setTitle("SWE");
+        book.setISBN("1");
+        book.setQuanity(5);
+
+        assertEquals(new Zh_Books("SWE","1",5),book);
+
+    }
+
+    @Test
+    void constructerTest1(){
+        Zh_Books book = new Zh_Books();
+        Gender gender = Gender.Female;
+        book.setTitle("A");
+        book.setISBN("1");
+        book.setQuanity(5);
+        book.setDescription("B");
+        book.setPrice(25.0);
+        book.setAuthor(new V_Author("Era","Mulla",gender));
+        book.setPaperback(true);
+        assertEquals(new Zh_Books("A","1",5,"B",25.0,new V_Author("Era","Mulla",gender), true ),book);
 
     }
 
@@ -156,17 +177,15 @@ class Zh_BooksTest {
         assertEquals(3,actual);
     }
 
+   @Test
+    void getGENRES(){
+
+   }
 
 
-    @Test
-    void getSerialversionuid() {
-    }
 
-    @Test
-    void addGenres() {
-    }
 
-    @Test
-    void testToString() {
-    }
+
+
+
 }

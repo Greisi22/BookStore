@@ -35,9 +35,6 @@ public class V_Author implements Serializable {
 	public void setGender(Gender gender) {
 		this.gender = gender;
 	}
-	@Override
-	public String toString() {
-		return "V_Author [firstName=" + firstName + ", lastName=" + lastName + ", gender=" + gender + "]";
-	}
+
 	
 }

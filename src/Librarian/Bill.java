@@ -87,11 +87,7 @@ public Bill() {
 	}
 	
 
-	@Override
-	public String toString() {
-		return "E_Bill [Price=" + Price + ", Book_name=" + Book_name + ", date=" + date + ", name=" + name
-				+ ", surname=" + surname + "]";
-	}
+
 
 
 

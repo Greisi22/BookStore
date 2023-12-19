@@ -1,10 +1,17 @@
 package Test.Librarian.Books;
 
 import Model.Bills.Zh_MyDate;
+import Model.Books.Gender;
+import Model.Books.V_Author;
 import Model.Books.Zh_Books;
+import Model.Books.Zh_Genre;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -42,6 +49,14 @@ class Zh_BooksTest {
 
     @Test
     void getGenresS(){
+        ArrayList<Zh_Genre> genres = new ArrayList<>();
+        genres.add(Zh_Genre.FANTASY);
+        genres.add(Zh_Genre.ACTION);
+        Zh_Books book = new Zh_Books();
+        book.setGenres(genres);
+        ArrayList<Zh_Genre> genres1 = book.getGenres();
+        assertEquals(genres.size(),genres1.size() );
+        assertEquals(genres.get(0),genres1.get(0));
     }
 
     @Test
@@ -100,6 +115,11 @@ class Zh_BooksTest {
 
     @Test
     void getAuthor() {
+        V_Author author = new V_Author("Era","Mulla", Gender.Female);
+        Zh_Books book = new Zh_Books();
+        book.setAuthor(author);
+        V_Author author1 = book.getAuthor();
+        assertEquals(author.getFirstName(),author1.getFirstName());
 
     }
 
@@ -108,16 +128,21 @@ class Zh_BooksTest {
 
     }
 
-    @Test
-    void getGenres() {
-    }
 
-    @Test
-    void setGenres() {
-    }
+   @ParameterizedTest
+   @CsvSource ({
+           "true,true",
+           "false,false"
 
-    @Test
-    void isPaperback() {
+   })
+    void isPaperback(boolean actual,boolean expected) {
+        Zh_Books book = new Zh_Books();
+        book.setPaperback(actual);
+        actual = book.isPaperback();
+        assertEquals(expected,actual);
+
+
+
     }
 
     @Test
@@ -126,11 +151,13 @@ class Zh_BooksTest {
 
     @Test
     void getQuanity() {
+        Zh_Books book= new Zh_Books();
+        book.setQuanity(3);
+        int actual=book.getQuanity();
+        assertEquals(3,actual);
     }
 
-    @Test
-    void setQuanity() {
-    }
+
 
     @Test
     void getSerialversionuid() {

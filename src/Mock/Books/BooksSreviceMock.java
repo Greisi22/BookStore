@@ -15,7 +15,7 @@ public class BooksSreviceMock extends BookService {
         return (ArrayList<E>) books;
     }
     @Override
-    public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1) {
+    public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1, String path) {
 
     }
 

@@ -20,7 +20,7 @@ public class BookFunctionalities {
                 books.set(i, bookupdate);
             }
         }
-        bookService.writeBooksInFile(books);
+        bookService.writeBooksInFile(books, path);
         return books;
     }
 

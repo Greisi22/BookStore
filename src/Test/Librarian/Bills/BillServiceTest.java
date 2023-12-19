@@ -1,7 +1,10 @@
 package Test.Librarian.Bills;
 
-import Librarian.*;
+import Model.Bills.Bill;
 import Model.Bills.BillService;
+import Model.Bills.Zh_MyDate;
+import Model.Users.D_Users;
+import Test.Librarian.Books.Zh_accessLevel;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -93,17 +96,30 @@ class BillServiceTest {
 
     @Test
     void testWriteAndReadUser() {
-//        D_Users newUser = new D_Users();
-//        newUser.setFirstName("Greisi");
-//        newUser.setPassword("222");
-//        newUser.setAccesLevel(Zh_accessLevel.MANAGER);
-//
-//        // Write user to file
-//        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
-//            objout.writeObject(newUser);
-//        } catch (IOException e) {
-//            e.printStackTrace();  // Handle the exception according to your needs
-//        }
+        // Create three users
+        D_Users userErisa = new D_Users();
+        userErisa.setFirstName("Erisa");
+        userErisa.setPassword("999");
+        userErisa.setAccesLevel(Zh_accessLevel.ADMINISTRATOR);
+
+        D_Users userDavid = new D_Users();
+        userDavid.setFirstName("David");
+        userDavid.setPassword("111");
+        userDavid.setAccesLevel(Zh_accessLevel.LIBRARIAN);
+
+        D_Users userGreisi = new D_Users();
+        userGreisi.setFirstName("Greisi");
+        userGreisi.setPassword("222");
+        userGreisi.setAccesLevel(Zh_accessLevel.MANAGER);
+
+        // Write users to file
+        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
+            objout.writeObject(userErisa);
+            objout.writeObject(userDavid);
+            objout.writeObject(userGreisi);
+        } catch (IOException e) {
+            e.printStackTrace();  // Handle the exception according to your needs
+        }
 
         // Read users from file
         ArrayList<D_Users> listofUsers = new ArrayList<>();

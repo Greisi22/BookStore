@@ -1,12 +1,11 @@
 package Test.Librarian.Bills;
 
 
-import Librarian.Bill;
+import Model.Bills.Bill;
 
-import Model.Login.Zh_MyDate;
+import Model.Bills.Zh_MyDate;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,7 +1,7 @@
 package Model.Books;
 
-import Librarian.Zh_Books;
-import Menager.Book_Sold;
+import Test.Librarian.Books.Zh_Books;
+import View.Menager.Book_Sold;
 
 import java.io.*;
 import java.util.ArrayList;

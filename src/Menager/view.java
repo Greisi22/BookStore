@@ -4,8 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 
 import Librarian.B__Log_in;
-
 import Librarian.Zh_Books;
+import Model.Manager.OutOFStock;
+
+
+
+import Model.Books.BookService;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,7 +26,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class view {
-	static ArrayList<String> listBooks = new ArrayList<String>();
+
 	static String WelcomeName;
 
 	public static void View(Stage stage, String Name) throws FileNotFoundException {
@@ -102,7 +106,7 @@ public class view {
 			Menager_Create_Book.BookView(stage, WelcomeName);
 		});
 
-		if (!outOfStock()) {
+		if (!OutOFStock.checkIfOutOfStock()) {
 			pane.getChildren().add(no_message);
 		} else {
 			pane.getChildren().add(message);
@@ -110,8 +114,15 @@ public class view {
 
 		message.setOnAction(e -> {
 			StringBuilder s1 = new StringBuilder();
+			BookService bookService = new BookService();
+
+			ArrayList<Zh_Books> listBooks = bookService.getBooks("src/EncodedInformation/Books.dat");
+
 			for (int i = 0; i < listBooks.size(); i++) {
-				s1.append("        Book ").append(listBooks.get(i)).append(" has less than 5 in stock\n");
+				if(listBooks.get(i).getQuanity()<5){
+					s1.append("        Book ").append(listBooks.get(i).getTitle()).append(" has less than 5 in stock\n");
+				}
+
 			}
 			Label label = new Label(s1.toString());
 			Books_out_of_Stock.OutOfStock_View(label);
@@ -132,34 +143,5 @@ public class view {
 		stage.show();
 	}
 
-	private static boolean outOfStock() {
-		FileInputStream fis;
 
-		try {
-			fis = new FileInputStream("src/EncodedInformation/Books.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
-
-			while (true) {
-				try {
-					Zh_Books obj = (Zh_Books) objis.readObject();
-					if (obj.getQuanity() < 5) {
-						objis.close();
-						return true;
-					}
-				} catch (EOFException e) {
-					break;
-				}
-			}
-
-			objis.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		return false;
-	}
 }

@@ -17,8 +17,9 @@ class V_AuthorTest {
     @Test
     void setFirstName() {
         V_Author author = new V_Author("Greisi");
-        author.setFirstName("Greisi");
-        assertEquals("Greisi", author.getFirstName());
+        author.setFirstName("Era");
+        String actual = author.getFirstName();
+        assertEquals("Era",actual );
     }
 
     @Test

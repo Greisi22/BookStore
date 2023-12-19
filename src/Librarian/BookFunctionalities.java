@@ -8,7 +8,7 @@ public class BookFunctionalities {
 
 
     static BookService bookService = new BookService();
->
+
     private static String path = "src/EncodedInformation/Books.dat";
     public BookFunctionalities(){
 

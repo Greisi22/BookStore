@@ -2,7 +2,8 @@ package Test.Librarian.Bills;
 
 
 import Librarian.Bill;
-import Librarian.Zh_MyDate;
+
+import Model.Login.Zh_MyDate;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Array;
@@ -13,16 +14,14 @@ import static org.junit.jupiter.api.Assertions.*;
 class E_BillTest {
 
 
-
     @Test
     void getLibrarian_Name() {
         Bill bill = new Bill();
         bill.setLibrarian_Name("Era");
         String actual = bill.getLibrarian_Name();
-        assertEquals("Era",actual);
+        assertEquals("Era", actual);
 
     }
-
 
 
     @Test
@@ -30,7 +29,7 @@ class E_BillTest {
         Bill bill = new Bill();
         bill.setBookquantity(5);
         int actual = bill.getBookquantity();
-        assertEquals(5,actual);
+        assertEquals(5, actual);
 
     }
 
@@ -40,11 +39,11 @@ class E_BillTest {
 
     @Test
     void getPrice() {
-        Bill bill2 = new Bill(20.0,new Zh_MyDate(2,3,2000));
+        Bill bill2 = new Bill(20.0, new Zh_MyDate(2, 3, 2000));
         Bill bill = new Bill();
         bill.setPrice(25.9);
         double actual = bill.getPrice();
-        assertEquals(25.9,actual);
+        assertEquals(25.9, actual);
     }
 
 
@@ -56,7 +55,7 @@ class E_BillTest {
         bookNames.add("Greisi");
         bill.setBook_name(bookNames);
         ArrayList<String> actual = bill.getBook_name();
-        assertEquals(bookNames,actual);
+        assertEquals(bookNames, actual);
 
     }
 
@@ -69,7 +68,7 @@ class E_BillTest {
         Bill bill = new Bill();
         bill.setDate(date);
         Zh_MyDate actual = bill.getDate();
-        assertEquals(date,actual);
+        assertEquals(date, actual);
     }
 
 
@@ -78,7 +77,7 @@ class E_BillTest {
         Bill bill = new Bill();
         bill.setName("Era");
         String actual = bill.getName();
-        assertEquals("Era",actual);
+        assertEquals("Era", actual);
     }
 
     @Test
@@ -86,14 +85,8 @@ class E_BillTest {
         Bill bill = new Bill();
         bill.setSurname("Mulla");
         String actual = bill.getSurname();
-        assertEquals("Mulla",actual);
+        assertEquals("Mulla", actual);
     }
 
-    @Test
-    void setSurname() {
-    }
 
-    @Test
-    void testToString() {
-    }
 }

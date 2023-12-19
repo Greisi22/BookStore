@@ -4,7 +4,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class BookFunctionalities {
-    static BookService bookService;
+    static BookService bookService ;
     private static String path = "src/EncodedInformation/Books.dat";
     public BookFunctionalities(){
 

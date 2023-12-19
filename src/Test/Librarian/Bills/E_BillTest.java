@@ -1,6 +1,7 @@
 package Test.Librarian.Bills;
 
-import Librarian.Bill;
+
+import Model.Bills.Bill;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

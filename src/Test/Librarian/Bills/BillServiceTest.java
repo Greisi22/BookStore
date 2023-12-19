@@ -1,18 +1,18 @@
 package Test.Librarian.Bills;
 
+import Librarian.B__Log_in;
+import Librarian.D_Users;
 import Model.Bills.Bill;
 import Model.Bills.BillService;
 import Model.Bills.Zh_MyDate;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -92,6 +92,42 @@ class BillServiceTest {
         assertEquals(1, billList.size());
         assertEquals(20.0, billList.get(0).getPrice());
         assertEquals(new Zh_MyDate(8, 2, 2002), billList.get(0).getDate());
+
+        }
+
+        @Test
+    void Right() throws IOException {
+            D_Users newUser = new D_Users();
+            newUser.setFirstName("Greisi");
+            try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
+                // 'true' in the constructor is for append mode, so it won't overwrite the existing file
+                objout.writeObject(newUser);
+            } catch (IOException e) {
+                e.printStackTrace();  // Handle the exception according to your needs
+            }
+// Replace the above line with the actual constructor of your D_Users class
+
+            ArrayList<D_Users> listofBooks = new ArrayList<>();
+            FileInputStream fis;
+            try {
+                fis = new FileInputStream("src/EncodedInformation/Users.dat");
+                ObjectInputStream objis = new ObjectInputStream(fis);
+
+                D_Users obj ;
+                while (true) {
+                    obj = ((D_Users) objis.readObject());
+                    listofBooks.add(obj);
+                }
+            } catch (ClassNotFoundException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e1) {
+                System.out.println(e1);
+            }
+
+           for(D_Users users:listofBooks)
+           {
+               System.out.println(users.getFirstName());
+           }
 
         }
 

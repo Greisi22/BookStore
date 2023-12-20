@@ -103,7 +103,7 @@ public class Menager_Statistic {
 		ObjectInputStream objis;
 
 		try {
-			fis = new FileInputStream("src/EncodedInformation/Books.dat");
+			fis = new FileInputStream("src/EncodedInformation/Bolls.dat");
 		    objis = new ObjectInputStream(fis);
 			
 		while(true)

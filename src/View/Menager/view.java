@@ -106,7 +106,9 @@ public class view {
 			Menager_Create_Book.BookView(stage, WelcomeName);
 		});
 
-		if (!OutOFStock.checkIfOutOfStock()) {
+		ArrayList<Zh_Books> booksOutOfStock = OutOFStock.checkIfOutOfStock("src/EncodedInformation/Books.dat");
+
+		if (booksOutOfStock.isEmpty()) {
 			pane.getChildren().add(no_message);
 		} else {
 			pane.getChildren().add(message);
@@ -114,15 +116,10 @@ public class view {
 
 		message.setOnAction(e -> {
 			StringBuilder s1 = new StringBuilder();
-			BookService bookService = new BookService();
 
-			ArrayList<Zh_Books> listBooks = bookService.getBooks("src/EncodedInformation/Books.dat");
+			for (int i = 0; i < booksOutOfStock.size(); i++) {
 
-			for (int i = 0; i < listBooks.size(); i++) {
-				if(listBooks.get(i).getQuanity()<5){
-					s1.append("        Book ").append(listBooks.get(i).getTitle()).append(" has less than 5 in stock\n");
-				}
-
+					s1.append("        Book ").append(booksOutOfStock.get(i).getTitle()).append(" has less than 5 in stock\n");
 			}
 			Label label = new Label(s1.toString());
 			Books_out_of_Stock.OutOfStock_View(label);

@@ -1,38 +1,34 @@
 package Model.Manager;
 
+import Model.Books.BookFunctionalities;
+import Model.Books.BookService;
 import Test.Librarian.Books.Zh_Books;
 
 import java.io.*;
+import java.util.ArrayList;
 
 public class OutOFStock {
-    public static boolean checkIfOutOfStock() {
-        FileInputStream fis;
 
-        try {
-            fis = new FileInputStream("src/EncodedInformation/Books.dat");
-            ObjectInputStream objis = new ObjectInputStream(fis);
+    private static BookService bookService = new BookService();
+   public OutOFStock(BookService bookService)
+   {
+       this.bookService = bookService;
+   }
+    public static ArrayList<Zh_Books> checkIfOutOfStock(String path) {
 
-            while (true) {
-                try {
-                    Zh_Books obj = (Zh_Books) objis.readObject();
-                    if (obj.getQuanity() < 5) {
-                        objis.close();
-                        return true;
-                    }
-                } catch (EOFException e) {
-                    break;
-                }
+//        path="src/EncodedInformation/Books.dat"
+
+        ArrayList<Zh_Books> totalBooksFromFile = bookService.getBooks(path);
+        ArrayList<Zh_Books> booksOutOfStock = new ArrayList<>();
+
+        for (Zh_Books books : totalBooksFromFile) {
+
+            if (books.getQuanity() < 5) {
+                booksOutOfStock.add(books);
             }
 
-            objis.close();
-        } catch (FileNotFoundException e1) {
-            e1.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
 
-        return false;
+        }
+        return booksOutOfStock;
     }
 }

@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -178,13 +179,58 @@ class Zh_BooksTest {
 
    @Test
     void getGENRES(){
+        Zh_Books book = new Zh_Books();
+        Zh_Genre g1 = Zh_Genre.ACTION;
+        Zh_Genre g2 = Zh_Genre.FANTASY;
+        Zh_Genre g3 = Zh_Genre.MYSTRERY;
+        ArrayList<Zh_Genre> genres = new ArrayList<>();
+        genres.add(g1);
+        genres.add(g2);
+        genres.add(g3);
+        book.setGenres(genres);
+        String actual = book.getGenresS();
+        assertEquals("ACTION FANTASY MYSTRERY ",actual);
 
    }
 
 
+ //   @Test
+//   // void testSetGenres(){
+//        Zh_Books book = new Zh_Books();
+//        Zh_Genre genres = Zh_Genre.MYSTRERY;
+//
+//        book.setGenresS(genres);
+//        ArrayList<Zh_Genre> actual = book.getGenres();
+//        ArrayList<Zh_Genre> genres1 = new ArrayList<>();
+//        genres1.add(Zh_Genre.ACTION);
+//        genres1.add(Zh_Genre.FANTASY);
+//        genres1.add(Zh_Genre.MYSTRERY);
+//        assertEquals("ACTION FANTASY MYSTRERY",actual);
+//
+//    }
+
+        @Test
+        public void testSetGenresS() {
+            // Create an instance of your class
+            Zh_Books yourInstance = new Zh_Books();
+
+            // Set up a string of genres for testing
+            String genresS = "ACTION FANTASY";
+            yourInstance.setGenresS(genresS);
+
+            // Get the list of genres after calling the method
+            ArrayList<Zh_Genre> result = yourInstance.getGenres();
+
+            // Define the expected result based on the input
+            ArrayList<Zh_Genre> expected = new ArrayList<>();
+            expected.add(Zh_Genre.ACTION);
+            expected.add(Zh_Genre.FANTASY);
+
+            // Assert that the actual result matches the expected result
+            assertEquals(expected, result);
+        }
+    }
 
 
 
 
-
-}

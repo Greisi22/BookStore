@@ -1,6 +1,22 @@
 package Mock.Bills;
 
-public class BillServiceMock {
+import Model.Bills.Bill;
+import Model.Bills.BillService;
+import Model.Books.Zh_Books;
 
+import java.util.ArrayList;
 
+public class BillServiceMock extends BillService {
+
+    private ArrayList<Bill> bills;
+    public String path;
+    @Override
+    public  <E> ArrayList <E> getBillsFromFile(String path) {
+
+        return (ArrayList<E>) bills;
+    }
+
+    public void setBils(ArrayList<Bill>bills){
+        this.bills =bills ;
+    }
 }

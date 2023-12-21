@@ -16,13 +16,13 @@ import java.util.Map;
 public class StatisticFunctionalities {
     private static BookService bookService = new BookService();
     private static BillService billService = new BillService();
-    StatisticFunctionalities(BookService bookService){
+    public StatisticFunctionalities(BookService bookService){
         this.bookService = bookService;
     }
-    StatisticFunctionalities(BillService billService){
+    public StatisticFunctionalities(BillService billService){
         this.billService = billService;
     }
-    public static int getBookSold(int year, int month, String path) {
+    public static int getBookRevenue(int year, int month, String path) {
         ArrayList<Bill> bills = billService.getBillsFromFile(path);
         int sum = 0;
         int i=0;
@@ -36,12 +36,11 @@ public class StatisticFunctionalities {
         return sum;
     }
 
-    public static int getBookBought(int year, int month, String path) {
+    public static int getBookCost(int year, int month, String path) {
         ArrayList<Zh_Books> books = bookService.getBooks(path);
         int sum = 0;
         int i=0;
         for(Zh_Books book: books){
-            System.out.println(book.getDate().getYear() + " " + book.getDate().getMonth());
             if(book.getDate().getYear() == year && book.getDate().getMonth()==month )
             {
                 sum+=book.getQuanity();

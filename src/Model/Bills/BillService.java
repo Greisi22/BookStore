@@ -7,6 +7,7 @@ import java.util.Scanner;
 public class BillService {
 
 
+  private static    BillService billService = new BillService();
     public static String PrintFile(ArrayList<String> bookNames, Bill isCreated) {
 
         File file = new File("src/TextFiles/cnt.txt");
@@ -44,7 +45,7 @@ public class BillService {
 
 
 
-    public static <E> ArrayList<E> getBillsFromFile( String path) {
+    public <E> ArrayList<E> getBillsFromFile(String path) {
         ArrayList<E> listofBooks = new ArrayList<>();
         FileInputStream fis;
         try {
@@ -79,7 +80,7 @@ public class BillService {
             out = new FileOutputStream(path);
             ObjectOutputStream objout = new ObjectOutputStream(out);
 
-            listOfBills=getBillsFromFile(path);
+            listOfBills=billService.getBillsFromFile(path);
             listOfBills.add(newBill);
 
             for (int i = 0; i < listOfBills.size(); i++) {

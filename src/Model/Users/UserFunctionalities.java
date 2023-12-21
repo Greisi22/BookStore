@@ -17,7 +17,6 @@ public class UserFunctionalities {
         this.userService = userService;
     }
     public  static ArrayList<D_Users> updateUsers(D_Users bookupdate) {
-
         ArrayList<D_Users> users = userService.getUsers(path);
         for (int i=0;i<users.size();i++){
             if (users.get(i).getEmail().equals(bookupdate.getEmail())) {
@@ -28,6 +27,9 @@ public class UserFunctionalities {
         return users;
     }
 
+   public void setPath(String path){
+       this.path = path;
+   }
 
 
 }

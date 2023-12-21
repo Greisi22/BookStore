@@ -43,7 +43,6 @@ public  class BookService {
             for (int i = 0; i < newBooks1.size(); i++) {
                 objout.writeObject(newBooks1.get(i));
             }
-          newBooks1.clear();
             objout.close();
         } catch (FileNotFoundException e1) {
             // TODO Auto-generated catch block
@@ -53,7 +52,9 @@ public  class BookService {
         }
     }
 
-
+    public void setPath(String path){
+        this.path = path;
+    }
 
 
 

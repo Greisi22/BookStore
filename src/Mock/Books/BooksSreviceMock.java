@@ -10,8 +10,10 @@ public class BooksSreviceMock extends BookService {
     public String path;
 @Override
     public  <E> ArrayList<E> getBooks(String path) {
+if(path == "JGCE"){
+    throw new RuntimeException(new ClassNotFoundException("Intentional ClassNotFoundException"));
 
-
+}
         return (ArrayList<E>) books;
     }
     @Override

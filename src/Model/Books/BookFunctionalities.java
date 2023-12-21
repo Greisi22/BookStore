@@ -25,6 +25,9 @@ public class BookFunctionalities {
         bookService.writeBooksInFile(books, path);
         return books;
     }
+    public void setPath(String path){
+        this.path = path;
+    }
 
 
 }

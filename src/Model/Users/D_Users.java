@@ -98,12 +98,7 @@ public class D_Users implements Serializable {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	@Override
-	public String toString() {
-		return "D_Users [firstName=" + firstName + ", lastName=" + lastName + ", email=" + email + ", birthday="
-				+ birthday + ", password=" + password + ", salery=" + salery + ", phone=" + phone + ", accesLevel="
-				+ accesLevel + "]";
-	}
+
 	
 	
 	

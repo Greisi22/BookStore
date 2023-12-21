@@ -1,6 +1,8 @@
 package Test.UnitTest.Books;
 
 
+import Mock.Books.BooksSreviceMock;
+import Model.Books.BookFunctionalities;
 import Model.Books.BookService;
 import Model.Books.Zh_Books;
 import org.junit.jupiter.api.Test;
@@ -9,7 +11,7 @@ import org.junit.jupiter.api.io.TempDir;
 import java.io.*;
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BookServiceTest {
 
@@ -64,6 +66,19 @@ public class BookServiceTest {
 
             assertEquals(list.size(), booksList.size());
         }
+
+
+    }
+
+    @Test
+    void testGetBooks_ClassNotFoundException() {
+        BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
+        BookFunctionalities bookFunctionalities = new BookFunctionalities(booksSreviceMock);
+
+
+        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
+            bookFunctionalities.setPath("JGCE");
+        });
 
 
     }

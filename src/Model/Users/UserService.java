@@ -41,7 +41,7 @@ public class UserService {
             for (int i = 0; i < usersList.size(); i++) {
                 objout.writeObject(usersList.get(i));
             }
-            usersList.clear();
+
             objout.close();
         } catch (FileNotFoundException e1) {
             e1.printStackTrace();

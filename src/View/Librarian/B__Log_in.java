@@ -4,7 +4,7 @@ import java.io.*;
 import java.lang.constant.Constable;
 import java.util.List;
 
-import Test.UnitTest.LogIn.ResultType;
+import Model.Login.ResultType;
 import View.Administator.View;
 import View.Menager.view;
 import Model.Login.LogInFunctionalities;

@@ -1,5 +1,5 @@
 
-package Test.UnitTest.LogIn;
+package Model.Login;
 
 public enum ResultType {
     INCORRECT_USER,

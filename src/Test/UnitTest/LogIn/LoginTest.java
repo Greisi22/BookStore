@@ -2,6 +2,7 @@ package Test.UnitTest.LogIn;
 
 
 import Model.Login.LogInFunctionalities;
+import Model.Login.ResultType;
 import Model.Login.Zh_accessLevel;
 import Model.Users.D_Users;
 import View.Librarian.FileNotFoundExceptionCustom;

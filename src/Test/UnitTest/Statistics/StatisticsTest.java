@@ -1,10 +1,7 @@
-package Test.Statistics;
+package Test.UnitTest.Statistics;
 
-import Model.Books.Zh_Books;
 import Model.Statistic.StatisticFunctionalities;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
 
 public class StatisticsTest {
 

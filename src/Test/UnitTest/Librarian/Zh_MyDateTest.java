@@ -1,10 +1,10 @@
-package Test.Librarian;
+package Test.UnitTest.Librarian;
 
 import Model.Bills.Zh_MyDate;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Zh_MyDateTest {
 

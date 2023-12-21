@@ -16,8 +16,6 @@ public class BookFunctionalities {
         this.bookService = bookService;
     }
     public  static  ArrayList<Zh_Books> UpdateBook(Zh_Books bookupdate) {
-
-
         ArrayList<Zh_Books> books = bookService.getBooks(path);
         for (int i=0;i<books.size();i++){
             if (books.get(i).getISBN().equals(bookupdate.getISBN())) {

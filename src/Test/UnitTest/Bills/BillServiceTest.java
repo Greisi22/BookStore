@@ -1,11 +1,11 @@
-package Test.Bills;
+package Test.UnitTest.Bills;
 
 import Model.Bills.Bill;
 import Model.Bills.BillService;
 import Model.Bills.Zh_MyDate;
 import Model.Books.Zh_Books;
-import Model.Users.D_Users;
 import Model.Login.Zh_accessLevel;
+import Model.Users.D_Users;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -15,7 +15,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BillServiceTest {
 

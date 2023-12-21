@@ -1,13 +1,13 @@
-package Test.Manager;
+package Test.UnitTest.Manager;
 
 import Mock.Books.BooksSreviceMock;
-import Model.Manager.OutOFStock;
 import Model.Books.Zh_Books;
+import Model.Manager.OutOFStock;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class Books_out_of_StockTest {
 

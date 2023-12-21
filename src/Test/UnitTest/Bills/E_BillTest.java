@@ -1,14 +1,13 @@
-package Test.Bills;
+package Test.UnitTest.Bills;
 
 
 import Model.Bills.Bill;
-
 import Model.Bills.Zh_MyDate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class E_BillTest {
 

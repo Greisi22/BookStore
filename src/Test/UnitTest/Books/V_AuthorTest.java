@@ -1,9 +1,11 @@
-package Test.Books;
+package Test.UnitTest.Books;
 
 import Model.Books.V_Author;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import Model.Users.Gender;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 class V_AuthorTest {
 

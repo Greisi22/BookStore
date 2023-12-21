@@ -323,11 +323,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 import View.Librarian.*;
-import Model.Books.BookBoughtFunctionalities;
 import Model.Bills.Zh_MyDate;
 import Model.Books.BookService;
 import Model.Books.V_Author;
-import Test.Librarian.Books.Zh_Books;
+import Model.Books.Zh_Books;
 import Model.Books.Zh_Genre;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -498,12 +497,12 @@ public class Menager_Create_Book {
 			booklist.add(isCreated);
 			bookService.writeBooksInFile(booklist, "src/EncodedInformation/Books.dat");
 
-			Book_Sold boook = new Book_Sold(new Zh_MyDate(d.getValue().getMonthValue(),
-					d.getValue().getDayOfMonth(), d.getValue().getYear()), isbn13);
-			ArrayList<Book_Sold> listBooks = new ArrayList<>();
-			BookBoughtFunctionalities.getBooksBought(listBooks);
-			listBooks.add(boook);
-			BookBoughtFunctionalities.saveBookBought(listBooks);
+//			Book_Sold boook = new Book_Sold(new Zh_MyDate(d.getValue().getMonthValue(),
+//					d.getValue().getDayOfMonth(), d.getValue().getYear()), isbn13);
+//			ArrayList<Book_Sold> listBooks = new ArrayList<>();
+//			BookBoughtFunctionalities.getBooksBought(listBooks);
+//			listBooks.add(boook);
+//			BookBoughtFunctionalities.saveBookBought(listBooks);
 
 
 		});

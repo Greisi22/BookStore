@@ -1,4 +1,4 @@
-package Test.Librarian.LogIn;
+package Test.LogIn;
 
 
 
@@ -6,7 +6,7 @@ import Model.Users.D_Users;
 import View.Librarian.FileNotFoundExceptionCustom;
 import Model.Login.LogInFunctionalities;
 
-import Test.Librarian.Books.Zh_accessLevel;
+import Model.Login.Zh_accessLevel;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;

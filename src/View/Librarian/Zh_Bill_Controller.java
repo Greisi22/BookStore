@@ -17,11 +17,11 @@ public class Zh_Bill_Controller implements Serializable  {
 	@Serial
 	private static final long serialVersionUID = 6762662553919269736L;
 
-	public Bill createBill(double price, Zh_MyDate date)
+	public Bill createBill(double price, Zh_MyDate date, int qunanity)
 	{
-		Bill newBook=new Bill( price,date);
-		
-		return newBook;
+		Bill newBill=new Bill(price,date);
+		newBill.setBookquantity(qunanity);
+		return newBill;
 	}
 	
 

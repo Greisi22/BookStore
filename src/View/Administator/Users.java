@@ -281,9 +281,13 @@ package View.Administator;
 
 import java.util.ArrayList;
 
+import Model.Converters.ZH_MyDateStringConverter;
+import Model.Converters.Zh_accessLevelStringConverter;
 import Model.Users.D_Users;
 import Model.Bills.Zh_MyDate;
-import Test.Librarian.Books.Zh_accessLevel;
+import Model.Login.Zh_accessLevel;
+import Model.Users.UserFunctionalities;
+import Model.Users.UserService;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
@@ -297,13 +301,17 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.converter.LongStringConverter;
 
+
 public class Users {
 @SuppressWarnings("unchecked")
+static final String path = "src/EncodedInformation/Users.dat";
 public static void ModUsers()
 {
+
+	UserService userService = new UserService();
 	//................................................................................................//
 	ArrayList<D_Users> listBooks = new ArrayList<D_Users>();
-    listBooks = UserFunctionalities.getUsers(listBooks);
+    listBooks = userService.getUsers(path);
 
 
 

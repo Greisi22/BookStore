@@ -1,4 +1,4 @@
-package Test.Librarian.Bills;
+package Test.Bills;
 
 
 import Model.Bills.Bill;

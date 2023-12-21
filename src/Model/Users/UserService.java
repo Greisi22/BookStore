@@ -1,29 +1,27 @@
-package Model.Books;
+package Model.Users;
+
+import Model.Books.Zh_Books;
+import View.Administator.Users;
 
 import java.io.*;
 import java.util.ArrayList;
 
+public class UserService {
 
-public  class BookService {
-
-    private String path = "src/EncodedInformation/Books.dat";
-
-    public BookService ()
+    public UserService ()
     {
 
     }
-    public <E> ArrayList<E> getBooks(String path ) {
-
-        ArrayList<E> list = new ArrayList<>();
+    public ArrayList<D_Users> getUsers(String path ) {
+        ArrayList<D_Users> list = new ArrayList<>();
         FileInputStream fis;
         try {
             fis = new FileInputStream(path);
             ObjectInputStream objis = new ObjectInputStream(fis);
-
-            Zh_Books obj = new Zh_Books();
+            D_Users obj = new D_Users();
             while (true) {
-                obj = ((Zh_Books) objis.readObject());
-                list.add((E) obj);
+                obj = ((D_Users) objis.readObject());
+                list.add(obj);
             }
         } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
@@ -35,27 +33,21 @@ public  class BookService {
     }
 
 
-    public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1, String path){
+    public  void writeUsersInFile(ArrayList<D_Users> usersList, String path){
         FileOutputStream out;
         try {
             out = new FileOutputStream(path);
             ObjectOutputStream objout = new ObjectOutputStream(out);
-            for (int i = 0; i < newBooks1.size(); i++) {
-                objout.writeObject(newBooks1.get(i));
+            for (int i = 0; i < usersList.size(); i++) {
+                objout.writeObject(usersList.get(i));
             }
-          newBooks1.clear();
+            usersList.clear();
             objout.close();
         } catch (FileNotFoundException e1) {
-            // TODO Auto-generated catch block
             e1.printStackTrace();
         } catch (IOException e) {
             System.out.println(e);
         }
     }
-
-
-
-
-
 
 }

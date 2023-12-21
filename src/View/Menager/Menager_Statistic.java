@@ -1,8 +1,10 @@
 package View.Menager;
 
 import java.io.*;
+import java.util.ArrayList;
 
 import Model.Bills.Bill;
+import Model.Statistic.StatisticFunctionalities;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
@@ -25,7 +27,8 @@ public class Menager_Statistic {
 	    final static String October = "October";
 	    final static String November = "November";
 	    final static String December = "December";
-	
+	    static final String bookPath = "src/EncodedInformation/Books.dat";
+	    static final String billPath = "src/EncodedInformation/Bills.dat";
 	    
 
 	    
@@ -47,34 +50,35 @@ public class Menager_Statistic {
 		        xAxis.setLabel("Year");       
 		        yAxis.setLabel("Number of Books");  
 		        XYChart.Series series1 = new XYChart.Series();    
-		        series1.setName("Sold");
-		        series1.getData().add(new XYChart.Data(January, getnumber(1)));
-		        series1.getData().add(new XYChart.Data(February, getnumber(2)));
-		        series1.getData().add(new XYChart.Data(March, getnumber(3)));
-		        series1.getData().add(new XYChart.Data(April, getnumber(4)));
-		        series1.getData().add(new XYChart.Data(May, getnumber(5)));
-		        series1.getData().add(new XYChart.Data(June, getnumber(6)));
-		        series1.getData().add(new XYChart.Data(July, getnumber(7)));
-		        series1.getData().add(new XYChart.Data(August, getnumber(8)));
-		        series1.getData().add(new XYChart.Data(September, getnumber(9)));
-		        series1.getData().add(new XYChart.Data(October, getnumber(10)));
-		        series1.getData().add(new XYChart.Data(November, getnumber(11)));
-		        series1.getData().add(new XYChart.Data(December, getnumber(12)));
+		        series1.setName("Bought");
+
+		        series1.getData().add(new XYChart.Data(January, StatisticFunctionalities.getBookBought(2023, 1, bookPath)));
+		        series1.getData().add(new XYChart.Data(February,StatisticFunctionalities.getBookBought(2023, 2, bookPath)));
+		        series1.getData().add(new XYChart.Data(March, StatisticFunctionalities.getBookBought(2023, 3, bookPath)));
+		        series1.getData().add(new XYChart.Data(April, StatisticFunctionalities.getBookBought(2023, 4, bookPath)));
+		        series1.getData().add(new XYChart.Data(May, StatisticFunctionalities.getBookBought(2023, 5, bookPath)));
+		        series1.getData().add(new XYChart.Data(June, StatisticFunctionalities.getBookBought(2023, 6, bookPath)));
+		        series1.getData().add(new XYChart.Data(July, StatisticFunctionalities.getBookBought(2023, 7, bookPath)));
+		        series1.getData().add(new XYChart.Data(August,StatisticFunctionalities.getBookBought(2023, 8, bookPath)));
+		        series1.getData().add(new XYChart.Data(September, StatisticFunctionalities.getBookBought(2023, 9, bookPath)));
+		        series1.getData().add(new XYChart.Data(October, StatisticFunctionalities.getBookBought(2023, 10, bookPath)));
+		        series1.getData().add(new XYChart.Data(November,StatisticFunctionalities.getBookBought(2023, 11, bookPath)));
+		        series1.getData().add(new XYChart.Data(December, StatisticFunctionalities.getBookBought(2023, 12, bookPath)));
 		        
 		        XYChart.Series series2 = new XYChart.Series();
-		        series2.setName("Bought");
-		        series2.getData().add(new XYChart.Data(January, getnumber1(1)));
-		        series2.getData().add(new XYChart.Data(February, getnumber1(2)));
-		        series2.getData().add(new XYChart.Data(March, getnumber1(3)));
-		        series2.getData().add(new XYChart.Data(April, getnumber1(4)));
-		        series2.getData().add(new XYChart.Data(May, getnumber1(5)));
-		        series2.getData().add(new XYChart.Data(June, getnumber1(6)));
-		        series2.getData().add(new XYChart.Data(July, getnumber1(7)));
-		        series2.getData().add(new XYChart.Data(August, getnumber1(8)));
-		        series2.getData().add(new XYChart.Data(September, getnumber1(9)));
-		        series2.getData().add(new XYChart.Data(October, getnumber1(10)));
-		        series2.getData().add(new XYChart.Data(November, getnumber1(11)));
-		        series2.getData().add(new XYChart.Data(December, getnumber1(12)));
+		        series2.setName("Sold");
+		        series2.getData().add(new XYChart.Data(January,StatisticFunctionalities.getBookSold(2023, 1, billPath)));
+		        series2.getData().add(new XYChart.Data(February,StatisticFunctionalities.getBookSold(2023, 2, billPath)));
+		        series2.getData().add(new XYChart.Data(March, StatisticFunctionalities.getBookSold(2023, 3, billPath)));
+		        series2.getData().add(new XYChart.Data(April, StatisticFunctionalities.getBookSold(2023, 4, billPath)));
+		        series2.getData().add(new XYChart.Data(May, StatisticFunctionalities.getBookSold(2023, 5, billPath)));
+		        series2.getData().add(new XYChart.Data(June, StatisticFunctionalities.getBookSold(2023, 6, billPath)));
+		        series2.getData().add(new XYChart.Data(July, StatisticFunctionalities.getBookSold(2023, 7, billPath)));
+		        series2.getData().add(new XYChart.Data(August, StatisticFunctionalities.getBookSold(2023, 8, billPath)));
+		        series2.getData().add(new XYChart.Data(September, StatisticFunctionalities.getBookSold(2023, 9, billPath)));
+		        series2.getData().add(new XYChart.Data(October, StatisticFunctionalities.getBookSold(2023, 10, billPath)));
+		        series2.getData().add(new XYChart.Data(November, StatisticFunctionalities.getBookSold(2023, 11, billPath)));
+		        series2.getData().add(new XYChart.Data(December, StatisticFunctionalities.getBookSold(2023, 12, billPath)));
 
 		      Pane pane = new Pane();
 		      bc.setPrefWidth(800);
@@ -97,82 +101,8 @@ public class Menager_Statistic {
 		
 	}
 
-	private static int getnumber(int z) {
-		FileInputStream fis;
-		int sum =0;
-		ObjectInputStream objis;
 
-		try {
-			fis = new FileInputStream("src/EncodedInformation/Bolls.dat");
-		    objis = new ObjectInputStream(fis);
-			
-		while(true)
-		{
-			try {
-				Bill obj = ((Bill) objis.readObject());
-				if(obj.getDate().getYear() == 2023 && obj.getDate().getMonth()==z )
-				{
-					sum+=obj.getBookquantity();
-				}
-			}catch (EOFException e) {
-				break; // End of the stream
-			}
 
-			
-		}
-		objis.close();
-			
-		} catch (FileNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		} catch (IOException e1) {
-			
-			return sum;
-		} catch (ClassNotFoundException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		
-		
-		
-		return 1;
-	}
-	private static int getnumber1(int z) {
-		FileInputStream fis;
-		int sum = 0;
-		ObjectInputStream objis = null;
-
-		try {
-			fis = new FileInputStream("src/EncodedInformation/booksBought.dat");
-			objis = new ObjectInputStream(fis);
-
-			while (true) {
-				try {
-					Book_Sold obj = (Book_Sold) objis.readObject();
-					if (obj.getDate().getYear() == 2023 && obj.getDate().getMonth() == z) {
-						sum += 1;
-					}
-				} catch (EOFException e) {
-					// End of file reached, exit the loop
-					break;
-				}
-			}
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException | ClassNotFoundException e1) {
-			e1.printStackTrace();
-		} finally {
-			if (objis != null) {
-				try {
-					objis.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-
-		return sum;
-	}
 
 
 

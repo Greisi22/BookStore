@@ -1,4 +1,4 @@
-package Test.Librarian.Books;
+package Test.Books;
 
 import Model.Books.V_Author;
 import org.junit.jupiter.api.Test;

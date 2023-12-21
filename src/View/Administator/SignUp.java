@@ -3,9 +3,12 @@ package View.Administator;
 import java.io.*;
 import java.util.ArrayList;
 
+import Model.Books.BookService;
 import Model.Users.D_Users;
 import Model.Bills.Zh_MyDate;
-import Test.Librarian.Books.Zh_accessLevel;
+import Model.Login.Zh_accessLevel;
+import Model.Users.UserFunctionalities;
+import Model.Users.UserService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -42,6 +45,8 @@ import javafx.stage.Window;
 public class SignUp {
 static String namee;
 static Stage stage;
+static final String path = "src/EncodedInformation/Users.dat";
+static UserService userService = new UserService();
 	public static void SignUpView(Stage primaryStage, String name) {
 		namee = name;
 		stage = primaryStage;
@@ -271,9 +276,9 @@ static Stage stage;
 							ACESS);
 
 					if (isCreated != null) {
-
-						write(isCreated);
-
+                      ArrayList<D_Users> users = userService.getUsers(path);
+					  users.add(isCreated);
+					  userService.writeUsersInFile(users, path);
 					}
 					showAlert(Alert.AlertType.CONFIRMATION, gridPane.getScene().getWindow(), "Registration Successful!",
 							"Welcome " + nameField.getText());
@@ -285,64 +290,10 @@ static Stage stage;
 
 	}
 
-	private static ArrayList<D_Users> write(D_Users isCreated) {
-		ArrayList<D_Users> listBooks = new ArrayList<D_Users>();
 
-		try {
-			FileInputStream fis = new FileInputStream("src/EncodedInformation/Users.dat");
-			ObjectInputStream objis = new ObjectInputStream(fis);
 
-			// Read existing objects from the file into the list
-			while (true) {
-				try {
-					D_Users obj = (D_Users) objis.readObject();
-					listBooks.add(obj);
-				} catch (EOFException e) {
-					// End of file reached
-					break;
-				}
-			}
 
-			objis.close();
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 
-		// Add the newly created user to the list
-		listBooks.add(isCreated);
-
-		return listBooks; // Return the updated collection
-	}
-
-////			
-////.................................................		
-//		
-//print file
-
-	private static void AddMenuBar(ArrayList<D_Users> listBooks) {
-
-		FileOutputStream out;
-		try {
-			out = new FileOutputStream("src/EncodedInformation/Users.dat");
-			ObjectOutputStream output = new ObjectOutputStream(out);
-
-			for (int i = 0; i < listBooks.size(); i++) {
-				output.writeObject(listBooks.get(i));
-			}
-
-			output.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			System.out.println("1. " + e);
-		}
-
-	}
 
 	private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
 		Alert alert = new Alert(alertType);

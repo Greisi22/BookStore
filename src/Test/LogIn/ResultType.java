@@ -1,5 +1,5 @@
 
-package Test.Librarian.LogIn;
+package Test.LogIn;
 
 public enum ResultType {
     INCORRECT_USER,

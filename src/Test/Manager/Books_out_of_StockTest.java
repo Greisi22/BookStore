@@ -1,16 +1,10 @@
 package Test.Manager;
 
 import Mock.Books.BooksSreviceMock;
-import Model.Bills.BillFunctionalitiess;
-import Model.Bills.BillService;
-import Model.Books.BookService;
 import Model.Manager.OutOFStock;
-import Test.Librarian.Books.Zh_Books;
+import Model.Books.Zh_Books;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.io.TempDir;
 
-import java.io.File;
-import java.nio.file.Path;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;

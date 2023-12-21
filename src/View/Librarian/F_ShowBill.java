@@ -7,7 +7,7 @@ import Model.Bills.Bill;
 import Model.Bills.BillFunctionalitiess;
 import Model.Bills.BillService;
 import Model.Bills.Zh_MyDate;
-import Test.Librarian.Books.Zh_Books;
+import Model.Books.Zh_Books;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -141,7 +141,7 @@ public class F_ShowBill {
 			BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
 
 //		    BillFunctionalitiess.updateQuantity(selectedbook);
- 			Bill isCreated = newBill.createBill(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()));
+ 			Bill isCreated = newBill.createBill(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()), bookOfBill.size());
 			isCreated.setBook_name(bookNamess);
 			isCreated.setBookquantity(bookOfBill.size());
 

@@ -1,4 +1,4 @@
-package View.Administator;
+package Model.Converters;
 
 import Model.Bills.Zh_MyDate;
 import javafx.util.StringConverter;
@@ -27,7 +27,8 @@ public class ZH_MyDateStringConverter extends StringConverter<Zh_MyDate> {
 	@Override
 	public String toString(Zh_MyDate arg0) {
 
-		return arg0.toString();
+//		return arg0.toString();
+		return "prova";
 	}
 
 

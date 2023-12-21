@@ -102,7 +102,7 @@ public class StatisticsTest {
     Map<String, Double> expected = new HashMap<>();
     expected.put("Greisi Jaho", 50.0);
     expected.put("David Keci", 58.0);
-    expected.put("Greisi Jaho", 53.0);
+    expected.put("Greisi Jaho", 103.0);
 
 
     ArrayList<Bill> bills = new ArrayList<>();

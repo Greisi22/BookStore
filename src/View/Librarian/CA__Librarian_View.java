@@ -63,7 +63,11 @@ public class CA__Librarian_View {
 
 
 		addCreateBill.setOnAction(e -> {
-			showTable(stage);
+			try {
+				showTable(stage);
+			} catch (ClassNotFoundException ex) {
+				throw new RuntimeException(ex);
+			}
 		});
 
 		signout.setOnAction(e -> {
@@ -98,7 +102,7 @@ public class CA__Librarian_View {
 
 	}
 
-	public static void showTable(Stage stage) {
+	public static void showTable(Stage stage) throws ClassNotFoundException {
 		Button Add = new Button("Add to Bill");
 		Add.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
 		Button showBill = new Button("Show Bill");

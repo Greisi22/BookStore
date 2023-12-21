@@ -119,7 +119,11 @@ public class F_ShowBill {
 		Back.setOnAction(e->{
 
 			stage1.close();
-			CA__Librarian_View.showTable(stage);
+			try {
+				CA__Librarian_View.showTable(stage);
+			} catch (ClassNotFoundException ex) {
+				throw new RuntimeException(ex);
+			}
 
 		});
 

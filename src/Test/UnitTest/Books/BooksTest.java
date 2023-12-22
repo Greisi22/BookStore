@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.ArrayList;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class BooksTest {
 
@@ -215,7 +215,18 @@ class BooksTest {
     }
 
 
+
+    @Test
+    void testEqualMethod() {
+        Books book1 = new Books();
+
+        assertTrue(book1.equals(book1));
+        assertFalse(book1.equals(null));
     }
+
+
+
+}
 
 
 

@@ -42,14 +42,13 @@ System.out.println(list.size());
             ObjectOutputStream objout = new ObjectOutputStream(out);
             for (int i = 0; i < newBooks1.size(); i++) {
                 if(newBooks1.get(i) != null){
-
                     objout.writeObject(newBooks1.get(i));
+                }
+                else {
+                    throw new IOException("Book is null");
                 }
             }
             objout.close();
-        } catch (FileNotFoundException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
         } catch (IOException e) {
             System.out.println(e);
         }

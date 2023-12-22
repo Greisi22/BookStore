@@ -96,4 +96,12 @@ public class BookServiceTest {
 
 
 
+//    @Test
+//    void testWriteBooksInFileIOExceptionWhenBookIsNull() {
+//        BookService bookService = new BookService();
+//        ArrayList<Books> booksList = new ArrayList<>();
+//        booksList.add(null);
+//        assertThrows(IOException.class, () -> bookService.writeBooksInFile(booksList, "validPath"));
+//    }
+
 }

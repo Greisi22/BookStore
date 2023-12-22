@@ -24,6 +24,7 @@ public class BookServiceTest {
     void testGetBooksFromFileWithBooks() throws IOException {
         BookService bookService = new BookService();
         File tempFile = new File(tempFolder, "testBooks.dat");
+        bookService.setPath("testBooks.dat");
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile))) {
             Books book1 = new Books("Book 1", "ISBN1", 12);
             Books book2 = new Books("Book 2", "ISBN2", 20);

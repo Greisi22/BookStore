@@ -28,9 +28,7 @@ public class BillFunctionalitiess {
 
 
     public static boolean checkOutOfStock(Books book) {
-
         ArrayList<Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
-
         for(Books b:booksFromFile)
         {
             if(b.equals(book))
@@ -51,7 +49,6 @@ public class BillFunctionalitiess {
     public static double CalculateTotalPrice(ArrayList<Books> listBooks)
     {
         double totalPrice=0;
-
         for(Books books:listBooks)
         {
             totalPrice+=books.getPrice();
@@ -69,13 +66,14 @@ public class BillFunctionalitiess {
 
     public static Books updateQuantity(Books book)
     {
-
         ArrayList<Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
-
         for(Books b:booksFromFile)
         {
             if(b.equals(book))
             {
+                if(book.getQuanity()<0 || book.getQuanity()-1<0){
+                    return null;
+                }
                 book.setQuanity(book.getQuanity()-1);
                 return book;
             }

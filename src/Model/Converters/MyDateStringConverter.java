@@ -1,12 +1,12 @@
 package Model.Converters;
 
-import Model.Bills.Zh_MyDate;
+import Model.Bills.MyDate;
 import javafx.util.StringConverter;
 
-public class ZH_MyDateStringConverter extends StringConverter<Zh_MyDate> {
+public class MyDateStringConverter extends StringConverter<MyDate> {
 
 	@Override
-	public Zh_MyDate fromString(String arg0) {
+	public MyDate fromString(String arg0) {
 		  char[] ch = new char[arg0.length()];
 		  
 	        // Copying character by character into array
@@ -21,11 +21,11 @@ public class ZH_MyDateStringConverter extends StringConverter<Zh_MyDate> {
 	        String s113 = ch[6]+""+ch[7];
 	        int year = Integer.parseInt(s113);
 	     
-		return ( new Zh_MyDate(month,day,year));
+		return ( new MyDate(month,day,year));
 	}
 
 	@Override
-	public String toString(Zh_MyDate arg0) {
+	public String toString(MyDate arg0) {
 
 //		return arg0.toString();
 		return "prova";

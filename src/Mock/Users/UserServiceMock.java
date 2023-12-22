@@ -1,28 +1,26 @@
 package Mock.Users;
 
-import Model.Books.Zh_Books;
-import Model.Users.D_Users;
+import Model.Users.Users;
 import Model.Users.UserService;
-import View.Administator.Users;
 
 import java.util.ArrayList;
 
 public class UserServiceMock extends UserService {
 
-    private ArrayList<D_Users> users;
+    private ArrayList<Users> users;
     public String path;
     @Override
-    public   ArrayList<D_Users> getUsers(String path) {
+    public   ArrayList<Users> getUsers(String path) {
 
-        return (ArrayList<D_Users>) users;
+        return (ArrayList<Users>) users;
     }
 
     @Override
-    public  void writeUsersInFile(ArrayList<D_Users> newUser, String path) {
+    public  void writeUsersInFile(ArrayList<Users> newUser, String path) {
 
     }
 
-    public void setUsers(ArrayList<D_Users> user)
+    public void setUsers(ArrayList<Users> user)
     {
         this.users=user;
     }

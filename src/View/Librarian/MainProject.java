@@ -3,11 +3,11 @@ package View.Librarian;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class A__Main_Project  extends Application  {
+public class MainProject extends Application  {
 
 	public  void start(Stage stage){
 
- 		B__Log_in.Log_inn(stage);
+ 		LogIn.Log_inn(stage);
 
 	}
 

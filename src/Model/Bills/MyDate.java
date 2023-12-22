@@ -3,7 +3,7 @@ package Model.Bills;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Zh_MyDate implements Serializable {
+public class MyDate implements Serializable {
     /**
 	 * 
 	 */
@@ -12,12 +12,12 @@ public class Zh_MyDate implements Serializable {
     private int month;
     private int day;
 
-    public Zh_MyDate(){
+    public MyDate(){
 	day=0;
 	month=0;
 	year=0;
     }
-    public Zh_MyDate(int month, int day, int year){
+    public MyDate(int month, int day, int year){
 	this.year=year;
 	this.month=month;
 	this.day=day;
@@ -72,7 +72,7 @@ public class Zh_MyDate implements Serializable {
         if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        Zh_MyDate other = (Zh_MyDate) obj;
+        MyDate other = (MyDate) obj;
         return year == other.year && month == other.month && day == other.day;
     }
 

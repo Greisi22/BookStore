@@ -1,9 +1,6 @@
 package Test.IntegrationTest;
 
-import Model.Books.BookFunctionalities;
-import Model.Books.BookService;
-import Model.Books.Zh_Books;
-import Model.Users.D_Users;
+import Model.Users.Users;
 import Model.Users.UserFunctionalities;
 import Model.Users.UserService;
 import org.junit.jupiter.api.AfterEach;
@@ -36,9 +33,9 @@ public class UserfunctionalitiesIntegrationTest {
     @Test
     public void testUpdateBook() {
 
-        ArrayList<D_Users> usersListt = new ArrayList<>();
-        D_Users user1 = new D_Users();
-        D_Users user2 = new D_Users();
+        ArrayList<Users> usersListt = new ArrayList<>();
+        Users user1 = new Users();
+        Users user2 = new Users();
 
         user1.setEmail("greisijaho@gmail.com");
         user1.setFirstName("Greisi");
@@ -55,13 +52,13 @@ public class UserfunctionalitiesIntegrationTest {
 
         UserFunctionalities userFunctionalities = new UserFunctionalities(userService);
 
-        D_Users user3 = new D_Users();
+        Users user3 = new Users();
         user3.setEmail("greisijaho@gmail.com");
         user3.setFirstName("Oho");
 
         userFunctionalities.setPath(tempFile.getPath());
         UserFunctionalities.updateUsers(user3);
-        ArrayList<D_Users> updatedUsers = userService.getUsers(tempFile.getPath());
+        ArrayList<Users> updatedUsers = userService.getUsers(tempFile.getPath());
 
         assertEquals( usersListt.size(), updatedUsers.size());
         if(updatedUsers.size()>0){

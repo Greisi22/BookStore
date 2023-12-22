@@ -281,11 +281,10 @@ package View.Administator;
 
 import java.util.ArrayList;
 
-import Model.Converters.ZH_MyDateStringConverter;
-import Model.Converters.Zh_accessLevelStringConverter;
-import Model.Users.D_Users;
-import Model.Bills.Zh_MyDate;
-import Model.Login.Zh_accessLevel;
+import Model.Converters.MyDateStringConverter;
+import Model.Converters.AccessLevelStringConverter;
+import Model.Bills.MyDate;
+import Model.Login.AccessLevel;
 import Model.Users.UserFunctionalities;
 import Model.Users.UserService;
 import javafx.collections.FXCollections;
@@ -310,15 +309,15 @@ public static void ModUsers()
 
 	UserService userService = new UserService();
 	//................................................................................................//
-	ArrayList<D_Users> listBooks = new ArrayList<D_Users>();
+	ArrayList<Model.Users.Users> listBooks = new ArrayList<Model.Users.Users>();
     listBooks = userService.getUsers(path);
 
 
 
 
 		
-		TableView<D_Users> userTable = new TableView<D_Users>();
-		ObservableList<D_Users> data = FXCollections.observableArrayList(listBooks); 
+		TableView<Model.Users.Users> userTable = new TableView<Model.Users.Users>();
+		ObservableList<Model.Users.Users> data = FXCollections.observableArrayList(listBooks);
 		userTable.setItems(data);
 		
 		//........................................................................................................
@@ -335,14 +334,14 @@ public static void ModUsers()
 		TableColumn phone = new TableColumn(" Phone");
 		TableColumn accesLevel = new TableColumn("Acces Level");
 
-		firstName.setCellValueFactory(new PropertyValueFactory<D_Users, String>("firstName"));
+		firstName.setCellValueFactory(new PropertyValueFactory<Model.Users.Users, String>("firstName"));
 		firstName.setCellFactory(TextFieldTableCell.forTableColumn());
-		firstName.setOnEditCommit(new EventHandler<CellEditEvent<D_Users,String>>(){
+		firstName.setOnEditCommit(new EventHandler<CellEditEvent<Model.Users.Users,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<D_Users, String> event) {
+			public void handle(CellEditEvent<Model.Users.Users, String> event) {
 				
-		            	D_Users b1 = event.getRowValue();
+		            	Model.Users.Users b1 = event.getRowValue();
 			      b1.setFirstName(event.getNewValue());
 			  //    updateBook(b1);
 			}
@@ -352,14 +351,14 @@ public static void ModUsers()
 		});
 //		//.........................................................................
 //	
-		lastName.setCellValueFactory(new PropertyValueFactory<D_Users, String>("lastName"));
+		lastName.setCellValueFactory(new PropertyValueFactory<Model.Users.Users, String>("lastName"));
 		lastName.setCellFactory(TextFieldTableCell.forTableColumn());
-		lastName.setOnEditCommit(new EventHandler<CellEditEvent<D_Users,String>>(){
+		lastName.setOnEditCommit(new EventHandler<CellEditEvent<Model.Users.Users,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<D_Users, String> event) {
+			public void handle(CellEditEvent<Model.Users.Users, String> event) {
 				
-			D_Users b1 = event.getRowValue();
+			Model.Users.Users b1 = event.getRowValue();
 		      b1.setLastName(event.getNewValue());
 		   //   updateBook(b1);
 			}
@@ -367,14 +366,14 @@ public static void ModUsers()
 		});
 		//.........................................................................
 //		
-		email.setCellValueFactory(new PropertyValueFactory<D_Users, String>("email"));
+		email.setCellValueFactory(new PropertyValueFactory<Model.Users.Users, String>("email"));
 		email.setCellFactory(TextFieldTableCell.forTableColumn());
-		email.setOnEditCommit(new EventHandler<CellEditEvent<D_Users,String>>(){
+		email.setOnEditCommit(new EventHandler<CellEditEvent<Model.Users.Users,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<D_Users, String> event) {
+			public void handle(CellEditEvent<Model.Users.Users, String> event) {
 				
-			D_Users b1 = event.getRowValue();
+			Model.Users.Users b1 = event.getRowValue();
 		      b1.setEmail(event.getNewValue());
 		     // updateBook(b1);
 			}
@@ -382,14 +381,14 @@ public static void ModUsers()
 		});
 //		//.........................................................................
 //		
-		birthday.setCellValueFactory(new PropertyValueFactory<D_Users, Zh_MyDate>("birthday"));
-		birthday.setCellFactory(TextFieldTableCell.forTableColumn(new ZH_MyDateStringConverter()));
-		birthday.setOnEditCommit(new EventHandler<CellEditEvent<D_Users,Zh_MyDate>>(){
+		birthday.setCellValueFactory(new PropertyValueFactory<Model.Users.Users, MyDate>("birthday"));
+		birthday.setCellFactory(TextFieldTableCell.forTableColumn(new MyDateStringConverter()));
+		birthday.setOnEditCommit(new EventHandler<CellEditEvent<Model.Users.Users, MyDate>>(){
 
 		@Override
-			public void handle(CellEditEvent<D_Users, Zh_MyDate> event) {
+			public void handle(CellEditEvent<Model.Users.Users, MyDate> event) {
 				
-			D_Users b1 = event.getRowValue();
+			Model.Users.Users b1 = event.getRowValue();
 			b1.setBirthday(event.getNewValue());
 
 
@@ -398,14 +397,14 @@ public static void ModUsers()
 		
 		});
 		
-		password.setCellValueFactory(new PropertyValueFactory<D_Users, String>("password"));
+		password.setCellValueFactory(new PropertyValueFactory<Model.Users.Users, String>("password"));
 		password.setCellFactory(TextFieldTableCell.forTableColumn());
-		password.setOnEditCommit(new EventHandler<CellEditEvent<D_Users,String>>(){
+		password.setOnEditCommit(new EventHandler<CellEditEvent<Model.Users.Users,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<D_Users, String> event) {
+			public void handle(CellEditEvent<Model.Users.Users, String> event) {
 				
-			D_Users b1 = event.getRowValue();
+			Model.Users.Users b1 = event.getRowValue();
 			b1.setPassword(event.getNewValue());
 	
 	
@@ -414,14 +413,14 @@ public static void ModUsers()
 		
 		});
 		
-		salery.setCellValueFactory(new PropertyValueFactory<D_Users, Long>("salery"));
+		salery.setCellValueFactory(new PropertyValueFactory<Model.Users.Users, Long>("salery"));
 		salery.setCellFactory(TextFieldTableCell.forTableColumn(new LongStringConverter() ));
-		salery.setOnEditCommit(new EventHandler<CellEditEvent<D_Users,Long>>(){
+		salery.setOnEditCommit(new EventHandler<CellEditEvent<Model.Users.Users,Long>>(){
 
 		@Override
-			public void handle(CellEditEvent<D_Users, Long> event) {
+			public void handle(CellEditEvent<Model.Users.Users, Long> event) {
 				
-			D_Users b1 = event.getRowValue();
+			Model.Users.Users b1 = event.getRowValue();
 			b1.setSalery(event.getNewValue());;
 
 
@@ -430,14 +429,14 @@ public static void ModUsers()
 		
 		});
 		
-		phone.setCellValueFactory(new PropertyValueFactory<D_Users, String>("phone"));
+		phone.setCellValueFactory(new PropertyValueFactory<Model.Users.Users, String>("phone"));
 		phone.setCellFactory(TextFieldTableCell.forTableColumn());
-		phone.setOnEditCommit(new EventHandler<CellEditEvent<D_Users,String>>(){
+		phone.setOnEditCommit(new EventHandler<CellEditEvent<Model.Users.Users,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<D_Users, String> event) {
+			public void handle(CellEditEvent<Model.Users.Users, String> event) {
 				
-			D_Users b1 = event.getRowValue();
+			Model.Users.Users b1 = event.getRowValue();
 			b1.setPhone(event.getNewValue());
 
 
@@ -446,14 +445,14 @@ public static void ModUsers()
 		
 		});
 		
-		accesLevel.setCellValueFactory(new PropertyValueFactory<D_Users, Zh_accessLevel>("accesLevel"));
-		accesLevel.setCellFactory(TextFieldTableCell.forTableColumn(new Zh_accessLevelStringConverter()));
-		accesLevel.setOnEditCommit(new EventHandler<CellEditEvent<D_Users,Zh_accessLevel>>(){
+		accesLevel.setCellValueFactory(new PropertyValueFactory<Model.Users.Users, AccessLevel>("accesLevel"));
+		accesLevel.setCellFactory(TextFieldTableCell.forTableColumn(new AccessLevelStringConverter()));
+		accesLevel.setOnEditCommit(new EventHandler<CellEditEvent<Model.Users.Users, AccessLevel>>(){
 
 		@Override
-			public void handle(CellEditEvent<D_Users, Zh_accessLevel> event) {
+			public void handle(CellEditEvent<Model.Users.Users, AccessLevel> event) {
 				
-			D_Users b1 = event.getRowValue();
+			Model.Users.Users b1 = event.getRowValue();
 			b1.setAccesLevel(event.getNewValue());
 	
 	
@@ -479,6 +478,6 @@ public static void ModUsers()
 
 		
 }
-static ArrayList<D_Users> newBooks1 = new ArrayList<D_Users>();
+static ArrayList<Model.Users.Users> newBooks1 = new ArrayList<Model.Users.Users>();
 
 }

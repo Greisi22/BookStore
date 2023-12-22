@@ -1,7 +1,7 @@
 package Model.Bills;
 
 import Model.Books.BookService;
-import Model.Books.Zh_Books;
+import Model.Books.Books;
 
 import java.util.ArrayList;
 
@@ -27,12 +27,12 @@ public class BillFunctionalitiess {
 
 
 
-    public static boolean checkOutOfStock(Zh_Books book) {
+    public static boolean checkOutOfStock(Books book) {
 
 
-        ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
+        ArrayList<Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
 
-        for(Zh_Books b:booksFromFile)
+        for(Books b:booksFromFile)
         {
             if(b.equals(book))
             {
@@ -49,34 +49,34 @@ public class BillFunctionalitiess {
     }
 
 
-    public static double CalculateTotalPrice(ArrayList<Zh_Books> listBooks)
+    public static double CalculateTotalPrice(ArrayList<Books> listBooks)
     {
         double totalPrice=0;
 
-        for(Zh_Books books:listBooks)
+        for(Books books:listBooks)
         {
             totalPrice+=books.getPrice();
         }
         return totalPrice;
     }
 
-    public static ArrayList<String> getBookNames(ArrayList<Zh_Books> books) {
+    public static ArrayList<String> getBookNames(ArrayList<Books> books) {
 
 
         ArrayList<String> bookNames = new ArrayList<>();
 
-        for (Zh_Books book : books) {
+        for (Books book : books) {
             bookNames.add(book.getTitle());
         }
         return bookNames;
     }
 
-    public static Zh_Books updateQuantity(Zh_Books book)
+    public static Books updateQuantity(Books book)
     {
 
-        ArrayList<Zh_Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
+        ArrayList<Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
 
-        for(Zh_Books b:booksFromFile)
+        for(Books b:booksFromFile)
         {
 
 

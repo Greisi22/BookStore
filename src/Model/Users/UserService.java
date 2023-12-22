@@ -1,8 +1,5 @@
 package Model.Users;
 
-import Model.Books.Zh_Books;
-import View.Administator.Users;
-
 import java.io.*;
 import java.util.ArrayList;
 
@@ -12,15 +9,15 @@ public class UserService {
     {
 
     }
-    public ArrayList<D_Users> getUsers(String path ) {
-        ArrayList<D_Users> list = new ArrayList<>();
+    public ArrayList<Users> getUsers(String path ) {
+        ArrayList<Users> list = new ArrayList<>();
         FileInputStream fis;
         try {
             fis = new FileInputStream(path);
             ObjectInputStream objis = new ObjectInputStream(fis);
-            D_Users obj = new D_Users();
+            Users obj = new Users();
             while (true) {
-                obj = ((D_Users) objis.readObject());
+                obj = ((Users) objis.readObject());
                 list.add(obj);
             }
         } catch (ClassNotFoundException e) {
@@ -33,7 +30,7 @@ public class UserService {
     }
 
 
-    public  void writeUsersInFile(ArrayList<D_Users> usersList, String path){
+    public  void writeUsersInFile(ArrayList<Users> usersList, String path){
         FileOutputStream out;
         try {
             out = new FileOutputStream(path);

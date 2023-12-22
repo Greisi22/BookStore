@@ -1,14 +1,14 @@
 package View.Administator;
 
-import Model.Users.D_Users;
-import Model.Bills.Zh_MyDate;
-import Model.Login.Zh_accessLevel;
+import Model.Users.Users;
+import Model.Bills.MyDate;
+import Model.Login.AccessLevel;
 
 public class Controller_Users {
-	public D_Users loginn(String firstName, String lastName, String email, Zh_MyDate birthday, String password, long salery,
-			String phone,Zh_accessLevel accesLevel)
+	public Users loginn(String firstName, String lastName, String email, MyDate birthday, String password, long salery,
+						String phone, AccessLevel accesLevel)
 	{
-		D_Users newUser=new D_Users(firstName,lastName,email,birthday, password,salery,phone,accesLevel);
+		Users newUser=new Users(firstName,lastName,email,birthday, password,salery,phone,accesLevel);
 		
 		return newUser;
 	}

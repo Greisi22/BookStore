@@ -1,13 +1,13 @@
 package Model.Books;
 
-import Model.Bills.Zh_MyDate;
+import Model.Bills.MyDate;
 
 import java.io.*;
 import java.util.ArrayList;
 
 
 
-public class Zh_Books  implements Serializable {
+public class Books implements Serializable {
 	
 	@Serial
 	private static final long serialVersionUID = 5296705482940410483L;
@@ -16,17 +16,17 @@ public class Zh_Books  implements Serializable {
 	private int quanity;
 	private String description;
 	private double price;
-	private V_Author author;
-	private ArrayList<Zh_Genre> genres = new ArrayList<>();
+	private Author author;
+	private ArrayList<Genre> genres = new ArrayList<>();
 	private String genresS;
 	private boolean paperback; // or e-book
-	private Zh_MyDate date;
+	private MyDate date;
 	
-	public Zh_MyDate getDate() {
+	public MyDate getDate() {
 		return date;
 	}
 
-	public void setDate(Zh_MyDate date) {
+	public void setDate(MyDate date) {
 		this.date = date;
 	}
 
@@ -41,7 +41,7 @@ public class Zh_Books  implements Serializable {
 
 	public void setGenresS(String genresS) {
 		ArrayList<String> list1 = new ArrayList<>();
-		ArrayList<Zh_Genre> list2 = new ArrayList<>();
+		ArrayList<Genre> list2 = new ArrayList<>();
 		char[] chararr = genresS.toCharArray();
 		StringBuilder s2 = new StringBuilder(); // Use StringBuilder instead of String
 		for (int i = 0; i < chararr.length; i++) {
@@ -55,9 +55,9 @@ public class Zh_Books  implements Serializable {
 		}
 		for (int i = 0; i < list1.size(); i++) {
 			if (list1.get(i).equals("ACTION")) {
-				list2.add(Zh_Genre.ACTION);
+				list2.add(Genre.ACTION);
 			} else if (list1.get(i).equals("FANTASY")) {
-				list2.add(Zh_Genre.FANTASY);
+				list2.add(Genre.FANTASY);
 			}
 		}
 		setGenres(list2);
@@ -66,19 +66,19 @@ public class Zh_Books  implements Serializable {
 
 
 
-	public Zh_Books()
+	public Books()
 	{
 		
 	}
 
-	public Zh_Books(String title, String ISBN, int quanity)
+	public Books(String title, String ISBN, int quanity)
 	{
 		this.title = title;
 		this.ISBN = ISBN;
 		this.quanity = quanity;
 	}
 	
-	public Zh_Books(String title, String ISBN, int quanity, String description, double price, V_Author author, boolean paperback) {
+	public Books(String title, String ISBN, int quanity, String description, double price, Author author, boolean paperback) {
 		super();
 		this.title = title;
 		this.ISBN = ISBN;
@@ -113,16 +113,16 @@ public class Zh_Books  implements Serializable {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public V_Author getAuthor() {
+	public Author getAuthor() {
 		return author;
 	}
-	public void setAuthor(V_Author author) {
+	public void setAuthor(Author author) {
 		this.author = author;
 	}
-	public ArrayList<Zh_Genre> getGenres() {
+	public ArrayList<Genre> getGenres() {
 		return genres;
 	}
-	public void setGenres(ArrayList<Zh_Genre> genres) {
+	public void setGenres(ArrayList<Genre> genres) {
 		this.genres = genres;
 	}
 	public boolean isPaperback() {
@@ -145,7 +145,7 @@ public class Zh_Books  implements Serializable {
 		if (this == obj) return true;
 		if (obj == null || getClass() != obj.getClass()) return false;
 
-		Zh_Books otherBook = (Zh_Books) obj;
+		Books otherBook = (Books) obj;
 
 		return ISBN.equals(otherBook.ISBN);
 	}

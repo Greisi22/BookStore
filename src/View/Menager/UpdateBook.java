@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import Model.Books.BookFunctionalities;
 import Model.Books.BookService;
-import Model.Books.Zh_Books;
+import Model.Books.Books;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -39,18 +39,18 @@ public class UpdateBook {
 		
 		
 		//................................................................................................//
-	ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
+	ArrayList<Books> listBooks = new ArrayList<Books>();
 		FileInputStream fis = null;
 		ObjectInputStream objis = null;
 		try {
 			fis = new FileInputStream("src/EncodedInformation/Books.dat");
 			 objis = new ObjectInputStream(fis);
 
-			Zh_Books obj = new Zh_Books() ;
+			Books obj = new Books() ;
 		while(obj!=null)
 		{
 			
-			obj = ((Zh_Books) objis.readObject());
+			obj = ((Books) objis.readObject());
 			listBooks.add(obj);
 		}
 		//objis.close();
@@ -74,8 +74,8 @@ public class UpdateBook {
 			e1.printStackTrace();
 		}
 		System.out.println(listBooks);
-		TableView<Zh_Books> userTable = new TableView<Zh_Books>();
-		ObservableList<Zh_Books> data = FXCollections.observableArrayList(listBooks); 
+		TableView<Books> userTable = new TableView<Books>();
+		ObservableList<Books> data = FXCollections.observableArrayList(listBooks);
 		userTable.setItems(data);
 		
 		//........................................................................................................
@@ -94,86 +94,86 @@ public class UpdateBook {
 		TableColumn genresS = new TableColumn("genresS");
 		
 		
-		title.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("title"));
+		title.setCellValueFactory(new PropertyValueFactory<Books, String>("title"));
 		title.setCellFactory(TextFieldTableCell.forTableColumn());
 
 		BookService bookService = new BookService();
-		title.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,String>>(){
+		title.setOnEditCommit(new EventHandler<CellEditEvent<Books,String>>(){
 			@Override
-			public void handle(CellEditEvent<Zh_Books, String> event) {
-			      Zh_Books b1 = event.getRowValue();
+			public void handle(CellEditEvent<Books, String> event) {
+			      Books b1 = event.getRowValue();
 			      b1.setTitle(event.getNewValue());
-				ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+				ArrayList<Books> temp  = BookFunctionalities.UpdateBook(b1);
 				bookService.writeBooksInFile(temp, "src/EncodedInformation/Books.dat");
 			}
 		});
 		//.........................................................................
 	
-		ISBN.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("ISBN"));
+		ISBN.setCellValueFactory(new PropertyValueFactory<Books, String>("ISBN"));
 		ISBN.setCellFactory(TextFieldTableCell.forTableColumn());
-		ISBN.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,String>>(){
+		ISBN.setOnEditCommit(new EventHandler<CellEditEvent<Books,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<Zh_Books, String> event) {
+			public void handle(CellEditEvent<Books, String> event) {
 				
-			 Zh_Books b1 = event.getRowValue();
+			 Books b1 = event.getRowValue();
 		      b1.setISBN((event.getNewValue()));
-			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			ArrayList<Books> temp  = BookFunctionalities.UpdateBook(b1);
 			bookService.writeBooksInFile(temp, "src/EncodedInformation/Books.dat");
 			}
 		
 		});
 		//.........................................................................
 		
-		quanity.setCellValueFactory(new PropertyValueFactory<Zh_Books, Integer>("quanity"));
+		quanity.setCellValueFactory(new PropertyValueFactory<Books, Integer>("quanity"));
 		quanity.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-		quanity.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,String>>(){
+		quanity.setOnEditCommit(new EventHandler<CellEditEvent<Books,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<Zh_Books, String> event) {
+			public void handle(CellEditEvent<Books, String> event) {
 				
-			 Zh_Books b1 = event.getRowValue();
+			 Books b1 = event.getRowValue();
 		      b1.setQuanity(Integer.parseInt(event.getNewValue()));
-			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			ArrayList<Books> temp  = BookFunctionalities.UpdateBook(b1);
 			bookService.writeBooksInFile(temp, "src/EncodedInformation/Books.dat");
 			}
 		
 		});
 		//.........................................................................
 		
-		description.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("description"));
+		description.setCellValueFactory(new PropertyValueFactory<Books, String>("description"));
 		description.setCellFactory(TextFieldTableCell.forTableColumn());
-		description.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,String>>(){
+		description.setOnEditCommit(new EventHandler<CellEditEvent<Books,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<Zh_Books, String> event) {
+			public void handle(CellEditEvent<Books, String> event) {
 				
-			 Zh_Books b1 = event.getRowValue();
+			 Books b1 = event.getRowValue();
 		      b1.setDescription(event.getNewValue());;
-			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			ArrayList<Books> temp  = BookFunctionalities.UpdateBook(b1);
 			bookService.writeBooksInFile(temp, "src/EncodedInformation/Books.dat");
 			}
 		
 		});
-		price.setCellValueFactory(new PropertyValueFactory<Zh_Books, Double>("price"));
+		price.setCellValueFactory(new PropertyValueFactory<Books, Double>("price"));
 		price.setCellFactory(TextFieldTableCell.forTableColumn(new DoubleStringConverter()));
-		price.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,Double>>(){
+		price.setOnEditCommit(new EventHandler<CellEditEvent<Books,Double>>(){
 
 	
 
 		@Override
-		public void handle(CellEditEvent<Zh_Books, Double> event) {
+		public void handle(CellEditEvent<Books, Double> event) {
 	
-			 Zh_Books b1 = event.getRowValue();
+			 Books b1 = event.getRowValue();
 		      b1.setPrice(event.getNewValue());
-			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			ArrayList<Books> temp  = BookFunctionalities.UpdateBook(b1);
 			bookService.writeBooksInFile(temp, "src/EncodedInformation/Books.dat");
 		}
 		
 		});
 		//.........................................................................
 		
-		author.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("author"));
+		author.setCellValueFactory(new PropertyValueFactory<Books, String>("author"));
 //		author.setCellFactory(TextFieldTableCell.forTableColumn());
 //		author.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,String>>(){
 //
@@ -188,16 +188,16 @@ public class UpdateBook {
 //		});
 //		//.........................................................................
 		
-		paperback.setCellValueFactory(new PropertyValueFactory<Zh_Books, Boolean>("paperback"));
+		paperback.setCellValueFactory(new PropertyValueFactory<Books, Boolean>("paperback"));
 		paperback.setCellFactory(TextFieldTableCell.forTableColumn(new BooleanStringConverter()));
-		paperback.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,Boolean>>(){
+		paperback.setOnEditCommit(new EventHandler<CellEditEvent<Books,Boolean>>(){
 
 
 		@Override
-		public void handle(CellEditEvent<Zh_Books, Boolean> event) {
-			Zh_Books b1 = event.getRowValue();
+		public void handle(CellEditEvent<Books, Boolean> event) {
+			Books b1 = event.getRowValue();
 		      b1.setPaperback(event.getNewValue());
-			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			ArrayList<Books> temp  = BookFunctionalities.UpdateBook(b1);
 			bookService.writeBooksInFile(temp, "src/EncodedInformation/Books.dat");
 			
 		}
@@ -205,15 +205,15 @@ public class UpdateBook {
 		});
 		//.........................................................................
 		
-		genresS.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("genresS"));
+		genresS.setCellValueFactory(new PropertyValueFactory<Books, String>("genresS"));
 		genresS.setCellFactory(TextFieldTableCell.forTableColumn());
-		genresS.setOnEditCommit(new EventHandler<CellEditEvent<Zh_Books,String>>(){
+		genresS.setOnEditCommit(new EventHandler<CellEditEvent<Books,String>>(){
 
 		@Override
-			public void handle(CellEditEvent<Zh_Books, String> event) {
-			Zh_Books b1 = event.getRowValue();
+			public void handle(CellEditEvent<Books, String> event) {
+			Books b1 = event.getRowValue();
 		      b1.setGenresS(event.getNewValue());
-			ArrayList<Zh_Books> temp  = BookFunctionalities.UpdateBook(b1);
+			ArrayList<Books> temp  = BookFunctionalities.UpdateBook(b1);
 			bookService.writeBooksInFile(temp, "src/EncodedInformation/Books.dat");
 			}
 		
@@ -223,7 +223,7 @@ public class UpdateBook {
 
 
 	
-        FilteredList<Zh_Books> flPerson = new FilteredList(data, p -> true);//Pass the data to a filtered list
+        FilteredList<Books> flPerson = new FilteredList(data, p -> true);//Pass the data to a filtered list
         userTable.setItems(flPerson);//Set the table's items using the filtered list
     	userTable.getColumns().addAll(title,ISBN,quanity,description,price,author,paperback,genresS);
     	//........................................................................

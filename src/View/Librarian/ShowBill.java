@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import Model.Bills.Bill;
 import Model.Bills.BillFunctionalitiess;
 import Model.Bills.BillService;
-import Model.Bills.Zh_MyDate;
-import Model.Books.Zh_Books;
+import Model.Bills.MyDate;
+import Model.Books.Books;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,14 +26,14 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class F_ShowBill {
+public class ShowBill {
 
 
 
 	private static ObjectInputStream objis;
 
 
-	public static void ShowBill(ArrayList<Zh_Books> bookOfBill, Pane pane2, Stage stage1,
+	public static void ShowBill(ArrayList<Books> bookOfBill, Pane pane2, Stage stage1,
 								Stage stage, String WelcomeName)
 	{
 
@@ -120,7 +120,7 @@ public class F_ShowBill {
 
 			stage1.close();
 			try {
-				CA__Librarian_View.showTable(stage);
+				LibrarianView.showTable(stage);
 			} catch (ClassNotFoundException ex) {
 				throw new RuntimeException(ex);
 			}
@@ -136,7 +136,7 @@ public class F_ShowBill {
 		});
 
 		//objecti i controllerit
-		Zh_Bill_Controller newBill = new Zh_Bill_Controller();
+		BillController newBill = new BillController();
 
 
 		Print.setOnAction(e->{
@@ -145,7 +145,7 @@ public class F_ShowBill {
 			BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
 
 //		    BillFunctionalitiess.updateQuantity(selectedbook);
- 			Bill isCreated = newBill.createBill(total,new Zh_MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()), bookOfBill.size());
+ 			Bill isCreated = newBill.createBill(total,new MyDate(d.getValue().getMonthValue(),d.getValue().getDayOfMonth(),d.getValue().getYear()), bookOfBill.size());
 			isCreated.setBook_name(bookNamess);
 			isCreated.setBookquantity(bookOfBill.size());
 

@@ -1,8 +1,6 @@
 package Model.Bills;
 
 
-import Model.Bills.Zh_MyDate;
-
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,7 +19,7 @@ public class Bill implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private     double Price;
 	private     ArrayList<String> Book_name;
-	private Zh_MyDate date;
+	private MyDate date;
 	private    String name;
 	private     String surname;
 	private int  Bookquantity;
@@ -48,7 +46,7 @@ public Bill() {
 	
 }
 	
-	public Bill(double price, Zh_MyDate date) {
+	public Bill(double price, MyDate date) {
 		super();
 		Price = price;
 
@@ -68,11 +66,11 @@ public Bill() {
 	}
 
 	
-	public Zh_MyDate getDate() {
+	public MyDate getDate() {
 		return date;
 	}
 
-	public void setDate(Zh_MyDate date) {
+	public void setDate(MyDate date) {
 		this.date = date;
 	}
 

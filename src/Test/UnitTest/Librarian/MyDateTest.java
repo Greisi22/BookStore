@@ -1,12 +1,12 @@
 package Test.UnitTest.Librarian;
 
-import Model.Bills.Zh_MyDate;
+import Model.Bills.MyDate;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class Zh_MyDateTest {
+class MyDateTest {
 
     @ParameterizedTest
     @CsvSource(
@@ -16,7 +16,7 @@ class Zh_MyDateTest {
             }
     )
     void getYear(int year, int expected) {
-        Zh_MyDate mydate =new Zh_MyDate();
+        MyDate mydate =new MyDate();
         mydate.setYear(year);
         int result =mydate.getYear();
         assertEquals(expected,result);
@@ -31,7 +31,7 @@ class Zh_MyDateTest {
             }
     )
     void getMonth(int month, int expected) {
-        Zh_MyDate mydate =new Zh_MyDate();
+        MyDate mydate =new MyDate();
         mydate.setMonth(month);
         int result=mydate.getMonth();
         assertEquals(expected,result);
@@ -44,7 +44,7 @@ class Zh_MyDateTest {
             }
     )
     void getDay(int day, int expected) {
-        Zh_MyDate mydate =new Zh_MyDate();
+        MyDate mydate =new MyDate();
         mydate.setMonth(day);
         int result=mydate.getMonth();
         assertEquals(expected,result);
@@ -57,7 +57,7 @@ class Zh_MyDateTest {
             "0, 0"
     })
     void testSetYear(int inputYear, int expectedYear) {
-        Zh_MyDate myDate = new Zh_MyDate();
+        MyDate myDate = new MyDate();
         myDate.setYear(inputYear);
         assertEquals(expectedYear, myDate.getYear());
     }
@@ -71,7 +71,7 @@ class Zh_MyDateTest {
 
     })
     void testSetMonth(int inputmonth, int expectedMonth) {
-        Zh_MyDate myDate = new Zh_MyDate();
+        MyDate myDate = new MyDate();
         myDate.setMonth(inputmonth);
         assertEquals(expectedMonth, myDate.getMonth());
     }
@@ -84,7 +84,7 @@ class Zh_MyDateTest {
 
     })
     void testSetDay(int inputday, int expectedDay) {
-        Zh_MyDate myDate = new Zh_MyDate();
+        MyDate myDate = new MyDate();
         myDate.setDay(inputday);
         assertEquals(expectedDay, myDate.getDay());
     }
@@ -98,8 +98,8 @@ class Zh_MyDateTest {
     })
     void testEquals(int month, int day, int year, int month1, int day1, int year1, boolean expected ) {
 
-        Zh_MyDate myDate=new Zh_MyDate(month,day,year);
-        Zh_MyDate myDate1=new Zh_MyDate(month1,day1,year1);
+        MyDate myDate=new MyDate(month,day,year);
+        MyDate myDate1=new MyDate(month1,day1,year1);
 
         assertEquals(expected, myDate.equals(myDate1));
 
@@ -110,7 +110,7 @@ class Zh_MyDateTest {
             "12,2,2002,'12/2/2002'"
     })
     void testToString(int month, int day, int year,String expected) {
-        Zh_MyDate myDate=new Zh_MyDate(month,day,year);
+        MyDate myDate=new MyDate(month,day,year);
         String result=myDate.toString();
         assertEquals(expected,result);
     }

@@ -1,10 +1,7 @@
 package Test.UnitTest.Users;
 
-import Mock.Books.BooksSreviceMock;
 import Mock.Users.UserServiceMock;
-import Model.Books.BookFunctionalities;
-import Model.Books.Zh_Books;
-import Model.Users.D_Users;
+import Model.Users.Users;
 import Model.Users.UserFunctionalities;
 import org.junit.jupiter.api.Test;
 
@@ -17,9 +14,9 @@ public class UserFunctionalitiesTest {
 
     @Test
     public void testUpdateUser() {
-        ArrayList<D_Users> usersListt = new ArrayList<>();
-        D_Users user1 = new D_Users();
-        D_Users user2 = new D_Users();
+        ArrayList<Users> usersListt = new ArrayList<>();
+        Users user1 = new Users();
+        Users user2 = new Users();
 
         user1.setEmail("greisijaho@gmail.com");
         user1.setFirstName("Greisi");
@@ -38,11 +35,11 @@ public class UserFunctionalitiesTest {
 
         UserFunctionalities userFunctionalities = new UserFunctionalities(userServiceMock);
 
-        D_Users user = new D_Users();
+        Users user = new Users();
         user.setEmail("greisijaho@gmail.com");
         user.setFirstName("Greisi2");
 
-        ArrayList<D_Users> updatedUser =   UserFunctionalities.updateUsers(user);
+        ArrayList<Users> updatedUser =   UserFunctionalities.updateUsers(user);
         assertEquals(updatedUser.get(0).getFirstName(),user.getFirstName() );
     }
 

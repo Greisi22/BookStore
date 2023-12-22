@@ -1,10 +1,8 @@
 package Test.IntegrationTest;
 
-import Mock.Books.BooksSreviceMock;
 import Model.Books.BookFunctionalities;
 import Model.Books.BookService;
-import Model.Books.Zh_Books;
-import Model.Users.UserService;
+import Model.Books.Books;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,9 +34,9 @@ public class BookFunctionalitiesIntegrationTest {
     @Test
     public void testUpdateBook() {
 
-        ArrayList<Zh_Books> booksListt = new ArrayList<>();
-        Zh_Books book1 = new Zh_Books();
-        Zh_Books book2 = new Zh_Books();
+        ArrayList<Books> booksListt = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
         book1.setISBN("3");
         book1.setQuanity(2);
         book2.setISBN("2");
@@ -50,12 +48,12 @@ public class BookFunctionalitiesIntegrationTest {
         bookService.writeBooksInFile(booksListt, tempFile.getPath());
 
         BookFunctionalities bookFunctionalities = new BookFunctionalities(bookService);
-        Zh_Books books = new Zh_Books();
+        Books books = new Books();
         books.setQuanity(3);
         books.setISBN("3");
         bookFunctionalities.setPath(tempFile.getPath());
         bookFunctionalities.UpdateBook(books);
-        ArrayList<Zh_Books> updatedBooks = bookService.getBooks(tempFile.getPath());
+        ArrayList<Books> updatedBooks = bookService.getBooks(tempFile.getPath());
         assertEquals( booksListt.size(), updatedBooks.size());
         if(updatedBooks.size()>0){
             assertEquals(updatedBooks.get(0).getQuanity(),books.getQuanity() );

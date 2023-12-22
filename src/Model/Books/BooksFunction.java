@@ -1,6 +1,6 @@
 package Model.Books;
 
-public abstract class Zh_BooksFunction {
+public abstract class BooksFunction {
 
 	public abstract String getBname();
 	public abstract long getBprice();

@@ -3,8 +3,8 @@ package View.Menager;
 import java.io.*;
 import java.util.ArrayList;
 
-import View.Librarian.B__Log_in;
-import Model.Books.Zh_Books;
+import View.Librarian.LogIn;
+import Model.Books.Books;
 import Model.Manager.OutOFStock;
 
 
@@ -89,7 +89,7 @@ public class view {
 		label_WelcomeName.setLayoutY(300);
 
 		Statistic.setOnAction(e -> {
-			Menager_Statistic.Satistic_View(stage, WelcomeName);
+			MenagerStatistic.Satistic_View(stage, WelcomeName);
 		});
 
 		UppdateBook.setOnAction(e -> {
@@ -97,14 +97,14 @@ public class view {
 		});
 
 		signout.setOnAction(e -> {
-			B__Log_in.Log_inn(stage);
+			LogIn.Log_inn(stage);
 		});
 
 		createBook.setOnAction(e -> {
-			Menager_Create_Book.BookView(stage, WelcomeName);
+			MenagerCreateBook.BookView(stage, WelcomeName);
 		});
 
-		ArrayList<Zh_Books> booksOutOfStock = OutOFStock.checkIfOutOfStock("src/EncodedInformation/Books.dat");
+		ArrayList<Books> booksOutOfStock = OutOFStock.checkIfOutOfStock("src/EncodedInformation/Books.dat");
 
 		if (booksOutOfStock.isEmpty()) {
 			pane.getChildren().add(no_message);
@@ -120,7 +120,7 @@ public class view {
 					s1.append("        Book ").append(booksOutOfStock.get(i).getTitle()).append(" has less than 5 in stock\n");
 			}
 			Label label = new Label(s1.toString());
-			Books_out_of_Stock.OutOfStock_View(label);
+			BooksOutOfStockk.OutOfStock_View(label);
 		});
 
 		pane.getChildren().addAll(createBook, UppdateBook, Statistic, signout, label_WelcomeName);

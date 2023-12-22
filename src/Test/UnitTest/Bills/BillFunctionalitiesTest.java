@@ -3,7 +3,7 @@ package Test.UnitTest.Bills;
 import Mock.Books.BooksSreviceMock;
 import Model.Bills.BillFunctionalitiess;
 import Model.Books.BookService;
-import Model.Books.Zh_Books;
+import Model.Books.Books;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
@@ -27,9 +27,9 @@ public class BillFunctionalitiesTest {
     void checkQuantityTest(String ISBN, boolean expected) {
 
         BillFunctionalitiess Just_To_Test_Constructor = new BillFunctionalitiess();
-        ArrayList<Zh_Books> books = new ArrayList<>();
-        Zh_Books book1 = new Zh_Books();
-        Zh_Books book2 = new Zh_Books();
+        ArrayList<Books> books = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
         book1.setISBN("3");
         book1.setQuanity(2);
         book2.setISBN("2");
@@ -43,7 +43,7 @@ public class BillFunctionalitiesTest {
 
         BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(booksSreviceMock);
 
-        Zh_Books book = new Zh_Books();
+        Books book = new Books();
         book.setISBN(ISBN);
 
         boolean actual = BillFunctionalitiess.checkOutOfStock(book);
@@ -63,13 +63,13 @@ public class BillFunctionalitiesTest {
         "5, -2, 3.0"
 })
 void calculateTest(int price1, int price2, double expectedTotal) {
-    Zh_Books b1 = new Zh_Books();
+    Books b1 = new Books();
     b1.setPrice(price1);
 
-    Zh_Books b2 = new Zh_Books();
+    Books b2 = new Books();
     b2.setPrice(price2);
 
-    ArrayList<Zh_Books> selectedBooks = new ArrayList<>();
+    ArrayList<Books> selectedBooks = new ArrayList<>();
     selectedBooks.add(b1);
     selectedBooks.add(b2);
 
@@ -86,12 +86,12 @@ void calculateTest(int price1, int price2, double expectedTotal) {
     void getBookNamesTest()
     {
 
-        ArrayList<Zh_Books> books = new ArrayList<>();
+        ArrayList<Books> books = new ArrayList<>();
 
-        Zh_Books b1 = new Zh_Books();
+        Books b1 = new Books();
         b1.setTitle("A");
 
-        Zh_Books b2 = new Zh_Books();
+        Books b2 = new Books();
         b2.setTitle("B");
 
         books.add(b1);
@@ -111,9 +111,9 @@ void calculateTest(int price1, int price2, double expectedTotal) {
     })
     void updateQuantityTest(String isbn, int initialQuantity, int expectedQuantity,String Isbn) {
 
-        ArrayList<Zh_Books> books = new ArrayList<>();
-        Zh_Books book1 = new Zh_Books();
-        Zh_Books book2 = new Zh_Books();
+        ArrayList<Books> books = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
         book1.setISBN("3");
         book1.setQuanity(2);
         book2.setISBN("2");
@@ -127,13 +127,13 @@ void calculateTest(int price1, int price2, double expectedTotal) {
 
         BillFunctionalitiess billFunctionalities = new BillFunctionalitiess(booksServiceMock);
 
-        Zh_Books book = new Zh_Books();
+        Books book = new Books();
         book.setISBN(isbn);
         book.setQuanity(initialQuantity);
 
-        Zh_Books actual = billFunctionalities.updateQuantity(book);
+        Books actual = billFunctionalities.updateQuantity(book);
 
-        Zh_Books expected = new Zh_Books();
+        Books expected = new Books();
         if(actual == null){
             assertEquals(expected, null);
         }
@@ -154,7 +154,7 @@ void calculateTest(int price1, int price2, double expectedTotal) {
     })
     void updateQuantityEmptyListTest(String isbn, int initialQuantity, int expectedQuantity,String Isbn) {
 
-        ArrayList<Zh_Books> books = new ArrayList<>();
+        ArrayList<Books> books = new ArrayList<>();
 
 
 
@@ -163,13 +163,13 @@ void calculateTest(int price1, int price2, double expectedTotal) {
 
         BillFunctionalitiess billFunctionalities = new BillFunctionalitiess(booksServiceMock);
 
-        Zh_Books book = new Zh_Books();
+        Books book = new Books();
         book.setISBN(isbn);
         book.setQuanity(initialQuantity);
 
-        Zh_Books actual = billFunctionalities.updateQuantity(book);
+        Books actual = billFunctionalities.updateQuantity(book);
 
-        Zh_Books expected = new Zh_Books();
+        Books expected = new Books();
 
             assertNull(actual);
 
@@ -180,8 +180,8 @@ void calculateTest(int price1, int price2, double expectedTotal) {
     void Prova()
     {
         BookService bookService = new BookService();
-        ArrayList<Zh_Books> books = bookService.getBooks( "src/EncodedInformation/Books.dat");
-        for(Zh_Books books1:books)
+        ArrayList<Books> books = bookService.getBooks( "src/EncodedInformation/Books.dat");
+        for(Books books1:books)
         {
             System.out.println(books1.getTitle());
         }

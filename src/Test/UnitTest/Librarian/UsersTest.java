@@ -1,22 +1,22 @@
 package Test.UnitTest.Librarian;
 
-import Model.Bills.Zh_MyDate;
-import Model.Login.Zh_accessLevel;
-import Model.Users.D_Users;
+import Model.Bills.MyDate;
+import Model.Login.AccessLevel;
+import Model.Users.Users;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class D_UsersTest {
+class UsersTest {
     @Test
     public void testD_UsersConstructorAndGetters() {
         // Creating a sample Zh_MyDate for the birthday
-        Zh_MyDate birthday = new Zh_MyDate(2002, 13, 11);
+        MyDate birthday = new MyDate(2002, 13, 11);
 
         // Creating a D_Users object
-        D_Users user = new D_Users("Greisi", "Jaho",
+        Users user = new Users("Greisi", "Jaho",
                 "Gr_ja.@example.com", birthday, "password",
-                50000, "123-456-7890", Zh_accessLevel.ADMINISTRATOR);
+                50000, "123-456-7890", AccessLevel.ADMINISTRATOR);
 
         assertEquals("Greisi", user.getFirstName());
         assertEquals("Jaho", user.getLastName());
@@ -25,15 +25,15 @@ class D_UsersTest {
         assertEquals("password", user.getPassword());
         assertEquals(50000, user.getSalery());
         assertEquals("123-456-7890", user.getPhone());
-        assertEquals(Zh_accessLevel.ADMINISTRATOR, user.getAccesLevel());
+        assertEquals(AccessLevel.ADMINISTRATOR, user.getAccesLevel());
         System.out.println("A user can be created successfully");
     }
     @Test
     public void getFirstName() {
-        Zh_MyDate birthday = new Zh_MyDate(2002, 13, 11);
-        D_Users user = new D_Users("Greisi", "Jaho",
+        MyDate birthday = new MyDate(2002, 13, 11);
+        Users user = new Users("Greisi", "Jaho",
                 "Gr_ja.@example.com", birthday, "password",
-                50000, "123-456-7890", Zh_accessLevel.ADMINISTRATOR);
+                50000, "123-456-7890", AccessLevel.ADMINISTRATOR);
         String firstName = user.getFirstName();
         assertTrue(firstName instanceof String);
         assertEquals("Greisi", user.getFirstName());
@@ -41,7 +41,7 @@ class D_UsersTest {
 
     @Test
     void setFirstName() {
-        D_Users user = new D_Users();
+        Users user = new Users();
         user.setFirstName("Greisi");
         assertEquals("Greisi", user.getFirstName());
         String firstName = user.getFirstName();
@@ -54,10 +54,10 @@ class D_UsersTest {
 
     @Test
     void getEmail() {
-        Zh_MyDate birthday = new Zh_MyDate(2002, 13, 11);
-        D_Users user = new D_Users("Greisi", "Jaho",
+        MyDate birthday = new MyDate(2002, 13, 11);
+        Users user = new Users("Greisi", "Jaho",
                 "Gr_ja.@example.com", birthday, "password",
-                50000, "123-456-7890", Zh_accessLevel.ADMINISTRATOR);
+                50000, "123-456-7890", AccessLevel.ADMINISTRATOR);
         String email = user.getEmail();
         assertTrue(email instanceof String);
         assertEquals("Gr_ja.@example.com", user.getEmail());
@@ -66,7 +66,7 @@ class D_UsersTest {
 
     @Test
     void setEmail() {
-        D_Users user = new D_Users();
+        Users user = new Users();
         user.setEmail("Gr_ja.@example.com");
         assertEquals("Gr_ja.@example.com", user.getEmail());
         String email = user.getEmail();
@@ -78,10 +78,10 @@ class D_UsersTest {
 
     @Test
     void getPassword() {
-        Zh_MyDate birthday = new Zh_MyDate(2002, 13, 11);
-        D_Users user = new D_Users("Greisi", "Jaho",
+        MyDate birthday = new MyDate(2002, 13, 11);
+        Users user = new Users("Greisi", "Jaho",
                 "Gr_ja.@example.com", birthday, "password",
-                50000, "123-456-7890", Zh_accessLevel.ADMINISTRATOR);
+                50000, "123-456-7890", AccessLevel.ADMINISTRATOR);
         String password = user.getPassword();
         assertTrue(password instanceof String);
         assertEquals("password", user.getPassword());
@@ -90,7 +90,7 @@ class D_UsersTest {
 
     @Test
     void setPassword() {
-        D_Users user = new D_Users();
+        Users user = new Users();
         user.setPassword("newPassword");
         assertEquals("newPassword", user.getPassword());
         String password = user.getPassword();
@@ -102,10 +102,10 @@ class D_UsersTest {
 
     @Test
     void getSalary() {
-        Zh_MyDate birthday = new Zh_MyDate(2002, 13, 11);
-        D_Users user = new D_Users("Greisi", "Jaho",
+        MyDate birthday = new MyDate(2002, 13, 11);
+        Users user = new Users("Greisi", "Jaho",
                 "Gr_ja.@example.com", birthday, "password",
-                50000, "123-456-7890", Zh_accessLevel.ADMINISTRATOR);
+                50000, "123-456-7890", AccessLevel.ADMINISTRATOR);
         long salary = user.getSalery();
         assertEquals(50000, salary);
         assertNotNull(user.getSalery());
@@ -113,7 +113,7 @@ class D_UsersTest {
 
     @Test
     void setSalary() {
-        D_Users user = new D_Users();
+        Users user = new Users();
         user.setSalery(60000);
         assertEquals(60000, user.getSalery());
         long salary = user.getSalery();
@@ -123,30 +123,30 @@ class D_UsersTest {
 
     @Test
     void getAccessLevel() {
-        Zh_MyDate birthday = new Zh_MyDate(2002, 13, 11);
-        D_Users user = new D_Users("Greisi", "Jaho",
+        MyDate birthday = new MyDate(2002, 13, 11);
+        Users user = new Users("Greisi", "Jaho",
                 "Gr_ja.@example.com", birthday, "password",
-                50000, "123-456-7890", Zh_accessLevel.ADMINISTRATOR);
-        Zh_accessLevel accessLevel = user.getAccesLevel();
-        assertEquals(Zh_accessLevel.ADMINISTRATOR, accessLevel);
+                50000, "123-456-7890", AccessLevel.ADMINISTRATOR);
+        AccessLevel accessLevel = user.getAccesLevel();
+        assertEquals(AccessLevel.ADMINISTRATOR, accessLevel);
         assertNotNull(user.getAccesLevel());
     }
 
     @Test
     void setAccessLevel() {
-        D_Users user = new D_Users();
-        user.setAccesLevel(Zh_accessLevel.ADMINISTRATOR);
-        assertEquals(Zh_accessLevel.ADMINISTRATOR, user.getAccesLevel());
-        Zh_accessLevel accessLevel = user.getAccesLevel();
-        assertEquals(Zh_accessLevel.ADMINISTRATOR, accessLevel);
+        Users user = new Users();
+        user.setAccesLevel(AccessLevel.ADMINISTRATOR);
+        assertEquals(AccessLevel.ADMINISTRATOR, user.getAccesLevel());
+        AccessLevel accessLevel = user.getAccesLevel();
+        assertEquals(AccessLevel.ADMINISTRATOR, accessLevel);
     }
 
     @Test
     void getLastName() {
-        Zh_MyDate birthday = new Zh_MyDate(2002, 13, 11);
-        D_Users user = new D_Users("Greisi", "Jaho",
+        MyDate birthday = new MyDate(2002, 13, 11);
+        Users user = new Users("Greisi", "Jaho",
                 "Gr_ja.@example.com", birthday, "password",
-                50000, "123-456-7890", Zh_accessLevel.ADMINISTRATOR);
+                50000, "123-456-7890", AccessLevel.ADMINISTRATOR);
         String lastName = user.getLastName();
         assertTrue(lastName instanceof String);
         assertEquals("Jaho", lastName);
@@ -155,7 +155,7 @@ class D_UsersTest {
 
     @Test
     void setLastName() {
-        D_Users user = new D_Users();
+        Users user = new Users();
         user.setLastName("Smith");
         assertEquals("Smith", user.getLastName());
         String lastName = user.getLastName();
@@ -165,10 +165,10 @@ class D_UsersTest {
 
     @Test
     void getPhone() {
-        Zh_MyDate birthday = new Zh_MyDate(2002, 13, 11);
-        D_Users user = new D_Users("Greisi", "Jaho",
+        MyDate birthday = new MyDate(2002, 13, 11);
+        Users user = new Users("Greisi", "Jaho",
                 "Gr_ja.@example.com", birthday, "password",
-                50000, "123-456-7890", Zh_accessLevel.ADMINISTRATOR);
+                50000, "123-456-7890", AccessLevel.ADMINISTRATOR);
         String phone = user.getPhone();
         assertTrue(phone instanceof String);
         assertEquals("123-456-7890", phone);
@@ -177,7 +177,7 @@ class D_UsersTest {
 
     @Test
     void setPhone() {
-        D_Users user = new D_Users();
+        Users user = new Users();
         user.setPhone("987-654-3210");
         assertEquals("987-654-3210", user.getPhone());
         String phone = user.getPhone();

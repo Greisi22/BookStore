@@ -1,9 +1,7 @@
 package View.Menager;
 
 import java.io.*;
-import java.util.ArrayList;
 
-import Model.Bills.Bill;
 import Model.Statistic.StatisticFunctionalities;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
@@ -14,7 +12,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class Menager_Statistic {
+public class MenagerStatistic {
 	 final static String January = "January";
 	    final static String February = "February";
 	    final static String March = "March";

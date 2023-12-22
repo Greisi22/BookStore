@@ -4,7 +4,7 @@ package Test.UnitTest.Books;
 import Mock.Books.BooksSreviceMock;
 import Model.Books.BookFunctionalities;
 import Model.Books.BookService;
-import Model.Books.Zh_Books;
+import Model.Books.Books;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
@@ -25,13 +25,13 @@ public class BookServiceTest {
         File tempFile = new File(tempFolder, "testBooks.dat");
         BookService bookService = new BookService();
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile))) {
-            Zh_Books book1 = new Zh_Books("Book 1", "Author 1", 2023);
-            Zh_Books book2 = new Zh_Books("Book 2", "Author 2", 2024);
+            Books book1 = new Books("Book 1", "Author 1", 2023);
+            Books book2 = new Books("Book 2", "Author 2", 2024);
             objectOutputStream.writeObject(book1);
             objectOutputStream.writeObject(book2);
         }
 
-        ArrayList<Zh_Books> bookList = bookService.getBooks("testBooks.dat");
+        ArrayList<Books> bookList = bookService.getBooks("testBooks.dat");
         assertEquals(2, bookList.size());
         assertEquals("Book 1", bookList.get(0).getTitle());
         assertEquals("Author 2", bookList.get(1).getISBN());
@@ -40,24 +40,24 @@ public class BookServiceTest {
 
     @Test
     void testWriteInFIle() throws IOException {
-        Zh_Books book1 = new Zh_Books("Book 1", "Author 1", 2023);
-        Zh_Books book2 = new Zh_Books("Book 2", "Author 2", 2024);
-        ArrayList<Zh_Books> booksList = new ArrayList<>();
+        Books book1 = new Books("Book 1", "Author 1", 2023);
+        Books book2 = new Books("Book 2", "Author 2", 2024);
+        ArrayList<Books> booksList = new ArrayList<>();
         booksList.add(book1);
         booksList.add(book2);
         BookService bookService = new BookService();
         bookService.writeBooksInFile(booksList, "testBooks.dat");
         booksList.add(book1);
         booksList.add(book2);
-        ArrayList<Zh_Books> list = new ArrayList<>();
+        ArrayList<Books> list = new ArrayList<>();
         FileInputStream fis;
         try {
             fis = new FileInputStream("testBooks.dat");
             ObjectInputStream objis = new ObjectInputStream(fis);
 
-            Zh_Books obj = new Zh_Books();
+            Books obj = new Books();
             while (true) {
-                obj = ((Zh_Books) objis.readObject());
+                obj = ((Books) objis.readObject());
                 list.add(obj);
             }
         } catch (ClassNotFoundException e) {

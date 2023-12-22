@@ -3,8 +3,8 @@ package Test.UnitTest.LogIn;
 
 import Model.Login.LogInFunctionalities;
 import Model.Login.ResultType;
-import Model.Login.Zh_accessLevel;
-import Model.Users.D_Users;
+import Model.Login.AccessLevel;
+import Model.Users.Users;
 import View.Librarian.FileNotFoundExceptionCustom;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -40,7 +40,7 @@ class LoginTest {
     })
     void testValidCredentials(String username, String password) throws IOException {
         lg = new LogInFunctionalities();
-        D_Users expected = lg.checkUser(username, password, filePath);
+        Users expected = lg.checkUser(username, password, filePath);
         assertNotNull(expected);
         assertEquals(username, expected.getFirstName());
         assertEquals(password, expected.getPassword());
@@ -56,7 +56,7 @@ class LoginTest {
             "'',''"
     })
     void testInvalidArguments(String username, String password) throws IOException {
-        D_Users result = lg.checkUser(username, password, filePath);
+        Users result = lg.checkUser(username, password, filePath);
         assertNull(result);
     }
 
@@ -66,7 +66,7 @@ class LoginTest {
     void testSpecialCharacters() throws IOException {
         String username = "userWithSpecialChar@!";
         String password = " passwordWith#SpecialChar";
-        D_Users result = lg.checkUser(username, password, filePath);
+        Users result = lg.checkUser(username, password, filePath);
         assertNull(result);
     }
 
@@ -74,7 +74,7 @@ class LoginTest {
     public void testValidLibrarianLogin() throws IOException {
 
         lg = Mockito.mock(LogInFunctionalities.class);
-        D_Users librarianUser = new D_Users("Davidii", "111", Zh_accessLevel.LIBRARIAN);
+        Users librarianUser = new Users("Davidii", "111", AccessLevel.LIBRARIAN);
         Mockito.when(lg.checkUser("Davidii", "111", "lol"))
                 .thenReturn(librarianUser);
 
@@ -86,7 +86,7 @@ class LoginTest {
     @Test
     public void testValidManagerLogin() throws IOException {
         lg = Mockito.mock(LogInFunctionalities.class);
-        D_Users librarianUser = new D_Users("Davidii", "111", Zh_accessLevel.MANAGER);
+        Users librarianUser = new Users("Davidii", "111", AccessLevel.MANAGER);
         Mockito.when(lg.checkUser("Davidii", "111", "lol"))
                 .thenReturn(librarianUser);
 
@@ -98,7 +98,7 @@ class LoginTest {
     @Test
     public void testValidAdministratorLogin() throws IOException {
         lg = Mockito.mock(LogInFunctionalities.class);
-        D_Users librarianUser = new D_Users("Davidii", "111", Zh_accessLevel.ADMINISTRATOR);
+        Users librarianUser = new Users("Davidii", "111", AccessLevel.ADMINISTRATOR);
         Mockito.when(lg.checkUser("Davidii", "111", "lol"))
                 .thenReturn(librarianUser);
 

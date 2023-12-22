@@ -20,9 +20,9 @@ public  class BookService {
             fis = new FileInputStream(path);
             ObjectInputStream objis = new ObjectInputStream(fis);
 
-            Zh_Books obj = new Zh_Books();
+            Books obj = new Books();
             while (true) {
-                obj = ((Zh_Books) objis.readObject());
+                obj = ((Books) objis.readObject());
                 list.add((E) obj);
             }
         } catch (ClassNotFoundException e) {
@@ -35,7 +35,7 @@ public  class BookService {
     }
 
 
-    public  void writeBooksInFile(ArrayList<Zh_Books> newBooks1, String path){
+    public  void writeBooksInFile(ArrayList<Books> newBooks1, String path){
         FileOutputStream out;
         try {
             out = new FileOutputStream(path);

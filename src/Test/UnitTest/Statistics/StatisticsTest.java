@@ -3,9 +3,8 @@ package Test.UnitTest.Statistics;
 import Mock.Bills.BillServiceMock;
 import Mock.Books.BooksSreviceMock;
 import Model.Bills.Bill;
-import Model.Bills.Zh_MyDate;
-import Model.Books.BookService;
-import Model.Books.Zh_Books;
+import Model.Bills.MyDate;
+import Model.Books.Books;
 import Model.Statistic.StatisticFunctionalities;
 import org.junit.jupiter.api.Test;
 
@@ -25,11 +24,11 @@ public class StatisticsTest {
         ArrayList<Bill> bills = new ArrayList<>();
 
         Bill bill = new Bill();
-        bill.setDate(new Zh_MyDate(2,11,2002));
+        bill.setDate(new MyDate(2,11,2002));
         bill.setBookquantity(3);
 
         Bill bill1 = new Bill();
-        bill1.setDate(new Zh_MyDate(3,14,2002));
+        bill1.setDate(new MyDate(3,14,2002));
         bill.setBookquantity(2);
 
         bills.add(bill);
@@ -59,14 +58,14 @@ public class StatisticsTest {
     void getBookCostTest(){
 
         int expected = 0;
-        ArrayList<Zh_Books> books = new ArrayList<>();
+        ArrayList<Books> books = new ArrayList<>();
 
-        Zh_Books book1 = new Zh_Books();
-        book1.setDate(new Zh_MyDate(2,11,2002));
+        Books book1 = new Books();
+        book1.setDate(new MyDate(2,11,2002));
         book1.setQuanity(3);
 
-        Zh_Books book2 = new Zh_Books();
-        book2.setDate(new Zh_MyDate(3,11,2002));
+        Books book2 = new Books();
+        book2.setDate(new MyDate(3,11,2002));
         book2.setQuanity(3);
 
         books.add(book1);
@@ -79,7 +78,7 @@ public class StatisticsTest {
 
         int actual = StatisticFunctionalities.getBookCost(2002,2,"book");
 
-        for(Zh_Books bookss: books)
+        for(Books bookss: books)
         {
             if(bookss.getDate().getYear() == 2002 && bookss.getDate().getMonth()==2 )
             {

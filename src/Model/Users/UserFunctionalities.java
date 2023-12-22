@@ -1,11 +1,5 @@
 package Model.Users;
 
-import Model.Books.BookService;
-import Model.Books.Zh_Books;
-import Model.Users.D_Users;
-import View.Administator.Users;
-
-import java.io.*;
 import java.util.ArrayList;
 
 public class UserFunctionalities {
@@ -16,8 +10,8 @@ public class UserFunctionalities {
     public UserFunctionalities(UserService userService){
         this.userService = userService;
     }
-    public  static ArrayList<D_Users> updateUsers(D_Users bookupdate) {
-        ArrayList<D_Users> users = userService.getUsers(path);
+    public  static ArrayList<Users> updateUsers(Users bookupdate) {
+        ArrayList<Users> users = userService.getUsers(path);
         for (int i=0;i<users.size();i++){
             if (users.get(i).getEmail().equals(bookupdate.getEmail())) {
                 users.set(i, bookupdate);

@@ -8,7 +8,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Books_out_of_Stock {
+public class BooksOutOfStockk {
 	// is used to show the books that are out of stock
 	public static void OutOfStock_View(Label label) {
 		

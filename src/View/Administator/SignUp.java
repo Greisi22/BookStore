@@ -1,13 +1,10 @@
 package View.Administator;
 
-import java.io.*;
 import java.util.ArrayList;
 
-import Model.Books.BookService;
-import Model.Users.D_Users;
-import Model.Bills.Zh_MyDate;
-import Model.Login.Zh_accessLevel;
-import Model.Users.UserFunctionalities;
+import Model.Users.Users;
+import Model.Bills.MyDate;
+import Model.Login.AccessLevel;
 import Model.Users.UserService;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -177,13 +174,13 @@ static UserService userService = new UserService();
 		paneForAccess.setPadding(new Insets(4));
 		ArrayList<RadioButton> accessCheckboxes = new ArrayList<>();
 
-		RadioButton bLib = new RadioButton(Zh_accessLevel.LIBRARIAN.toString());
+		RadioButton bLib = new RadioButton(AccessLevel.LIBRARIAN.toString());
 		bLib.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 12));
 		bLib.setTextFill(Color.WHITE);
-		RadioButton bMan = new RadioButton(Zh_accessLevel.MANAGER.toString());
+		RadioButton bMan = new RadioButton(AccessLevel.MANAGER.toString());
 		bMan.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 12));
 		bMan.setTextFill(Color.WHITE);
-		RadioButton bAdmin = new RadioButton(Zh_accessLevel.ADMINISTRATOR.toString());
+		RadioButton bAdmin = new RadioButton(AccessLevel.ADMINISTRATOR.toString());
 		bAdmin.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 12));
 		bAdmin.setTextFill(Color.WHITE);
 
@@ -226,16 +223,16 @@ static UserService userService = new UserService();
 		submitButton.setOnAction(new EventHandler<ActionEvent>() {
 
 			public void handle(ActionEvent event) {
-				Zh_accessLevel ACESS = null;
+				AccessLevel ACESS = null;
 				for (int i = 0; i < accessCheckboxes.size(); i++) {
 					if (accessCheckboxes.get(i).isSelected()) {
 						String accesss = accessCheckboxes.get(i).getText();
-						if (accesss.equals(Zh_accessLevel.LIBRARIAN.toString())) {
-							ACESS = Zh_accessLevel.LIBRARIAN;
-						} else if (accesss.equals(Zh_accessLevel.MANAGER.toString())) {
-							ACESS = Zh_accessLevel.MANAGER;
+						if (accesss.equals(AccessLevel.LIBRARIAN.toString())) {
+							ACESS = AccessLevel.LIBRARIAN;
+						} else if (accesss.equals(AccessLevel.MANAGER.toString())) {
+							ACESS = AccessLevel.MANAGER;
 						} else {
-							ACESS = Zh_accessLevel.ADMINISTRATOR;
+							ACESS = AccessLevel.ADMINISTRATOR;
 						}
 
 					}
@@ -269,14 +266,14 @@ static UserService userService = new UserService();
 							"Please enter a phone number");
 					return;
 				} else {
-					D_Users isCreated = newUser.loginn(nameField.getText(), lastField.getText(), emailLabel.getText(),
-							new Zh_MyDate(dateField.getValue().getMonthValue(), dateField.getValue().getDayOfMonth(),
+					Users isCreated = newUser.loginn(nameField.getText(), lastField.getText(), emailLabel.getText(),
+							new MyDate(dateField.getValue().getMonthValue(), dateField.getValue().getDayOfMonth(),
 									dateField.getValue().getYear()),
 							passwordField.getText(), Integer.parseInt(salaryField.getText()), phoneField.getText(),
 							ACESS);
 
 					if (isCreated != null) {
-                      ArrayList<D_Users> users = userService.getUsers(path);
+                      ArrayList<Users> users = userService.getUsers(path);
 					  users.add(isCreated);
 					  userService.writeUsersInFile(users, path);
 					}

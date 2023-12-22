@@ -25,7 +25,7 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
-public class B__Log_in {
+public class LogIn {
 
     static Label Message = new Label();
 
@@ -91,7 +91,7 @@ public class B__Log_in {
                         break;
                     case LIBRARIAN_LOGIN:
                         try {
-                            CA__Librarian_View.stage(stage, result.get(1).toString()); // Assuming the second element is the username
+                            LibrarianView.stage(stage, result.get(1).toString()); // Assuming the second element is the username
                         } catch (FileNotFoundException ex) {
                             throw new RuntimeException(ex);
                         }

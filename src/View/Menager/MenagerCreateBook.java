@@ -323,11 +323,10 @@ import java.io.*;
 import java.util.ArrayList;
 
 import View.Librarian.*;
-import Model.Bills.Zh_MyDate;
 import Model.Books.BookService;
-import Model.Books.V_Author;
-import Model.Books.Zh_Books;
-import Model.Books.Zh_Genre;
+import Model.Books.Author;
+import Model.Books.Books;
+import Model.Books.Genre;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -350,7 +349,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class Menager_Create_Book {
+public class MenagerCreateBook {
 
 
 	public static void BookView(Stage stage, String WelcomeName) {
@@ -436,7 +435,7 @@ public class Menager_Create_Book {
 		VBox paneForGenres = new VBox(10);
 		paneForGenres.setPadding(new Insets(4));
 		ArrayList<CheckBox> genreCheckboxes = new ArrayList<>();
-		for (Zh_Genre g : Zh_Genre.values()) {
+		for (Genre g : Genre.values()) {
 			CheckBox chb = new CheckBox(g.toString());
 			genreCheckboxes.add(chb);
 			chb.setFont(Font.font("Arimo", FontWeight.BOLD, 12));
@@ -472,9 +471,9 @@ public class Menager_Create_Book {
 		BookService bookService = new BookService();
 
 
-		Z_Books_Controller newBOOK = new Z_Books_Controller();
+		BooksController newBOOK = new BooksController();
 		b1.setOnAction(e -> {
-			ArrayList<Zh_Genre> newZhner = new ArrayList<>();
+			ArrayList<Genre> newZhner = new ArrayList<>();
 			boolean isPaperback = rbPaperback.isSelected();
 			String isbn13 = ISBN.getText();
 			String titlee = title.getText();
@@ -485,14 +484,14 @@ public class Menager_Create_Book {
 
 			for (int i = 0; i < genreCheckboxes.size(); i++) {
 				if (genreCheckboxes.get(i).isSelected())
-					newZhner.add(Zh_Genre.values()[i]);
+					newZhner.add(Genre.values()[i]);
 			}
-			Zh_Books isCreated = newBOOK.loginn(titlee, isbn13, Integer.parseInt(quntity.getText()), descriptionn,
-					price, new V_Author(authorr), isPaperback1);
+			Books isCreated = newBOOK.loginn(titlee, isbn13, Integer.parseInt(quntity.getText()), descriptionn,
+					price, new Author(authorr), isPaperback1);
 			isCreated.setGenres(newZhner);
 
 
-			ArrayList<Zh_Books> booklist = new ArrayList<>();
+			ArrayList<Books> booklist = new ArrayList<>();
 			booklist = bookService.getBooks("src/EncodedInformation/Books.dat");
 			booklist.add(isCreated);
 			bookService.writeBooksInFile(booklist, "src/EncodedInformation/Books.dat");

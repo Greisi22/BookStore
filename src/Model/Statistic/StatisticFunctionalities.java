@@ -3,14 +3,10 @@ package Model.Statistic;
 import Model.Bills.Bill;
 import Model.Bills.BillService;
 import Model.Books.BookService;
-import Model.Books.Zh_Books;
-import Model.Login.Zh_accessLevel;
-import Model.Users.D_Users;
-import Model.Users.UserService;
+import Model.Books.Books;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class StatisticFunctionalities {
@@ -37,10 +33,10 @@ public class StatisticFunctionalities {
     }
 
     public static int getBookCost(int year, int month, String path) {
-        ArrayList<Zh_Books> books = bookService.getBooks(path);
+        ArrayList<Books> books = bookService.getBooks(path);
         int sum = 0;
         int i=0;
-        for(Zh_Books book: books){
+        for(Books book: books){
             if(book.getDate().getYear() == year && book.getDate().getMonth()==month )
             {
                 sum+=book.getQuanity();

@@ -1,10 +1,10 @@
 package Test.Prova;
 
 import Model.Bills.Bill;
-import Model.Bills.Zh_MyDate;
-import Model.Books.Zh_Books;
-import Model.Login.Zh_accessLevel;
-import Model.Users.D_Users;
+import Model.Bills.MyDate;
+import Model.Books.Books;
+import Model.Login.AccessLevel;
+import Model.Users.Users;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;
@@ -16,20 +16,20 @@ public class prova {
     @Test
     void testWriteAndReadUser() {
         // Create three users
-        D_Users userErisa = new D_Users();
+        Users userErisa = new Users();
         userErisa.setFirstName("Erisa");
         userErisa.setPassword("999");
-        userErisa.setAccesLevel(Zh_accessLevel.ADMINISTRATOR);
+        userErisa.setAccesLevel(AccessLevel.ADMINISTRATOR);
 
-        D_Users userDavid = new D_Users();
+        Users userDavid = new Users();
         userDavid.setFirstName("David");
         userDavid.setPassword("111");
-        userDavid.setAccesLevel(Zh_accessLevel.LIBRARIAN);
+        userDavid.setAccesLevel(AccessLevel.LIBRARIAN);
 
-        D_Users userGreisi = new D_Users();
+        Users userGreisi = new Users();
         userGreisi.setFirstName("Greisi");
         userGreisi.setPassword("222");
-        userGreisi.setAccesLevel(Zh_accessLevel.MANAGER);
+        userGreisi.setAccesLevel(AccessLevel.MANAGER);
 
         // Write users to file
         try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
@@ -41,11 +41,11 @@ public class prova {
         }
 
         // Read users from file
-        ArrayList<D_Users> listofUsers = new ArrayList<>();
+        ArrayList<Users> listofUsers = new ArrayList<>();
         try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/EncodedInformation/Users.dat"))) {
             while (true) {
                 try {
-                    D_Users obj = (D_Users) objis.readObject();
+                    Users obj = (Users) objis.readObject();
                     listofUsers.add(obj);
                 } catch (EOFException e) {
                     // End of file reached
@@ -57,47 +57,47 @@ public class prova {
         }
 
         // Print user information
-        for (D_Users user : listofUsers) {
+        for (Users user : listofUsers) {
             System.out.println("User: " + user.getFirstName() + ", Password: " + user.getPassword() + ", Access Level: " + user.getAccesLevel());
         }
     }
 
-    private static Zh_MyDate generateRandomDateIn2023() {
+    private static MyDate generateRandomDateIn2023() {
         Random random = new Random();
         int randomMonth = random.nextInt(12) + 1; // 1 to 12 (inclusive)
         int randomDay = random.nextInt(28) + 1;   // 1 to 28 (inclusive)
         int year = 2023;
 
-        return new Zh_MyDate(randomMonth, randomDay, year);
+        return new MyDate(randomMonth, randomDay, year);
     }
 
 
     @Test
     void putBooksInFIle() {
-        ArrayList<Zh_Books> booksList = new ArrayList<>();
+        ArrayList<Books> booksList = new ArrayList<>();
 //
 //        // Create 50 books with random months and quantities in the year 2023
         for (int i = 1; i <= 12; i++) {
-            Zh_Books book = new Zh_Books();
+            Books book = new Books();
             book.setTitle("Book" + i);
             book.setISBN("ISBN" + i);
-            book.setDate(new Zh_MyDate(i, 1, 2023));
+            book.setDate(new MyDate(i, 1, 2023));
             book.setQuanity(new Random().nextInt(101));
             booksList.add(book);
         }
 
         try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Books.dat", true))) {
-            for (Zh_Books bookk : booksList) {
+            for (Books bookk : booksList) {
                 objout.writeObject(bookk);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        ArrayList<Zh_Books> listofUsers = new ArrayList<>();
+        ArrayList<Books> listofUsers = new ArrayList<>();
         try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/EncodedInformation/Books.dat"))) {
             while (true) {
                 try {
-                    Zh_Books obj = (Zh_Books) objis.readObject();
+                    Books obj = (Books) objis.readObject();
                     listofUsers.add(obj);
                 } catch (EOFException e) {
                     break;
@@ -108,7 +108,7 @@ public class prova {
         }
 
 
-        for (Zh_Books user : listofUsers) {
+        for (Books user : listofUsers) {
             System.out.println(user.getTitle() + " "+ user.getQuanity()+ " "+ user.getDate() );
         }
 
@@ -123,7 +123,7 @@ public class prova {
 //        // Create 50 books with random months and quantities in the year 2023
         for (int i = 1; i <= 12; i++) {
             Bill bill = new Bill();
-            bill.setDate(new Zh_MyDate(i, 1, 2023));
+            bill.setDate(new MyDate(i, 1, 2023));
             bill.setBookquantity(new Random().nextInt(101));
             bill.setPrice(new Random().nextInt(101));
             bill.setLibrarian_Name("Name" + i);

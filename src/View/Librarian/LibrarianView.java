@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import Model.Bills.BillFunctionalitiess;
 import Model.Books.BookFunctionalities;
 import Model.Books.BookService;
-import Model.Books.Zh_Genre;
-import Model.Books.Zh_Books;
+import Model.Books.Genre;
+import Model.Books.Books;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,10 +35,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class CA__Librarian_View {
+public class LibrarianView {
 
-	private static ArrayList<Zh_Books> booksOfBill = new ArrayList<>();
-	private static Zh_Books bookSelected = null;
+	private static ArrayList<Books> booksOfBill = new ArrayList<>();
+	private static Books bookSelected = null;
 
 	static Label OutOfStock = new Label("");
 	static String WelcomeName;
@@ -71,7 +71,7 @@ public class CA__Librarian_View {
 		});
 
 		signout.setOnAction(e -> {
-			B__Log_in.Log_inn(stage);
+			LogIn.Log_inn(stage);
 		});
 
 		Image image = new Image("file:src/UI/Images/paslogin.png"); // Replace with your image file path
@@ -111,14 +111,14 @@ public class CA__Librarian_View {
 		Button Cancle = new Button("Cancle");
 		Cancle.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
 
-		ArrayList<Zh_Books> listBooks = new ArrayList<Zh_Books>();
+		ArrayList<Books> listBooks = new ArrayList<Books>();
 
 		BookService bookService = new BookService() ;
 	   listBooks = bookService.getBooks("src/EncodedInformation/Books.dat");
 
-		TableView<Zh_Books> userTable = new TableView<>();
+		TableView<Books> userTable = new TableView<>();
 
-		ObservableList<Zh_Books> data = FXCollections.observableArrayList(listBooks);
+		ObservableList<Books> data = FXCollections.observableArrayList(listBooks);
 		userTable.setItems(data);
 
 		// ........................................................................................................
@@ -126,12 +126,12 @@ public class CA__Librarian_View {
 		userTable.setEditable(true);
 
 		userTable.getSelectionModel().selectedItemProperty()
-				.addListener((ObservableValue<? extends Zh_Books> ov, Zh_Books old_val, Zh_Books new_val) -> {
-					ObservableList<Zh_Books> selectedItems = userTable.getSelectionModel().getSelectedItems();
+				.addListener((ObservableValue<? extends Books> ov, Books old_val, Books new_val) -> {
+					ObservableList<Books> selectedItems = userTable.getSelectionModel().getSelectedItems();
 
 
 					//ruan infot kur i ben select
-					for (Zh_Books name : selectedItems) {
+					for (Books name : selectedItems) {
 						bookSelected = name;
 					}
 
@@ -150,16 +150,16 @@ public class CA__Librarian_View {
 		TableColumn paperback = new TableColumn(" paperback");
 		TableColumn genres = new TableColumn("genres");
 
-		title.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("title"));
-		ISBN.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("ISBN"));
-		quanity.setCellValueFactory(new PropertyValueFactory<Zh_Books, Integer>("quanity"));
-		description.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("description"));
-		price.setCellValueFactory(new PropertyValueFactory<Zh_Books, Double>("price"));
-		author.setCellValueFactory(new PropertyValueFactory<Zh_Books, String>("author"));
-		paperback.setCellValueFactory(new PropertyValueFactory<Zh_Books, Boolean>("paperback"));
-		genres.setCellValueFactory(new PropertyValueFactory<Zh_Books, ArrayList<Zh_Genre>>("genres"));
+		title.setCellValueFactory(new PropertyValueFactory<Books, String>("title"));
+		ISBN.setCellValueFactory(new PropertyValueFactory<Books, String>("ISBN"));
+		quanity.setCellValueFactory(new PropertyValueFactory<Books, Integer>("quanity"));
+		description.setCellValueFactory(new PropertyValueFactory<Books, String>("description"));
+		price.setCellValueFactory(new PropertyValueFactory<Books, Double>("price"));
+		author.setCellValueFactory(new PropertyValueFactory<Books, String>("author"));
+		paperback.setCellValueFactory(new PropertyValueFactory<Books, Boolean>("paperback"));
+		genres.setCellValueFactory(new PropertyValueFactory<Books, ArrayList<Genre>>("genres"));
 
-		FilteredList<Zh_Books> flPerson = new FilteredList(data, p -> true);// Pass the data to a filtered list
+		FilteredList<Books> flPerson = new FilteredList(data, p -> true);// Pass the data to a filtered list
 		userTable.setItems(flPerson);// Set the table's items using the filtered list
 		userTable.getColumns().addAll(title, ISBN, quanity, description, price, author, paperback, genres);
 
@@ -194,7 +194,7 @@ public class CA__Librarian_View {
 		Add.setOnAction(e -> {
 			if (BillFunctionalitiess.checkOutOfStock(bookSelected)) {
 
-				Zh_Books book= BillFunctionalitiess.updateQuantity(bookSelected);
+				Books book= BillFunctionalitiess.updateQuantity(bookSelected);
 
                 System.out.println(book.getQuanity());
 				BookFunctionalities.UpdateBook(book);
@@ -239,7 +239,7 @@ public class CA__Librarian_View {
 
 		showBill.setOnAction(e -> {
             System.out.println(booksOfBill);
-			F_ShowBill.ShowBill( booksOfBill,pane, stage1, stage,WelcomeName);
+			ShowBill.ShowBill( booksOfBill,pane, stage1, stage,WelcomeName);
 
 		});
 
@@ -248,7 +248,7 @@ public class CA__Librarian_View {
 			booksOfBill.clear();
 			try {
 				stage1.close();
-				CA__Librarian_View.stage(stage, WelcomeName);
+				LibrarianView.stage(stage, WelcomeName);
 			} catch (FileNotFoundException e1) {
 				e1.printStackTrace();
 			}

@@ -1,9 +1,7 @@
 package Test.UnitTest.Users;
 
-import Model.Books.BookService;
-import Model.Books.Zh_Books;
-import Model.Login.Zh_accessLevel;
-import Model.Users.D_Users;
+import Model.Login.AccessLevel;
+import Model.Users.Users;
 import Model.Users.UserService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -37,21 +35,21 @@ public class UserServiceTest {
     void testGetUser() throws IOException {
         UserService userService = new UserService();
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile))) {
-            D_Users userGreisi = new D_Users();
+            Users userGreisi = new Users();
             userGreisi.setFirstName("Greisi");
             userGreisi.setPassword("222");
-            userGreisi.setAccesLevel(Zh_accessLevel.MANAGER);
+            userGreisi.setAccesLevel(AccessLevel.MANAGER);
 
-            D_Users userDavid = new D_Users();
+            Users userDavid = new Users();
             userDavid.setFirstName("David");
             userDavid.setPassword("111");
-            userDavid.setAccesLevel(Zh_accessLevel.LIBRARIAN);
+            userDavid.setAccesLevel(AccessLevel.LIBRARIAN);
 
             objectOutputStream.writeObject(userDavid);
             objectOutputStream.writeObject(userGreisi);
         }
 
-        ArrayList<D_Users> userList = userService.getUsers(tempFile.getPath());
+        ArrayList<Users> userList = userService.getUsers(tempFile.getPath());
         assertEquals(2, userList.size());
         assertEquals("David", userList.get(0).getFirstName());
         assertEquals("Greisi", userList.get(1).getFirstName());
@@ -61,37 +59,37 @@ public class UserServiceTest {
     @Test
     void testGetUserEmptyFile() throws IOException {
         UserService userService = new UserService();
-        ArrayList<D_Users> userList = userService.getUsers(tempFile.getPath());
+        ArrayList<Users> userList = userService.getUsers(tempFile.getPath());
         assertTrue(userList.isEmpty(), "User list should be empty for an empty file");
     }
 
     @Test
     void testWriteInFIle() throws IOException {
-        D_Users userGreisi = new D_Users();
+        Users userGreisi = new Users();
         userGreisi.setFirstName("Greisi");
         userGreisi.setPassword("222");
-        userGreisi.setAccesLevel(Zh_accessLevel.MANAGER);
+        userGreisi.setAccesLevel(AccessLevel.MANAGER);
 
-        D_Users userDavid = new D_Users();
+        Users userDavid = new Users();
         userDavid.setFirstName("David");
         userDavid.setPassword("111");
-        userDavid.setAccesLevel(Zh_accessLevel.LIBRARIAN);
-        ArrayList<D_Users> userList = new ArrayList<>();
+        userDavid.setAccesLevel(AccessLevel.LIBRARIAN);
+        ArrayList<Users> userList = new ArrayList<>();
         userList.add(userDavid);
         userList.add(userGreisi);
         UserService userService = new UserService();
         userService.writeUsersInFile(userList, "testBooks.dat");
         userList.add(userDavid);
         userList.add(userGreisi);
-        ArrayList<D_Users> list = new ArrayList<>();
+        ArrayList<Users> list = new ArrayList<>();
         FileInputStream fis;
         try {
             fis = new FileInputStream("testBooks.dat");
             ObjectInputStream objis = new ObjectInputStream(fis);
 
-            D_Users obj = new D_Users();
+            Users obj = new Users();
             while (true) {
-                obj = ((D_Users) objis.readObject());
+                obj = ((Users) objis.readObject());
                 list.add(obj);
             }
         } catch (ClassNotFoundException e) {
@@ -106,18 +104,18 @@ public class UserServiceTest {
 
     @Test
     void testWriteInFIleIfEmtyArray() throws IOException {
-        ArrayList<D_Users> userList = new ArrayList<>();
+        ArrayList<Users> userList = new ArrayList<>();
         UserService userService = new UserService();
         userService.writeUsersInFile(userList, "testBooks.dat");
-        ArrayList<D_Users> list = new ArrayList<>();
+        ArrayList<Users> list = new ArrayList<>();
         FileInputStream fis;
         try {
             fis = new FileInputStream("testBooks.dat");
             ObjectInputStream objis = new ObjectInputStream(fis);
 
-            D_Users obj = new D_Users();
+            Users obj = new Users();
             while (true) {
-                obj = ((D_Users) objis.readObject());
+                obj = ((Users) objis.readObject());
                 list.add(obj);
             }
         } catch (ClassNotFoundException e) {

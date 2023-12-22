@@ -2,13 +2,13 @@ package Model.Users;
 
 
 
-import Model.Login.Zh_accessLevel;
-import Model.Bills.Zh_MyDate;
+import Model.Login.AccessLevel;
+import Model.Bills.MyDate;
 
 import java.io.Serial;
 import java.io.Serializable;
 
-public class D_Users implements Serializable {
+public class Users implements Serializable {
 	/**
 	 * 
 	 */
@@ -19,19 +19,19 @@ public class D_Users implements Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
-	private Zh_MyDate birthday;
+	private MyDate birthday;
 	private String password;
 	private long salery;
 	private String phone;
-	private Zh_accessLevel accesLevel;
+	private AccessLevel accesLevel;
 	
 	
-	public D_Users(){
+	public Users(){
 	}
 
 
-	public D_Users(String firstName, String lastName, String email, Zh_MyDate birthday, String password, long salery,
-			String phone, Zh_accessLevel accesLevel) {
+	public Users(String firstName, String lastName, String email, MyDate birthday, String password, long salery,
+				 String phone, AccessLevel accesLevel) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -43,7 +43,7 @@ public class D_Users implements Serializable {
 		this.accesLevel = accesLevel;
 	}
 
-    public D_Users(String testUser, String testPassword, Zh_accessLevel zhAccessLevel) {
+    public Users(String testUser, String testPassword, AccessLevel zhAccessLevel) {
 		this.firstName = testUser;
 		this.password = testPassword;
 		this.accesLevel = zhAccessLevel;
@@ -61,10 +61,10 @@ public class D_Users implements Serializable {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public Zh_MyDate getBirthday() {
+	public MyDate getBirthday() {
 		return birthday;
 	}
-	public void setBirthday(Zh_MyDate birthday) {
+	public void setBirthday(MyDate birthday) {
 		this.birthday = birthday;
 	}
 	public String getPassword() {
@@ -79,10 +79,10 @@ public class D_Users implements Serializable {
 	public void setSalery(long salery) {
 		this.salery = salery;
 	}
-	public Zh_accessLevel getAccesLevel() {
+	public AccessLevel getAccesLevel() {
 		return accesLevel;
 	}
-	public void setAccesLevel(Zh_accessLevel accesLevel) {
+	public void setAccesLevel(AccessLevel accesLevel) {
 		this.accesLevel = accesLevel;
 	}
 

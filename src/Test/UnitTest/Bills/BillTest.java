@@ -2,14 +2,14 @@ package Test.UnitTest.Bills;
 
 
 import Model.Bills.Bill;
-import Model.Bills.Zh_MyDate;
+import Model.Bills.MyDate;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class E_BillTest {
+class BillTest {
 
 
     @Test
@@ -37,7 +37,7 @@ class E_BillTest {
 
     @Test
     void getPrice() {
-        Bill bill2 = new Bill(20.0, new Zh_MyDate(2, 3, 2000));
+        Bill bill2 = new Bill(20.0, new MyDate(2, 3, 2000));
         Bill bill = new Bill();
         bill.setPrice(25.9);
         double actual = bill.getPrice();
@@ -59,13 +59,13 @@ class E_BillTest {
 
     @Test
     void getDate() {
-        Zh_MyDate date = new Zh_MyDate();
+        MyDate date = new MyDate();
         date.setDay(9);
         date.setMonth(1);
         date.setYear(2000);
         Bill bill = new Bill();
         bill.setDate(date);
-        Zh_MyDate actual = bill.getDate();
+        MyDate actual = bill.getDate();
         assertEquals(date, actual);
     }
 

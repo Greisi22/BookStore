@@ -1,13 +1,8 @@
 package View.Administator;
 
-import java.io.*;
-import java.util.ArrayList;
 import java.util.Map;
 
 import Model.Statistic.StatisticFunctionalities;
-import Model.Users.D_Users;
-import Model.Bills.Bill;
-import Model.Login.Zh_accessLevel;
 import Model.Users.UserService;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;

@@ -1,6 +1,6 @@
 package Model.Login;
 
-import Model.Users.D_Users;
+import Model.Users.Users;
 import View.Librarian.FileNotFoundExceptionCustom;
 
 
@@ -24,7 +24,7 @@ public class LogInFunctionalities {
         this.logInFunctionalities = logInFunctionalities;
    }
 
-    public D_Users checkUser(String usernametextFiled, String PassswrdField, String filePath) throws IOException {
+    public Users checkUser(String usernametextFiled, String PassswrdField, String filePath) throws IOException {
 
         usernametextFiled = usernametextFiled.replaceAll("\\s+$", "");
         File file = new File(filePath);
@@ -35,11 +35,11 @@ public class LogInFunctionalities {
 
         FileInputStream fis = new FileInputStream(file);
         ObjectInputStream objis = new ObjectInputStream(fis);
-        D_Users user;
+        Users user;
 
         while (true) {
             try {
-                user = ((D_Users) objis.readObject());
+                user = ((Users) objis.readObject());
 
                 if (usernametextFiled.equals(user.getFirstName()) && PassswrdField.equals(user.getPassword())) {
                     return user;
@@ -55,13 +55,13 @@ public class LogInFunctionalities {
             if(logInFunctionalities == null){
                 logInFunctionalities = new LogInFunctionalities();
             }
-            D_Users isuser = logInFunctionalities.checkUser(usernametextFiled, PassswrdField, path);
+            Users isuser = logInFunctionalities.checkUser(usernametextFiled, PassswrdField, path);
             if (isuser == null) {
                 return Arrays.asList(ResultType.INCORRECT_USER, "Incorrect Userername or password");
             } else {
-                if (isuser.getAccesLevel().equals(Zh_accessLevel.LIBRARIAN)) {
+                if (isuser.getAccesLevel().equals(AccessLevel.LIBRARIAN)) {
                     return Arrays.asList(ResultType.LIBRARIAN_LOGIN, isuser.getFirstName());
-                } else if (isuser.getAccesLevel().equals(Zh_accessLevel.MANAGER)) {
+                } else if (isuser.getAccesLevel().equals(AccessLevel.MANAGER)) {
                     return Arrays.asList(ResultType.MANAGER_LOGIN, isuser.getFirstName());
                 } else {
                     return Arrays.asList(ResultType.ADMIN_LOGIN, isuser.getFirstName());

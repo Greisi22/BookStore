@@ -4,16 +4,16 @@ import Model.Users.Gender;
 
 import java.io.Serializable;
 
-public class V_Author implements Serializable {
+public class Author implements Serializable {
 
 	private String firstName;
 	private String lastName;
 	private Gender gender;
-	public V_Author(String firstName) {
+	public Author(String firstName) {
 		super();
 		this.firstName = firstName;
 	}
-	public V_Author(String firstName, String lastName, Gender gender) {
+	public Author(String firstName, String lastName, Gender gender) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;

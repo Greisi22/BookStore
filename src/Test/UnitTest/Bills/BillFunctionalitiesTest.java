@@ -15,18 +15,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 
 public class BillFunctionalitiesTest {
-
-
-    @ParameterizedTest
-    @CsvSource({
-            "3,true",
-            "2,false",
-            "5,false"
-
-    })
-    void checkQuantityTest(String ISBN, boolean expected) {
-
-        BillFunctionalitiess Just_To_Test_Constructor = new BillFunctionalitiess();
+    @Test
+    void testBookInStock() {
         ArrayList<Books> books = new ArrayList<>();
         Books book1 = new Books();
         Books book2 = new Books();
@@ -36,81 +26,18 @@ public class BillFunctionalitiesTest {
         book2.setQuanity(0);
         books.add(book1);
         books.add(book2);
-
         BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
-
         booksSreviceMock.setBooks(books);
-
         BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(booksSreviceMock);
-
         Books book = new Books();
-        book.setISBN(ISBN);
-
-        boolean actual = BillFunctionalitiess.checkOutOfStock(book);
-
-        assertEquals(actual,expected);
-
-
+        book.setISBN("3");
+        boolean actual = billFunctionalitiess.checkOutOfStock(book);
+        assertEquals(true, actual);
     }
-
-
-@ParameterizedTest
-@CsvSource({
-        "1, 1, 2.0",
-        "2, 3, 5.0",
-        "0, 0, 0.0",
-        "-1, 1, 0.0",
-        "5, -2, 3.0"
-})
-void calculateTest(int price1, int price2, double expectedTotal) {
-    Books b1 = new Books();
-    b1.setPrice(price1);
-
-    Books b2 = new Books();
-    b2.setPrice(price2);
-
-    ArrayList<Books> selectedBooks = new ArrayList<>();
-    selectedBooks.add(b1);
-    selectedBooks.add(b2);
-
-    double actual = BillFunctionalitiess.CalculateTotalPrice(selectedBooks);
-
-    double delta = 0.001;
-
-    assertEquals(expectedTotal, actual, delta);
-}
-
 
 
     @Test
-    void getBookNamesTest()
-    {
-
-        ArrayList<Books> books = new ArrayList<>();
-
-        Books b1 = new Books();
-        b1.setTitle("A");
-
-        Books b2 = new Books();
-        b2.setTitle("B");
-
-        books.add(b1);
-        books.add(b2);
-
-        ArrayList<String> result = BillFunctionalitiess.getBookNames(books);
-        ArrayList<String> expected = new ArrayList<>(Arrays.asList("A", "B"));
-        assertEquals(expected,result);
-    }
-
-
-    @ParameterizedTest
-    @CsvSource({
-
-            "3,2,1,3",
-
-    })
-    void updateQuantityTest(String isbn, int initialQuantity, int expectedQuantity,String Isbn) {
-
+    void testBookOutOfStock() {
         ArrayList<Books> books = new ArrayList<>();
         Books book1 = new Books();
         Books book2 = new Books();
@@ -120,7 +47,217 @@ void calculateTest(int price1, int price2, double expectedTotal) {
         book2.setQuanity(0);
         books.add(book1);
         books.add(book2);
+        BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
+        booksSreviceMock.setBooks(books);
+        BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(booksSreviceMock);
+        Books book = new Books();
+        book.setISBN("2");
+        boolean actual = billFunctionalitiess.checkOutOfStock(book);
+        assertEquals(false, actual);
+    }
 
+    @Test
+    void testBookNotInList() {
+        ArrayList<Books> books = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
+        book1.setISBN("3");
+        book1.setQuanity(2);
+        book2.setISBN("2");
+        book2.setQuanity(0);
+        books.add(book1);
+        books.add(book2);
+        BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
+        booksSreviceMock.setBooks(books);
+        BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(booksSreviceMock);
+        Books book = new Books();
+        book.setISBN("5");
+        boolean actual = billFunctionalitiess.checkOutOfStock(book);
+        assertEquals(false, actual);
+    }
+
+    @Test
+    void testEmptyBookList() {
+        ArrayList<Books> books = new ArrayList<>();
+        BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
+        booksSreviceMock.setBooks(books);
+        BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(booksSreviceMock);
+        Books book = new Books();
+        book.setISBN("1");
+        boolean actual = billFunctionalitiess.checkOutOfStock(book);
+        assertEquals(false, actual);
+    }
+
+    @Test
+    void testNullInputBook() {
+        ArrayList<Books> books = new ArrayList<>();
+        BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
+        booksSreviceMock.setBooks(books);
+        BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(booksSreviceMock);
+        boolean actual = billFunctionalitiess.checkOutOfStock(null);
+        assertEquals(false, actual);
+    }
+
+
+    //........................................................................
+    @Test
+    void testPositivePrices() {
+        Books b1 = new Books();
+        b1.setPrice(1);
+        Books b2 = new Books();
+        b2.setPrice(1);
+        double expectedTotal = 2.0;
+        ArrayList<Books> selectedBooks = new ArrayList<>();
+        selectedBooks.add(b1);
+        selectedBooks.add(b2);
+        double actual = BillFunctionalitiess.CalculateTotalPrice(selectedBooks);
+        double delta = 0.001;
+        assertEquals(expectedTotal, actual, delta);
+    }
+
+    @Test
+    void testMixedPrices() {
+        Books b1 = new Books();
+        b1.setPrice(2);
+        Books b2 = new Books();
+        b2.setPrice(3);
+        double expectedTotal = 5.0;
+        ArrayList<Books> selectedBooks = new ArrayList<>();
+        selectedBooks.add(b1);
+        selectedBooks.add(b2);
+        double actual = BillFunctionalitiess.CalculateTotalPrice(selectedBooks);
+        double delta = 0.001;
+        assertEquals(expectedTotal, actual, delta);
+    }
+
+    @Test
+    void testZeroPrices() {
+        Books b1 = new Books();
+        b1.setPrice(0);
+        Books b2 = new Books();
+        b2.setPrice(0);
+        double expectedTotal = 0.0;
+        ArrayList<Books> selectedBooks = new ArrayList<>();
+        selectedBooks.add(b1);
+        selectedBooks.add(b2);
+        double actual = BillFunctionalitiess.CalculateTotalPrice(selectedBooks);
+        double delta = 0.001;
+        assertEquals(expectedTotal, actual, delta);
+    }
+
+    @Test
+    void testNegativePrices() {
+        Books b1 = new Books();
+        b1.setPrice(-1);
+        Books b2 = new Books();
+        b2.setPrice(1);
+        double expectedTotal = 0.0;
+        ArrayList<Books> selectedBooks = new ArrayList<>();
+        selectedBooks.add(b1);
+        selectedBooks.add(b2);
+        double actual = BillFunctionalitiess.CalculateTotalPrice(selectedBooks);
+        double delta = 0.001;
+        assertEquals(expectedTotal, actual, delta);
+    }
+
+    @Test
+    void testNegativeAndPositivePrices() {
+        Books b1 = new Books();
+        b1.setPrice(5);
+        Books b2 = new Books();
+        b2.setPrice(-2);
+        double expectedTotal = 3.0;
+        ArrayList<Books> selectedBooks = new ArrayList<>();
+        selectedBooks.add(b1);
+        selectedBooks.add(b2);
+        double actual = BillFunctionalitiess.CalculateTotalPrice(selectedBooks);
+        double delta = 0.001;
+        assertEquals(expectedTotal, actual, delta);
+    }
+
+
+
+    //..........................................................................
+
+    @Test
+    void testGetBookNames() {
+        ArrayList<Books> books = new ArrayList<>();
+        Books b1 = new Books();
+        b1.setTitle("A");
+        Books b2 = new Books();
+        b2.setTitle("B");
+        books.add(b1);
+        books.add(b2);
+        ArrayList<String> result = BillFunctionalitiess.getBookNames(books);
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("A", "B"));
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testEmptyBookListForBookNames() {
+        ArrayList<Books> emptyBooks = new ArrayList<>();
+        ArrayList<String> result = BillFunctionalitiess.getBookNames(emptyBooks);
+        ArrayList<String> expected = new ArrayList<>();
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testBooksWithNullTitle() {
+        ArrayList<Books> booksWithNullTitle = new ArrayList<>();
+        Books b1 = new Books();
+        b1.setTitle(null);
+        Books b2 = new Books();
+        b2.setTitle("B");
+        booksWithNullTitle.add(b1);
+        booksWithNullTitle.add(b2);
+        ArrayList<String> result = BillFunctionalitiess.getBookNames(booksWithNullTitle);
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList(null, "B"));
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testBooksWithEmptyTitle() {
+        ArrayList<Books> booksWithEmptyTitle = new ArrayList<>();
+        Books b1 = new Books();
+        b1.setTitle("");
+        Books b2 = new Books();
+        b2.setTitle("B");
+        booksWithEmptyTitle.add(b1);
+        booksWithEmptyTitle.add(b2);
+        ArrayList<String> result = BillFunctionalitiess.getBookNames(booksWithEmptyTitle);
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("", "B"));
+        assertEquals(expected, result);
+    }
+
+    @Test
+    void testBooksWithSameTitles() {
+        ArrayList<Books> booksWithSameTitles = new ArrayList<>();
+        Books b1 = new Books();
+        b1.setTitle("A");
+        Books b2 = new Books();
+        b2.setTitle("A");
+        booksWithSameTitles.add(b1);
+        booksWithSameTitles.add(b2);
+        ArrayList<String> result = BillFunctionalitiess.getBookNames(booksWithSameTitles);
+        ArrayList<String> expected = new ArrayList<>(Arrays.asList("A", "A"));
+        assertEquals(expected, result);
+    }
+
+
+
+    //...........................................................................
+
+    @Test
+    void testUpdateQuantityValidBookDecrease() {
+        ArrayList<Books> books = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
+        book1.setISBN("3");
+        book1.setQuanity(2);
+        book2.setISBN("2");
+        book2.setQuanity(0);
+        books.add(book1);
+        books.add(book2);
 
         BooksSreviceMock booksServiceMock = new BooksSreviceMock();
         booksServiceMock.setBooks(books);
@@ -128,22 +265,121 @@ void calculateTest(int price1, int price2, double expectedTotal) {
         BillFunctionalitiess billFunctionalities = new BillFunctionalitiess(booksServiceMock);
 
         Books book = new Books();
-        book.setISBN(isbn);
-        book.setQuanity(initialQuantity);
+        book.setISBN("3");
+        book.setQuanity(2);
 
         Books actual = billFunctionalities.updateQuantity(book);
 
         Books expected = new Books();
-        if(actual == null){
-            assertEquals(expected, null);
-        }
-        else{
-            expected.setISBN(Isbn);
-            expected.setQuanity(expectedQuantity);
-            assertEquals(expected, actual);
-        }
-
+        expected.setISBN("3");
+        expected.setQuanity(1);
+        assertEquals(expected, actual);
     }
+
+    @Test
+    void testUpdateQuantityZeroQuantity() {
+        ArrayList<Books> books = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
+        book1.setISBN("3");
+        book1.setQuanity(2);
+        book2.setISBN("2");
+        book2.setQuanity(0);
+        books.add(book1);
+        books.add(book2);
+
+        BooksSreviceMock booksServiceMock = new BooksSreviceMock();
+        booksServiceMock.setBooks(books);
+
+        BillFunctionalitiess billFunctionalities = new BillFunctionalitiess(booksServiceMock);
+
+        Books book = new Books();
+        book.setISBN("2");
+        book.setQuanity(0);
+
+        Books actual = billFunctionalities.updateQuantity(book);
+
+        assertEquals(null, actual);
+    }
+
+    @Test
+    void testUpdateQuantityNonExistingBook() {
+        ArrayList<Books> books = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
+        book1.setISBN("3");
+        book1.setQuanity(2);
+        book2.setISBN("2");
+        book2.setQuanity(0);
+        books.add(book1);
+        books.add(book2);
+
+        BooksSreviceMock booksServiceMock = new BooksSreviceMock();
+        booksServiceMock.setBooks(books);
+
+        BillFunctionalitiess billFunctionalities = new BillFunctionalitiess(booksServiceMock);
+
+        Books book = new Books();
+        book.setISBN("5");
+        book.setQuanity(3);
+
+        Books actual = billFunctionalities.updateQuantity(book);
+
+        assertEquals(null, actual);
+    }
+
+    @Test
+    void testUpdateQuantityNegativeQuantity() {
+        ArrayList<Books> books = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
+        book1.setISBN("3");
+        book1.setQuanity(2);
+        book2.setISBN("2");
+        book2.setQuanity(0);
+        books.add(book1);
+        books.add(book2);
+
+        BooksSreviceMock booksServiceMock = new BooksSreviceMock();
+        booksServiceMock.setBooks(books);
+
+        BillFunctionalitiess billFunctionalities = new BillFunctionalitiess(booksServiceMock);
+
+        Books book = new Books();
+        book.setISBN("3");
+        book.setQuanity(-1);
+
+        Books actual = billFunctionalities.updateQuantity(book);
+
+        assertEquals(null, actual);
+    }
+
+    @Test
+    void testUpdateQuantityNullIsbn() {
+        ArrayList<Books> books = new ArrayList<>();
+        Books book1 = new Books();
+        Books book2 = new Books();
+        book1.setISBN("3");
+        book1.setQuanity(2);
+        book2.setISBN("2");
+        book2.setQuanity(0);
+        books.add(book1);
+        books.add(book2);
+
+        BooksSreviceMock booksServiceMock = new BooksSreviceMock();
+        booksServiceMock.setBooks(books);
+
+        BillFunctionalitiess billFunctionalities = new BillFunctionalitiess(booksServiceMock);
+
+        Books book = new Books();
+        book.setISBN(null);
+        book.setQuanity(5);
+
+        Books actual = billFunctionalities.updateQuantity(book);
+
+        assertEquals(null, actual);
+    }
+
 
 
     @ParameterizedTest
@@ -171,26 +407,12 @@ void calculateTest(int price1, int price2, double expectedTotal) {
 
         Books expected = new Books();
 
-            assertNull(actual);
+        assertNull(actual);
 
 
     }
 
-    @Test
-    void Prova()
-    {
-        BookService bookService = new BookService();
-        ArrayList<Books> books = bookService.getBooks( "src/EncodedInformation/Books.dat");
-        for(Books books1:books)
-        {
-            System.out.println(books1.getTitle());
-        }
-    }
+
 
 
 }
-
-
-
-
-

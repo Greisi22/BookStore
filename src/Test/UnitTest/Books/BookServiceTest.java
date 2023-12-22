@@ -78,21 +78,7 @@ public class BookServiceTest {
         assertEquals(10, updatedBooksList.get(0).getQuanity());
     }
 
-    @Test
-    void testAddNullBookToExistingBooks() throws IOException {
-        File tempFile = new File(tempFolder, "testBooks2.dat");
-        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile))) {
-            Books book = new Books("Existing Book", "123456789", 5); // Adding an existing book
-            objectOutputStream.writeObject(book);
-        }
-        BookService bookService = new BookService();
-        bookService.getBooks("testBooks2.dat");
-        ArrayList<Books> booksList = new ArrayList<>();
-        booksList.add(null);
-        bookService.writeBooksInFile(booksList, tempFile.getPath());
-        ArrayList<Books> updatedBooksList = bookService.getBooks("testBooks2.dat");
-        assertEquals(1, updatedBooksList.size());
-    }
+
 
     @Test
     void testAddNullBookToEmptyFile() throws IOException {

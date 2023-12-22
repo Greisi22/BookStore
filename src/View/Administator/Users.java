@@ -281,8 +281,8 @@ package View.Administator;
 
 import java.util.ArrayList;
 
-import Model.Converters.MyDateStringConverter;
-import Model.Converters.AccessLevelStringConverter;
+import View.Converters.MyDateStringConverter;
+import View.Converters.AccessLevelStringConverter;
 import Model.Bills.MyDate;
 import Model.Login.AccessLevel;
 import Model.Users.UserFunctionalities;

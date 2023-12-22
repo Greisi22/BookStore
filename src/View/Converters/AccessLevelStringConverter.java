@@ -1,4 +1,4 @@
-package Model.Converters;
+package View.Converters;
 
 import Model.Login.AccessLevel;
 import javafx.util.StringConverter;

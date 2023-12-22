@@ -57,9 +57,7 @@ class BooksTest {
         assertEquals(genres.get(0),genres1.get(0));
     }
 
-    @Test
-    void setGenresS() {
-    }
+
 
     @Test
     void getISBN() {
@@ -70,10 +68,6 @@ class BooksTest {
         assertEquals("1",actual);
     }
 
-    @Test
-    void setISBN() {
-
-    }
 
     @Test
     void getTitle() {
@@ -83,9 +77,6 @@ class BooksTest {
         assertEquals("Ok",actual);
     }
 
-    @Test
-    void setTitle() {
-    }
 
     @Test
     void getDescription() {
@@ -95,9 +86,6 @@ class BooksTest {
         assertEquals("Ok",actual);
     }
 
-    @Test
-    void setDescription() {
-    }
 
     @Test
     void getPrice() {
@@ -107,9 +95,7 @@ class BooksTest {
         assertEquals(25.0,actual);
     }
 
-    @Test
-    void setPrice() {
-    }
+
 
     @Test
     void getAuthor() {
@@ -164,9 +150,6 @@ class BooksTest {
 
     }
 
-    @Test
-    void setPaperback() {
-    }
 
     @Test
     void getQuanity() {

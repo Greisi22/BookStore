@@ -1,4 +1,4 @@
-package Model.Converters;
+package View.Converters;
 
 import Model.Bills.MyDate;
 import javafx.util.StringConverter;

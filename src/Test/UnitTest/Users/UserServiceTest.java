@@ -79,8 +79,6 @@ public class UserServiceTest {
         userList.add(userGreisi);
         UserService userService = new UserService();
         userService.writeUsersInFile(userList, "testBooks.dat");
-        userList.add(userDavid);
-        userList.add(userGreisi);
         ArrayList<Users> list = new ArrayList<>();
         FileInputStream fis;
         try {

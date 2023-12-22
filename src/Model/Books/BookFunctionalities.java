@@ -17,12 +17,14 @@ public class BookFunctionalities {
     }
     public  static  ArrayList<Books> UpdateBook(Books bookupdate) {
         ArrayList<Books> books = bookService.getBooks(path);
-        for (int i=0;i<books.size();i++){
-            if (books.get(i).getISBN().equals(bookupdate.getISBN())) {
-                books.set(i, bookupdate);
-            }
-        }
-        bookService.writeBooksInFile(books, path);
+      if(bookupdate != null){
+          for (int i=0;i<books.size();i++){
+              if (books.get(i).getISBN().equals(bookupdate.getISBN())) {
+                  books.set(i, bookupdate);
+              }
+          }
+          bookService.writeBooksInFile(books, path);
+      }
         return books;
     }
     public void setPath(String path){

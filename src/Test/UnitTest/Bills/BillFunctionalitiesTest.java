@@ -36,22 +36,23 @@ public class BillFunctionalitiesTest {
         book2.setQuanity(0);
         books.add(book1);
         books.add(book2);
-
         BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
-
         booksSreviceMock.setBooks(books);
-
         BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(booksSreviceMock);
-
         Books book = new Books();
         book.setISBN(ISBN);
-
         boolean actual = BillFunctionalitiess.checkOutOfStock(book);
-
         assertEquals(actual,expected);
-
-
     }
+
+
+
+
+
+
+
+
+
 
 
 @ParameterizedTest
@@ -176,16 +177,7 @@ void calculateTest(int price1, int price2, double expectedTotal) {
 
     }
 
-    @Test
-    void Prova()
-    {
-        BookService bookService = new BookService();
-        ArrayList<Books> books = bookService.getBooks( "src/EncodedInformation/Books.dat");
-        for(Books books1:books)
-        {
-            System.out.println(books1.getTitle());
-        }
-    }
+
 
 
 }

@@ -15,7 +15,7 @@ import java.util.List;
 public class LogInFunctionalities {
 
 
-   LogInFunctionalities logInFunctionalities;
+   LogInFunctionalities logInFunctionalities ;
 
    public LogInFunctionalities(){
 

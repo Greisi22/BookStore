@@ -118,6 +118,17 @@ class LoginTest {
         assertEquals(Arrays.asList(ResultType.INCORRECT_USER, "Incorrect Userername or password"), result);
     }
 
+    @Test
+    public void testIncorrectPassword() throws IOException {
+        lg = Mockito.mock(LogInFunctionalities.class);
+        Mockito.when(lg.checkUser("David", "InvalidPassword", "lol"))
+                .thenReturn(null);
+
+        LogInFunctionalities logInFunctionalities = new LogInFunctionalities(lg);
+        List<Constable> result = logInFunctionalities.handleLogin("InvalidUser", "InvalidPassword", "lol");
+        assertEquals(Arrays.asList(ResultType.INCORRECT_USER, "Incorrect Userername or password"), result);
+    }
+
 
 
 
@@ -131,6 +142,7 @@ class LoginTest {
         List<Constable> result = logInFunctionalities.handleLogin("Davidii", "111", "lol");
         assertEquals(Arrays.asList(ResultType.TRY_AGAIN, ""), result);
     }
+
 
 
 

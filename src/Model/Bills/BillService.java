@@ -45,6 +45,9 @@ public class BillService {
 
 
 
+//......................................................................
+
+
     public <E> ArrayList<E> getBillsFromFile(String path) {
         ArrayList<E> listofBooks = new ArrayList<>();
         FileInputStream fis;
@@ -69,32 +72,26 @@ public class BillService {
 
 
     public static void createNewBill(Bill newBill, String path){
-
-
-        ArrayList<Bill> listOfBills = new ArrayList<>();
-
-        FileOutputStream out;
-
-        try {
-
-            out = new FileOutputStream(path);
-            ObjectOutputStream objout = new ObjectOutputStream(out);
-
-            listOfBills=billService.getBillsFromFile(path);
-            listOfBills.add(newBill);
-
-            for (int i = 0; i < listOfBills.size(); i++) {
-                objout.writeObject(listOfBills.get(i));
-
-                System.out.println(listOfBills.get(i).getBook_name());
+        if(newBill!= null){
+            ArrayList<Bill> listOfBills = new ArrayList<>();
+            FileOutputStream out;
+            try {
+                out = new FileOutputStream(path);
+                ObjectOutputStream objout = new ObjectOutputStream(out);
+                listOfBills=billService.getBillsFromFile(path);
+                listOfBills.add(newBill);
+                for (int i = 0; i < listOfBills.size(); i++) {
+                    objout.writeObject(listOfBills.get(i));
+                    System.out.println(listOfBills.get(i).getBook_name());
+                }
+                listOfBills.clear();
+                objout.close();
+            } catch (FileNotFoundException e1) {
+                // TODO Auto-generated catch block
+                e1.printStackTrace();
+            } catch (IOException e) {
+                System.out.println(e);
             }
-            listOfBills.clear();
-            objout.close();
-        } catch (FileNotFoundException e1) {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
-        } catch (IOException e) {
-            System.out.println(e);
         }
     }
 

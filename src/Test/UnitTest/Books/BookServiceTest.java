@@ -21,66 +21,93 @@ public class BookServiceTest {
 
 
     @Test
-    void testGetBooks() throws IOException {
-        File tempFile = new File(tempFolder, "testBooks.dat");
+    void testGetBooksFromFileWithBooks() throws IOException {
         BookService bookService = new BookService();
+        File tempFile = new File(tempFolder, "testBooks.dat");
         try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile))) {
-            Books book1 = new Books("Book 1", "Author 1", 2023);
-            Books book2 = new Books("Book 2", "Author 2", 2024);
+            Books book1 = new Books("Book 1", "ISBN1", 12);
+            Books book2 = new Books("Book 2", "ISBN2", 20);
             objectOutputStream.writeObject(book1);
             objectOutputStream.writeObject(book2);
         }
-
-        ArrayList<Books> bookList = bookService.getBooks("testBooks.dat");
+        ArrayList<Books> bookList = bookService.getBooks(tempFile.getPath());
         assertEquals(2, bookList.size());
         assertEquals("Book 1", bookList.get(0).getTitle());
-        assertEquals("Author 2", bookList.get(1).getISBN());
-        assertEquals(2024, bookList.get(1).getQuanity());
+        assertEquals("ISBN2", bookList.get(1).getISBN());
+        assertEquals(20, bookList.get(1).getQuanity());
     }
 
     @Test
-    void testWriteInFIle() throws IOException {
-        Books book1 = new Books("Book 1", "Author 1", 2023);
-        Books book2 = new Books("Book 2", "Author 2", 2024);
-        ArrayList<Books> booksList = new ArrayList<>();
-        booksList.add(book1);
-        booksList.add(book2);
+    void testGetBooksFromFileEmpty() throws IOException {
         BookService bookService = new BookService();
-        bookService.writeBooksInFile(booksList, "testBooks.dat");
-        booksList.add(book1);
-        booksList.add(book2);
-        ArrayList<Books> list = new ArrayList<>();
-        FileInputStream fis;
-        try {
-            fis = new FileInputStream("testBooks.dat");
-            ObjectInputStream objis = new ObjectInputStream(fis);
+        File tempFile = new File(tempFolder, "testBooks.dat");
+        ArrayList<Books> bookList = bookService.getBooks(tempFile.getPath());
+        assertEquals(0, bookList.size());
+    }
 
-            Books obj = new Books();
-            while (true) {
-                obj = ((Books) objis.readObject());
-                list.add(obj);
-            }
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e1) {
+    //...................................................
 
-            assertEquals(list.size(), booksList.size());
-        }
-
-
+    @Test
+    void testAddNewBookToExistingBooks() throws IOException {
+        BookService bookService = new BookService();
+        File tempFile = new File(tempFolder, "testBooks1.dat");
+        ArrayList<Books> booksList = bookService.getBooks(tempFile.getPath());
+        Books book = new Books("New Title", "New ISBN", 10); // Title, ISBN, and quantity
+        booksList.add(book);
+        bookService.writeBooksInFile(booksList, tempFile.getPath());
+        ArrayList<Books> updatedBooksList = bookService.getBooks(tempFile.getPath());
+        assertEquals(1, updatedBooksList.size());
+        assertEquals("New Title", updatedBooksList.get(0).getTitle());
+        assertEquals("New ISBN", updatedBooksList.get(0).getISBN());
+        assertEquals(10, updatedBooksList.get(0).getQuanity());
     }
 
     @Test
-    void testGetBooks_ClassNotFoundException() {
-        BooksSreviceMock booksSreviceMock = new BooksSreviceMock();
-        BookFunctionalities bookFunctionalities = new BookFunctionalities(booksSreviceMock);
-
-
-        RuntimeException exception = assertThrows(RuntimeException.class, () -> {
-            bookFunctionalities.setPath("JGCE");
-        });
-
-
+    void testAddNewBookToEmptyFile() throws IOException {
+        BookService bookService = new BookService();
+        File tempFile = new File(tempFolder, "emptyBooks.dat");
+        tempFile.createNewFile();
+        ArrayList<Books> booksList = new ArrayList<>();
+        Books book = new Books("New Title", "New ISBN", 10); // Title, ISBN, and quantity
+        booksList.add(book);
+        bookService.writeBooksInFile(booksList, tempFile.getPath());
+        ArrayList<Books> updatedBooksList = bookService.getBooks(tempFile.getPath());
+        assertEquals(1, updatedBooksList.size());
+        assertEquals("New Title", updatedBooksList.get(0).getTitle());
+        assertEquals("New ISBN", updatedBooksList.get(0).getISBN());
+        assertEquals(10, updatedBooksList.get(0).getQuanity());
     }
+
+    @Test
+    void testAddNullBookToExistingBooks() throws IOException {
+        File tempFile = new File(tempFolder, "testBooks2.dat");
+        try (ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(tempFile))) {
+            Books book = new Books("Existing Book", "123456789", 5); // Adding an existing book
+            objectOutputStream.writeObject(book);
+        }
+        BookService bookService = new BookService();
+        bookService.getBooks("testBooks2.dat");
+        ArrayList<Books> booksList = new ArrayList<>();
+        booksList.add(null);
+        bookService.writeBooksInFile(booksList, tempFile.getPath());
+        ArrayList<Books> updatedBooksList = bookService.getBooks("testBooks2.dat");
+        assertEquals(1, updatedBooksList.size());
+    }
+
+    @Test
+    void testAddNullBookToEmptyFile() throws IOException {
+        BookService bookService = new BookService();
+        File tempFile = new File(tempFolder, "emptyBooks11.dat");
+        tempFile.createNewFile();
+        ArrayList<Books> booksList = new ArrayList<>();
+        booksList.add(null);
+        bookService.writeBooksInFile(booksList, tempFile.getPath());
+        ArrayList<Books> updatedBooksList = bookService.getBooks(tempFile.getPath());
+        assertTrue(updatedBooksList.isEmpty());
+    }
+
+
+
+
 
 }

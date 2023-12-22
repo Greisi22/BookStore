@@ -30,7 +30,7 @@ public  class BookService {
         } catch (IOException e1) {
             System.out.println(e1);
         }
-
+System.out.println(list.size());
         return list;
     }
 
@@ -41,7 +41,10 @@ public  class BookService {
             out = new FileOutputStream(path);
             ObjectOutputStream objout = new ObjectOutputStream(out);
             for (int i = 0; i < newBooks1.size(); i++) {
-                objout.writeObject(newBooks1.get(i));
+                if(newBooks1.get(i) != null){
+
+                    objout.writeObject(newBooks1.get(i));
+                }
             }
             objout.close();
         } catch (FileNotFoundException e1) {

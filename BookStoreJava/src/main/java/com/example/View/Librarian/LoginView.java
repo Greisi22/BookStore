@@ -74,7 +74,7 @@ public class LoginView {
 
         pane.getChildren().addAll(LOGIN, labeUsername, usernametextFiled, labePassWord, PassswrdField, Message);
 
-        Image image = new Image("file:src/UI/Images/l.png");
+        Image image = new Image("file:src/main/java/com/example/UI/Images/l.png");
         BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
         pane.setBackground(new javafx.scene.layout.Background(bgImg));

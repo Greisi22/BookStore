@@ -25,7 +25,7 @@ public class LoginController {
     public void handleLogin() {
         loginView.getLOGIN().setOnAction(e -> {
             LogInFunctionalities logInFunctionalities = new LogInFunctionalities();
-            List<Constable> result = logInFunctionalities.handleLogin(loginView.getUsernametextFiled().getText(), loginView.getPassswrdField().getText(), "src/EncodedInformation/Users.dat");
+            List<Constable> result = logInFunctionalities.handleLogin(loginView.getUsernametextFiled().getText(), loginView.getPassswrdField().getText(), "src/main/java/com/example/EncodedInformation/Users.dat");
             if (result != null && result.size() > 0) {
                 ResultType resultType = (ResultType) result.get(0);
                 switch (resultType) {

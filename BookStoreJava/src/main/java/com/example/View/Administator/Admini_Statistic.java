@@ -16,7 +16,7 @@ import javafx.stage.Stage;
 
 public class Admini_Statistic {
 	private static UserService userService = new UserService();
-	private static final String path = "src/EncodedInformation/Bills.dat";
+	private static final String path = "src/main/java/com/example/EncodedInformation/Bills.dat";
 
 
 	

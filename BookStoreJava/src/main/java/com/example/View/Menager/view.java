@@ -29,7 +29,7 @@ public class view {
 	public static void View(Stage stage, String Name) throws FileNotFoundException {
 		WelcomeName = Name;
 
-		FileInputStream ImageInput = new FileInputStream("src/UI/Icons/mssgTheOne.png");
+		FileInputStream ImageInput = new FileInputStream("src/main/java/com/example/UI/Icons/mssgTheOne.png");
 		Image search = new Image(ImageInput);
 		ImageView image1 = new ImageView(search);
 		image1.setFitWidth(35);
@@ -40,7 +40,7 @@ public class view {
 		message.setLayoutX(610);
 		message.setLayoutY(30);
 
-		FileInputStream ImageInput1 = new FileInputStream("src/UI/Icons/no_mess.png");
+		FileInputStream ImageInput1 = new FileInputStream("src/main/java/com/example/UI/Icons/no_mess.png");
 		Image search1 = new Image(ImageInput1);
 		ImageView image11 = new ImageView(search1);
 		image11.setFitWidth(30);
@@ -104,7 +104,7 @@ public class view {
 			MenagerCreateBook.BookView(stage, WelcomeName);
 		});
 
-		ArrayList<Books> booksOutOfStock = OutOFStock.checkIfOutOfStock("src/EncodedInformation/Books.dat");
+		ArrayList<Books> booksOutOfStock = OutOFStock.checkIfOutOfStock("src/main/java/com/example/EncodedInformation/Books.dat");
 
 		if (booksOutOfStock.isEmpty()) {
 			pane.getChildren().add(no_message);
@@ -125,7 +125,7 @@ public class view {
 
 		pane.getChildren().addAll(createBook, UppdateBook, Statistic, signout, label_WelcomeName);
 
-		Image image = new Image("file:src/UI/Images/paslogin.png");
+		Image image = new Image("file:src/main/java/com/example/UI/Images/paslogin.png");
 
 		BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

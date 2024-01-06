@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public  class BookService {
 
-    private String path = "src/EncodedInformation/Books.dat";
+    private String path = "src/main/java/com/example/EncodedInformation/Books.dat";
 
     public BookService ()
     {

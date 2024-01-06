@@ -25,7 +25,7 @@ import java.util.ArrayList;
 
 public class Userss {
 
-    static final String path = "src/EncodedInformation/Users.dat";
+    static final String path = "src/main/java/com/example/EncodedInformation/Users.dat";
 
 
     public static void ModUsers() {

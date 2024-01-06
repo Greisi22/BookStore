@@ -26,8 +26,8 @@ public class MenagerStatistic {
 	    final static String October = "October";
 	    final static String November = "November";
 	    final static String December = "December";
-	    static final String bookPath = "src/EncodedInformation/Books.dat";
-	    static final String billPath = "src/EncodedInformation/Bills.dat";
+	    static final String bookPath = "src/main/java/com/example/EncodedInformation/Books.dat";
+	    static final String billPath = "src/main/java/com/example/EncodedInformation/Bills.dat";
 	    
 
 	    

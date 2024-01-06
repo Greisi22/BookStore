@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class UserFunctionalities {
     static UserService userService = new UserService();
-    private static String path = "src/EncodedInformation/Users.dat";
+    private static String path = "src/main/java/com/example/EncodedInformation/Users.dat";
 
     public UserFunctionalities () {}
     public UserFunctionalities(UserService userService){

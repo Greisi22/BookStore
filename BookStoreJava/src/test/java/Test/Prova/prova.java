@@ -33,7 +33,7 @@ public class prova {
         userGreisi.setAccesLevel(AccessLevel.MANAGER);
 
         // Write users to file
-        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Users.dat", true))) {
+        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/main/java/com/example/EncodedInformation/Users.dat", true))) {
             objout.writeObject(userErisa);
             objout.writeObject(userDavid);
             objout.writeObject(userGreisi);
@@ -43,7 +43,7 @@ public class prova {
 
         // Read users from file
         ArrayList<Users> listofUsers = new ArrayList<>();
-        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/EncodedInformation/Users.dat"))) {
+        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/main/java/com/example/EncodedInformation/Users.dat"))) {
             while (true) {
                 try {
                     Users obj = (Users) objis.readObject();
@@ -87,7 +87,7 @@ public class prova {
             booksList.add(book);
         }
 
-        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Books.dat", true))) {
+        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/main/java/com/example/EncodedInformation/Books.dat", true))) {
             for (Books bookk : booksList) {
                 objout.writeObject(bookk);
             }
@@ -95,7 +95,7 @@ public class prova {
             e.printStackTrace();
         }
         ArrayList<Books> listofUsers = new ArrayList<>();
-        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/EncodedInformation/Books.dat"))) {
+        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/main/java/com/example/EncodedInformation/Books.dat"))) {
             while (true) {
                 try {
                     Books obj = (Books) objis.readObject();

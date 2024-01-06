@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LoginTest {
     private static LogInFunctionalities lg;
-    private  final String filePath = "src/EncodedInformation/Users.dat";
+    private  final String filePath = "src/main/java/com/example/EncodedInformation/Users.dat";
     @BeforeAll
     static void createLogIn() {
         lg = new LogInFunctionalities();

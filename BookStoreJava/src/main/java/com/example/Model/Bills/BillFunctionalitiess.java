@@ -12,8 +12,8 @@ public class BillFunctionalitiess {
     static BookService bookService = new BookService();
 
 
-    private static final String path = "src/EncodedInformation/Bills.dat";
-    private static final String path1 = "src/EncodedInformation/Books.dat";
+    private static final String path = "src/main/java/com/example/EncodedInformation/Bills.dat";
+    private static final String path1 = "src/main/java/com/example/EncodedInformation/Books.dat";
 
     public  BillFunctionalitiess()
     {
@@ -30,7 +30,7 @@ public class BillFunctionalitiess {
 
 
     public static boolean checkOutOfStock(Books book) {
-        ArrayList<Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
+        ArrayList<Books> booksFromFile = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
         for(Books b:booksFromFile)
         {
             if(b.equals(book))
@@ -68,7 +68,7 @@ public class BillFunctionalitiess {
 
     public static Books updateQuantity(Books book)
     {
-        ArrayList<Books> booksFromFile = bookService.getBooks("src/EncodedInformation/Books.dat");
+        ArrayList<Books> booksFromFile = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
         for(Books b:booksFromFile)
         {
             if(b.equals(book))

@@ -43,7 +43,7 @@ import com.example.Model.Userss.Users;
 public class SignUp {
 static String namee;
 static Stage stage;
-static final String path = "src/EncodedInformation/Users.dat";
+static final String path = "src/main/java/com/example/EncodedInformation/Users.dat";
 static UserService userService = new UserService();
 	public static void SignUpView(Stage primaryStage, String name) {
 		namee = name;
@@ -52,7 +52,7 @@ static UserService userService = new UserService();
 
 		GridPane gridPane;
 		try {
-			Image image = new Image("file:src/UI/Images/pasloginbosh.png"); // Replace with your image file path
+			Image image = new Image("file:src/main/java/com/example/UI/Images/pasloginbosh.png"); // Replace with your image file path
 
 			BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 					BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

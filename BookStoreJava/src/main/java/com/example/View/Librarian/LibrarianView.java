@@ -78,7 +78,7 @@ public class LibrarianView {
 			logIn.Log_inn(stage);
 		});
 
-		Image image = new Image("file:src/UI/Images/paslogin.png"); // Replace with your image file path
+		Image image = new Image("file:src/main/java/com/example/UI/Images/paslogin.png"); // Replace with your image file path
 		BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 		
@@ -118,7 +118,7 @@ public class LibrarianView {
 		ArrayList<Books> listBooks = new ArrayList<Books>();
 
 		BookService bookService = new BookService() ;
-	   listBooks = bookService.getBooks("src/EncodedInformation/Books.dat");
+	   listBooks = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
 
 		TableView<Books> userTable = new TableView<>();
 
@@ -232,7 +232,7 @@ public class LibrarianView {
 		pane.setVgap(5);
 		pane.setAlignment(Pos.CENTER);
 		Scene scene = new Scene(pane, 700, 500);
-		scene.getStylesheets().add("try.css");
+		scene.getStylesheets().add("");
 		Stage stage1 = new Stage();
 
 		stage1.setScene(scene);

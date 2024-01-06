@@ -10,17 +10,17 @@ public class BillService {
   private static    BillService billService = new BillService();
     public static String PrintFile(ArrayList<String> bookNames, Bill isCreated) {
 
-        File file = new File("src/TextFiles/cnt.txt");
+        File file = new File("src/main/java/com/example/TextFiles/cnt.txt");
         try {
             Scanner input = new Scanner(file);
             String a = input.next();
             int cnt = Integer.parseInt(a);
             cnt++;
             input.close();
-            FileWriter file1 = new FileWriter("src/TextFiles/cnt.txt");
+            FileWriter file1 = new FileWriter("src/main/java/com/example/TextFiles/cnt.txt");
             file1.write((cnt) + "");
             file1.close();
-            PrintWriter pfile = new PrintWriter("src/Bills/Bill" + cnt);
+            PrintWriter pfile = new PrintWriter("src/main/java/com/example/Bills/Bill" + cnt);
             pfile.write("**Bill**\n");
 
             StringBuilder s1 = new StringBuilder();

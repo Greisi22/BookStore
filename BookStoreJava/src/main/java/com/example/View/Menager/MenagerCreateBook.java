@@ -493,9 +493,9 @@ public class MenagerCreateBook {
 
 
 			ArrayList<Books> booklist = new ArrayList<>();
-			booklist = bookService.getBooks("src/EncodedInformation/Books.dat");
+			booklist = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
 			booklist.add(isCreated);
-			bookService.writeBooksInFile(booklist, "src/EncodedInformation/Books.dat");
+			bookService.writeBooksInFile(booklist, "src/main/java/com/example/EncodedInformation/Books.dat");
 
 //			Book_Sold boook = new Book_Sold(new Zh_MyDate(d.getValue().getMonthValue(),
 //					d.getValue().getDayOfMonth(), d.getValue().getYear()), isbn13);
@@ -525,7 +525,7 @@ public class MenagerCreateBook {
 		pane.getChildren().addAll(title, Ltitle, ISBN, LISBN, Price, LPrice, description, Ldescription, Lquntity,
 				quntity, author, Lauthor, paneForGenres, genreLbl, rbPaperback, rbEbook, b1, d, b2);
 
-		Image image = new Image("file:src/UI/Images/pasloginbosh.pngg"); // Replace with your image file path
+		Image image = new Image("file:src/main/java/com/example/UI/Images/pasloginbosh.pngg"); // Replace with your image file path
 
 		BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);

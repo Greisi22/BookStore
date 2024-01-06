@@ -71,7 +71,8 @@ public class LibrarianView {
 		});
 
 		signout.setOnAction(e -> {
-			LogIn.Log_inn(stage);
+			LoginView logIn = new LoginView();
+			logIn.Log_inn(stage);
 		});
 
 		Image image = new Image("file:src/UI/Images/paslogin.png"); // Replace with your image file path

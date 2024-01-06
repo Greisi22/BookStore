@@ -3,7 +3,7 @@ package View.Menager;
 import java.io.*;
 import java.util.ArrayList;
 
-import View.Librarian.LogIn;
+import View.Librarian.LoginView;
 import Model.Books.Books;
 import Model.Manager.OutOFStock;
 
@@ -97,7 +97,8 @@ public class view {
 		});
 
 		signout.setOnAction(e -> {
-			LogIn.Log_inn(stage);
+			LoginView logIn = new LoginView();
+			logIn.Log_inn(stage);
 		});
 
 		createBook.setOnAction(e -> {

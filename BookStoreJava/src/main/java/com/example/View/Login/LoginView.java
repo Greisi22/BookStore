@@ -1,9 +1,8 @@
-package com.example.View.Librarian;
+package com.example.View.Login;
 
 
 import com.example.Controllers.LoginController;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -17,7 +16,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 
 public class LoginView {
 
@@ -37,61 +35,62 @@ public class LoginView {
         this.loginController = loginController;
     }
 
-    public void Log_inn(Stage stage) {
+    public void start(Stage stage) {
         this.stage = stage;
         pane = new Pane();
 
-        labeUsername = new Label("Username");
-        labeUsername.setLayoutX(440);
-        labeUsername.setLayoutY(210);
-        labeUsername.setFont(new Font("Glacial Indifference", 17));
-        labeUsername.setTextFill(Color.web("#B1A2CF"));
-
-        // TextField to take username
-        usernametextFiled = new TextField();
-        usernametextFiled.setLayoutX(440);
-        usernametextFiled.setLayoutY(240);
-
-        labePassWord = new Label("Password");
-        labePassWord.setLayoutX(440);
-        labePassWord.setLayoutY(270);
-        labePassWord.setFont(new Font("Glacial Indifference", 17));
-        labePassWord.setTextFill(Color.web("#B1A2CF"));
-
-        PassswrdField = new PasswordField();
-        PassswrdField.setLayoutX(440);
-        PassswrdField.setLayoutY(300);
-
-        LOGIN = new Button("Log In");
-        LOGIN.setStyle("-fx-background-color: #B1A2CF; -fx-text-fill: white;");
-        LOGIN.setLayoutX(540);
-        LOGIN.setLayoutY(330);
-
-        Message.setLayoutX(100);
-        Message.setLayoutY(280);
-        Message.setTextFill(Color.RED);
-        Message.setFont(Font.font("Cambria", 15));
-
-        pane.getChildren().addAll(LOGIN, labeUsername, usernametextFiled, labePassWord, PassswrdField, Message);
-
-        Image image = new Image("file:src/main/java/com/example/UI/Images/l.png");
-        BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
-                BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-        pane.setBackground(new javafx.scene.layout.Background(bgImg));
-
+        pane = LogInViewPage();
         Scene scene = new Scene(pane, 700, 500);
         stage.setTitle("Log in");
         stage.setScene(scene);
         stage.show();
 
+
         // Add an action to the LOGIN button
-        loginController.handleLogin();
-
     }
-    //....................................................................................
 
-    //....................................................................................
 
+      public Pane LogInViewPage(){
+          labeUsername = new Label("Username");
+          labeUsername.setLayoutX(440);
+          labeUsername.setLayoutY(210);
+          labeUsername.setFont(new Font("Glacial Indifference", 17));
+          labeUsername.setTextFill(Color.web("#B1A2CF"));
+
+          // TextField to take username
+          usernametextFiled = new TextField();
+          usernametextFiled.setLayoutX(440);
+          usernametextFiled.setLayoutY(240);
+
+          labePassWord = new Label("Password");
+          labePassWord.setLayoutX(440);
+          labePassWord.setLayoutY(270);
+          labePassWord.setFont(new Font("Glacial Indifference", 17));
+          labePassWord.setTextFill(Color.web("#B1A2CF"));
+
+          PassswrdField = new PasswordField();
+          PassswrdField.setLayoutX(440);
+          PassswrdField.setLayoutY(300);
+
+          LOGIN = new Button("Log In");
+          LOGIN.setStyle("-fx-background-color: #B1A2CF; -fx-text-fill: white;");
+          LOGIN.setLayoutX(540);
+          LOGIN.setLayoutY(330);
+
+          Message.setLayoutX(100);
+          Message.setLayoutY(280);
+          Message.setTextFill(Color.RED);
+          Message.setFont(Font.font("Cambria", 15));
+          Image image = new Image("file:src/main/java/com/example/UI/Images/l.png");
+          BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT,
+                  BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+          pane.setBackground(new javafx.scene.layout.Background(bgImg));
+
+          pane.getChildren().addAll(LOGIN, labeUsername, usernametextFiled, labePassWord, PassswrdField, Message);
+          LOGIN.setId("Submit");
+          loginController.handleLogin();
+          return pane;
+      }
 
 
     public static Label getMessage() {

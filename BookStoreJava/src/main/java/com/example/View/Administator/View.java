@@ -2,7 +2,7 @@ package com.example.View.Administator;
 
 
 
-import com.example.View.Librarian.LoginView;
+import com.example.View.Login.LoginView;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -70,7 +70,7 @@ public class View {
         signout.setOnAction(e -> {
 
             LoginView logIn = new LoginView();
-            logIn.Log_inn(stage);
+            logIn.start(stage);
 
         });
 

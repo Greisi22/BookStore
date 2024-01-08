@@ -5,7 +5,7 @@ import com.example.Model.Login.LogInFunctionalities;
 import com.example.Model.Login.ResultType;
 import com.example.View.Administator.View;
 import com.example.View.Librarian.LibrarianView;
-import com.example.View.Librarian.LoginView;
+import com.example.View.Login.LoginView;
 import com.example.View.Menager.view;
 import javafx.scene.control.Alert;
 import javafx.stage.Window;
@@ -15,6 +15,7 @@ import java.util.List;
 
 public class LoginController {
     private final LoginView loginView;
+    private  Alert alert;
     private final LogInFunctionalities logInFunctionalities;
 
     public LoginController(LoginView loginView) {
@@ -37,7 +38,8 @@ public class LoginController {
                         break;
                     case LIBRARIAN_LOGIN:
                         try {
-                            LibrarianView.stage(loginView.getStage(), result.get(1).toString()); // Assuming the second element is the username
+                            LibrarianView librarianView = new LibrarianView();
+                            librarianView.stage(loginView.getStage(), result.get(1).toString()); // Assuming the second element is the username
                         } catch (FileNotFoundException ex) {
                             throw new RuntimeException(ex);
                         }
@@ -58,12 +60,16 @@ public class LoginController {
         });
     }
 
-    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
+    public  void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    public Alert getAlert(){
+        return this.alert;
     }
 }

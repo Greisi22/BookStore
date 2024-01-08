@@ -2,7 +2,7 @@ package com.example;
 
 
 import com.example.Controllers.LoginController;
-import com.example.View.Librarian.LoginView;
+import com.example.View.Login.LoginView;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,7 +12,7 @@ public class BookStoreApplication extends Application {
         LoginView logIn = new LoginView();
         LoginController loginController = new LoginController(logIn);
         logIn.setLoginController(loginController);
-        logIn.Log_inn(stage);
+        logIn.start(stage);
 
     }
 

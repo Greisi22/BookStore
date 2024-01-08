@@ -113,7 +113,8 @@ public class ShowBill {
 
             stage1.close();
             try {
-                LibrarianView.showTable(stage);
+                LibrarianView librarianView = new LibrarianView();
+                librarianView.showTable(stage);
             } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import com.example.Model.Books.Books;
 import com.example.Model.Manager.OutOFStock;
-import com.example.View.Librarian.LoginView;
+import com.example.View.Login.LoginView;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -97,7 +97,7 @@ public class view {
 
 		signout.setOnAction(e -> {
 			LoginView logIn = new LoginView();
-			logIn.Log_inn(stage);
+			logIn.start(stage);
 		});
 
 		createBook.setOnAction(e -> {

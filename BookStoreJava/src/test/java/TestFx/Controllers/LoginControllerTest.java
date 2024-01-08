@@ -10,6 +10,7 @@ import org.testfx.util.WaitForAsyncUtils;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
+
 import org.junit.jupiter.api.Test;
 
 
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class LoginControllerTest extends ApplicationTest {
     private LoginView loginView;
-    private LoginController loginController ;
+    private LoginController loginController;
     private Stage primaryStage;
 
     @Override
@@ -28,7 +29,7 @@ public class LoginControllerTest extends ApplicationTest {
         loginView.setLoginController(loginController);
         loginView.setPane(new Pane());
         Pane pane = loginView.LogInViewPage();
-        primaryStage.setScene(new Scene(pane , 700, 500));
+        primaryStage.setScene(new Scene(pane, 700, 500));
         primaryStage.show();
     }
 
@@ -46,6 +47,8 @@ public class LoginControllerTest extends ApplicationTest {
         WaitForAsyncUtils.waitForFxEvents();
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> "Incorrect Userername or password".equals(loginController.getAlert().getContentText()));
     }
+
+
 
 
 }

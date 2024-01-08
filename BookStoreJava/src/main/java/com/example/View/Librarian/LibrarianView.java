@@ -28,39 +28,14 @@ public class LibrarianView {
     private static Books bookSelected = null;
     static Label OutOfStock = new Label("");
     static String WelcomeName;
+    private Button addCreateBill = new Button("Create Bill");
+    private Button signout = new Button("Sign Out");
     private  LibrarianController librarianController = new LibrarianController();
 
-    public  void stage(Stage stage, String Name) throws FileNotFoundException {
+    public  void start(Stage stage, String Name) throws FileNotFoundException {
         WelcomeName = Name;
-        Pane pane = new Pane();
 
-        Button addCreateBill = new Button("Create Bill");
-        addCreateBill.setPrefSize(100, 30);
-        addCreateBill.setLayoutX(250);
-        addCreateBill.setLayoutY(400);
-        addCreateBill.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
-        addCreateBill.setFont(new Font("Glacial Indifference", 12));
-
-        Button signout = new Button("Sign Out");
-        signout.setPrefSize(100, 30);
-        signout.setLayoutX(360);
-        signout.setLayoutY(400);
-        signout.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
-        signout.setFont(new Font("Glacial Indifference", 12));
-
-        Image image = new Image("file:src/main/java/com/example/UI/Images/paslogin.png"); // Replace with your image file path
-        BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
-
-        Label label_WelcomeName = new Label("Welcome " + WelcomeName);
-        label_WelcomeName.setFont(Font.font("Roboto Mono Regular", 27));
-        label_WelcomeName.setTextFill(Color.web("#79CBE1"));
-        label_WelcomeName.setLayoutX(260);
-        label_WelcomeName.setLayoutY(300);
-
-        pane.getChildren().addAll(addCreateBill, signout, label_WelcomeName);
-        pane.setBackground(new javafx.scene.layout.Background(bgImg));
-
+        Pane pane = getLibrarianView();
         Scene scene = new Scene(pane, 700, 500);
         if (stage != null) {
             stage.setTitle("Librarian");
@@ -218,13 +193,49 @@ public class LibrarianView {
             booksOfBill.clear();
             try {
                 stage1.close();
-                stage(stage, WelcomeName);
+                start(stage, WelcomeName);
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
             }
 
         });
 
+    }
+
+
+
+
+
+    public Pane getLibrarianView(){
+        Pane pane = new Pane();
+
+
+        addCreateBill.setPrefSize(100, 30);
+        addCreateBill.setLayoutX(250);
+        addCreateBill.setLayoutY(400);
+        addCreateBill.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
+        addCreateBill.setFont(new Font("Glacial Indifference", 12));
+
+
+        signout.setPrefSize(100, 30);
+        signout.setLayoutX(360);
+        signout.setLayoutY(400);
+        signout.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
+        signout.setFont(new Font("Glacial Indifference", 12));
+
+        Image image = new Image("file:src/main/java/com/example/UI/Images/paslogin.png"); // Replace with your image file path
+        BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
+
+        Label label_WelcomeName = new Label("Welcome " + WelcomeName);
+        label_WelcomeName.setFont(Font.font("Roboto Mono Regular", 27));
+        label_WelcomeName.setTextFill(Color.web("#79CBE1"));
+        label_WelcomeName.setLayoutX(260);
+        label_WelcomeName.setLayoutY(300);
+
+        pane.getChildren().addAll(addCreateBill, signout, label_WelcomeName);
+        pane.setBackground(new javafx.scene.layout.Background(bgImg));
+        return pane;
     }
 
 

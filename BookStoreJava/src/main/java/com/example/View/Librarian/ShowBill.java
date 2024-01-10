@@ -4,10 +4,7 @@ import java.io.*;
 import java.util.ArrayList;
 
 
-import com.example.Model.Bills.Bill;
-import com.example.Model.Bills.BillFunctionalitiess;
-import com.example.Model.Bills.BillService;
-import com.example.Model.Bills.MyDate;
+import com.example.Controllers.BillController;
 import com.example.Model.Books.Books;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -30,27 +27,20 @@ import javafx.stage.Stage;
 public class ShowBill {
 
 
-    private static ObjectInputStream objis;
 
+    private BillController billController = new BillController();
 
-    public static void ShowBill(ArrayList<Books> bookOfBill, Pane pane2, Stage stage1,
-                                Stage stage, String WelcomeName) {
-
-
+    public void ShowBill(ArrayList<Books> bookOfBill, Pane pane2, Stage stage1) {
         HBox[] hBoxs = new HBox[bookOfBill.size()];
         VBox[] vBoxs = new VBox[bookOfBill.size()];
         VBox vBoxs1 = new VBox();
 
         for (int i = 0; i < bookOfBill.size(); i++) {
-
             Label l1 = new Label("Book: " + bookOfBill.get(i).getTitle());
-
-
             l1.setFont(Font.font("Roboto Mono Regular", FontWeight.BOLD, 14));
             l1.setTextFill(Color.web("#79CBE1"));
 
             Label l2 = new Label("Price: " + bookOfBill.get(i).getPrice() + "");
-
             l2.setFont(Font.font("Roboto Mono Regular", FontWeight.BOLD, 14));
             l2.setTextFill(Color.web("#79CBE1"));
 
@@ -62,8 +52,9 @@ public class ShowBill {
 
         vBoxs1.getChildren().addAll(vBoxs);
         vBoxs1.setPadding(new Insets(60, 5, 5, 40));
-
         vBoxs1.setSpacing(12);
+        vBoxs1.setLayoutX(30);
+        vBoxs1.setLayoutY(100);
 
 
         Button Print = new Button("Print Bill");
@@ -89,64 +80,40 @@ public class ShowBill {
         ClearBill.setLayoutY(365);
 
         DatePicker d = new DatePicker();
-
         d.setLayoutX(476);
         d.setLayoutY(150);
 
         Image image = new Image("file:src/main/java/com/example/UI/Images/showBillimg.png"); // Replace with your image file path
-
         BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 
 
-        vBoxs1.setLayoutX(30);
-        vBoxs1.setLayoutY(100);
-
         Pane pane = new Pane();
         pane.getChildren().addAll(vBoxs1, Print, Back, d, ClearBill);
         pane.setBackground(new javafx.scene.layout.Background(bgImg));
-        Scene scene = new Scene(pane, pane2.getWidth(), pane2.getHeight());
+        Scene scene = new Scene(pane, 700, 500);
         stage1.setScene(scene);
         stage1.show();
 
         Back.setOnAction(e -> {
-
             stage1.close();
             try {
-                LibrarianView librarianView = new LibrarianView();
-                librarianView.showTable(stage);
+                LibrarianTableView librarianView  = new LibrarianTableView();
+                librarianView.showTable(stage1);
             } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
-
         });
 
 
         ClearBill.setOnAction(e -> {
             bookOfBill.clear();
-            ShowBill(bookOfBill, pane2, stage1,
-                    stage, WelcomeName);
+            ShowBill(bookOfBill, pane2, stage1);
 
         });
 
-        //objecti i controllerit
-        BillController newBill = new BillController();
-
-
         Print.setOnAction(e -> {
-            double total = BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
-            ArrayList<String> bookNamess = BillFunctionalitiess.getBookNames(bookOfBill);
-            BillFunctionalitiess.CalculateTotalPrice(bookOfBill);
-
-//		    BillFunctionalitiess.updateQuantity(selectedbook);
-            Bill isCreated = newBill.createBill(total, new MyDate(d.getValue().getMonthValue(), d.getValue().getDayOfMonth(), d.getValue().getYear()), bookOfBill.size());
-            isCreated.setBook_name(bookNamess);
-            isCreated.setBookquantity(bookOfBill.size());
-
-
-            BillService.PrintFile(bookNamess, isCreated);
-            BillService.createNewBill(isCreated, "src/main/java/com/example/EncodedInformation/Bills.dat");
-
+            this.billController.handlePrintingBill(bookOfBill, d);
         });
 
     }

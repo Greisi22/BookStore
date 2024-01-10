@@ -8,13 +8,11 @@ import com.example.Model.Books.Books;
 import java.io.Serial;
 import java.io.Serializable;
 
-public class BooksController implements Serializable{
+public class BooksController {
 	/**
 	 * 
 	 */
-	@Serial
-	private static final long serialVersionUID = 1L;
-	
+
 
 	
 	public Books loginn(String title, String isbn, int quanity, String description, double price, Author author,

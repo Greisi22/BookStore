@@ -126,7 +126,6 @@ public class view {
 		pane.getChildren().addAll(createBook, UppdateBook, Statistic, signout, label_WelcomeName);
 
 		Image image = new Image("file:src/main/java/com/example/UI/Images/paslogin.png");
-
 		BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,
 				BackgroundPosition.DEFAULT, BackgroundSize.DEFAULT);
 

@@ -28,17 +28,10 @@ import javafx.util.converter.IntegerStringConverter;
 
 
 public class UpdateBook {
-	private static String a;
-	private static double b;
-	private static String c;
-	private static int d;
+
 	@SuppressWarnings("unchecked")
 	public static void Update_Book_View(Stage stage)
 	{
-		
-		
-		
-		
 		//................................................................................................//
 	ArrayList<Books> listBooks = new ArrayList<Books>();
 		FileInputStream fis = null;
@@ -74,7 +67,7 @@ public class UpdateBook {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println(listBooks);
+
 		TableView<Books> userTable = new TableView<Books>();
 		ObservableList<Books> data = FXCollections.observableArrayList(listBooks);
 		userTable.setItems(data);

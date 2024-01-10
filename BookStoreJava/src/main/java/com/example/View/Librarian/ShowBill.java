@@ -27,10 +27,23 @@ import javafx.stage.Stage;
 public class ShowBill {
 
 
-
     private BillController billController = new BillController();
 
-    public void ShowBill(ArrayList<Books> bookOfBill, Pane pane2, Stage stage1) {
+    public Stage getBillStage() {
+        return billStage;
+    }
+
+    private Stage billStage;
+
+    public void startBillView(Stage stage, ArrayList<Books> bookOfBill) {
+        this.billStage = stage;
+        Pane pane = ShowBill( bookOfBill);
+        Scene scene = new Scene(pane, 700, 500);
+        billStage.setScene(scene);
+        billStage.show();
+    }
+
+    public Pane ShowBill(ArrayList<Books> bookOfBill) {
         HBox[] hBoxs = new HBox[bookOfBill.size()];
         VBox[] vBoxs = new VBox[bookOfBill.size()];
         VBox vBoxs1 = new VBox();
@@ -91,15 +104,12 @@ public class ShowBill {
         Pane pane = new Pane();
         pane.getChildren().addAll(vBoxs1, Print, Back, d, ClearBill);
         pane.setBackground(new javafx.scene.layout.Background(bgImg));
-        Scene scene = new Scene(pane, 700, 500);
-        stage1.setScene(scene);
-        stage1.show();
+
 
         Back.setOnAction(e -> {
-            stage1.close();
             try {
-                LibrarianTableView librarianView  = new LibrarianTableView();
-                librarianView.showTable(stage1);
+                LibrarianTableView librarianView = new LibrarianTableView();
+                librarianView.startTableView(this.getBillStage());
             } catch (ClassNotFoundException ex) {
                 throw new RuntimeException(ex);
             }
@@ -108,14 +118,14 @@ public class ShowBill {
 
         ClearBill.setOnAction(e -> {
             bookOfBill.clear();
-            ShowBill(bookOfBill, pane2, stage1);
+            ShowBill(bookOfBill);
 
         });
 
         Print.setOnAction(e -> {
             this.billController.handlePrintingBill(bookOfBill, d);
         });
-
+        return pane;
     }
 
 

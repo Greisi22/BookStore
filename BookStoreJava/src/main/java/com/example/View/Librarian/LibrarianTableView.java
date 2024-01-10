@@ -14,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
@@ -25,12 +26,43 @@ import java.util.ArrayList;
 public class LibrarianTableView {
 
     private static Books bookSelected = null;
+
+    public Books getBookSelected1() {
+        return bookSelected1;
+    }
+
+    private  Books bookSelected1 = null;
     static Label OutOfStock = new Label("");
     private LibrarianController librarianController = new LibrarianController();
+
+    public Books getBooksOfBill() {
+        System.out.println();
+        return getBookSelected1();
+    }
+
     private static ArrayList<Books> booksOfBill = new ArrayList<>();
 
-    public  void showTable(Stage stage) throws ClassNotFoundException {
+    public Stage getStage() {
+        return stage;
+    }
+
+    private Stage stage;
+    private Stage stage1;
+
+    public void startTableView(Stage stage) throws ClassNotFoundException {
+        this.stage = stage;
+        Pane pane = showTable();
+        Scene scene = new Scene(pane, 700, 500);
+        scene.getStylesheets().add("");
+        Stage stage1 = new Stage();
+        this.stage1 = stage1;
+        this.stage1.setScene(scene);
+        this.stage1.show();
+    }
+
+    public Pane showTable() throws ClassNotFoundException {
         Button Add = new Button("Add to Bill");
+        Add.setId("addToBill");
         Add.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
 
         Button showBill = new Button("Show Bill");
@@ -52,12 +84,16 @@ public class LibrarianTableView {
         // ........................................................................................................
         userTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         userTable.setEditable(true);
+        userTable.setId("usertableId");
 
         userTable.getSelectionModel().selectedItemProperty()
                 .addListener((ObservableValue<? extends Books> ov, Books old_val, Books new_val) -> {
                     ObservableList<Books> selectedItems = userTable.getSelectionModel().getSelectedItems();
+
                     for (Books name : selectedItems) {
+                        System.out.println("loool" + name.getTitle());
                         bookSelected = name;
+                        bookSelected1 = name;
                     }
                 });
 
@@ -113,18 +149,18 @@ public class LibrarianTableView {
         });
 
         Add.setOnAction(e -> {
-          if(bookSelected != null){
-              if (librarianController.checkOutOfStock(bookSelected)) {
-                  OutOfStock.setText(bookSelected.getTitle() + " added!");
-                  booksOfBill.add(bookSelected);
-              } else {
-                  OutOfStock.setText("Book " + bookSelected.getTitle() + " is out of stock!!!");
-                  OutOfStock.setFont(Font.font("Arimo", FontWeight.BOLD, 10));
-                  OutOfStock.setTextFill(Color.web("white"));
-                  OutOfStock.setLayoutX(90);
-                  OutOfStock.setLayoutY(330);
-              }
-          }
+            if (bookSelected != null) {
+                if (librarianController.checkOutOfStock(bookSelected)) {
+                    OutOfStock.setText(bookSelected.getTitle() + " added!");
+                    booksOfBill.add(bookSelected);
+                } else {
+                    OutOfStock.setText("Book " + bookSelected.getTitle() + " is out of stock!!!");
+                    OutOfStock.setFont(Font.font("Arimo", FontWeight.BOLD, 10));
+                    OutOfStock.setTextFill(Color.web("white"));
+                    OutOfStock.setLayoutX(90);
+                    OutOfStock.setLayoutY(330);
+                }
+            }
         });
 
         GridPane pane = new GridPane();
@@ -141,26 +177,20 @@ public class LibrarianTableView {
         pane.add(allbuttons, 0, 3);
         pane.setVgap(5);
         pane.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(pane, 700, 500);
-        scene.getStylesheets().add("");
-        Stage stage1 = new Stage();
 
-        stage1.setScene(scene);
-
-        stage1.show();
 
         // ........................................................
 
         showBill.setOnAction(e -> {
             ShowBill showBill1 = new ShowBill();
-            showBill1.ShowBill(booksOfBill, pane, stage1);
+            showBill1.startBillView(stage1, booksOfBill);
         });
 
         // ................................................................
         Cancle.setOnAction(e -> {
             booksOfBill.clear();
             try {
-                stage1.close();
+                stage.close();
                 LibrarianView librarianView = new LibrarianView();
                 librarianView.start(stage);
             } catch (FileNotFoundException e1) {
@@ -168,7 +198,7 @@ public class LibrarianTableView {
             }
 
         });
-
+        return pane;
     }
 
 }

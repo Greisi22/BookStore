@@ -27,30 +27,17 @@ public class LibrarianView {
 
     }
 
+    private Stage stage;
+
     public void start(Stage stage) throws FileNotFoundException {
-
-
+        this.stage = stage;
         Pane pane = getLibrarianView();
         Scene scene = new Scene(pane, 700, 500);
-        if (stage != null) {
-            stage.setTitle("Librarian");
-            stage.setScene(scene);
-            stage.show();
+        if (this.stage != null) {
+            this.stage.setTitle("Librarian");
+            this.stage.setScene(scene);
+            this.stage.show();
         }
-
-        addCreateBill.setOnAction(e -> {
-            try {
-                LibrarianTableView librarianView = new LibrarianTableView();
-                librarianView.showTable(stage);
-            } catch (ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        signout.setOnAction(e -> {
-            LoginView logIn = new LoginView();
-            logIn.start(stage);
-        });
 
 
     }
@@ -65,6 +52,8 @@ public class LibrarianView {
         addCreateBill.setLayoutY(400);
         addCreateBill.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
         addCreateBill.setFont(new Font("Glacial Indifference", 12));
+        addCreateBill.setId("createBill");
+        addCreateBill.setId("addToBill");
 
 
         signout.setPrefSize(100, 30);
@@ -85,6 +74,21 @@ public class LibrarianView {
 
         pane.getChildren().addAll(addCreateBill, signout, label_WelcomeName);
         pane.setBackground(new javafx.scene.layout.Background(bgImg));
+
+        addCreateBill.setOnAction(e -> {
+            try {
+                LibrarianTableView librarianView = new LibrarianTableView();
+                librarianView.startTableView(stage);
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        signout.setOnAction(e -> {
+            LoginView logIn = new LoginView();
+            logIn.start(stage);
+        });
+
         return pane;
     }
 

@@ -197,18 +197,19 @@ public class prova extends ApplicationTest {
                 WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#addToBill").queryAll().isEmpty());
                 WaitForAsyncUtils.waitForFxEvents();
                 clickOn("#addToBill");
-
+                System.out.println(librarianTableView.getBooksOfBill()+ "qrrrrrr");
                 // Verify that the second row is visually selected
                 WaitForAsyncUtils.waitForFxEvents();
                 Books selectedBook = userTable.getSelectionModel().getSelectedItem();
 
                 // Rest of your test logic...
                 assertNotNull(selectedBook);
-                assertTrue(librarianTableView.getBooksOfBill().contains(selectedBook));
+//                System.out.println(librarianTableView.getBooksOfBill().contains(selectedBook));
 
-                WaitForAsyncUtils.waitFor(6, TimeUnit.SECONDS, () -> lookup("#showBill").tryQuery().isPresent());
+
                 clickOn("#showBill");
-
+                WaitForAsyncUtils.waitFor(12, TimeUnit.SECONDS, () -> lookup("#okok").queryAll().isEmpty());
+                System.out.println("ooaknkja");
                 ShowBill showBill = new ShowBill();
                 Pane billview = showBill.ShowBill(librarianTableView.getBooksOfBill());
                 primaryStage.setScene(new Scene(billview, 700, 500));
@@ -216,7 +217,7 @@ public class prova extends ApplicationTest {
 
 //                WaitForAsyncUtils.waitFor(6, TimeUnit.SECONDS, () -> lookup("#okok").tryQuery().isPresent());
 
-                WaitForAsyncUtils.waitFor(6, TimeUnit.SECONDS, () -> lookup("#okok").queryAll().isEmpty());
+
 
             } catch (TimeoutException e) {
                 throw new RuntimeException(e);

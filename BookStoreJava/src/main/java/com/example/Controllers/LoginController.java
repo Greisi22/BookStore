@@ -38,6 +38,7 @@ public class LoginController {
                         break;
                     case LIBRARIAN_LOGIN:
                         try {
+
                             LibrarianView librarianView = new LibrarianView(result.get(1).toString());
                             librarianView.start(loginView.getStage() ); // Assuming the second element is the username
                         } catch (FileNotFoundException ex) {

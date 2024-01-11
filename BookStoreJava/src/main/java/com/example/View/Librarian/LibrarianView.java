@@ -30,6 +30,7 @@ public class LibrarianView {
     private Stage stage;
 
     public void start(Stage stage) throws FileNotFoundException {
+
         this.stage = stage;
         Pane pane = getLibrarianView();
         Scene scene = new Scene(pane, 700, 500);

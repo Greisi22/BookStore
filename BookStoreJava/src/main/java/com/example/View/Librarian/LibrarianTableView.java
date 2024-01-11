@@ -49,12 +49,6 @@ public class LibrarianTableView {
     private Stage stage;
     private Stage stage1;
 
-
-    public Button getAdd() {
-        return Add;
-    }
-
-    Button Add = new Button("Add to Bill");
     public void startTableView(Stage stage) throws ClassNotFoundException {
         this.stage = stage;
         Pane pane = showTable();
@@ -67,16 +61,17 @@ public class LibrarianTableView {
     }
 
     public Pane showTable() throws ClassNotFoundException {
-
+        Button Add = new Button("Add to Bill");
         Add.setId("addToBill");
         Add.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
 
         Button showBill = new Button("Show Bill");
-        showBill.setId("showBill");
         showBill.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
+        showBill.setId("showBill");
 
         Button Cancle = new Button("Cancle");
         Cancle.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
+        Cancle.setId("Cancel");
 
         ArrayList<Books> listBooks = new ArrayList<Books>();
 
@@ -195,18 +190,22 @@ public class LibrarianTableView {
 
         // ................................................................
         Cancle.setOnAction(e -> {
-            booksOfBill.clear();
+            System.out.println("Inside Cancel button action");
             try {
+                System.out.println("Before closing stage");
                 stage.close();
+                System.out.println("After closing stage");
+
                 LibrarianView librarianView = new LibrarianView();
+                System.out.println("Before starting LibrarianView");
                 librarianView.start(stage);
+                System.out.println("After starting LibrarianView");
             } catch (FileNotFoundException e1) {
                 e1.printStackTrace();
             }
-
         });
+
         return pane;
     }
 
 }
-

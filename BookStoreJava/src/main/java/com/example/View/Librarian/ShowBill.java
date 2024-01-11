@@ -86,6 +86,7 @@ public class ShowBill {
         Back.setLayoutY(435);
 
         Button ClearBill = new Button("Clear");
+        ClearBill.setId("ClearBill");
         ClearBill.setPrefSize(100, 30);
         ClearBill.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
         ClearBill.setFont(new Font("Glacial Indifference", 12));

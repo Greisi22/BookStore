@@ -35,9 +35,9 @@ public class LibrarianTableView {
     static Label OutOfStock = new Label("");
     private LibrarianController librarianController = new LibrarianController();
 
-    public Books getBooksOfBill() {
+    public ArrayList<Books> getBooksOfBill() {
         System.out.println();
-        return getBookSelected1();
+        return booksOfBill;
     }
 
     private static ArrayList<Books> booksOfBill = new ArrayList<>();
@@ -49,6 +49,12 @@ public class LibrarianTableView {
     private Stage stage;
     private Stage stage1;
 
+
+    public Button getAdd() {
+        return Add;
+    }
+
+    Button Add = new Button("Add to Bill");
     public void startTableView(Stage stage) throws ClassNotFoundException {
         this.stage = stage;
         Pane pane = showTable();
@@ -61,11 +67,12 @@ public class LibrarianTableView {
     }
 
     public Pane showTable() throws ClassNotFoundException {
-        Button Add = new Button("Add to Bill");
+
         Add.setId("addToBill");
         Add.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
 
         Button showBill = new Button("Show Bill");
+        showBill.setId("showBill");
         showBill.setStyle("-fx-background-color: #3AA5C2; -fx-text-fill: white;");
 
         Button Cancle = new Button("Cancle");
@@ -202,3 +209,4 @@ public class LibrarianTableView {
     }
 
 }
+

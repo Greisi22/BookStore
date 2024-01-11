@@ -68,9 +68,9 @@ public class LoginControllerTest extends ApplicationTest {
                 primaryStage.show();
 
                 // Simulate an action in LibrarianView
-                WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#addToBill").queryAll().isEmpty());
-                clickOn("#addToBill");
-                WaitForAsyncUtils.waitForFxEvents();
+//                WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#addToBill").queryAll().isEmpty());
+//                clickOn("#addToBill");
+//                WaitForAsyncUtils.waitForFxEvents();
 
                 // Transition to LibrarianTableView
                 LibrarianTableView librarianTableView = new LibrarianTableView();
@@ -84,12 +84,16 @@ public class LoginControllerTest extends ApplicationTest {
 
                 TableView<Books> userTable = lookup("#usertableId").query();
                 interact(() -> userTable.getSelectionModel().select(0));
-                Button addToBillButton = lookup("#addToBill").query();
-                WaitForAsyncUtils.waitForFxEvents();
+//                Button addToBillButton = lookup("#addToBill").query();
+//                WaitForAsyncUtils.waitForFxEvents();
+                WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#addToBill").queryAll().isEmpty());
 
+                WaitForAsyncUtils.waitForFxEvents();
+                clickOn("#addToBill");
+                System.out.println(librarianTableView.getAdd().getId());
 
                 // Click on "Add to Bill" button
-                clickOn(addToBillButton);
+
 
 
                 // Verify that the second row is visually selected
@@ -101,12 +105,12 @@ public class LoginControllerTest extends ApplicationTest {
                 clickOn("#addToBill");
 
                 ArrayList<Books> getBooksOfBill = librarianTableView.getBooksOfBill();
-                System.out.println(getBooksOfBill);
+//                System.out.println(getBooksOfBill);
                 ShowBill showBill = new ShowBill();
                 Pane billview = showBill.ShowBill(getBooksOfBill);
                 primaryStage.setScene(new Scene(billview, 700, 500));
                 primaryStage.show();
-                WaitForAsyncUtils.waitFor(10, TimeUnit.SECONDS, () -> !lookup("#lol").queryAll().isEmpty());
+                WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#lol").queryAll().isEmpty());
 
 
             } catch (TimeoutException e) {

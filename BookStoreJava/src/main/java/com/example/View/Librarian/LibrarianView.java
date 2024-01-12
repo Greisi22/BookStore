@@ -54,7 +54,7 @@ public class LibrarianView {
         addCreateBill.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
         addCreateBill.setFont(new Font("Glacial Indifference", 12));
         addCreateBill.setId("createBill");
-        addCreateBill.setId("addToBill");
+//        addCreateBill.setId("addToBill");
 
 
         signout.setPrefSize(100, 30);

@@ -71,6 +71,7 @@ public class ShowBill {
 
 
         Button Print = new Button("Print Bill");
+        Print.setId("printBill");
         Print.setPrefSize(100, 30);
         Print.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
         Print.setFont(new Font("Glacial Indifference", 12));
@@ -79,6 +80,7 @@ public class ShowBill {
 
 
         Button Back = new Button("Back");
+        Back.setId("Back");
         Back.setPrefSize(100, 30);
         Back.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
         Back.setFont(new Font("Glacial Indifference", 12));
@@ -117,11 +119,38 @@ public class ShowBill {
         });
 
 
+
         ClearBill.setOnAction(e -> {
             bookOfBill.clear();
-            ShowBill(bookOfBill);
+            System.out.println(bookOfBill.size());
 
+            // Clear the existing content in vBoxs1
+            vBoxs1.getChildren().clear();
+
+            // Recreate the content based on the updated bookOfBill list
+            for (int i = 0; i < bookOfBill.size(); i++) {
+                Label l1 = new Label("Book: " + bookOfBill.get(i).getTitle());
+                l1.setFont(Font.font("Roboto Mono Regular", FontWeight.BOLD, 14));
+                l1.setTextFill(Color.web("#79CBE1"));
+
+                Label l2 = new Label("Price: " + bookOfBill.get(i).getPrice() + "");
+                l2.setFont(Font.font("Roboto Mono Regular", FontWeight.BOLD, 14));
+                l2.setTextFill(Color.web("#79CBE1"));
+
+                hBoxs[i] = new HBox();
+                vBoxs[i] = new VBox();
+                hBoxs[i].getChildren().addAll(l1, l2);
+                vBoxs[i].getChildren().add(hBoxs[i]);
+
+                // Add the updated content to vBoxs1
+                vBoxs1.getChildren().add(vBoxs[i]);
+            }
+
+            // Add other elements back to the pane
+            pane.getChildren().clear();
+            pane.getChildren().addAll(vBoxs1, Print, Back, d, ClearBill);
         });
+
 
         Print.setOnAction(e -> {
             this.billController.handlePrintingBill(bookOfBill, d);

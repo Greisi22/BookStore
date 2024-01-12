@@ -3,6 +3,7 @@ package TestFx.Controllers;
 import com.example.Controllers.LoginController;
 import com.example.Model.Books.Books;
 import com.example.View.Login.LoginView;
+import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.Pane;
@@ -69,16 +70,25 @@ public class PrintBillFXTest extends ApplicationTest {
 
         // Choose a date in the DatePicker
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#yourDatePickerId").queryAll().isEmpty());
-
         DatePicker datePicker = lookup("#yourDatePickerId").query();
-        LocalDate dateToSet = LocalDate.of(2024, Month.JANUARY, 15);
+//        LocalDate dateToSet = LocalDate.of(2024, Month.JANUARY, 15);
 
-// Open the DatePicker popup
+        // Open the DatePicker popup
         interact(() -> datePicker.show());
+        WaitForAsyncUtils.waitForFxEvents();
 
-// Click on the day in the calendar
-        interact(() -> datePicker.getEditor().clear());
-        interact(() -> datePicker.getEditor().setText(dateToSet.format(DateTimeFormatter.ISO_LOCAL_DATE)));
+        // Click on the first date in the calendar
+        interact(() -> {
+            Node popupContent = datePicker.getEditor().getParent().lookup(".date-picker-popup");
+            if (popupContent != null) {
+                // The ".date-cell" might vary, inspect the actual structure
+                Node dateCell = popupContent.lookup(".date-cell");
+                if (dateCell != null) {
+                    clickOn(dateCell);
+                }
+            }
+        });
+
         WaitForAsyncUtils.waitForFxEvents();
 
         System.out.println("Selected Date: " + datePicker.getValue());
@@ -86,6 +96,7 @@ public class PrintBillFXTest extends ApplicationTest {
         // Print the bill
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#printBill").queryAll().isEmpty());
         interact(() -> clickOn("#printBill"));
+        System.out.println("OK OR NOT");
         WaitForAsyncUtils.waitForFxEvents();
 
         // Add assertions or further testing based on the expected behavior

@@ -3,10 +3,7 @@ package TestFx.Controllers;
 import com.example.Controllers.LoginController;
 import com.example.Model.Books.Books;
 import com.example.View.Login.LoginView;
-import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
@@ -15,32 +12,23 @@ import org.testfx.util.WaitForAsyncUtils;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Month;
-import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.testfx.api.FxAssert.verifyThat;
+//import static org.testfx.matcher.control.DatePickerMatchers.hasDate;
 
 public class PrintBillFXTest extends ApplicationTest {
     private LoginView loginView;
     private LoginController loginController;
-    private Stage primaryStage;
-
-    private Pane pane;
 
     @Override
     public void start(Stage primaryStage) {
-
         loginView = new LoginView();
-
         loginController = new LoginController(loginView);
         loginView.setLoginController(loginController);
         loginView.start(primaryStage);
-//        loginView.setPane(new Pane());
-//        pane = loginView.LogInViewPage();
-//        this.primaryStage = primaryStage;
-//        this.primaryStage.setScene(new Scene(pane, 700, 500));
-//        this.primaryStage.show();
     }
 
     @Test
@@ -60,8 +48,7 @@ public class PrintBillFXTest extends ApplicationTest {
         WaitForAsyncUtils.waitForFxEvents();
 
         // Add a book to the bill
-        TableView<Books> userTable = lookup("#usertableId").query();
-        interact(() -> userTable.getSelectionModel().select(0));
+        interact(() -> lookup("#usertableId").queryTableView().getSelectionModel().select(0));
         clickOn("#addToBill");
 
         // Show the bill
@@ -71,36 +58,21 @@ public class PrintBillFXTest extends ApplicationTest {
         // Choose a date in the DatePicker
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#yourDatePickerId").queryAll().isEmpty());
         DatePicker datePicker = lookup("#yourDatePickerId").query();
-//        LocalDate dateToSet = LocalDate.of(2024, Month.JANUARY, 15);
 
-        // Open the DatePicker popup
-        interact(() -> datePicker.show());
-        WaitForAsyncUtils.waitForFxEvents();
+        // Set the date to January 15, 2024
+        LocalDate dateToSet = LocalDate.of(2024, Month.JANUARY, 15);
 
-        // Click on the first date in the calendar
-        interact(() -> {
-            Node popupContent = datePicker.getEditor().getParent().lookup(".date-picker-popup");
-            if (popupContent != null) {
-                // The ".date-cell" might vary, inspect the actual structure
-                Node dateCell = popupContent.lookup(".date-cell");
-                if (dateCell != null) {
-                    clickOn(dateCell);
-                }
-            }
-        });
-
-        WaitForAsyncUtils.waitForFxEvents();
+        interact(() -> datePicker.setValue(dateToSet));
 
         System.out.println("Selected Date: " + datePicker.getValue());
 
         // Print the bill
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#printBill").queryAll().isEmpty());
         interact(() -> clickOn("#printBill"));
-        System.out.println("OK OR NOT");
+
         WaitForAsyncUtils.waitForFxEvents();
 
-        // Add assertions or further testing based on the expected behavior
-        // For example, check if the printing process is successful
-        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#lol").queryAll().isEmpty());
+
+
     }
 }

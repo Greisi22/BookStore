@@ -69,6 +69,7 @@ public class PrintBillFXTest extends ApplicationTest {
 
         // Choose a date in the DatePicker
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#yourDatePickerId").queryAll().isEmpty());
+
         DatePicker datePicker = lookup("#yourDatePickerId").query();
         LocalDate dateToSet = LocalDate.of(2024, Month.JANUARY, 15);
 

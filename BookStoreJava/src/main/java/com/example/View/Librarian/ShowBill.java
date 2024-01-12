@@ -98,6 +98,7 @@ public class ShowBill {
         DatePicker d = new DatePicker();
         d.setLayoutX(476);
         d.setLayoutY(150);
+        d.setId("yourDatePickerId");
 
         Image image = new Image("file:src/main/java/com/example/UI/Images/showBillimg.png"); // Replace with your image file path
         BackgroundImage bgImg = new BackgroundImage(image, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT,

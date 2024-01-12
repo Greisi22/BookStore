@@ -1,4 +1,4 @@
-package TestFx.Controllers;
+package TestFx.Controllers.Librarian;
 
 import com.example.Controllers.LoginController;
 import com.example.Model.Books.Books;

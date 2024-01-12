@@ -68,6 +68,7 @@ public class view {
 		UppdateBook.setFont(new Font("Glacial Indifference", 12));
 
 		Button Statistic = new Button("Statistic");
+		Statistic.setId("Statistic");
 		Statistic.setPrefSize(100, 30);
 		Statistic.setLayoutX(370);
 		Statistic.setLayoutY(400);

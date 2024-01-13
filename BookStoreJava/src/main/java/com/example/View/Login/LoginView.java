@@ -93,13 +93,7 @@ public class LoginView {
       }
 
 
-    public static Label getMessage() {
-        return Message;
-    }
 
-    public static void setMessage(Label message) {
-        Message = message;
-    }
 
     public Pane getPane() {
         return pane;
@@ -109,29 +103,12 @@ public class LoginView {
         this.pane = pane;
     }
 
-    public Label getLabeUsername() {
-        return labeUsername;
-    }
-
-    public void setLabeUsername(Label labeUsername) {
-        this.labeUsername = labeUsername;
-    }
 
     public TextField getUsernametextFiled() {
         return usernametextFiled;
     }
 
-    public void setUsernametextFiled(TextField usernametextFiled) {
-        this.usernametextFiled = usernametextFiled;
-    }
 
-    public Label getLabePassWord() {
-        return labePassWord;
-    }
-
-    public void setLabePassWord(Label labePassWord) {
-        this.labePassWord = labePassWord;
-    }
 
     public PasswordField getPassswrdField() {
         return PassswrdField;
@@ -153,8 +130,6 @@ public class LoginView {
         return stage;
     }
 
-    public void setStage(Stage stage) {
-        this.stage = stage;
-    }
+
 }
 

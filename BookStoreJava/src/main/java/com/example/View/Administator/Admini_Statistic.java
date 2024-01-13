@@ -28,6 +28,7 @@ public class Admini_Statistic {
 		 button.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
 		 button.setLayoutX(650);
 		 button.setLayoutY(460);
+		 button.setId("Back");
 		
 
 

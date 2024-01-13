@@ -109,10 +109,11 @@ static UserService userService = new UserService();
 		nameLabel.setTextFill(Color.WHITE);
 		nameLabel.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 13));
 		gridPane.add(nameLabel, 0, 1);
-		TextArea nameField = new TextArea();
 
+		TextArea nameField = new TextArea();
 		nameField.setPrefHeight(20);
 		nameField.setPrefWidth(50);
+		nameField.setId("firstname");
 
 		gridPane.add(nameField, 1, 1);
 
@@ -120,17 +121,21 @@ static UserService userService = new UserService();
 		lastLabel.setTextFill(Color.WHITE);
 		lastLabel.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 13));
 		gridPane.add(lastLabel, 0, 2);
+
 		TextField lastField = new TextField();
 		lastField.setPrefHeight(40);
 		gridPane.add(lastField, 1, 2);
+		lastField.setId("lastname");
 
 		Label emailLabel = new Label("Email : ");
 		gridPane.add(emailLabel, 0, 3);
 		emailLabel.setTextFill(Color.WHITE);
 		emailLabel.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 13));
+
 		TextField emailField = new TextField();
 		emailField.setPrefHeight(40);
 		gridPane.add(emailField, 1, 3);
+		emailField.setId("email");
 
 		Label dateLabel = new Label("Birthdate : ");
 		dateLabel.setTextFill(Color.WHITE);
@@ -139,6 +144,7 @@ static UserService userService = new UserService();
 		DatePicker dateField = new DatePicker();
 		dateField.setPrefHeight(40);
 		gridPane.add(dateField, 1, 4);
+		dateField.setId("datapicker");
 
 		Label passwordLabel = new Label("Password : ");
 		gridPane.add(passwordLabel, 0, 5);
@@ -147,6 +153,7 @@ static UserService userService = new UserService();
 		PasswordField passwordField = new PasswordField();
 		passwordField.setPrefHeight(20);
 		gridPane.add(passwordField, 1, 5);
+		passwordField.setId("password");
 
 		Label salaryLabel = new Label("Salary : ");
 		gridPane.add(salaryLabel, 0, 6);
@@ -155,6 +162,7 @@ static UserService userService = new UserService();
 		TextField salaryField = new TextField();
 		salaryField.setPrefHeight(40);
 		gridPane.add(salaryField, 1, 6);
+		salaryField.setId("salery");
 
 		Label phoneLabel = new Label("Phone No : ");
 		gridPane.add(phoneLabel, 0, 7);
@@ -163,7 +171,7 @@ static UserService userService = new UserService();
 		TextField phoneField = new TextField();
 		phoneField.setPrefHeight(15);
 		gridPane.add(phoneField, 1, 7);
-
+		phoneField.setId("phone");
 		////////////////////////////////////////
 		Label statusLabel = new Label("Status : ");
 		gridPane.add(statusLabel, 0, 8);
@@ -178,12 +186,15 @@ static UserService userService = new UserService();
 		RadioButton bLib = new RadioButton(AccessLevel.LIBRARIAN.toString());
 		bLib.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 12));
 		bLib.setTextFill(Color.WHITE);
+		bLib.setId("librarian");
 		RadioButton bMan = new RadioButton(AccessLevel.MANAGER.toString());
 		bMan.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 12));
 		bMan.setTextFill(Color.WHITE);
+		bMan.setId("mana");
 		RadioButton bAdmin = new RadioButton(AccessLevel.ADMINISTRATOR.toString());
 		bAdmin.setFont(Font.font("Glacial Indeference", FontWeight.BOLD, 12));
 		bAdmin.setTextFill(Color.WHITE);
+		bAdmin.setId("admin");
 
 		accessCheckboxes.add(bLib);
 		accessCheckboxes.add(bMan);
@@ -203,6 +214,7 @@ static UserService userService = new UserService();
 		submitButton.setPrefHeight(40);
 		submitButton.setDefaultButton(true);
 		submitButton.setPrefWidth(100);
+		submitButton.setId("submit");
 		Button backButton = new Button("Back");
 		backButton.setStyle("-fx-background-color: #79CBE1; -fx-text-fill: white;");
 		backButton.setFont(new Font("Glacial Indifference", 12));
@@ -300,5 +312,6 @@ static UserService userService = new UserService();
 		alert.setContentText(message);
 		alert.initOwner(owner);
 		alert.show();
+
 	}
 }

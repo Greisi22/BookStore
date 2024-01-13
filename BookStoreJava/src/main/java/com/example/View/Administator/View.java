@@ -31,6 +31,7 @@ public class View {
         users.setLayoutY(400);
         users.setStyle("-fx-background-color: #B1A2CF; -fx-text-fill: white;");
         users.setFont(new Font("Glacial Indifference", 12));
+        users.setId("users");
 
 
         Button signup = new Button("Sign Up");
@@ -39,6 +40,7 @@ public class View {
         signup.setLayoutY(400);
         signup.setStyle("-fx-background-color: #B1A2CF; -fx-text-fill: white;");
         signup.setFont(new Font("Glacial Indifference", 12));
+        signup.setId("signup");
 
 
         Button Statistic = new Button("Statistic");
@@ -47,6 +49,7 @@ public class View {
         Statistic.setLayoutY(400);
         Statistic.setStyle("-fx-background-color: #B1A2CF; -fx-text-fill: white;");
         Statistic.setFont(new Font("Glacial Indifference", 12));
+        Statistic.setId("statistic");
 
         Button signout = new Button("Sign Out");
         signout.setPrefSize(100, 30);

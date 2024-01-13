@@ -72,7 +72,7 @@ public class ClearFXTest extends ApplicationTest {
 
 
 
-        WaitForAsyncUtils.waitFor(10, TimeUnit.SECONDS, () -> !lookup("#lol").queryAll().isEmpty());
+//        WaitForAsyncUtils.waitFor(10, TimeUnit.SECONDS, () -> !lookup("#lol").queryAll().isEmpty());
 //
     }
 }

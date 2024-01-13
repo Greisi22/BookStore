@@ -39,6 +39,7 @@ public class view {
 		message.setStyle("-fx-background-color: #B1A2CF; -fx-text-fill: white;");
 		message.setLayoutX(610);
 		message.setLayoutY(30);
+		message.setId("lessThan");
 
 		FileInputStream ImageInput1 = new FileInputStream("src/main/java/com/example/UI/Icons/no_mess.png");
 		Image search1 = new Image(ImageInput1);
@@ -54,6 +55,7 @@ public class view {
 		Pane pane = new Pane();
 
 		Button createBook = new Button("Create Book");
+		createBook.setId("createBook");
 		createBook.setPrefSize(100, 30);
 		createBook.setLayoutX(150);
 		createBook.setLayoutY(400);
@@ -66,6 +68,7 @@ public class view {
 		UppdateBook.setLayoutY(400);
 		UppdateBook.setStyle("-fx-background-color: #B1A2CF; -fx-text-fill: white;");
 		UppdateBook.setFont(new Font("Glacial Indifference", 12));
+		UppdateBook.setId("update");
 
 		Button Statistic = new Button("Statistic");
 		Statistic.setId("Statistic");

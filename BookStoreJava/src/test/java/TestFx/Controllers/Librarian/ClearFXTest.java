@@ -56,7 +56,7 @@ public class ClearFXTest extends ApplicationTest {
         WaitForAsyncUtils.waitForFxEvents();
 
         TableView<Books> userTable = lookup("#usertableId").query();
-        interact(() -> userTable.getSelectionModel().select(0));
+        interact(() -> userTable.getSelectionModel().select(1));
         clickOn("#addToBill");
 
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#showBill").queryAll().isEmpty());

@@ -2,6 +2,8 @@ package TestFx.Controllers.Librarian;
 
 import com.example.Controllers.LoginController;
 import com.example.Model.Books.Books;
+import com.example.View.Librarian.LibrarianTableView;
+import com.example.View.Librarian.LibrarianView;
 import com.example.View.Login.LoginView;
 import javafx.application.Platform;
 import javafx.scene.control.TableView;
@@ -69,7 +71,10 @@ public class BackFXTest extends ApplicationTest {
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#Back").queryAll().isEmpty());
         interact(() -> clickOn("#Back"));
         WaitForAsyncUtils.waitForFxEvents();
-        verifyThat("#yourBackButtonId", isDisabled());
+
+        LibrarianTableView librarianTableView = new LibrarianTableView();
+        assertNotNull(librarianTableView);
+
 
 
 

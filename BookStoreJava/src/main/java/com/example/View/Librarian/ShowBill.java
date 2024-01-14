@@ -36,8 +36,9 @@ public class ShowBill {
     private Stage billStage;
 
     public void startBillView(Stage stage, ArrayList<Books> bookOfBill) {
+
         this.billStage = stage;
-        Pane pane = ShowBill( bookOfBill);
+        Pane pane = ShowBill(bookOfBill);
         Scene scene = new Scene(pane, 700, 500);
         billStage.setScene(scene);
         billStage.show();

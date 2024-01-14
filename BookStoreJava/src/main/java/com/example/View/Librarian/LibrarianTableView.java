@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import java.awt.print.Book;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 
@@ -186,6 +187,10 @@ public class LibrarianTableView {
         showBill.setOnAction(e -> {
             ShowBill showBill1 = new ShowBill();
             showBill1.startBillView(stage1, booksOfBill);
+            for (Books b:booksOfBill) {
+                System.out.println(b.getTitle());
+            }
+
         });
 
         // ................................................................

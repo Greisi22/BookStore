@@ -12,8 +12,8 @@ public class BillFunctionalitiess {
     static BookService bookService = new BookService();
 
 
-    private static final String path = "src/main/java/com/example/EncodedInformation/Bills.dat";
-    private static final String path1 = "src/main/java/com/example/EncodedInformation/Books.dat";
+    private static  String path = "src/main/java/com/example/EncodedInformation/Bills.dat";
+    private static  String path1 = "src/main/java/com/example/EncodedInformation/Books.dat";
 
     public  BillFunctionalitiess()
     {
@@ -30,7 +30,8 @@ public class BillFunctionalitiess {
 
 
     public static boolean checkOutOfStock(Books book) {
-        ArrayList<Books> booksFromFile = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
+
+        ArrayList<Books> booksFromFile = bookService.getBooks(path1);
         for(Books b:booksFromFile)
         {
             if(b.equals(book))
@@ -58,6 +59,7 @@ public class BillFunctionalitiess {
         return totalPrice;
     }
 
+
     public static ArrayList<String> getBookNames(ArrayList<Books> books) {
         ArrayList<String> bookNames = new ArrayList<>();
         for (Books book : books) {
@@ -82,4 +84,10 @@ public class BillFunctionalitiess {
         }
         return null;
     }
+
+    public void setPath(String path1){
+        this.path1 = path1;
+
+    }
+
 }

@@ -6,7 +6,7 @@ import com.example.Model.Login.ResultType;
 import com.example.View.Administator.View;
 import com.example.View.Librarian.LibrarianView;
 import com.example.View.Login.LoginView;
-import com.example.View.Menager.view;
+import com.example.View.Menager.ManagerView;
 import javafx.scene.control.Alert;
 import javafx.stage.Window;
 import java.io.FileNotFoundException;
@@ -47,7 +47,7 @@ public class LoginController {
                         break;
                     case MANAGER_LOGIN:
                         try {
-                            view.View(loginView.getStage(), result.get(1).toString()); // Assuming the second element is the username
+                            ManagerView.View(loginView.getStage(), result.get(1).toString()); // Assuming the second element is the username
                         } catch (FileNotFoundException ex) {
                             throw new RuntimeException(ex);
                         }

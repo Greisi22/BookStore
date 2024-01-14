@@ -91,7 +91,7 @@ public class MenagerStatistic {
 		
 			button.setOnAction(e->{
 				try {
-					view.View(stage, Name);
+					ManagerView.View(stage, Name);
 				} catch (FileNotFoundException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();

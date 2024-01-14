@@ -10,14 +10,18 @@ import javafx.stage.Stage;
 
 
 public class BooksOutOfStockk {
-	// is used to show the books that are out of stock
+	public static Scene getScene() {
+		return scene;
+	}
+
+	private static Scene scene;
 	public static void OutOfStock_View(Label label) {
 		
 		label.setFont(Font.font("Arimo", FontWeight.BOLD, 12));
 		label.setTextFill(Color.web("#79CBE1"));
 
 		ScrollPane s = new ScrollPane();
-		Scene scene = new Scene(s, 300, 200);
+		scene = new Scene(s, 300, 200);
 	
 		s.setFitToWidth(true);
 		s.setContent(label);

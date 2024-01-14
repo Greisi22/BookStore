@@ -22,9 +22,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
-public class view {
+public class ManagerView {
 
 	static String WelcomeName;
+
+	public ArrayList<Books> getBooksOutOfStock() {
+		return booksOutOfStock;
+	}
+
+	private static  ArrayList<Books> booksOutOfStock;
 
 	public static void View(Stage stage, String Name) throws FileNotFoundException {
 		WelcomeName = Name;
@@ -108,7 +114,7 @@ public class view {
 			MenagerCreateBook.BookView(stage, WelcomeName);
 		});
 
-		ArrayList<Books> booksOutOfStock = OutOFStock.checkIfOutOfStock("src/main/java/com/example/EncodedInformation/Books.dat");
+         booksOutOfStock = OutOFStock.checkIfOutOfStock("src/main/java/com/example/EncodedInformation/Books.dat");
 
 		if (booksOutOfStock.isEmpty()) {
 			pane.getChildren().add(no_message);

@@ -28,6 +28,11 @@ import javafx.util.converter.IntegerStringConverter;
 
 
 public class UpdateBook {
+	public static TableColumn getTitle() {
+		return title;
+	}
+
+	private static TableColumn title;
 
 	@SuppressWarnings("unchecked")
 	public static void Update_Book_View(Stage stage)
@@ -69,6 +74,7 @@ public class UpdateBook {
 		}
 
 		TableView<Books> userTable = new TableView<Books>();
+		userTable.setId("userTable");
 		ObservableList<Books> data = FXCollections.observableArrayList(listBooks);
 		userTable.setItems(data);
 		
@@ -77,7 +83,7 @@ public class UpdateBook {
 		
 	//........................................................................................................
 	
-		TableColumn title = new TableColumn("title");
+		title = new TableColumn("title");
 		TableColumn ISBN = new TableColumn("ISBN");
 		TableColumn quanity = new TableColumn("quanity");
 		TableColumn description = new TableColumn("description");
@@ -90,6 +96,7 @@ public class UpdateBook {
 		
 		title.setCellValueFactory(new PropertyValueFactory<Books, String>("title"));
 		title.setCellFactory(TextFieldTableCell.forTableColumn());
+		title.setId("Titlee");
 
 		BookService bookService = new BookService();
 		title.setOnEditCommit(new EventHandler<CellEditEvent<Books,String>>(){

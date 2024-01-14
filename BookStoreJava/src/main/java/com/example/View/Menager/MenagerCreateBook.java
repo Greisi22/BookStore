@@ -215,7 +215,7 @@ public class MenagerCreateBook {
 		b2.setOnAction(e -> {
 
 			try {
-				view.View(stage, WelcomeName);
+				ManagerView.View(stage, WelcomeName);
 			} catch (FileNotFoundException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

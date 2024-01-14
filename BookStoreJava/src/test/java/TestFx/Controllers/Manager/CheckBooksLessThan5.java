@@ -2,15 +2,16 @@ package TestFx.Controllers.Manager;
 
 import com.example.Controllers.LoginController;
 import com.example.View.Login.LoginView;
+import com.example.View.Menager.ManagerView;
+import com.example.View.Menager.BooksOutOfStockk;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
-
 import java.io.FileNotFoundException;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
-
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CheckBooksLessThan5 extends ApplicationTest {
@@ -42,7 +43,10 @@ public class CheckBooksLessThan5 extends ApplicationTest {
         clickOn("#lessThan");
         WaitForAsyncUtils.waitForFxEvents();
 
+        BooksOutOfStockk booksOutOfStockk = new BooksOutOfStockk();
+        assertNotNull(booksOutOfStockk.getScene());
+        ManagerView adminView = new ManagerView();
+        assertEquals(2,adminView.getBooksOutOfStock().size());
 
-//        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#addbook").queryAll().isEmpty());
     }
 }

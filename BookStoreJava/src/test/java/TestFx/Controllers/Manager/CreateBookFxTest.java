@@ -1,6 +1,8 @@
 package TestFx.Controllers.Manager;
 
 import com.example.Controllers.LoginController;
+import com.example.Model.Books.BookService;
+import com.example.Model.Books.Books;
 import com.example.View.Login.LoginView;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
@@ -11,12 +13,14 @@ import org.testfx.util.WaitForAsyncUtils;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class CreateBookFxTest  extends ApplicationTest {
+public class CreateBookFxTest extends ApplicationTest {
 
     private LoginView loginView;
     private LoginController loginController;
@@ -32,7 +36,8 @@ public class CreateBookFxTest  extends ApplicationTest {
     @Test
     public void testEmptyFieldsScenario() throws TimeoutException, FileNotFoundException, ClassNotFoundException {
         assertNotNull(loginView);
-
+        BookService bookService = new BookService();
+        ArrayList<Books> firstBooks = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
 
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
         clickOn(loginView.getUsernametextFiled()).write("Greisi");
@@ -49,7 +54,7 @@ public class CreateBookFxTest  extends ApplicationTest {
         clickOn("#Price").write("19.99");
         clickOn("#paperBack");
         clickOn("#description").write("This is a sample book description.");
-        clickOn("#author").write("John Doe");
+        clickOn("#author").write("Era Mulla");
         clickOn("#quntity").write("10");
         clickOn("#checkboxGenre1");
         clickOn("#checkboxGenre3");
@@ -63,9 +68,9 @@ public class CreateBookFxTest  extends ApplicationTest {
         clickOn("#addbook");
         WaitForAsyncUtils.waitForFxEvents();
 
+        ArrayList<Books> secondBooks = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
 
-
-
+        assertEquals(firstBooks.size() + 1, secondBooks.size());
 
     }
 

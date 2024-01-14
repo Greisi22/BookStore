@@ -1,6 +1,7 @@
-package TestFx.Controllers.Administrator;
+package TestFx.Controllers.Administratior;
 
 import com.example.Controllers.LoginController;
+import com.example.View.Administator.AdminView;
 import com.example.View.Login.LoginView;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -12,11 +13,11 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+//import static org.testfx.matcher.control.DatePickerMatchers.hasDate;
 
-public class CheckUsersFxText extends ApplicationTest {
+public class StatisticFXTest extends ApplicationTest {
     private LoginView loginView;
     private LoginController loginController;
-
 
     @Override
     public void start(Stage primaryStage) {
@@ -37,8 +38,20 @@ public class CheckUsersFxText extends ApplicationTest {
         clickOn("#Submit");
         WaitForAsyncUtils.waitForFxEvents();
 
-        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#users").queryAll().isEmpty());
-        clickOn("#users");
+
+
+        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#statistic").queryAll().isEmpty());
+        clickOn("#statistic");
         WaitForAsyncUtils.waitForFxEvents();
+
+
+        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#Back").queryAll().isEmpty());
+        clickOn("#Back");
+        WaitForAsyncUtils.waitForFxEvents();
+
+        AdminView adminView = new AdminView();
+        assertNotNull(adminView.getScene());
+
+
     }
 }

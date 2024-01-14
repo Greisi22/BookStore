@@ -65,7 +65,7 @@ public class Admini_Statistic {
         stage.setScene(scene);
         stage.show();
 		button.setOnAction(e->{
-			View.FirstView(stage, Name);
+			AdminView.FirstView(stage, Name);
 		});
 	}
 }

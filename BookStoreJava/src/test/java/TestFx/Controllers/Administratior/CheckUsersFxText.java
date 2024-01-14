@@ -1,23 +1,26 @@
-package TestFx.Controllers.Administrator;
+package TestFx.Controllers.Administratior;
 
 import com.example.Controllers.LoginController;
+import com.example.Model.Books.Books;
+import com.example.Model.Userss.UserService;
+import com.example.Model.Userss.Users;
+import com.example.View.Administator.Userss;
 import com.example.View.Login.LoginView;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.TableColumn;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
-import org.testfx.robot.Motion;
 import org.testfx.util.WaitForAsyncUtils;
 
 import java.io.FileNotFoundException;
-import java.time.LocalDate;
-import java.time.Month;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class CreateUserFxTest extends ApplicationTest {
+public class CheckUsersFxText extends ApplicationTest {
     private LoginView loginView;
     private LoginController loginController;
 
@@ -41,31 +44,16 @@ public class CreateUserFxTest extends ApplicationTest {
         clickOn("#Submit");
         WaitForAsyncUtils.waitForFxEvents();
 
-        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#signup").queryAll().isEmpty());
-        clickOn("#signup");
+        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#users").queryAll().isEmpty());
+        clickOn("#users");
         WaitForAsyncUtils.waitForFxEvents();
-        clickOn("#firstname").write("Era");
-        clickOn("#lastname").write("Mulla");
-        clickOn("#email").write("emulla21@epoka.edu.al");
-        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#datapicker").queryAll().isEmpty());
-        DatePicker datePicker = lookup("#datapicker").query();
-        LocalDate dateToSet = LocalDate.of(2024, Month.JANUARY, 15);
-        interact(() -> datePicker.setValue(dateToSet));
-        clickOn("#password").write("password");
-        clickOn("#salery").write("7500");
-        clickOn("#phone").write("0687654321");
-        clickOn("#librarian");
 
+        UserService userService = new UserService();
+        ArrayList<Users> Users = userService.getUsers("src/main/java/com/example/EncodedInformation/Users.dat");
 
-        clickOn("#submit");
-
-        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup(".alert").queryAll().isEmpty());
-
-
-
-        // Simulate clicking the "OK" button in the alert
-        clickOn(".alert .button");
-
-
+        Userss userss = new Userss();
+        TableColumn<Books, ?> titleColumn = userss.getFirstName();
+        String firstName = titleColumn.getCellData(0).toString();
+        assertEquals(firstName, Users.get(0).getFirstName());
     }
 }

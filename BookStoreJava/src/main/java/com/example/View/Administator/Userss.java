@@ -27,6 +27,11 @@ public class Userss {
 
     static final String path = "src/main/java/com/example/EncodedInformation/Users.dat";
 
+    public static TableColumn getFirstName() {
+        return firstName;
+    }
+
+    private static TableColumn firstName;
 
     public static void ModUsers() {
 
@@ -45,7 +50,7 @@ public class Userss {
 
         //........................................................................................................
 
-        TableColumn firstName = new TableColumn("First Name");
+        firstName = new TableColumn("First Name");
         TableColumn lastName = new TableColumn("Last Name");
         TableColumn email = new TableColumn("Email");
         TableColumn birthday = new TableColumn("Birthday");
@@ -53,7 +58,7 @@ public class Userss {
         TableColumn salery = new TableColumn(" Salery");
         TableColumn phone = new TableColumn(" Phone");
         TableColumn accesLevel = new TableColumn("Acces Level");
-
+        firstName.setId("firstname");
         firstName.setCellValueFactory(new PropertyValueFactory<Users, String>("firstName"));
         firstName.setCellFactory(TextFieldTableCell.forTableColumn());
         firstName.setOnEditCommit(new EventHandler<TreeTableColumn.CellEditEvent<Users, String>>() {

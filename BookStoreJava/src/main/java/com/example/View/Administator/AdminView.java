@@ -17,8 +17,14 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 
-public class View {
+public class AdminView {
     static String WelcomeName;
+
+    public static Scene getScene() {
+        return scene;
+    }
+
+    private static Scene scene;
 
     public static void FirstView(Stage stage, String WelcomeName1) {
         WelcomeName = WelcomeName1;
@@ -99,7 +105,7 @@ public class View {
 
 
         pane.getChildren().addAll(signup, users, Statistic, signout, label_WelcomeName);
-        Scene scene = new Scene(pane, 700, 500);
+         scene = new Scene(pane, 700, 500);
         stage.setTitle("Log in");
         stage.setScene(scene);
         stage.show();

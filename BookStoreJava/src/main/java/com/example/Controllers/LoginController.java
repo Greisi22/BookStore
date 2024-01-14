@@ -3,7 +3,7 @@ package com.example.Controllers;
 
 import com.example.Model.Login.LogInFunctionalities;
 import com.example.Model.Login.ResultType;
-import com.example.View.Administator.View;
+import com.example.View.Administator.AdminView;
 import com.example.View.Librarian.LibrarianView;
 import com.example.View.Login.LoginView;
 import com.example.View.Menager.ManagerView;
@@ -53,7 +53,7 @@ public class LoginController {
                         }
                         break;
                     case ADMIN_LOGIN:
-                        View.FirstView(loginView.getStage(), result.get(1).toString()); // Assuming the second element is the username
+                        AdminView.FirstView(loginView.getStage(), result.get(1).toString()); // Assuming the second element is the username
                         break;
 
                 }

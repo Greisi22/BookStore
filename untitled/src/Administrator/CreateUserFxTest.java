@@ -1,6 +1,8 @@
 package TestFx.Controllers.Administrator;
 
 import com.example.Controllers.LoginController;
+import com.example.Model.Userss.UserService;
+import com.example.Model.Userss.Users;
 import com.example.View.Login.LoginView;
 import javafx.scene.control.DatePicker;
 import javafx.stage.Stage;
@@ -12,9 +14,11 @@ import org.testfx.util.WaitForAsyncUtils;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class CreateUserFxTest extends ApplicationTest {
@@ -33,8 +37,8 @@ public class CreateUserFxTest extends ApplicationTest {
     @Test
     public void testEmptyFieldsScenario() throws TimeoutException, FileNotFoundException, ClassNotFoundException {
         assertNotNull(loginView);
-
-
+        UserService userService = new UserService();
+        ArrayList<Users> firstUserse = userService.getUsers("src/main/java/com/example/EncodedInformation/Users.dat");
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#Submit").queryAll().isEmpty());
         clickOn(loginView.getUsernametextFiled()).write("Erisa");
         clickOn(loginView.getPassswrdField()).write("999");
@@ -61,11 +65,10 @@ public class CreateUserFxTest extends ApplicationTest {
 
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup(".alert").queryAll().isEmpty());
 
-
-
-        // Simulate clicking the "OK" button in the alert
         clickOn(".alert .button");
 
+        ArrayList<Users> secondUsers = userService.getUsers("src/main/java/com/example/EncodedInformation/Users.dat");
+        assertEquals(firstUserse.size() + 1, secondUsers.size());
 
     }
 }

@@ -1,6 +1,7 @@
 package TestFx.Controllers.Administrator;
 
 import com.example.Controllers.LoginController;
+import com.example.View.Administator.AdminView;
 import com.example.View.Login.LoginView;
 import javafx.stage.Stage;
 import org.junit.jupiter.api.Test;
@@ -48,8 +49,9 @@ public class StatisticFXTest extends ApplicationTest {
         clickOn("#Back");
         WaitForAsyncUtils.waitForFxEvents();
 
+        AdminView adminView = new AdminView();
+        assertNotNull(adminView.getScene());
 
-//        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#lol").queryAll().isEmpty());
 
     }
 }

@@ -16,6 +16,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.testfx.api.FxAssert.verifyThat;
+import static org.testfx.matcher.base.NodeMatchers.isDisabled;
 
 public class BackFXTest extends ApplicationTest {
     private LoginView loginView;
@@ -67,7 +69,7 @@ public class BackFXTest extends ApplicationTest {
         WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#Back").queryAll().isEmpty());
         interact(() -> clickOn("#Back"));
         WaitForAsyncUtils.waitForFxEvents();
-
+        verifyThat("#yourBackButtonId", isDisabled());
 
 
 

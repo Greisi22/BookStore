@@ -1,6 +1,9 @@
 package TestFx.Controllers.Manager;
 
 import com.example.Controllers.LoginController;
+import com.example.Model.Books.BookFunctionalities;
+import com.example.Model.Books.BookService;
+import com.example.Model.Books.Books;
 import com.example.View.Login.LoginView;
 import com.example.View.Menager.ManagerView;
 import com.example.View.Menager.BooksOutOfStockk;
@@ -9,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.testfx.framework.junit5.ApplicationTest;
 import org.testfx.util.WaitForAsyncUtils;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -45,8 +49,17 @@ public class CheckBooksLessThan5 extends ApplicationTest {
 
         BooksOutOfStockk booksOutOfStockk = new BooksOutOfStockk();
         assertNotNull(booksOutOfStockk.getScene());
-        ManagerView adminView = new ManagerView();
-        assertEquals(2,adminView.getBooksOutOfStock().size());
+        ManagerView managerView = new ManagerView();
+
+        BookService bookService = new BookService();
+        ArrayList<Books> booksArrayList = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
+        int sum = 0;
+        for(Books books: booksArrayList){
+            if(books.getQuanity()<5){
+                sum++;
+            }
+        }
+        assertEquals(sum,managerView.getBooksOutOfStock().size());
 
     }
 }

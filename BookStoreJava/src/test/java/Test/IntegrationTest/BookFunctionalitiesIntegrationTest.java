@@ -4,6 +4,7 @@ package Test.IntegrationTest;
 import com.example.Model.Books.BookFunctionalities;
 import com.example.Model.Books.BookService;
 import com.example.Model.Books.Books;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -27,10 +28,18 @@ public class BookFunctionalitiesIntegrationTest {
     }
 
     @AfterEach
-    void destroyFile() {
-        if (tempFile != null && tempFile.exists()) {
-            tempFile.delete();
+    public void cleanUp(){
+        File[] files = tempFolder.listFiles();
+        if(files!=null) {
+            for(File f: files) {
+                System.out.println(f.delete());
+            }
         }
+    }
+
+    @AfterAll
+    public static void deleteFolder(){
+        System.out.println(tempFolder.delete());
     }
     @Test
     public void testUpdateBook() {

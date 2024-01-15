@@ -1,8 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="ffa89cc1-6452-4d39-9917-7b4dc76d4b82" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/untitled.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/EncodedInformation/Books.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/EncodedInformation/Books.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/EncodedInformation/Users.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/EncodedInformation/Users.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/Model/Statistic/StatisticFunctionalities.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/Model/Statistic/StatisticFunctionalities.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/test/java/Test/IntegrationTest/LogInFunctionalitiesIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/test/java/Test/IntegrationTest/LogInFunctionalitiesIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/test/java/Test/IntegrationTest/StatisticFunctionalitiesIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/test/java/Test/IntegrationTest/StatisticFunctionalitiesIntegrationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/test/java/TestFx/Controllers/Librarian/ClearFXTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/test/java/TestFx/Controllers/Librarian/ClearFXTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
+  <component name="ProjectId" id="2awreFfhT8X4hACpyVhRpzqr3QT" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Dell/Desktop/BookStore/untitled/src",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell\Desktop\BookStore\untitled\src" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell\Desktop\BookStore\untitled" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ffa89cc1-6452-4d39-9917-7b4dc76d4b82" name="Changes" comment="" />
+      <created>1705240576779</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1705240576779</updated>
+    </task>
+    <servers />
+  </component>
 </project>

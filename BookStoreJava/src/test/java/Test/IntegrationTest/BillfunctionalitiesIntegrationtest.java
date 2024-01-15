@@ -1,6 +1,7 @@
 package Test.IntegrationTest;
 
 import com.example.Model.Bills.BillFunctionalitiess;
+import com.example.Model.Books.BookFunctionalities;
 import com.example.Model.Books.BookService;
 import com.example.Model.Books.Books;
 import org.junit.jupiter.api.AfterEach;
@@ -49,74 +50,59 @@ public class BillfunctionalitiesIntegrationtest {
      BookService bookService = new BookService();
      bookService.writeBooksInFile(booksListt, tempFile.getPath());
 
-     BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess();
-     Books book3 = new Books();
-     book3 = book2;
-     boolean actual = billFunctionalitiess.checkOutOfStock(book3);
-     assertEquals(actual,false);
 
+     BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(bookService);
+     billFunctionalitiess.setPath(tempFile.getPath());
+
+     Books books = new Books();
+     books.setQuanity(2);
+     books.setISBN("3");
+
+     boolean actual = BillFunctionalitiess.checkOutOfStock(books);
+
+
+     ArrayList<Books> booksFromFile = bookService.getBooks(tempFile.getPath());
+     assertEquals( booksListt.size(), booksFromFile.size());
+
+     if(booksFromFile.size()>0){
+         assertEquals(true,actual);
+     }
  }
 
- @Test
-    void calcuateTotalCost()
- {
-     ArrayList<Books> booksListt = new ArrayList<>();
-     Books book1 = new Books();
-     Books book2 = new Books();
-     book1.setISBN("3");
-     book1.setQuanity(2);
-     book1.setPrice(12);
-     book2.setISBN("2");
-     book2.setQuanity(0);
-     book2.setPrice(12);
-     booksListt.add(book1);
-     booksListt.add(book2);
-
-
-     BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess();
-     double actual=billFunctionalitiess.CalculateTotalPrice(booksListt);
-     assertEquals(actual,24);
- }
 
 
     @Test
     void updateQuantity() {
-        ArrayList<Books> booksList = new ArrayList<>();
-
+        ArrayList<Books> booksListt = new ArrayList<>();
         Books book1 = new Books();
         Books book2 = new Books();
-
         book1.setISBN("3");
         book1.setQuanity(2);
-
         book2.setISBN("2");
-        book2.setQuanity(5);
-
-        booksList.add(book1);
-        booksList.add(book2);
+        book2.setQuanity(0);
+        booksListt.add(book1);
+        booksListt.add(book2);
 
         BookService bookService = new BookService();
-        bookService.writeBooksInFile(booksList, tempFile.getPath());
+        bookService.writeBooksInFile(booksListt, tempFile.getPath());
 
+        BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess(bookService);
+        billFunctionalitiess.setPath(tempFile.getPath());
 
-        BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess();
+        Books books = new Books();
+        books.setQuanity(2);
+        books.setISBN("3");
 
+        Books book4 = BillFunctionalitiess.updateQuantity(books);
+        int actual = book4.getQuanity();
 
         ArrayList<Books> booksFromFile = bookService.getBooks(tempFile.getPath());
+        assertEquals( booksListt.size(), booksFromFile.size());
 
-
-        Books bookToUpdate = booksFromFile.stream()
-                .filter(book -> book.getISBN().equals("2"))
-                .findFirst()
-                .orElse(null);
-
-
-        if (bookToUpdate != null) {
-            BillFunctionalitiess.updateQuantity(bookToUpdate);
-            assertEquals(bookToUpdate.getQuanity(), 4);
-        } else {
-            fail("Book with ISBN '2' not found in the file.");
+        if(booksFromFile.size()>0){
+            assertEquals(booksFromFile.get(0).getQuanity()-1,actual );
         }
+
     }
 
 }

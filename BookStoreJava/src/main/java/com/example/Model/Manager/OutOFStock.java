@@ -16,8 +16,6 @@ public class OutOFStock {
    }
     public static ArrayList<Books> checkIfOutOfStock(String path) {
 
-//        path="src/EncodedInformation/Books.dat"
-
         ArrayList<Books> totalBooksFromFile = bookService.getBooks(path);
         ArrayList<Books> booksOutOfStock = new ArrayList<>();
 

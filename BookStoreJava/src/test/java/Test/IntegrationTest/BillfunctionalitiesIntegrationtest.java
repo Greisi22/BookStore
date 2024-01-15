@@ -12,6 +12,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class BillfunctionalitiesIntegrationtest {
 
@@ -76,4 +77,46 @@ public class BillfunctionalitiesIntegrationtest {
      double actual=billFunctionalitiess.CalculateTotalPrice(booksListt);
      assertEquals(actual,24);
  }
+
+
+    @Test
+    void updateQuantity() {
+        ArrayList<Books> booksList = new ArrayList<>();
+
+        Books book1 = new Books();
+        Books book2 = new Books();
+
+        book1.setISBN("3");
+        book1.setQuanity(2);
+
+        book2.setISBN("2");
+        book2.setQuanity(5);
+
+        booksList.add(book1);
+        booksList.add(book2);
+
+        BookService bookService = new BookService();
+        bookService.writeBooksInFile(booksList, tempFile.getPath());
+
+
+        BillFunctionalitiess billFunctionalitiess = new BillFunctionalitiess();
+
+
+        ArrayList<Books> booksFromFile = bookService.getBooks(tempFile.getPath());
+
+
+        Books bookToUpdate = booksFromFile.stream()
+                .filter(book -> book.getISBN().equals("2"))
+                .findFirst()
+                .orElse(null);
+
+
+        if (bookToUpdate != null) {
+            BillFunctionalitiess.updateQuantity(bookToUpdate);
+            assertEquals(bookToUpdate.getQuanity(), 4);
+        } else {
+            fail("Book with ISBN '2' not found in the file.");
+        }
+    }
+
 }

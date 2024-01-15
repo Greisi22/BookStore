@@ -11,8 +11,6 @@ public class BillFunctionalitiess {
 
     static BookService bookService = new BookService();
 
-
-    private static  String path = "src/main/java/com/example/EncodedInformation/Bills.dat";
     private static  String path1 = "src/main/java/com/example/EncodedInformation/Books.dat";
 
     public  BillFunctionalitiess()
@@ -70,7 +68,7 @@ public class BillFunctionalitiess {
 
     public static Books updateQuantity(Books book)
     {
-        ArrayList<Books> booksFromFile = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
+        ArrayList<Books> booksFromFile = bookService.getBooks(path1);
         for(Books b:booksFromFile)
         {
             if(b.equals(book))
@@ -89,5 +87,6 @@ public class BillFunctionalitiess {
         this.path1 = path1;
 
     }
+
 
 }

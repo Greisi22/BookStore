@@ -47,9 +47,10 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.pitest</groupId>
-      <artifactId>pitest-junit5-plugin</artifactId>
-      <version>1.2.1</version> <!-- Use the latest version available -->
+      <groupId>org.testfx</groupId>
+      <artifactId>testfx-junit5</artifactId>
+      <version>4.0.17</version> <!-- or the desired version -->
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -58,35 +59,19 @@
           <version>4.0.17</version>
           <scope>test</scope>
       </dependency>
-    <dependency>
-      <groupId>org.testfx</groupId>
-      <artifactId>testfx-core</artifactId>
-      <version>4.0.16-alpha</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testfx</groupId>
-      <artifactId>testfx-junit5</artifactId>
-      <version>4.0.16-alpha</version>
-      <scope>test</scope>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.testfx</groupId>-->
+<!--      <artifactId>testfx-core</artifactId>-->
+<!--      <version>4.0.16-alpha</version>-->
+<!--      <scope>test</scope>-->
+<!--    </dependency>-->
+
 
   </dependencies>
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.pitest</groupId>
-        <artifactId>pitest-maven</artifactId>
-        <version>1.15.2</version>
-        <dependencies>
-          <dependency>
-            <groupId>org.pitest</groupId>
-            <artifactId>pitest-junit5-plugin</artifactId>
-            <version>1.2.1</version>
-          </dependency>
-        </dependencies>
-      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -96,8 +81,6 @@
           <target>21</target>
           <verbose>true</verbose>
         </configuration>
-
-
       </plugin>
       <plugin>
         <groupId>org.openjfx</groupId>
@@ -118,6 +101,18 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.pitest</groupId>
+        <artifactId>pitest-maven</artifactId>
+        <version>1.15.2</version>
+        <dependencies>
+          <dependency>
+            <groupId>org.pitest</groupId>
+            <artifactId>pitest-junit5-plugin</artifactId>
+            <version>1.2.1</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>

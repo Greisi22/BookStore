@@ -5,17 +5,87 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ffa89cc1-6452-4d39-9917-7b4dc76d4b82" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/untitled.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Application.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill119" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill120" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill121" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill122" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill123" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill124" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill125" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill126" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill127" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill128" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill129" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill130" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill131" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill132" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill133" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill134" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill135" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill136" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill137" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill138" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill139" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill140" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill141" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill142" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill143" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill144" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill145" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill146" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Bills/Bill147" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Controllers/BillController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Controllers/BookController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Controllers/LibrarianController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Controllers/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/EncodedInformation/Bills.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/EncodedInformation/Books.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/EncodedInformation/Users.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Bills/Bill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Bills/BillFunctionalitiess.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Bills/BillService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Bills/MyDate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Books/Author.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Books/BookFunctionalities.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Books/BookService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Books/Books.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Books/Genre.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Login/AccessLevel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Login/LogInFunctionalities.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Login/ResultType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Manager/OutOFStock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Statistic/StatisticFunctionalities.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Userss/Gender.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Userss/UserFunctionalities.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Userss/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/Userss/Users.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/TextFiles/cnt.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/try.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/bookstorejava/hello-view.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Mock/Bills/BillServiceMock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Mock/Books/BooksSreviceMock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Mock/Users/UserServiceMock.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/Prova/prova.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/UnitTest/Bills/BillFunctionalitiesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/UnitTest/Bills/BillServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/UnitTest/Bills/BillTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/UnitTest/Books/AuthorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/UnitTest/Books/BookFunctionalitiesTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/UnitTest/Books/BookServiceTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/UnitTest/Books/BooksTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/Test/UnitTest/LogIn/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/Bills/Bill140" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/Bills/Bill140" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/Bills/Bill141" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/Bills/Bill141" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/EncodedInformation/Books.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/EncodedInformation/Books.dat" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/EncodedInformation/Users.dat" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/EncodedInformation/Users.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/Model/Statistic/StatisticFunctionalities.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/Model/Statistic/StatisticFunctionalities.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/test/java/Test/IntegrationTest/LogInFunctionalitiesIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/test/java/Test/IntegrationTest/LogInFunctionalitiesIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/test/java/Test/IntegrationTest/StatisticFunctionalitiesIntegrationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/test/java/Test/IntegrationTest/StatisticFunctionalitiesIntegrationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/test/java/TestFx/Controllers/Librarian/ClearFXTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/test/java/TestFx/Controllers/Librarian/ClearFXTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/TextFiles/cnt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../BookStoreJava/src/main/java/com/example/TextFiles/cnt.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Administrator/CheckUsersFxText.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Administrator/CreateUserFxTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Administrator/StatisticFXTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/untitled.iml" beforeDir="false" afterPath="$PROJECT_DIR$/untitled.iml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,9 +95,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2awreFfhT8X4hACpyVhRpzqr3QT" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -39,12 +109,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/Dell/Desktop/BookStore/untitled/src",
+    "last_opened_file_path": "C:/Users/Dell/Documents/AEDestribution/AEDestribution1/AeDestributionFiskalizim/Fiskalizim_Back-end",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Dell\Desktop\BookStore\untitled" />
       <recent name="C:\Users\Dell\Desktop\BookStore\untitled\src" />
     </key>
     <key name="MoveFile.RECENT_KEYS">

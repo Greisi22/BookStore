@@ -58,6 +58,7 @@ public class UpdateBookFxTest extends ApplicationTest {
         String updatedTitle = titleColumn.getCellData(0).toString();
         // Assuming that you want to click on the first cell in the title column
         doubleClickOn(titleColumn.getCellData(0).toString()).write("test").press(KeyCode.ENTER);
+        updatedTitle = titleColumn.getCellData(0).toString();
         BookService bookService = new BookService();
         ArrayList<Books> Books = bookService.getBooks("src/main/java/com/example/EncodedInformation/Books.dat");
        assertEquals(Books.get(0).getTitle(),updatedTitle);

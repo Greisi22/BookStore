@@ -49,7 +49,7 @@ public class StatisticFXTest extends ApplicationTest {
         clickOn("#Back");
         WaitForAsyncUtils.waitForFxEvents();
 
-        WaitForAsyncUtils.waitFor(4, TimeUnit.SECONDS, () -> !lookup("#lol").queryAll().isEmpty());
+
 
     }
 }

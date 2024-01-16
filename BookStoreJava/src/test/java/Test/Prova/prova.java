@@ -132,7 +132,7 @@ public class prova {
             billList.add(bill);
         }
 
-        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/EncodedInformation/Bills.dat", true))) {
+        try (ObjectOutputStream objout = new ObjectOutputStream(new FileOutputStream("src/main/java/com/example/EncodedInformation/Bills.dat", true))) {
             for (Bill billl : billList) {
                 objout.writeObject(billl);
             }
@@ -140,7 +140,7 @@ public class prova {
             e.printStackTrace();
         }
         ArrayList<Bill> listofUsers = new ArrayList<>();
-        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/EncodedInformation/Bills.dat"))) {
+        try (ObjectInputStream objis = new ObjectInputStream(new FileInputStream("src/main/java/com/example/EncodedInformation/Bills.dat"))) {
             while (true) {
                 try {
                     Bill obj = (Bill) objis.readObject();

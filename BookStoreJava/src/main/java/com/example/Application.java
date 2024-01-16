@@ -16,7 +16,7 @@ public class Application extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-        System.out.println("System started successfully...");
+        System.out.println("System started successfully....");
         javafx.application.Application.launch(args);
     }
 
